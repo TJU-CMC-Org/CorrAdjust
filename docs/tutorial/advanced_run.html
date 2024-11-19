@@ -1,0 +1,1961 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4. Advanced example &#8212; CorrAdjust 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/advanced_run';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. FAQ" href="faq.html" />
+    <link rel="prev" title="3. Selecting hyperparameters" href="hyperparameters.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="prepare_data.html">1. Preparing input data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard_run.html">2. Running CorrAdjust</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperparameters.html">3. Selecting hyperparameters</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Advanced example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">5. FAQ</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="tutorial.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">4. </span>Advanced example</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Advanced-example">
+<h1><span class="section-number">4. </span>Advanced example<a class="headerlink" href="#Advanced-example" title="Link to this heading">#</a></h1>
+<p>In this example, we will show how to run CorrAdjust with several feature types (miRNA-mRNA correlations) and several sample groups (male and female samples). The RNA-seq datasets from lymphoblastoid cell lines (LCLs) for the example are taken from the collection generated by <a class="reference external" href="https://doi.org/10.1038/nature12531">the Geuvadis consortium</a>.</p>
+<section id="Loading-and-normalizing-the-data">
+<h2><span class="section-number">4.1. </span>Loading and normalizing the data<a class="headerlink" href="#Loading-and-normalizing-the-data" title="Link to this heading">#</a></h2>
+<p>The below code for reading and normalizing expression data is similar to the previous one with one exception. Specifically, we normalize mRNA and small non-coding RNA (sncRNA) matrices separately, since the datasets come from different experiments and should not be normalized together. <em>After</em> normalization, we concatenate the matrices.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data; both tables have identical index</span>
+<span class="n">df_counts_mRNA</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;input_data/Geuvadis/raw_counts_mRNA.tsv&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">df_counts_sncRNA</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;input_data/Geuvadis/raw_counts_sncRNA.tsv&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Split into training and test samples</span>
+<span class="n">df_counts_mRNA_train</span> <span class="o">=</span> <span class="n">df_counts_mRNA</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df_counts_mRNA_test</span> <span class="o">=</span> <span class="n">df_counts_mRNA</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df_counts_sncRNA_train</span> <span class="o">=</span> <span class="n">df_counts_sncRNA</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df_counts_sncRNA_test</span> <span class="o">=</span> <span class="n">df_counts_sncRNA</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Normalize mRNA and sncRNA data separately</span>
+<span class="n">normalizer</span> <span class="o">=</span> <span class="n">MedianOfRatios</span><span class="p">()</span>
+<span class="n">normalizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_counts_mRNA_train</span><span class="p">)</span>
+<span class="n">df_norm_counts_mRNA_train</span> <span class="o">=</span> <span class="n">normalizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_counts_mRNA_train</span><span class="p">)</span>
+<span class="n">df_norm_counts_mRNA_test</span> <span class="o">=</span> <span class="n">normalizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_counts_mRNA_test</span><span class="p">)</span>
+
+<span class="n">normalizer</span> <span class="o">=</span> <span class="n">MedianOfRatios</span><span class="p">()</span>
+<span class="n">normalizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_counts_sncRNA_train</span><span class="p">)</span>
+<span class="n">df_norm_counts_sncRNA_train</span> <span class="o">=</span> <span class="n">normalizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_counts_sncRNA_train</span><span class="p">)</span>
+<span class="n">df_norm_counts_sncRNA_test</span> <span class="o">=</span> <span class="n">normalizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_counts_sncRNA_test</span><span class="p">)</span>
+
+<span class="c1"># Concatenate mRNA and sncRNA data</span>
+<span class="n">df_norm_counts_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df_norm_counts_sncRNA_train</span><span class="p">,</span> <span class="n">df_norm_counts_mRNA_train</span><span class="p">],</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+<span class="n">df_norm_counts_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">df_norm_counts_sncRNA_test</span><span class="p">,</span> <span class="n">df_norm_counts_mRNA_test</span><span class="p">],</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># Log-transform</span>
+<span class="n">df_data_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">df_norm_counts_train</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_data_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">df_norm_counts_test</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">df_data_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tRF-33-79MP9P9NH57SD3</th>
+      <th>iso-23-2HOMKBFPDP</th>
+      <th>rRF-18-WLLINPD4</th>
+      <th>tRF-33-Z3M8ZLSSXUOLD2</th>
+      <th>iso-22-X2EUIRIKQ</th>
+      <th>iso-22-BQ8DQWM4H</th>
+      <th>iso-24-YEQOW4HK2E</th>
+      <th>yRF-27-KR2Y4BZUNJQ</th>
+      <th>tRF-18-HR6HFRD2</th>
+      <th>iso-24-VY2ZSR672F</th>
+      <th>...</th>
+      <th>ENSG00000198712.1</th>
+      <th>ENSG00000228253.1</th>
+      <th>ENSG00000198899.2</th>
+      <th>ENSG00000198938.2</th>
+      <th>ENSG00000198840.2</th>
+      <th>ENSG00000212907.2</th>
+      <th>ENSG00000198886.2</th>
+      <th>ENSG00000198786.2</th>
+      <th>ENSG00000198695.2</th>
+      <th>ENSG00000198727.2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>TSI_NA20508.1.MI</th>
+      <td>15.375467</td>
+      <td>15.768876</td>
+      <td>14.386797</td>
+      <td>11.509986</td>
+      <td>17.077093</td>
+      <td>16.831354</td>
+      <td>16.979418</td>
+      <td>15.446145</td>
+      <td>17.407458</td>
+      <td>15.867370</td>
+      <td>...</td>
+      <td>16.957235</td>
+      <td>12.100007</td>
+      <td>16.197138</td>
+      <td>17.012233</td>
+      <td>13.547551</td>
+      <td>13.994002</td>
+      <td>17.536592</td>
+      <td>16.437674</td>
+      <td>14.407458</td>
+      <td>15.823431</td>
+    </tr>
+    <tr>
+      <th>FIN_HG00315.2.MI</th>
+      <td>17.004050</td>
+      <td>14.824433</td>
+      <td>15.759253</td>
+      <td>13.413163</td>
+      <td>14.623674</td>
+      <td>14.236777</td>
+      <td>15.006757</td>
+      <td>14.406483</td>
+      <td>15.180716</td>
+      <td>14.415009</td>
+      <td>...</td>
+      <td>16.971874</td>
+      <td>12.258090</td>
+      <td>15.962215</td>
+      <td>17.203759</td>
+      <td>13.432169</td>
+      <td>13.696331</td>
+      <td>17.444533</td>
+      <td>16.435032</td>
+      <td>15.052151</td>
+      <td>16.405424</td>
+    </tr>
+    <tr>
+      <th>FIN_HG00377.2.MI</th>
+      <td>17.363959</td>
+      <td>16.194561</td>
+      <td>15.104459</td>
+      <td>11.785276</td>
+      <td>15.627775</td>
+      <td>15.123750</td>
+      <td>15.992820</td>
+      <td>15.160283</td>
+      <td>14.282834</td>
+      <td>15.429691</td>
+      <td>...</td>
+      <td>17.195135</td>
+      <td>12.745818</td>
+      <td>16.419661</td>
+      <td>17.434837</td>
+      <td>13.754321</td>
+      <td>13.820417</td>
+      <td>17.623701</td>
+      <td>16.587501</td>
+      <td>15.150230</td>
+      <td>16.501734</td>
+    </tr>
+    <tr>
+      <th>CEU_NA07056.1.MI</th>
+      <td>17.097118</td>
+      <td>17.129173</td>
+      <td>17.445657</td>
+      <td>14.503363</td>
+      <td>16.753292</td>
+      <td>14.451858</td>
+      <td>15.225481</td>
+      <td>14.832857</td>
+      <td>15.499062</td>
+      <td>15.173789</td>
+      <td>...</td>
+      <td>18.067899</td>
+      <td>12.790246</td>
+      <td>17.218922</td>
+      <td>18.242186</td>
+      <td>14.478591</td>
+      <td>14.349128</td>
+      <td>18.692826</td>
+      <td>17.028353</td>
+      <td>15.858036</td>
+      <td>16.719261</td>
+    </tr>
+    <tr>
+      <th>YRI_NA19119.3.MI</th>
+      <td>16.795022</td>
+      <td>17.570451</td>
+      <td>15.459582</td>
+      <td>11.381865</td>
+      <td>17.177996</td>
+      <td>15.552042</td>
+      <td>16.201064</td>
+      <td>15.789840</td>
+      <td>17.553967</td>
+      <td>16.495589</td>
+      <td>...</td>
+      <td>16.224141</td>
+      <td>12.177533</td>
+      <td>15.455781</td>
+      <td>16.560902</td>
+      <td>13.195824</td>
+      <td>13.352683</td>
+      <td>16.708912</td>
+      <td>15.811658</td>
+      <td>14.117363</td>
+      <td>15.174058</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>GBR_HG01791.2.MI</th>
+      <td>16.126779</td>
+      <td>15.715584</td>
+      <td>14.766975</td>
+      <td>15.139796</td>
+      <td>16.288074</td>
+      <td>16.552333</td>
+      <td>15.605472</td>
+      <td>14.096111</td>
+      <td>16.977521</td>
+      <td>15.361669</td>
+      <td>...</td>
+      <td>16.720027</td>
+      <td>12.270003</td>
+      <td>15.723737</td>
+      <td>16.764922</td>
+      <td>13.368546</td>
+      <td>13.347992</td>
+      <td>17.085581</td>
+      <td>16.192440</td>
+      <td>14.622754</td>
+      <td>15.805635</td>
+    </tr>
+    <tr>
+      <th>FIN_HG00362.3.MI</th>
+      <td>17.121267</td>
+      <td>16.418557</td>
+      <td>13.368475</td>
+      <td>14.779898</td>
+      <td>16.243674</td>
+      <td>15.027084</td>
+      <td>15.819105</td>
+      <td>15.377365</td>
+      <td>13.327610</td>
+      <td>15.522643</td>
+      <td>...</td>
+      <td>16.910549</td>
+      <td>12.079542</td>
+      <td>15.968046</td>
+      <td>17.013613</td>
+      <td>13.524998</td>
+      <td>13.623903</td>
+      <td>17.297789</td>
+      <td>16.082245</td>
+      <td>14.738878</td>
+      <td>15.962373</td>
+    </tr>
+    <tr>
+      <th>CEU_NA07000.1.MI</th>
+      <td>16.410787</td>
+      <td>17.711002</td>
+      <td>17.774399</td>
+      <td>12.880337</td>
+      <td>17.419655</td>
+      <td>16.219216</td>
+      <td>16.623148</td>
+      <td>15.430145</td>
+      <td>17.526397</td>
+      <td>16.129083</td>
+      <td>...</td>
+      <td>17.297790</td>
+      <td>11.366524</td>
+      <td>16.511681</td>
+      <td>17.707241</td>
+      <td>14.237225</td>
+      <td>14.045978</td>
+      <td>18.140950</td>
+      <td>16.570033</td>
+      <td>15.179156</td>
+      <td>16.700573</td>
+    </tr>
+    <tr>
+      <th>YRI_NA18861.4.MI</th>
+      <td>15.755783</td>
+      <td>16.457623</td>
+      <td>15.142608</td>
+      <td>11.822476</td>
+      <td>16.368148</td>
+      <td>16.651518</td>
+      <td>16.597095</td>
+      <td>15.635380</td>
+      <td>16.886426</td>
+      <td>16.344094</td>
+      <td>...</td>
+      <td>13.245564</td>
+      <td>9.010921</td>
+      <td>12.461696</td>
+      <td>13.331866</td>
+      <td>10.670205</td>
+      <td>10.269527</td>
+      <td>14.117214</td>
+      <td>14.357536</td>
+      <td>12.045723</td>
+      <td>13.455430</td>
+    </tr>
+    <tr>
+      <th>GBR_HG00237.4.MI</th>
+      <td>13.614071</td>
+      <td>14.934466</td>
+      <td>11.768121</td>
+      <td>13.726310</td>
+      <td>14.688703</td>
+      <td>16.593015</td>
+      <td>16.395290</td>
+      <td>15.619196</td>
+      <td>14.995440</td>
+      <td>15.242237</td>
+      <td>...</td>
+      <td>17.009939</td>
+      <td>12.551017</td>
+      <td>15.668342</td>
+      <td>17.099195</td>
+      <td>13.859134</td>
+      <td>13.359202</td>
+      <td>16.929224</td>
+      <td>15.904793</td>
+      <td>14.359246</td>
+      <td>15.802043</td>
+    </tr>
+  </tbody>
+</table>
+<p>202 rows × 15770 columns</p>
+</div></div>
+</div>
+<p>Fene annotation file also follows the same format but now we have two feature types (<code class="docutils literal notranslate"><span class="pre">sncRNA</span></code> and <code class="docutils literal notranslate"><span class="pre">mRNA</span></code>):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_feature_ann</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;input_data/Geuvadis/gene_annotation.tsv&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature_name</th>
+      <th>feature_type</th>
+    </tr>
+    <tr>
+      <th>feature_id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>tRF-33-79MP9P9NH57SD3</th>
+      <td>tRF-33-79MP9P9NH57SD3</td>
+      <td>sncRNA</td>
+    </tr>
+    <tr>
+      <th>iso-23-2HOMKBFPDP</th>
+      <td>iso-23-2HOMKBFPDP&amp;hsa-miR-191-5p|0|0</td>
+      <td>sncRNA</td>
+    </tr>
+    <tr>
+      <th>rRF-18-WLLINPD4</th>
+      <td>rRF-18-WLLINPD4</td>
+      <td>sncRNA</td>
+    </tr>
+    <tr>
+      <th>tRF-33-Z3M8ZLSSXUOLD2</th>
+      <td>tRF-33-Z3M8ZLSSXUOLD2</td>
+      <td>sncRNA</td>
+    </tr>
+    <tr>
+      <th>iso-22-X2EUIRIKQ</th>
+      <td>iso-22-X2EUIRIKQ&amp;hsa-miR-146a-5p|0|0</td>
+      <td>sncRNA</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>ENSG00000212907.2</th>
+      <td>MT-ND4L</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000198886.2</th>
+      <td>MT-ND4</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000198786.2</th>
+      <td>MT-ND5</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000198695.2</th>
+      <td>MT-ND6</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000198727.2</th>
+      <td>MT-CYB</td>
+      <td>mRNA</td>
+    </tr>
+  </tbody>
+</table>
+<p>15770 rows × 2 columns</p>
+</div></div>
+</div>
+<p>Finally, we read a table with annotation of samples (male and female). Note that the <code class="docutils literal notranslate"><span class="pre">group</span></code> column could have an arbitrary number of different values.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;input_data/Geuvadis/sample_annotation.tsv&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">df_samp_ann_train</span> <span class="o">=</span> <span class="n">df_samp_ann</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df_samp_ann_test</span> <span class="o">=</span> <span class="n">df_samp_ann</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_samp_ann_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>group</th>
+    </tr>
+    <tr>
+      <th>sample</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>TSI_NA20508.1.MI</th>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>FIN_HG00315.2.MI</th>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>FIN_HG00377.2.MI</th>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>CEU_NA07056.1.MI</th>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>YRI_NA19119.3.MI</th>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>GBR_HG01791.2.MI</th>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>FIN_HG00362.3.MI</th>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>CEU_NA07000.1.MI</th>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>YRI_NA18861.4.MI</th>
+      <td>female</td>
+    </tr>
+    <tr>
+      <th>GBR_HG00237.4.MI</th>
+      <td>female</td>
+    </tr>
+  </tbody>
+</table>
+<p>202 rows × 1 columns</p>
+</div></div>
+</div>
+<p>As a reference feature pair sets, we will use experimentally validated targets from <a class="reference external" href="https://doi.org/10.1093/nar/gkad1071">TarBase v9</a>. Note that targets are available only for canonical isomiRs (isomiRs with |0|0 suffix), while expression data has both canonical and non-canonical ones, as well as other non-isomiR sncRNAs.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_feature_sets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;TarBase&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;input_data/GMT_files/TarBase.gmt&quot;</span><span class="p">,</span>
+        <span class="c1"># We expect targets among negative miRNA-mRNA correlations</span>
+        <span class="s2">&quot;sign&quot;</span><span class="p">:</span> <span class="s2">&quot;negative&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;feature_pair_types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sncRNA-mRNA&quot;</span><span class="p">],</span>
+        <span class="c1"># Good default value for miRNA-mRNA analysis</span>
+        <span class="s2">&quot;high_corr_frac&quot;</span><span class="p">:</span> <span class="mf">0.05</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Training-the-model">
+<h2><span class="section-number">4.2. </span>Training the model<a class="headerlink" href="#Training-the-model" title="Link to this heading">#</a></h2>
+<p>Now we create and fit the model, passing sample annotation as an additional argument to <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">CorrAdjust</span><span class="p">(</span>
+    <span class="n">df_feature_ann</span><span class="p">,</span>
+    <span class="n">ref_feature_sets</span><span class="p">,</span>
+    <span class="s2">&quot;out_data/Geuvadis&quot;</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">df_data_train</span><span class="p">,</span>
+    <span class="n">df_samp_ann</span><span class="o">=</span><span class="n">df_samp_ann_train</span><span class="p">,</span>
+    <span class="c1"># Set n_PCs value from paper</span>
+    <span class="n">n_PCs</span><span class="o">=</span><span class="mi">17</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2024-11-15 16:39:33.500807 | Loading TarBase reference sets...
+2024-11-15 16:39:36.434099 | Computing PCA...
+2024-11-15 16:39:37.526092 | Starting PC optimization...
+100%|███████████████████████████████████████████████████████████████████████████████| 154/154 [23:50&lt;00:00,  9.29s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_advanced_run_13_1.png" src="../_images/tutorial_advanced_run_13_1.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_advanced_run_13_2.png" src="../_images/tutorial_advanced_run_13_2.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_advanced_run_13_3.png" src="../_images/tutorial_advanced_run_13_3.png" />
+</div>
+</div>
+<p>If sample annotation with more than one group is passed to <code class="docutils literal notranslate"><span class="pre">fit</span></code>, it will produce separate optimization plots for each group. The last plot stands for mean scores (in this case, mean of male and female scores). Mean training score is used for maximization, and mean validation score is used for early stopping.</p>
+</section>
+<section id="Using-the-trained-model">
+<h2><span class="section-number">4.3. </span>Using the trained model<a class="headerlink" href="#Using-the-trained-model" title="Link to this heading">#</a></h2>
+<p>Calls of all downstream methods should include sample annotation and sample group name. To avoid code duplication, this can be done in a loop.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;female&quot;</span><span class="p">,</span> <span class="s2">&quot;male&quot;</span><span class="p">]:</span>
+    <span class="n">feature_scores</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">compute_feature_scores</span><span class="p">(</span>
+        <span class="n">df_data_test</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="o">=</span><span class="n">df_samp_ann_test</span><span class="p">,</span>
+        <span class="n">samp_group</span><span class="o">=</span><span class="n">samp_group</span>
+    <span class="p">)</span>
+
+    <span class="c1"># This attribute adds title in top-left corners of plots</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Sex = </span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">make_volcano_plot</span><span class="p">(</span>
+        <span class="n">feature_scores</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;volcano.test_samples.</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span>
+        <span class="n">annotate_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="c1"># Use formatter function to shorten isomiR names</span>
+        <span class="n">feature_name_fmt</span><span class="o">=</span><span class="k">lambda</span> <span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;hsa-&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">make_corr_distr_plot</span><span class="p">(</span>
+        <span class="n">df_data_test</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;corr_distr.test_samples.</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="o">=</span><span class="n">df_samp_ann_test</span><span class="p">,</span>
+        <span class="n">samp_group</span><span class="o">=</span><span class="n">samp_group</span>
+    <span class="p">)</span>
+
+    <span class="n">model</span><span class="o">.</span><span class="n">export_corrs</span><span class="p">(</span>
+        <span class="n">df_data_test</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;corrs.test_samples.</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">.tsv&quot;</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="o">=</span><span class="n">df_samp_ann_test</span><span class="p">,</span>
+        <span class="n">samp_group</span><span class="o">=</span><span class="n">samp_group</span>
+    <span class="p">)</span>
+
+    <span class="c1"># These lines just show a representative chunk of the file</span>
+    <span class="n">corrs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;out_data/Geuvadis/corrs.test_samples.</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">.tsv&quot;</span><span class="p">,</span>
+        <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">100000</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Chunk of corrs.test_samples.</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">.tsv:&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">corrs</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">corrs</span><span class="p">[</span><span class="s2">&quot;TarBase_flag&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2024-11-15 17:03:30.277412 | Computing raw correlations for female...
+2024-11-15 17:03:32.477384 | Computing corrected correlations for female...
+2024-11-15 17:03:41.846014 | Computing raw correlations for female...
+2024-11-15 17:03:44.040259 | Computing corrected correlations for female...
+2024-11-15 17:03:54.141543 | Computing raw correlations for female...
+2024-11-15 17:03:56.369497 | Computing corrected correlations for female...
+2024-11-15 17:04:01.286902 | Starting export to file...
+100%|███████████████████████████████████████████████████████████████████████████████| 125/125 [05:07&lt;00:00,  2.46s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Chunk of corrs.test_samples.female.tsv:
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature_id1</th>
+      <th>feature_id2</th>
+      <th>feature_name1</th>
+      <th>feature_name2</th>
+      <th>feature_type1</th>
+      <th>feature_type2</th>
+      <th>corr_clean</th>
+      <th>pvalue_clean</th>
+      <th>corr_raw</th>
+      <th>pvalue_raw</th>
+      <th>TarBase_flag</th>
+      <th>TarBase_trainval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1587</th>
+      <td>iso-22-VFPFU47YP</td>
+      <td>ENSG00000082701.17</td>
+      <td>iso-22-VFPFU47YP&amp;hsa-miR-15a-5p|0|0</td>
+      <td>GSK3B</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.715228</td>
+      <td>3.162188e-31</td>
+      <td>0.134124</td>
+      <td>0.057662</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4837</th>
+      <td>iso-23-U0XZH3PK0H</td>
+      <td>ENSG00000082701.17</td>
+      <td>iso-23-U0XZH3PK0H&amp;hsa-miR-20a-5p|0|0</td>
+      <td>GSK3B</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.683877</td>
+      <td>1.117633e-27</td>
+      <td>0.244307</td>
+      <td>0.000474</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6494</th>
+      <td>iso-23-20XYYWPK0H</td>
+      <td>ENSG00000131023.13</td>
+      <td>iso-23-20XYYWPK0H&amp;hsa-miR-93-5p|0|0</td>
+      <td>LATS1</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.675366</td>
+      <td>8.629332e-27</td>
+      <td>0.179440</td>
+      <td>0.010808</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6997</th>
+      <td>iso-22-83PI02EZN</td>
+      <td>ENSG00000118513.19</td>
+      <td>iso-22-83PI02EZN&amp;hsa-miR-148a-3p|0|0</td>
+      <td>MYB</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.673046</td>
+      <td>1.488833e-26</td>
+      <td>-0.276047</td>
+      <td>0.000073</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7477</th>
+      <td>iso-23-9P9Z35ZQDX</td>
+      <td>ENSG00000082701.17</td>
+      <td>iso-23-9P9Z35ZQDX&amp;hsa-miR-142-3p|0|0</td>
+      <td>GSK3B</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.670901</td>
+      <td>2.454426e-26</td>
+      <td>0.186854</td>
+      <td>0.007907</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7712</th>
+      <td>iso-23-J42LSNSO9</td>
+      <td>ENSG00000109171.15</td>
+      <td>iso-23-J42LSNSO9&amp;hsa-miR-301a-3p|0|0</td>
+      <td>SLAIN2</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.669953</td>
+      <td>3.056695e-26</td>
+      <td>0.061544</td>
+      <td>0.385438</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9829</th>
+      <td>iso-22-URIVHM63P</td>
+      <td>ENSG00000060237.18</td>
+      <td>iso-22-URIVHM63P&amp;hsa-miR-660-5p|0|0</td>
+      <td>WNK1</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.662118</td>
+      <td>1.820262e-25</td>
+      <td>0.173901</td>
+      <td>0.013552</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10006</th>
+      <td>iso-23-U0XZH3PK0H</td>
+      <td>ENSG00000109171.15</td>
+      <td>iso-23-U0XZH3PK0H&amp;hsa-miR-20a-5p|0|0</td>
+      <td>SLAIN2</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.661582</td>
+      <td>2.052645e-25</td>
+      <td>0.167919</td>
+      <td>0.017184</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10875</th>
+      <td>iso-23-J42LSNSO9</td>
+      <td>ENSG00000082701.17</td>
+      <td>iso-23-J42LSNSO9&amp;hsa-miR-301a-3p|0|0</td>
+      <td>GSK3B</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.658831</td>
+      <td>3.787756e-25</td>
+      <td>0.290319</td>
+      <td>0.000029</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>11858</th>
+      <td>iso-23-J424HNSO9</td>
+      <td>ENSG00000048405.10</td>
+      <td>iso-23-J424HNSO9&amp;hsa-miR-301b-3p|0|0</td>
+      <td>ZNF800</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.655913</td>
+      <td>7.203076e-25</td>
+      <td>0.169388</td>
+      <td>0.016221</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2024-11-15 17:09:10.020401 | Computing raw correlations for male...
+2024-11-15 17:09:12.297459 | Computing corrected correlations for male...
+2024-11-15 17:09:22.039786 | Computing raw correlations for male...
+2024-11-15 17:09:24.253179 | Computing corrected correlations for male...
+2024-11-15 17:09:34.159529 | Computing raw correlations for male...
+2024-11-15 17:09:36.418641 | Computing corrected correlations for male...
+2024-11-15 17:09:41.274028 | Starting export to file...
+100%|███████████████████████████████████████████████████████████████████████████████| 125/125 [05:06&lt;00:00,  2.45s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Chunk of corrs.test_samples.male.tsv:
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature_id1</th>
+      <th>feature_id2</th>
+      <th>feature_name1</th>
+      <th>feature_name2</th>
+      <th>feature_type1</th>
+      <th>feature_type2</th>
+      <th>corr_clean</th>
+      <th>pvalue_clean</th>
+      <th>corr_raw</th>
+      <th>pvalue_raw</th>
+      <th>TarBase_flag</th>
+      <th>TarBase_trainval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>21390</th>
+      <td>iso-23-20XYYWPK0H</td>
+      <td>ENSG00000130338.13</td>
+      <td>iso-23-20XYYWPK0H&amp;hsa-miR-93-5p|0|0</td>
+      <td>TULP4</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.655115</td>
+      <td>8.576050e-25</td>
+      <td>-0.066628</td>
+      <td>0.347335</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>21892</th>
+      <td>iso-21-42NBQRZ00</td>
+      <td>ENSG00000009307.16</td>
+      <td>iso-21-42NBQRZ00&amp;hsa-miR-151a-3p|0|0</td>
+      <td>CSDE1</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.654322</td>
+      <td>1.019516e-24</td>
+      <td>-0.175774</td>
+      <td>0.012562</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>29488</th>
+      <td>iso-23-U0XZH3PK0H</td>
+      <td>ENSG00000082701.17</td>
+      <td>iso-23-U0XZH3PK0H&amp;hsa-miR-20a-5p|0|0</td>
+      <td>GSK3B</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.643953</td>
+      <td>9.335271e-24</td>
+      <td>0.120305</td>
+      <td>0.088911</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>32337</th>
+      <td>iso-21-42NBQRZ00</td>
+      <td>ENSG00000138593.9</td>
+      <td>iso-21-42NBQRZ00&amp;hsa-miR-151a-3p|0|0</td>
+      <td>SECISBP2L</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.640631</td>
+      <td>1.863889e-23</td>
+      <td>-0.189063</td>
+      <td>0.007188</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>34594</th>
+      <td>iso-22-J424IB1JI</td>
+      <td>ENSG00000118058.23</td>
+      <td>iso-22-J424IB1JI&amp;hsa-miR-130b-3p|0|0</td>
+      <td>KMT2A</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.638107</td>
+      <td>3.134571e-23</td>
+      <td>0.211219</td>
+      <td>0.002613</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>41222</th>
+      <td>iso-23-20XZ03PK0H</td>
+      <td>ENSG00000102908.22</td>
+      <td>iso-23-20XZ03PK0H&amp;hsa-miR-17-5p|0|0</td>
+      <td>NFAT5</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.631484</td>
+      <td>1.198429e-22</td>
+      <td>0.170516</td>
+      <td>0.015514</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>42711</th>
+      <td>iso-21-W05I2PWPE</td>
+      <td>ENSG00000009307.16</td>
+      <td>iso-21-W05I2PWPE&amp;hsa-miR-151a-5p|0|0</td>
+      <td>CSDE1</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.630074</td>
+      <td>1.587678e-22</td>
+      <td>-0.113037</td>
+      <td>0.110109</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>44583</th>
+      <td>iso-23-20XZ03PK0H</td>
+      <td>ENSG00000110367.13</td>
+      <td>iso-23-20XZ03PK0H&amp;hsa-miR-17-5p|0|0</td>
+      <td>DDX6</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.628444</td>
+      <td>2.194175e-22</td>
+      <td>0.084632</td>
+      <td>0.232272</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>46898</th>
+      <td>iso-22-XKVL7YXYQ</td>
+      <td>ENSG00000118058.23</td>
+      <td>iso-22-XKVL7YXYQ&amp;hsa-let-7i-5p|0|0</td>
+      <td>KMT2A</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.626423</td>
+      <td>3.267888e-22</td>
+      <td>0.112801</td>
+      <td>0.110857</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>49526</th>
+      <td>iso-23-U0XZH3PK0H</td>
+      <td>ENSG00000110367.13</td>
+      <td>iso-23-U0XZH3PK0H&amp;hsa-miR-20a-5p|0|0</td>
+      <td>DDX6</td>
+      <td>sncRNA</td>
+      <td>mRNA</td>
+      <td>-0.624238</td>
+      <td>5.011761e-22</td>
+      <td>0.033899</td>
+      <td>0.632831</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_advanced_run_17_6.png" src="../_images/tutorial_advanced_run_17_6.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_advanced_run_17_7.png" src="../_images/tutorial_advanced_run_17_7.png" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_advanced_run_17_8.png" src="../_images/tutorial_advanced_run_17_8.png" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_advanced_run_17_9.png" src="../_images/tutorial_advanced_run_17_9.png" />
+</div>
+</div>
+<p>The only method that doesn’t require group name is <code class="docutils literal notranslate"><span class="pre">transform</span></code>, since all samples are cleaned together.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_data_test_clean</span><span class="p">,</span> <span class="n">df_rsquareds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+    <span class="n">df_data_test</span><span class="p">,</span>
+    <span class="n">df_samp_ann_test</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_data_test_clean</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tRF-33-79MP9P9NH57SD3</th>
+      <th>iso-23-2HOMKBFPDP</th>
+      <th>rRF-18-WLLINPD4</th>
+      <th>tRF-33-Z3M8ZLSSXUOLD2</th>
+      <th>iso-22-X2EUIRIKQ</th>
+      <th>iso-22-BQ8DQWM4H</th>
+      <th>iso-24-YEQOW4HK2E</th>
+      <th>yRF-27-KR2Y4BZUNJQ</th>
+      <th>tRF-18-HR6HFRD2</th>
+      <th>iso-24-VY2ZSR672F</th>
+      <th>...</th>
+      <th>ENSG00000198712.1</th>
+      <th>ENSG00000228253.1</th>
+      <th>ENSG00000198899.2</th>
+      <th>ENSG00000198938.2</th>
+      <th>ENSG00000198840.2</th>
+      <th>ENSG00000212907.2</th>
+      <th>ENSG00000198886.2</th>
+      <th>ENSG00000198786.2</th>
+      <th>ENSG00000198695.2</th>
+      <th>ENSG00000198727.2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>CEU_NA12812.1.MI</th>
+      <td>-0.620065</td>
+      <td>-0.310726</td>
+      <td>-0.249793</td>
+      <td>1.290901</td>
+      <td>0.281442</td>
+      <td>-0.050428</td>
+      <td>0.527796</td>
+      <td>-0.401979</td>
+      <td>-0.772192</td>
+      <td>-0.512847</td>
+      <td>...</td>
+      <td>0.158439</td>
+      <td>0.173913</td>
+      <td>0.427129</td>
+      <td>0.534144</td>
+      <td>0.454318</td>
+      <td>0.439413</td>
+      <td>0.549146</td>
+      <td>0.316825</td>
+      <td>0.381061</td>
+      <td>0.078790</td>
+    </tr>
+    <tr>
+      <th>CEU_NA12749.1.MI</th>
+      <td>-1.106119</td>
+      <td>-0.628111</td>
+      <td>-1.249008</td>
+      <td>0.616152</td>
+      <td>0.206401</td>
+      <td>-0.108065</td>
+      <td>0.103019</td>
+      <td>0.038530</td>
+      <td>1.169227</td>
+      <td>-0.064189</td>
+      <td>...</td>
+      <td>-0.344318</td>
+      <td>-0.269753</td>
+      <td>-0.155804</td>
+      <td>-0.453415</td>
+      <td>-0.155392</td>
+      <td>-0.505204</td>
+      <td>-0.384939</td>
+      <td>-0.579743</td>
+      <td>-0.510531</td>
+      <td>-0.332724</td>
+    </tr>
+    <tr>
+      <th>TSI_NA20510.3.MI</th>
+      <td>0.195529</td>
+      <td>-0.151787</td>
+      <td>0.250982</td>
+      <td>-0.509563</td>
+      <td>0.062368</td>
+      <td>-0.322359</td>
+      <td>-0.387207</td>
+      <td>0.716692</td>
+      <td>0.794845</td>
+      <td>-0.685646</td>
+      <td>...</td>
+      <td>0.132211</td>
+      <td>0.255880</td>
+      <td>0.054310</td>
+      <td>-0.062379</td>
+      <td>0.110532</td>
+      <td>0.161819</td>
+      <td>0.200947</td>
+      <td>0.060922</td>
+      <td>0.095826</td>
+      <td>-0.142283</td>
+    </tr>
+    <tr>
+      <th>GBR_HG00155.1.MI</th>
+      <td>-0.053329</td>
+      <td>-0.300658</td>
+      <td>0.170739</td>
+      <td>-0.383377</td>
+      <td>-0.068466</td>
+      <td>-0.254343</td>
+      <td>-0.439967</td>
+      <td>-0.292031</td>
+      <td>1.943921</td>
+      <td>-0.449839</td>
+      <td>...</td>
+      <td>-0.092572</td>
+      <td>-0.054234</td>
+      <td>0.190476</td>
+      <td>0.035316</td>
+      <td>0.234884</td>
+      <td>0.145346</td>
+      <td>0.030836</td>
+      <td>-0.008509</td>
+      <td>-0.025680</td>
+      <td>0.144530</td>
+    </tr>
+    <tr>
+      <th>FIN_HG00350.3.MI</th>
+      <td>0.525551</td>
+      <td>-0.086287</td>
+      <td>0.157886</td>
+      <td>-0.400232</td>
+      <td>0.006228</td>
+      <td>-0.445866</td>
+      <td>-0.210717</td>
+      <td>0.212302</td>
+      <td>1.625556</td>
+      <td>-0.428203</td>
+      <td>...</td>
+      <td>-0.038814</td>
+      <td>-0.153922</td>
+      <td>-0.146719</td>
+      <td>0.017803</td>
+      <td>0.096110</td>
+      <td>-0.301353</td>
+      <td>0.002004</td>
+      <td>-0.402903</td>
+      <td>-0.169281</td>
+      <td>-0.109961</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>CEU_NA12778.1.MI</th>
+      <td>0.581613</td>
+      <td>-0.307854</td>
+      <td>1.827755</td>
+      <td>0.375388</td>
+      <td>0.559242</td>
+      <td>0.283521</td>
+      <td>-0.132107</td>
+      <td>0.957126</td>
+      <td>0.674212</td>
+      <td>-0.213702</td>
+      <td>...</td>
+      <td>0.122245</td>
+      <td>-0.301193</td>
+      <td>0.274027</td>
+      <td>0.291671</td>
+      <td>-0.014586</td>
+      <td>-0.008767</td>
+      <td>0.404175</td>
+      <td>0.418945</td>
+      <td>0.170228</td>
+      <td>0.276137</td>
+    </tr>
+    <tr>
+      <th>TSI_NA20761.1.MI</th>
+      <td>0.427250</td>
+      <td>-0.000609</td>
+      <td>1.854137</td>
+      <td>-0.967633</td>
+      <td>0.286078</td>
+      <td>-0.553838</td>
+      <td>-0.271268</td>
+      <td>0.738555</td>
+      <td>0.066126</td>
+      <td>-0.495017</td>
+      <td>...</td>
+      <td>-0.095754</td>
+      <td>-1.027643</td>
+      <td>-0.271515</td>
+      <td>-0.459521</td>
+      <td>-0.555034</td>
+      <td>-0.464335</td>
+      <td>0.236649</td>
+      <td>0.014550</td>
+      <td>0.192458</td>
+      <td>-0.273718</td>
+    </tr>
+    <tr>
+      <th>FIN_HG00308.3.MI</th>
+      <td>0.049832</td>
+      <td>0.064105</td>
+      <td>0.216882</td>
+      <td>0.504403</td>
+      <td>-0.077997</td>
+      <td>-0.153369</td>
+      <td>-0.179680</td>
+      <td>-0.236491</td>
+      <td>0.524470</td>
+      <td>0.310773</td>
+      <td>...</td>
+      <td>0.224791</td>
+      <td>0.431358</td>
+      <td>0.144727</td>
+      <td>0.234761</td>
+      <td>0.124680</td>
+      <td>0.232421</td>
+      <td>0.155974</td>
+      <td>-0.221077</td>
+      <td>-0.224894</td>
+      <td>-0.307741</td>
+    </tr>
+    <tr>
+      <th>CEU_NA12399.7.MI</th>
+      <td>0.996266</td>
+      <td>-0.470806</td>
+      <td>-0.691879</td>
+      <td>0.213296</td>
+      <td>-0.218509</td>
+      <td>0.302927</td>
+      <td>0.066839</td>
+      <td>0.112897</td>
+      <td>-1.323507</td>
+      <td>0.208681</td>
+      <td>...</td>
+      <td>-0.306433</td>
+      <td>0.255695</td>
+      <td>-0.451077</td>
+      <td>-0.298684</td>
+      <td>-0.363276</td>
+      <td>-0.000983</td>
+      <td>-0.401184</td>
+      <td>-0.278655</td>
+      <td>-0.341041</td>
+      <td>-0.359523</td>
+    </tr>
+    <tr>
+      <th>YRI_NA19144.4.MI</th>
+      <td>-0.631015</td>
+      <td>-0.555298</td>
+      <td>-2.123311</td>
+      <td>-0.045040</td>
+      <td>-0.326791</td>
+      <td>-0.092634</td>
+      <td>-0.241750</td>
+      <td>0.372753</td>
+      <td>0.076177</td>
+      <td>-0.711939</td>
+      <td>...</td>
+      <td>-0.074233</td>
+      <td>-1.253004</td>
+      <td>-0.406206</td>
+      <td>0.013982</td>
+      <td>0.171947</td>
+      <td>-0.449277</td>
+      <td>-0.364824</td>
+      <td>-0.354861</td>
+      <td>0.004093</td>
+      <td>-0.504313</td>
+    </tr>
+  </tbody>
+</table>
+<p>201 rows × 15770 columns</p>
+</div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="hyperparameters.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Selecting hyperparameters</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="faq.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>FAQ</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Loading-and-normalizing-the-data">4.1. Loading and normalizing the data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Training-the-model">4.2. Training the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Using-the-trained-model">4.3. Using the trained model</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/tutorial/advanced_run.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

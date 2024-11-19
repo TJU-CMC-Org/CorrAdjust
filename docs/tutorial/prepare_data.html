@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Preparing input data &#8212; CorrAdjust 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/prepare_data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Running CorrAdjust" href="standard_run.html" />
+    <link rel="prev" title="User Guide" href="tutorial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Preparing input data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard_run.html">2. Running CorrAdjust</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hyperparameters.html">3. Selecting hyperparameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_run.html">4. Advanced example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">5. FAQ</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="tutorial.html" class="nav-link">User Guide</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis"><span class="section-number">1. </span>Preparing input data</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Preparing-input-data">
+<h1><span class="section-number">1. </span>Preparing input data<a class="headerlink" href="#Preparing-input-data" title="Link to this heading">#</a></h1>
+<p>To use the CorrAdjust, you will need to prepare the following input data:</p>
+<ul class="simple">
+<li><p>Data table and additional tables with feature/sample annotations.</p></li>
+<li><p>One or more GMT files listing which features (e.g., genes) belong to the same reference sets (e.g., pathways).</p></li>
+<li><p>Configuration dict.</p></li>
+</ul>
+<section id="Data-and-annotation-tables">
+<h2><span class="section-number">1.1. </span>Data and annotation tables<a class="headerlink" href="#Data-and-annotation-tables" title="Link to this heading">#</a></h2>
+<p>Main data table’s rows and columns should represent samples and features (e.g., genes), respectively. CorrAdjust operates with Pandas data frames. Data should be normalized in a way that allows between-sample comparisons for each feature. Make sure you don’t have constant features (they cannot be used for correlation analysis).</p>
+<p>If you have more than ~100 samples, you could split the samples into training and test sets, and the module will provide methods to process them without any training/test leaks with sklearn-style interface.</p>
+<p>Below, we use the <a class="reference external" href="https://storage.googleapis.com/adult-gtex/bulk-gex/v8/rna-seq/counts-by-tissue/gene_reads_2017-06-05_v8_whole_blood.gct.gz">GTEx whole blood RNA-seq data</a> (this tutorial will fully reproduce Case 1 from the CorrAdjust paper). We import read counts data (pre-filtered to exclude low-expressed genes), normalize it with <a class="reference external" href="https://doi.org/10.1186/s13059-014-0550-8">median-of-ratios method</a>, and then log-transform.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">corradjust.utils</span> <span class="kn">import</span> <span class="n">MedianOfRatios</span>
+
+<span class="c1"># Raw read counts data</span>
+<span class="n">df_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;input_data/GTEx_Whole_Blood/raw_counts.tsv&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_counts</span><span class="p">)</span>
+
+<span class="c1"># Split samples into 50%/50% training and test sets</span>
+<span class="n">df_counts_train</span> <span class="o">=</span> <span class="n">df_counts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">df_counts_test</span> <span class="o">=</span> <span class="n">df_counts</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Normalize data using DESeq2 median of ratios algorithm</span>
+<span class="c1"># This interface is train/test-set friendly, i.e., test data</span>
+<span class="c1"># has no influence on training data</span>
+<span class="n">normalizer</span> <span class="o">=</span> <span class="n">MedianOfRatios</span><span class="p">()</span>
+<span class="n">normalizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_counts_train</span><span class="p">)</span>
+<span class="n">df_norm_counts_train</span> <span class="o">=</span> <span class="n">normalizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_counts_train</span><span class="p">)</span>
+<span class="n">df_norm_counts_test</span> <span class="o">=</span> <span class="n">normalizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_counts_test</span><span class="p">)</span>
+
+<span class="c1"># Log2-transform</span>
+<span class="n">df_data_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">df_norm_counts_train</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_data_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">df_norm_counts_test</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ENSG00000188976.10</th>
+      <th>ENSG00000187961.13</th>
+      <th>ENSG00000188290.10</th>
+      <th>ENSG00000187608.8</th>
+      <th>ENSG00000131591.17</th>
+      <th>ENSG00000186891.13</th>
+      <th>ENSG00000186827.10</th>
+      <th>ENSG00000078808.16</th>
+      <th>ENSG00000176022.4</th>
+      <th>ENSG00000160087.20</th>
+      <th>...</th>
+      <th>ENSG00000198712.1</th>
+      <th>ENSG00000228253.1</th>
+      <th>ENSG00000198899.2</th>
+      <th>ENSG00000198938.2</th>
+      <th>ENSG00000198840.2</th>
+      <th>ENSG00000212907.2</th>
+      <th>ENSG00000198886.2</th>
+      <th>ENSG00000198786.2</th>
+      <th>ENSG00000198695.2</th>
+      <th>ENSG00000198727.2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>GTEX-111YS-0006-SM-5NQBE</th>
+      <td>1200</td>
+      <td>184</td>
+      <td>10</td>
+      <td>447</td>
+      <td>303</td>
+      <td>60</td>
+      <td>32</td>
+      <td>5023</td>
+      <td>656</td>
+      <td>2291</td>
+      <td>...</td>
+      <td>135021</td>
+      <td>11606</td>
+      <td>85543</td>
+      <td>100328</td>
+      <td>19752</td>
+      <td>10251</td>
+      <td>159959</td>
+      <td>51494</td>
+      <td>27576</td>
+      <td>93271</td>
+    </tr>
+    <tr>
+      <th>GTEX-1122O-0005-SM-5O99J</th>
+      <td>674</td>
+      <td>117</td>
+      <td>36</td>
+      <td>482</td>
+      <td>167</td>
+      <td>31</td>
+      <td>56</td>
+      <td>3917</td>
+      <td>482</td>
+      <td>2251</td>
+      <td>...</td>
+      <td>65060</td>
+      <td>6219</td>
+      <td>40271</td>
+      <td>58629</td>
+      <td>8921</td>
+      <td>7193</td>
+      <td>89646</td>
+      <td>31324</td>
+      <td>11562</td>
+      <td>54229</td>
+    </tr>
+    <tr>
+      <th>GTEX-1128S-0005-SM-5P9HI</th>
+      <td>1498</td>
+      <td>742</td>
+      <td>60</td>
+      <td>392</td>
+      <td>710</td>
+      <td>1141</td>
+      <td>466</td>
+      <td>5158</td>
+      <td>101</td>
+      <td>1638</td>
+      <td>...</td>
+      <td>106654</td>
+      <td>15681</td>
+      <td>110716</td>
+      <td>85599</td>
+      <td>11111</td>
+      <td>14739</td>
+      <td>247762</td>
+      <td>70150</td>
+      <td>38511</td>
+      <td>67878</td>
+    </tr>
+    <tr>
+      <th>GTEX-113IC-0006-SM-5NQ9C</th>
+      <td>1869</td>
+      <td>584</td>
+      <td>456</td>
+      <td>10134</td>
+      <td>891</td>
+      <td>202</td>
+      <td>429</td>
+      <td>4743</td>
+      <td>694</td>
+      <td>2396</td>
+      <td>...</td>
+      <td>49286</td>
+      <td>5252</td>
+      <td>24159</td>
+      <td>39851</td>
+      <td>9008</td>
+      <td>5020</td>
+      <td>64451</td>
+      <td>23966</td>
+      <td>12086</td>
+      <td>36639</td>
+    </tr>
+    <tr>
+      <th>GTEX-113JC-0006-SM-5O997</th>
+      <td>652</td>
+      <td>226</td>
+      <td>210</td>
+      <td>7584</td>
+      <td>275</td>
+      <td>204</td>
+      <td>184</td>
+      <td>1854</td>
+      <td>84</td>
+      <td>611</td>
+      <td>...</td>
+      <td>71888</td>
+      <td>9828</td>
+      <td>67927</td>
+      <td>56464</td>
+      <td>11920</td>
+      <td>9963</td>
+      <td>120662</td>
+      <td>31464</td>
+      <td>10105</td>
+      <td>54708</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZVTK-0006-SM-57WBK</th>
+      <td>1288</td>
+      <td>495</td>
+      <td>85</td>
+      <td>579</td>
+      <td>320</td>
+      <td>599</td>
+      <td>920</td>
+      <td>3557</td>
+      <td>179</td>
+      <td>772</td>
+      <td>...</td>
+      <td>135880</td>
+      <td>16912</td>
+      <td>113231</td>
+      <td>108538</td>
+      <td>16336</td>
+      <td>21829</td>
+      <td>251772</td>
+      <td>106566</td>
+      <td>39759</td>
+      <td>103755</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZVZP-0006-SM-51MSW</th>
+      <td>763</td>
+      <td>152</td>
+      <td>5</td>
+      <td>319</td>
+      <td>260</td>
+      <td>126</td>
+      <td>49</td>
+      <td>4631</td>
+      <td>552</td>
+      <td>2912</td>
+      <td>...</td>
+      <td>153946</td>
+      <td>11599</td>
+      <td>104121</td>
+      <td>162880</td>
+      <td>19291</td>
+      <td>8908</td>
+      <td>220827</td>
+      <td>47923</td>
+      <td>29585</td>
+      <td>145346</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZVZQ-0006-SM-51MR8</th>
+      <td>1998</td>
+      <td>481</td>
+      <td>159</td>
+      <td>1391</td>
+      <td>1034</td>
+      <td>1016</td>
+      <td>785</td>
+      <td>4662</td>
+      <td>257</td>
+      <td>1095</td>
+      <td>...</td>
+      <td>194031</td>
+      <td>24313</td>
+      <td>184296</td>
+      <td>186144</td>
+      <td>36242</td>
+      <td>24964</td>
+      <td>387990</td>
+      <td>88907</td>
+      <td>25830</td>
+      <td>175377</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZXES-0005-SM-57WCB</th>
+      <td>1181</td>
+      <td>221</td>
+      <td>7</td>
+      <td>759</td>
+      <td>274</td>
+      <td>86</td>
+      <td>65</td>
+      <td>6305</td>
+      <td>794</td>
+      <td>2939</td>
+      <td>...</td>
+      <td>83592</td>
+      <td>9832</td>
+      <td>65882</td>
+      <td>73655</td>
+      <td>12275</td>
+      <td>8488</td>
+      <td>114308</td>
+      <td>33482</td>
+      <td>14236</td>
+      <td>57067</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZXG5-0005-SM-57WCN</th>
+      <td>1528</td>
+      <td>766</td>
+      <td>124</td>
+      <td>536</td>
+      <td>583</td>
+      <td>289</td>
+      <td>157</td>
+      <td>5351</td>
+      <td>236</td>
+      <td>1369</td>
+      <td>...</td>
+      <td>142742</td>
+      <td>20875</td>
+      <td>130945</td>
+      <td>118088</td>
+      <td>22318</td>
+      <td>17722</td>
+      <td>229771</td>
+      <td>52406</td>
+      <td>18488</td>
+      <td>117515</td>
+    </tr>
+  </tbody>
+</table>
+<p>755 rows × 10021 columns</p>
+</div></div>
+</div>
+<p>Feature annotation table is mandatory and should have 3 columns:</p>
+<ol class="arabic simple">
+<li><p><strong>feature_id</strong>: should match with columns of data and needs to be unique. For example, ENSEMBL gene IDs.</p></li>
+<li><p><strong>feature_name</strong>: should match feature names in the reference GMT files, allows duplicates. For example, gene symbols.</p></li>
+<li><p><strong>feature_type</strong>: discrete set of feature types. E.g., if you are analyzing only mRNA-seq data, put <code class="docutils literal notranslate"><span class="pre">mRNA</span></code> for all genes; if you are integrating miRNA, mRNA, or any other data type, you could use more than one type (e.g., <code class="docutils literal notranslate"><span class="pre">miRNA</span></code> and <code class="docutils literal notranslate"><span class="pre">mRNA</span></code>), see <a class="reference internal" href="advanced_run.html"><span class="doc">Advanced example</span></a>.</p></li>
+</ol>
+<p>Rows of feature annotation table should be <strong>identical</strong> to the columns of <code class="docutils literal notranslate"><span class="pre">df_data</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_feature_ann</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s2">&quot;input_data/GTEx_Whole_Blood/gene_annotation.tsv&quot;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature_name</th>
+      <th>feature_type</th>
+    </tr>
+    <tr>
+      <th>feature_id</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ENSG00000188976.10</th>
+      <td>NOC2L</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000187961.13</th>
+      <td>KLHL17</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000188290.10</th>
+      <td>HES4</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000187608.8</th>
+      <td>ISG15</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000131591.17</th>
+      <td>C1orf159</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>ENSG00000212907.2</th>
+      <td>MT-ND4L</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000198886.2</th>
+      <td>MT-ND4</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000198786.2</th>
+      <td>MT-ND5</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000198695.2</th>
+      <td>MT-ND6</td>
+      <td>mRNA</td>
+    </tr>
+    <tr>
+      <th>ENSG00000198727.2</th>
+      <td>MT-CYB</td>
+      <td>mRNA</td>
+    </tr>
+  </tbody>
+</table>
+<p>10021 rows × 2 columns</p>
+</div></div>
+</div>
+<p>Finally, if you have two or more distinct sample groups (e.g., normal and tumor samples), you might provide sample annotation table, see <a class="reference internal" href="advanced_run.html"><span class="doc">Advanced example</span></a>.</p>
+</section>
+<section id="Reference-GMT-files">
+<h2><span class="section-number">1.2. </span>Reference GMT files<a class="headerlink" href="#Reference-GMT-files" title="Link to this heading">#</a></h2>
+<p>Each reference collection of feature pairs should be represented as a separate GMT file. GMT file is tab-separated file with the following structure:</p>
+<ul class="simple">
+<li><p><strong>Column 1:</strong> reference feature set name.</p></li>
+<li><p><strong>Column 2:</strong> ignored, you can put any string there (e.g., <code class="docutils literal notranslate"><span class="pre">NA</span></code>).</p></li>
+<li><p><strong>Columns 3-…:</strong> feature names (number of features can differ between rows).</p></li>
+</ul>
+<p>You can find a <a class="reference external" href="https://github.com/TJU-CMC-Org/CorrAdjust/blob/master/corradjust/tests/test_data/ref_feature_sets.gmt">toy GMT file</a> in the CorrAdjust GitHub repository. For the current tutorial, we downloaded Canonical Pathways and Gene Ontology databases from <a class="reference external" href="https://www.gsea-msigdb.org/gsea/msigdb/index.jsp">MSigDB</a>.</p>
+<p>The package will take features from each line and label all possible feature pairs as belonging to the <strong>shared</strong> set. Thus, <span class="math notranslate nohighlight">\(n\)</span> features on a line will generate <span class="math notranslate nohighlight">\(n*(n-1)/2\)</span> shared pairs.</p>
+<p>One reference set might be represented by several lines. This can be useful, e.g., for miRNA-target gene pairs:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column 1</p></th>
+<th class="head"><p>Column 2</p></th>
+<th class="head"><p>Column 3</p></th>
+<th class="head"><p>Column 4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>miR-X-targets</p></td>
+<td><p>NA</p></td>
+<td><p>miR-X</p></td>
+<td><p>target-gene-1</p></td>
+</tr>
+<tr class="row-even"><td><p>miR-X-targets</p></td>
+<td><p>NA</p></td>
+<td><p>miR-X</p></td>
+<td><p>target-gene-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>miR-X-targets</p></td>
+<td><p>NA</p></td>
+<td><p>miR-X</p></td>
+<td><p>target-gene-3</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If we instead put everything in one line like this,</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column 1</p></th>
+<th class="head"><p>Column 2</p></th>
+<th class="head"><p>Column 3</p></th>
+<th class="head"><p>Column 4</p></th>
+<th class="head"><p>Column 5</p></th>
+<th class="head"><p>Column 6</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>miR-X-targets</p></td>
+<td><p>NA</p></td>
+<td><p>miR-X</p></td>
+<td><p>target-gene-1</p></td>
+<td><p>target-gene-2</p></td>
+<td><p>target-gene-3</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>then pairs composed of two target genes will also be labeled as <code class="docutils literal notranslate"><span class="pre">miR-X-targets</span></code>, which will be incorrect for the analysis of miRNA-mRNA targeting interactions. See <a class="reference internal" href="advanced_run.html"><span class="doc">Advanced example</span></a> for a miRNA-mRNA run.</p>
+</section>
+<section id="Reference-feature-sets-configuration">
+<h2><span class="section-number">1.3. </span>Reference feature sets configuration<a class="headerlink" href="#Reference-feature-sets-configuration" title="Link to this heading">#</a></h2>
+<p>Configuration dict specifies how reference sets should be handled by CorrAdjust. Below is the example of such a config for two mRNA-mRNA pathway databases. One config can contain an arbitrary number of different GMT files. See more detailed documentation in <a class="reference internal" href="../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust"><span class="std std-ref">API reference</span></a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_feature_sets</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Canonical Pathways&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># Relative or absolute path to the GMT file.</span>
+        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;input_data/GMT_files/c2.cp.v2023.2.Hs.symbols.gmt&quot;</span><span class="p">,</span>
+        <span class="c1"># Rank feature pairs by absolute correlations.</span>
+        <span class="s2">&quot;sign&quot;</span><span class="p">:</span> <span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+        <span class="c1"># Allowed feature pair types.</span>
+        <span class="c1"># Should match annotation&#39;s &quot;feature_type&quot; column.</span>
+        <span class="s2">&quot;feature_pair_types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mRNA-mRNA&quot;</span><span class="p">],</span>
+        <span class="c1"># Fraction of all feature pairs to define highly ranked correlations.</span>
+        <span class="c1"># This is paramter alpha in the CorrAdjust paper notation.</span>
+        <span class="c1"># 0.01 is a good default value for mRNA-mRNA analysis.</span>
+        <span class="s2">&quot;high_corr_frac&quot;</span><span class="p">:</span> <span class="mf">0.01</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Gene Ontology&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;input_data/GMT_files/c5.go.v2023.2.Hs.symbols.gmt&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;sign&quot;</span><span class="p">:</span> <span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;feature_pair_types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mRNA-mRNA&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;high_corr_frac&quot;</span><span class="p">:</span> <span class="mf">0.01</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tutorial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">User Guide</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="standard_run.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Running CorrAdjust</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Data-and-annotation-tables">1.1. Data and annotation tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-GMT-files">1.2. Reference GMT files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-feature-sets-configuration">1.3. Reference feature sets configuration</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/tutorial/prepare_data.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

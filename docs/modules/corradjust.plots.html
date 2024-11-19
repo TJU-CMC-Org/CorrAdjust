@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>corradjust.plots module &#8212; CorrAdjust 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/corradjust.plots';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="corradjust.utils module" href="corradjust.utils.html" />
+    <link rel="prev" title="corradjust.metrics module" href="corradjust.metrics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="corradjust.corradjust.html">corradjust.corradjust module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corradjust.metrics.html">corradjust.metrics module</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">corradjust.plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corradjust.utils.html">corradjust.utils module</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="corradjust.html" class="nav-link">corradjust package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">corradjust.plots module</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-corradjust.plots">
+<span id="corradjust-plots-module"></span><h1>corradjust.plots module<a class="headerlink" href="#module-corradjust.plots" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="corradjust.plots.PCAVariancePlotter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">PCAVariancePlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#PCAVariancePlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.PCAVariancePlotter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create PCA explained variance plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>plot_width</strong><span class="classifier">float, optional, default=6.4</span></dt><dd><p>Plot width.</p>
+</dd>
+<dt><strong>plot_height</strong><span class="classifier">float, optional, default=4.8</span></dt><dd><p>Plot height.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd></dd>
+<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are strings <code class="docutils literal notranslate"><span class="pre">&quot;individual&quot;</span></code> and
+<code class="docutils literal notranslate"><span class="pre">&quot;cumulative&quot;</span></code> referring to the two panels of the plot.
+Values of <cite>axs</cite> are instances of <cite>matplotlib.axes.Axes</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.PCAVariancePlotter.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PCA_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_PCs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#PCAVariancePlotter.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.PCAVariancePlotter.plot" title="Link to this definition">#</a></dt>
+<dd><p>Draw the plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>PCA_model</strong><span class="classifier">sklearn.decomposition.PCA</span></dt><dd><p>PCA model. The <cite>fit</cite> method should be
+called on <cite>PCA_model</cite> prior to calling this method.</p>
+</dd>
+<dt><strong>n_PCs</strong><span class="classifier">int</span></dt><dd><p>Number of PCs to plot on the X-axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.PCAVariancePlotter.save_plot">
+<span class="sig-name descname"><span class="pre">save_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#PCAVariancePlotter.save_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.PCAVariancePlotter.save_plot" title="Link to this definition">#</a></dt>
+<dd><p>Save the plot. This method doesn’t
+call <cite>plt.close</cite>, so it will display the figure in
+jupyter notebook in addition to saving the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>out_path</strong><span class="classifier">str</span></dt><dd><p>Path to the figure (with extension, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;.png&quot;</span></code>).</p>
+</dd>
+<dt><strong>title</strong><span class="classifier">str or None, optional, default=None</span></dt><dd><p>Short text to show at the top-left corner of the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="corradjust.plots.GreedyOptimizationPlotter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">GreedyOptimizationPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samp_group_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Dark2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#GreedyOptimizationPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.GreedyOptimizationPlotter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create a lineplot with score optimization trajectories.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>samp_group_name</strong><span class="classifier">str or None, optional, default=None</span></dt><dd><p>Main title with sample group name to use in the plot.</p>
+</dd>
+<dt><strong>metric</strong><span class="classifier">{“enrichment-based”, “BP&#64;K”}, optional, default=”enrichment-based”</span></dt><dd><p>Metric for evaluating feature correlations.</p>
+</dd>
+<dt><strong>palette</strong><span class="classifier">str or list or dict, optional, default=”Dark2”</span></dt><dd><p>Name of matplotlib colormap or list of colors for the lines or
+dict mapping reference collection names to colors.
+The argument is directly passed to <cite>sns.lineplot</cite>.</p>
+</dd>
+<dt><strong>legend_loc</strong><span class="classifier">str, optional, default=”lower right”</span></dt><dd><p>Where to put the legend (follows matplotlib notation).</p>
+</dd>
+<dt><strong>legend_fontsize</strong><span class="classifier">int, optional, default=10</span></dt><dd><p>Font size of legend text.</p>
+</dd>
+<dt><strong>plot_width</strong><span class="classifier">float, optional, default=6.4</span></dt><dd><p>Plot width.</p>
+</dd>
+<dt><strong>plot_height</strong><span class="classifier">float, optional, default=4.8</span></dt><dd><p>Plot height.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd></dd>
+<dt><strong>ax</strong><span class="classifier">matplotlib.axes.Axes</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.GreedyOptimizationPlotter.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#GreedyOptimizationPlotter.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.GreedyOptimizationPlotter.plot" title="Link to this definition">#</a></dt>
+<dd><p>Draw the lines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Data frame with scores. One can generate
+<cite>df</cite> by taking <code class="docutils literal notranslate"><span class="pre">fit.tsv</span></code> table and
+selecting columns for only one sample group.
+See <cite>CorrAdjust._make_best_iter_scores_plot`</cite>
+method for an example.</p>
+</dd>
+<dt><strong>peak_iter</strong><span class="classifier">int</span></dt><dd><p>This number is used to draw vertical dashed red
+line at the selected early stopping iteration.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.GreedyOptimizationPlotter.save_plot">
+<span class="sig-name descname"><span class="pre">save_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#GreedyOptimizationPlotter.save_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.GreedyOptimizationPlotter.save_plot" title="Link to this definition">#</a></dt>
+<dd><p>Save the plot. This method doesn’t
+call <cite>plt.close</cite>, so it will display the figure in
+jupyter notebook in addition to saving the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>out_path</strong><span class="classifier">str</span></dt><dd><p>Path to the figure (with extension, e.g., <code class="docutils literal notranslate"><span class="pre">.png</span></code>).</p>
+</dd>
+<dt><strong>title</strong><span class="classifier">str or None, optional, default=None</span></dt><dd><p>Short text to show at the top-left corner of the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="corradjust.plots.VolcanoPlotter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">VolcanoPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scorer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_name_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.8941176470588236,</span> <span class="pre">0.10196078431372549,</span> <span class="pre">0.10980392156862745,</span> <span class="pre">0.9)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonsignif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#VolcanoPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.VolcanoPlotter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create a volcano plot with feature-wise enrichment statistics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>corr_scorer</strong><span class="classifier">CorrScorer</span></dt><dd><p>Instance of <cite>CorrScorer</cite>.</p>
+</dd>
+<dt><strong>annotate_features</strong><span class="classifier">int or None, optional, default=None</span></dt><dd><p>How many features with the lowest adjusted p-value to annotate.</p>
+</dd>
+<dt><strong>annot_fontsize</strong><span class="classifier">int, optional, default=8</span></dt><dd><p>Font size of feature names when <code class="docutils literal notranslate"><span class="pre">annotate_features=True</span></code>.</p>
+</dd>
+<dt><strong>feature_name_fmt</strong><span class="classifier">function or None, optional, default=None</span></dt><dd><p>Function that maps feature names to labels to show on the plot
+when <code class="docutils literal notranslate"><span class="pre">annotate_features=True</span></code>. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, shows unmodified feature names.</p>
+</dd>
+<dt><strong>signif_color</strong><span class="classifier">matplotlib color, optional</span></dt><dd><p>Color to draw statistically significant features.</p>
+</dd>
+<dt><strong>nonsignif_color</strong><span class="classifier">matplotlib color, optional</span></dt><dd><p>Color to draw non-significant features.</p>
+</dd>
+<dt><strong>panel_size</strong><span class="classifier">float, optional, default=4.8</span></dt><dd><p>Size of each (square) panel.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd></dd>
+<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_set,</span> <span class="pre">state)</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">state</span></code> is either <code class="docutils literal notranslate"><span class="pre">&quot;Raw&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Clean&quot;</span></code>.
+Values of <cite>axs</cite> are instances of <cite>matplotlib.axes.Axes</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.VolcanoPlotter.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_scores</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#VolcanoPlotter.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.VolcanoPlotter.plot" title="Link to this definition">#</a></dt>
+<dd><p>Create a volcano plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>feature_scores</strong><span class="classifier">dict</span></dt><dd><p>Dict with feature-wise enrichment scores generated
+by the <cite>CorrAdjust.compute_feature_scores</cite> method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.VolcanoPlotter._plot_one_state">
+<span class="sig-name descname"><span class="pre">_plot_one_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_scores_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_pairs_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#VolcanoPlotter._plot_one_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.VolcanoPlotter._plot_one_state" title="Link to this definition">#</a></dt>
+<dd><p>Make the plot for <code class="docutils literal notranslate"><span class="pre">&quot;Raw&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Clean&quot;</span></code> data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>state</strong><span class="classifier">{“Raw”, “Clean”}</span></dt><dd></dd>
+<dt><strong>feature_scores_state</strong><span class="classifier">{feature_scores[“Raw”], feature_scores[“Clean”]}</span></dt><dd></dd>
+<dt><strong>num_pairs_max</strong><span class="classifier">int</span></dt><dd><p>Maximum number for <code class="docutils literal notranslate"><span class="pre">K_j</span></code> to scale the markers and
+display in legend.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.VolcanoPlotter.save_plot">
+<span class="sig-name descname"><span class="pre">save_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#VolcanoPlotter.save_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.VolcanoPlotter.save_plot" title="Link to this definition">#</a></dt>
+<dd><p>Save the plot. This method doesn’t
+call <cite>plt.close</cite>, so it will display the figure in
+jupyter notebook in addition to saving the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>out_path</strong><span class="classifier">str</span></dt><dd><p>Path to the figure (with extension, e.g., <code class="docutils literal notranslate"><span class="pre">.png</span></code>).</p>
+</dd>
+<dt><strong>title</strong><span class="classifier">str or None, optional, default=None</span></dt><dd><p>Short text to show at the top-left corner of the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="corradjust.plots.CorrDistrPlotter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">CorrDistrPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scorer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.12156862745098039,</span> <span class="pre">0.4666666666666667,</span> <span class="pre">0.7058823529411765)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_non_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6823529411764706,</span> <span class="pre">0.7803921568627451,</span> <span class="pre">0.9098039215686274)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.4980392156862745,</span> <span class="pre">0.054901960784313725)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_non_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.7333333333333333,</span> <span class="pre">0.47058823529411764)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#CorrDistrPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.CorrDistrPlotter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create KDE and CDF plots of correlations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>corr_scorer</strong><span class="classifier">CorrScorer</span></dt><dd><p>Instance of <cite>CorrScorer</cite>.</p>
+</dd>
+<dt><strong>pairs_subset</strong><span class="classifier">{“all”, “training”, “validation”}, optional, default=”all”</span></dt><dd><p>Which set of feature pairs to use for computing scores.</p>
+</dd>
+<dt><strong>color_raw_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[0]</span></dt><dd><p>Color for raw correlations, shared feature pairs.</p>
+</dd>
+<dt><strong>color_raw_non_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[1],</span></dt><dd><p>Color for raw correlations, non-shared feature pairs.</p>
+</dd>
+<dt><strong>color_clean_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[2],</span></dt><dd><p>Color for clean correlations, shared feature pairs.</p>
+</dd>
+<dt><strong>color_clean_non_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[3],</span></dt><dd><p>Color for clean correlations, non-shared feature pairs.</p>
+</dd>
+<dt><strong>legend_fontsize</strong><span class="classifier">int, optional, default=10</span></dt><dd><p>Font size of legend text.</p>
+</dd>
+<dt><strong>panel_size</strong><span class="classifier">float, optional, default=4.8</span></dt><dd><p>Size of each (square) panel.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd></dd>
+<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_set,</span> <span class="pre">plot_name)</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">plot_name</span></code> is either <code class="docutils literal notranslate"><span class="pre">&quot;corr-KDE&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;corr-CDF&quot;</span></code>.
+Values of <cite>axs</cite> are instances of <cite>matplotlib.axes.Axes</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.CorrDistrPlotter.add_plots">
+<span class="sig-name descname"><span class="pre">add_plots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#CorrDistrPlotter.add_plots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.CorrDistrPlotter.add_plots" title="Link to this definition">#</a></dt>
+<dd><p>Make KDE and eCDF plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>corr_scores</strong><span class="classifier">dict</span></dt><dd><p>Results of <cite>CorrAdjust.compute_corr_scores</cite> method.</p>
+</dd>
+<dt><strong>state</strong><span class="classifier">{“Raw”, “Clean”}</span></dt><dd></dd>
+<dt><strong>num_points</strong><span class="classifier">int, optional, default=100000</span></dt><dd><p>How many correlations to sample for plotting.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.plots.CorrDistrPlotter.save_plot">
+<span class="sig-name descname"><span class="pre">save_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#CorrDistrPlotter.save_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.CorrDistrPlotter.save_plot" title="Link to this definition">#</a></dt>
+<dd><p>Save the plot. This method doesn’t
+call <cite>plt.close</cite>, so it will display the figure in
+jupyter notebook in addition to saving the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>out_path</strong><span class="classifier">str</span></dt><dd><p>Path to the figure (with extension, e.g., <code class="docutils literal notranslate"><span class="pre">.png</span></code>).</p>
+</dd>
+<dt><strong>title</strong><span class="classifier">str or None, optional, default=None</span></dt><dd><p>Short text to show at the top-left corner of the plot.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="corradjust.metrics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">corradjust.metrics module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="corradjust.utils.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">corradjust.utils module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.PCAVariancePlotter"><code class="docutils literal notranslate"><span class="pre">PCAVariancePlotter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.PCAVariancePlotter.plot"><code class="docutils literal notranslate"><span class="pre">PCAVariancePlotter.plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.PCAVariancePlotter.save_plot"><code class="docutils literal notranslate"><span class="pre">PCAVariancePlotter.save_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.GreedyOptimizationPlotter"><code class="docutils literal notranslate"><span class="pre">GreedyOptimizationPlotter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.GreedyOptimizationPlotter.plot"><code class="docutils literal notranslate"><span class="pre">GreedyOptimizationPlotter.plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.GreedyOptimizationPlotter.save_plot"><code class="docutils literal notranslate"><span class="pre">GreedyOptimizationPlotter.save_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.VolcanoPlotter"><code class="docutils literal notranslate"><span class="pre">VolcanoPlotter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.VolcanoPlotter.plot"><code class="docutils literal notranslate"><span class="pre">VolcanoPlotter.plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.VolcanoPlotter._plot_one_state"><code class="docutils literal notranslate"><span class="pre">VolcanoPlotter._plot_one_state()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.VolcanoPlotter.save_plot"><code class="docutils literal notranslate"><span class="pre">VolcanoPlotter.save_plot()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.CorrDistrPlotter"><code class="docutils literal notranslate"><span class="pre">CorrDistrPlotter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.CorrDistrPlotter.add_plots"><code class="docutils literal notranslate"><span class="pre">CorrDistrPlotter.add_plots()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.plots.CorrDistrPlotter.save_plot"><code class="docutils literal notranslate"><span class="pre">CorrDistrPlotter.save_plot()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/modules/corradjust.plots.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

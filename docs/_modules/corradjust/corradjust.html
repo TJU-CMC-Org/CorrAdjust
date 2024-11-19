@@ -1,0 +1,1686 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>corradjust.corradjust &#8212; CorrAdjust 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/corradjust';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">corradjust.corradjust</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for corradjust.corradjust</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">parallel_sort</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+<span class="kn">from</span> <span class="nn">pyarrow</span> <span class="kn">import</span> <span class="n">csv</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">kneed</span> <span class="kn">import</span> <span class="n">KneeLocator</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">corradjust.metrics</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">corradjust.plots</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">corradjust.utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="CorrAdjust">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust">[docs]</a>
+<span class="k">class</span> <span class="nc">CorrAdjust</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The main CorrAdjust class.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_feature_ann : pandas.DataFrame</span>
+<span class="sd">        A data frame with index and 2 columns </span>
+<span class="sd">        providing annotation for features.</span>
+
+<span class="sd">        - Index: unique feature ids that are also used in the data table.</span>
+<span class="sd">          For example, ENSEMBL gene ids or small RNA license plates.</span>
+<span class="sd">        - Column ``feature_name``: user-friendly names of the features,</span>
+<span class="sd">          which are also used in the reference ``.gmt`` files.</span>
+<span class="sd">          For example, gene symbols or ``&quot;hsa-miR-xx-5p&quot;`` notation for miRNAs.</span>
+<span class="sd">        - Column ``feature_type``: discrete set of feature types.</span>
+<span class="sd">          E.g., if you are analyzing only mRNA-seq data, put ``&quot;mRNA&quot;`` for all features;</span>
+<span class="sd">          if you are integrating miRNA, mRNA, or any other data type,</span>
+<span class="sd">          you could use more than one type (e.g., ``&quot;miRNA&quot;`` and ``&quot;mRNA&quot;``).</span>
+<span class="sd">          Feature types shouldn&#39;t contain ``&quot;-&quot;`` character.</span>
+
+<span class="sd">    ref_feature_sets : dict</span>
+<span class="sd">        A dictionary with information about reference feature set collections.</span>
+<span class="sd">        Each collection is an item of `ref_feature_sets` with key being</span>
+<span class="sd">        collection name (string) and value being another dict with the</span>
+<span class="sd">        following structure.</span>
+
+<span class="sd">        | {</span>
+<span class="sd">        |     ``&quot;path&quot;`` : `str`</span>
+<span class="sd">        |         Relative or absolute path to the ``.gmt`` file with reference feature sets.</span>
+<span class="sd">        |     ``&quot;sign&quot;`` : ``{&quot;positive&quot;, &quot;negative&quot;, &quot;absolute&quot;}``</span>
+<span class="sd">        |         Determines how to rank feature-feature correlations.</span>
+<span class="sd">        |             ``&quot;absolute&quot;``: absolute values of correlations</span>
+<span class="sd">                      (highest absolute correlations go first).</span>
+<span class="sd">        |             ``&quot;positive&quot;``: descending sorting of correlations</span>
+<span class="sd">                      (most positive correlations go first).</span>
+<span class="sd">        |             ``&quot;negative&quot;``: ascending sorting of correlations</span>
+<span class="sd">                      (most negative correlations go first).</span>
+<span class="sd">        |     ``&quot;feature_pair_types&quot;`` : `list`</span>
+<span class="sd">        |         List of strings showing types of correlations you are interested in.</span>
+<span class="sd">                  For example, ``[&quot;mRNA-mRNA&quot;]`` or ``[&quot;miRNA-mRNA&quot;]``.</span>
+<span class="sd">        |     ``&quot;high_corr_frac&quot;`` : float</span>
+<span class="sd">        |         Fraction of all feature pairs with most highly ranked correlations</span>
+<span class="sd">                  that will be used for scoring (alpha in the paper&#39;s notation).</span>
+<span class="sd">        | }.</span>
+<span class="sd">    </span>
+<span class="sd">    out_dir : str</span>
+<span class="sd">        Path to the directory where the output files will be stored.</span>
+<span class="sd">        The directory will be created if it doesn&#39;t exist.</span>
+<span class="sd">    winsorize : float or None, optional, default=0.05</span>
+<span class="sd">        If `float`, specifies fraction of the lowest and the highest</span>
+<span class="sd">        data values that will be winsorized.</span>
+<span class="sd">        If ``None``, no winsorizing will be applied.</span>
+<span class="sd">        Winsorizing is train/test-set friendly, i.e.,</span>
+<span class="sd">        test data has no influence on training data.</span>
+<span class="sd">    shuffle_feature_names : bool or list, optional, default=False</span>
+<span class="sd">        If ``True``, ``feature_name`` column of `df_feature_ann` will be randomly permuted.</span>
+<span class="sd">        If list of feature types, e.g., ``[&quot;mRNA&quot;]``, permutation will be conducted</span>
+<span class="sd">        only within the corresponding feature types.</span>
+<span class="sd">        If ``False``, no permutations will be conducted.</span>
+<span class="sd">    metric : {&quot;enrichment-based&quot;, &quot;BP@K&quot;}, optional, default=&quot;enrichment-based&quot;</span>
+<span class="sd">        Metric for evaluating feature correlations (see CorrAdjust paper for details).</span>
+<span class="sd">        Please use the default option unless you are absolutely sure</span>
+<span class="sd">        why do you need balanced precision at K (BP@K).</span>
+<span class="sd">    min_pairs_to_score : int, optional, default=1000</span>
+<span class="sd">        Minimum number of total pairs containing a feature</span>
+<span class="sd">        (N_j in the paper notation) to include the feature</span>
+<span class="sd">        in the score computations. Inequaility must hold</span>
+<span class="sd">        both in training and validation pair sets.</span>
+<span class="sd">    random_seed : int, optional, default=17</span>
+<span class="sd">        Random seed used by PCA and other non-deterministic procedures.</span>
+<span class="sd">    title : str or None, optional, default=None</span>
+<span class="sd">        If string, it will be shown in top-left corner of all generated plots.</span>
+<span class="sd">    verbose : bool, optional, default=True</span>
+<span class="sd">        Whether to print progress messages to stderr.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    confounder_PCs : list</span>
+<span class="sd">        The list of confounder PC indices (0-based).</span>
+<span class="sd">        Populated by calling `fit` method.</span>
+<span class="sd">    PCA_model : sklearn.decomposition.PCA</span>
+<span class="sd">        PCA instance fit on training data. </span>
+<span class="sd">        Populated by calling `fit` and `fit_PCA` methods.</span>
+<span class="sd">    winsorizer : Winsorizer</span>
+<span class="sd">        Winsorizer instance fit on training data. </span>
+<span class="sd">        Populated by calling `fit` and `fit_PCA` methods.</span>
+<span class="sd">    mean_centerizer : MeanCenterizer</span>
+<span class="sd">        MeanCenterizer instance fit on training data. </span>
+<span class="sd">        Populated by calling `fit` and `fit_PCA` methods.</span>
+<span class="sd">    corr_scorer : CorrScorer</span>
+<span class="sd">        Instance of CorrScorer.</span>
+<span class="sd">        Populated by constructor.</span>
+<span class="sd">    out_dir : str</span>
+<span class="sd">        Output directory.</span>
+<span class="sd">        Populated by constructor.</span>
+<span class="sd">    title : str</span>
+<span class="sd">        Title added to left-top corner of the plots.</span>
+<span class="sd">        Populated by constructor.</span>
+<span class="sd">    metric : {&quot;enrichment-based&quot;, &quot;BP@K&quot;}</span>
+<span class="sd">        Metric for evaluating feature correlations.</span>
+<span class="sd">        Populated by constructor.</span>
+<span class="sd">    random_seed : int</span>
+<span class="sd">        Random seed.</span>
+<span class="sd">        Populated by constructor.</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        Whether to print progress messages.</span>
+<span class="sd">        Populated by constructor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df_feature_ann</span><span class="p">,</span>
+        <span class="n">ref_feature_sets</span><span class="p">,</span>
+        <span class="n">out_dir</span><span class="p">,</span>
+        <span class="n">winsorize</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+        <span class="n">shuffle_feature_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;enrichment-based&quot;</span><span class="p">,</span>
+        <span class="n">min_pairs_to_score</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">random_seed</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">out_dir</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">winsorize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">winsorize</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">winsorize</span> <span class="o">&lt;</span> <span class="mi">1</span>
+            <span class="p">),</span> <span class="s2">&quot;winsorize must be None or float between 0 and 1.&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span> <span class="o">=</span> <span class="n">Winsorizer</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">winsorize</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="k">assert</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="s2">&quot;title must be None or str.&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        
+        <span class="c1"># Load reference data in a data structure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span> <span class="o">=</span> <span class="n">CorrScorer</span><span class="p">(</span>
+            <span class="n">df_feature_ann</span><span class="p">,</span>
+            <span class="n">ref_feature_sets</span><span class="p">,</span>
+            <span class="n">shuffle_feature_names</span><span class="p">,</span>
+            <span class="n">metric</span><span class="p">,</span>
+            <span class="n">min_pairs_to_score</span><span class="p">,</span>
+            <span class="n">random_seed</span><span class="p">,</span>
+            <span class="n">verbose</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_seed</span> <span class="o">=</span> <span class="n">random_seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+    
+
+<div class="viewcode-block" id="CorrAdjust.fit">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df_data</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;greedy&quot;</span><span class="p">,</span>
+        <span class="n">n_PCs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_iters</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find optimal set of PCs to regress out.</span>
+<span class="sd">        Calling this method sets `confounder_PCs` attribute.</span>
+
+<span class="sd">        It also generates several files in `out_dir`:</span>
+
+<span class="sd">        - ``fit.tsv`` : file with the scores across the optimization trajectory.</span>
+<span class="sd">        - ``fit.{sample_group}.png`` : visualization of ``fit.tsv`` for each sample group.</span>
+<span class="sd">        - ``fit.log`` : detailed log file updated at each iteration.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Training data. Index = samples, columns = feature ids.</span>
+<span class="sd">            Data should be normalized so that feature values</span>
+<span class="sd">            are comparable between samples.</span>
+<span class="sd">            Feature ids should perfectly match the ones used in</span>
+<span class="sd">            `df_feature_ann` while initializing the object.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame with index and one column</span>
+<span class="sd">            providing group annotation of samples.</span>
+
+<span class="sd">            - Index: sample names (should match index of `df_data`).</span>
+<span class="sd">            - Column ``group``: discrete set of group names (e.g., ``&quot;normal&quot;`` and ``&quot;tumor&quot;``).</span>
+<span class="sd">              Group name cannot be ``&quot;mean&quot;``.</span>
+
+<span class="sd">            If `df_samp_ann` is ``None``, the method automatically generates it</span>
+<span class="sd">            with one sample group called ``all_samp``.</span>
+<span class="sd">        method : {&quot;greedy&quot;, &quot;first-n&quot;}, optional, default=&quot;greedy&quot;</span>
+<span class="sd">            Optimization method.</span>
+
+<span class="sd">            - ``&quot;greedy&quot;`` (recommended default): searches for the best PC</span>
+<span class="sd">              to remove on each iteration (quadratic complexity).</span>
+<span class="sd">            - ``&quot;first-n&quot;``: iteratively removes PCs based on</span>
+<span class="sd">              % variance they explain (linear complexity). This is</span>
+<span class="sd">              the concept used by `sva_network` function of the `sva` package.</span>
+<span class="sd">        n_PCs : int or None, optional, default=None</span>
+<span class="sd">            Number of PCs to choose from during the optimization.</span>
+<span class="sd">            By default (``None``), number of PCs is estimated as a knee of </span>
+<span class="sd">            % cumulative variance plot.</span>
+<span class="sd">        n_iters : int or None, optional, default=None</span>
+<span class="sd">            How many optimization iterations to perform.</span>
+<span class="sd">            If ``None``, `n_iters` is set to `n_PCs`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_data</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_samp_ann</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">method</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;greedy&quot;</span><span class="p">,</span> <span class="s2">&quot;first-n&quot;</span><span class="p">}</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Method should be &#39;greedy&#39; or &#39;first-n&#39; but &#39;</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&#39; found.&quot;</span>
+        <span class="k">assert</span> <span class="n">n_PCs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_PCs</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s2">&quot;n_PCs must be None or int.&quot;</span>
+        <span class="k">assert</span> <span class="n">n_iters</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_iters</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s2">&quot;n_iters must be None or int.&quot;</span>
+        
+        <span class="c1"># If there are no sample groups, make a dummy one</span>
+        <span class="k">if</span> <span class="n">df_samp_ann</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+
+        <span class="c1"># Mean-centering and winsorization occurs in .fit_PCA,</span>
+        <span class="c1"># that&#39;s why it returns df_data</span>
+        <span class="n">PCs</span><span class="p">,</span> <span class="n">PC_coefs</span><span class="p">,</span> <span class="n">n_PCs_knee</span><span class="p">,</span> <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_PCA</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span>
+
+        <span class="c1"># If not explicitly passed, we use knee estimate for number of PCs</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n_PCs</span><span class="p">:</span>
+            <span class="n">n_PCs</span> <span class="o">=</span> <span class="n">n_PCs_knee</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If user set more PCs than possible, we auto-correct that</span>
+            <span class="k">if</span> <span class="n">n_PCs</span> <span class="o">&gt;</span> <span class="n">PCs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;WARNING | You set </span><span class="si">{</span><span class="n">n_PCs</span><span class="si">}</span><span class="s2"> PCs, but the data has only &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">PCs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> PCs. The run will continue with &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">PCs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> PCs.&quot;</span><span class="p">,</span>
+                    <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+                <span class="p">)</span>
+                <span class="n">n_PCs</span> <span class="o">=</span> <span class="n">PCs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="n">PCs</span> <span class="o">=</span> <span class="n">PCs</span><span class="p">[:,</span> <span class="p">:</span><span class="n">n_PCs</span><span class="p">]</span>
+        <span class="n">PC_coefs</span> <span class="o">=</span> <span class="n">PC_coefs</span><span class="p">[:</span><span class="n">n_PCs</span><span class="p">,</span> <span class="p">:]</span>
+
+        <span class="k">if</span> <span class="n">n_iters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">n_iters</span> <span class="o">=</span> <span class="n">n_PCs</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_search_confounder_PCs</span><span class="p">(</span>
+            <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span>
+            <span class="n">PCs</span><span class="p">,</span> <span class="n">PC_coefs</span><span class="p">,</span>
+            <span class="n">method</span><span class="p">,</span> <span class="n">n_iters</span>
+        <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="CorrAdjust.fit_PCA">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.fit_PCA">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit_PCA</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_var</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute principal components of training data.</span>
+<span class="sd">        The data are centered and optionally winsorized before</span>
+<span class="sd">        computing PCA in train/test-friendly way.</span>
+<span class="sd">        </span>
+<span class="sd">        Calling this method sets `PCA_model` attribute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Training data. Index = samples, columns = feature ids.</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        plot_var : bool, optional, default=False</span>
+<span class="sd">            Whether to make plots with % variance explained.</span>
+<span class="sd">            The plots will be saved as ``&quot;PCA_var.png&quot;`` in `out_dir`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        PCs : numpy.ndarray</span>
+<span class="sd">            Array of principal components with shape ``(n_samples, n_components)``.</span>
+<span class="sd">        PC_coefs : numpy.ndarray</span>
+<span class="sd">            Array of PC coefficients with shape ``(n_components, n_features)``.</span>
+<span class="sd">        n_PCs_knee : int</span>
+<span class="sd">            Number of PCs estimated using knee (a.k.a. elbow) method.</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Centered and (optionally) winsorized training data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_data</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_samp_ann</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">plot_var</span> <span class="ow">in</span> <span class="p">{</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">},</span> <span class="s2">&quot;plot_var must True or False.&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Computing PCA...&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        
+        <span class="c1"># If there are no sample groups, make a dummy one</span>
+        <span class="k">if</span> <span class="n">df_samp_ann</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        
+        <span class="c1"># fit_PCA is always called from fit, but might also be used standalone</span>
+        <span class="c1"># That&#39;s why we decided to center and winsorize data in this method.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+            <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean_centerizer</span> <span class="o">=</span> <span class="n">MeanCenterizer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean_centerizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span>
+        <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean_centerizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span>
+
+        <span class="c1"># Initialize and fit PCA</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="n">PCs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="n">PC_coefs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="o">.</span><span class="n">components_</span>
+        
+        <span class="c1"># Find number of PCs with knee method</span>
+        <span class="n">kneedle</span> <span class="o">=</span> <span class="n">KneeLocator</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">),</span>
+            <span class="n">S</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">curve</span><span class="o">=</span><span class="s2">&quot;concave&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;increasing&quot;</span>
+        <span class="p">)</span>
+        <span class="n">n_PCs_knee</span> <span class="o">=</span> <span class="n">kneedle</span><span class="o">.</span><span class="n">knee</span>
+
+        <span class="k">if</span> <span class="n">plot_var</span><span class="p">:</span> 
+            <span class="n">plotter</span> <span class="o">=</span> <span class="n">PCAVariancePlotter</span><span class="p">()</span>
+            <span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="p">,</span> <span class="n">n_PCs_knee</span><span class="p">)</span>
+            <span class="n">plotter</span><span class="o">.</span><span class="n">save_plot</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/PCA_var.png&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">PCs</span><span class="p">,</span> <span class="n">PC_coefs</span><span class="p">,</span> <span class="n">n_PCs_knee</span><span class="p">,</span> <span class="n">df_data</span></div>
+
+    
+    
+<div class="viewcode-block" id="CorrAdjust.transform">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.transform">[docs]</a>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Residualize identified confounder PCs from input data.</span>
+<span class="sd">        This method should be called after `fit`, or after manually</span>
+<span class="sd">        calling `fit_PCA` and setting `confounder_PCs` attribute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            Feature ids should perfectly match the ones used in</span>
+<span class="sd">            `df_feature_ann` while initializing the object.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            This argument is mandatory if it was used during `fit` call.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        df_data_clean : pandas.DataFrame</span>
+<span class="sd">            Cleaned data.</span>
+<span class="sd">        df_rsquareds : pandas.DataFrame</span>
+<span class="sd">            Data frame with ``R^2`` values for each feature.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="p">(</span>
+            <span class="s2">&quot;CorrAdjust instance must have confounder_PCs attribute when calling transform. &quot;</span>
+            <span class="s2">&quot;Call fit method or manually set the attribute.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;PCA_model&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mean_centerizer&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;fit_PCA should be called prior to transform.&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_data</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_samp_ann</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean_centerizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span>
+
+        <span class="n">X_raw</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">X_PCA</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        
+        <span class="c1"># Regress out optimal PCs from data</span>
+        <span class="n">X_clean</span><span class="p">,</span> <span class="n">rsquareds</span> <span class="o">=</span> <span class="n">regress_out_columns</span><span class="p">(</span>
+            <span class="n">X_raw</span><span class="p">,</span> <span class="n">X_PCA</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">df_data_clean</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_clean</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="n">df_rsquareds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rsquareds</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;rsquared&quot;</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">df_data_clean</span><span class="p">,</span> <span class="n">df_rsquareds</span></div>
+
+    
+    
+<div class="viewcode-block" id="CorrAdjust.compute_feature_scores">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.compute_feature_scores">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_feature_scores</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df_data</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">samp_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">pairs_subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute enrichment scores and p-values</span>
+<span class="sd">        for feature-feature correlations in given data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            Feature ids should perfectly match the ones used in</span>
+<span class="sd">            `df_feature_ann` while initializing the object.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            This argument is mandatory if it was used during `fit` call.</span>
+<span class="sd">        samp_group : str or None, default=None</span>
+<span class="sd">            If `df_samp_ann` is passed, this argument is mandatory</span>
+<span class="sd">            and should refer to one of the sample groups in `df_samp_ann`.</span>
+<span class="sd">        pairs_subset : {&quot;all&quot;, &quot;training&quot;, &quot;validation&quot;}, optional, default=&quot;all&quot;</span>
+<span class="sd">            Which set of feature pairs to use for computing scores.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Dict with data frames containing feature-wise</span>
+<span class="sd">            enrichment scores and p-values.</span>
+<span class="sd">            It has the following structure:</span>
+
+<span class="sd">            | {</span>
+<span class="sd">            |     ``&quot;Clean&quot;`` : {</span>
+<span class="sd">            |         ``ref_feature_set_name`` : pandas.DataFrame</span>
+<span class="sd">            |     },</span>
+<span class="sd">            |     ``&quot;Raw&quot;``: {...}</span>
+<span class="sd">            | }.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;PCA_model&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mean_centerizer&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;fit_PCA should be called prior to compute_feature_scores.&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_data</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">df_samp_ann</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+            <span class="n">samp_group</span> <span class="o">=</span> <span class="n">df_samp_ann</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;group&quot;</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_samp_ann</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2"> is not present in sample annotation.&quot;</span>
+
+        <span class="c1"># Subset is training/validation/all</span>
+        <span class="n">subset_idxs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;training&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">pairs_subset</span> <span class="ow">in</span> <span class="n">subset_idxs</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;pairs_subset must be one of &#39;all&#39;, &#39;training&#39;, &#39;validation&#39;, but &#39;</span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&#39; was found.&quot;</span>
+        
+        <span class="n">feature_scores</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">corrs_raw</span><span class="p">,</span> <span class="n">corrs_clean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_raw_and_clean_corrs</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">samp_group</span><span class="p">)</span>
+
+        <span class="n">corr_scores_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">compute_corr_scores</span><span class="p">(</span><span class="n">corrs_raw</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">):</span>
+            <span class="n">corr_scores_clean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">compute_corr_scores</span><span class="p">(</span><span class="n">corrs_clean</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">corr_scores_clean</span> <span class="o">=</span> <span class="kc">None</span>
+        
+        <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">corr_scores</span> <span class="ow">in</span> <span class="p">[(</span><span class="s2">&quot;Raw&quot;</span><span class="p">,</span> <span class="n">corr_scores_raw</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Clean&quot;</span><span class="p">,</span> <span class="n">corr_scores_clean</span><span class="p">)]:</span>
+            <span class="k">if</span> <span class="n">corr_scores</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="p">:</span>
+                <span class="n">subset_idx</span> <span class="o">=</span> <span class="n">subset_idxs</span><span class="p">[</span><span class="n">pairs_subset</span><span class="p">]</span>
+                <span class="n">total_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
+                <span class="n">total_neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
+
+                <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+                    <span class="s2">&quot;feature_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_ids</span><span class="p">,</span>
+                    <span class="s2">&quot;feature_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
+                    <span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;TPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;num_pairs </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">:</span> <span class="n">total_pos</span><span class="p">,</span>
+                    <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="n">total_pos</span> <span class="o">+</span> <span class="n">total_neg</span><span class="p">,</span>
+                    <span class="s2">&quot;enrichment&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;enrichments </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;balanced_precision&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;BPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;pvalue&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;padj&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues_adj </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                <span class="p">})</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;feature_id&quot;</span><span class="p">)</span>
+
+                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+                <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">])</span>
+
+                <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;padj&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_id&quot;</span><span class="p">])</span>
+                <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">ref_feature_set</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
+
+        <span class="k">return</span> <span class="n">feature_scores</span></div>
+
+            
+
+<div class="viewcode-block" id="CorrAdjust.make_volcano_plot">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.make_volcano_plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_volcano_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+        <span class="n">feature_scores</span><span class="p">,</span>
+        <span class="n">plot_filename</span><span class="p">,</span>
+        <span class="n">annotate_features</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">annot_fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">feature_name_fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">signif_color</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set1&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">),</span>
+        <span class="n">nonsignif_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+        <span class="n">panel_size</span><span class="o">=</span><span class="mf">4.8</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make volcano plot.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        feature_scores : dict</span>
+<span class="sd">            Dict produced by `compute_feature_scores` method.</span>
+<span class="sd">        plot_filename : str</span>
+<span class="sd">            Path to the figure (with extension, e.g., ``.png``).</span>
+<span class="sd">        annotate_features : bool or int, optional, default=False</span>
+<span class="sd">            If `int`, corresponding number of features with the lowest</span>
+<span class="sd">            adjusted p-values will be annotated on the volcano plots.</span>
+<span class="sd">        annot_fontsize : int, optional, default=8</span>
+<span class="sd">            Font size of feature names when ``annotate_features == True``.</span>
+<span class="sd">        feature_name_fmt : function or None, optional, default=None</span>
+<span class="sd">            Function that maps feature names to labels to show on the plot</span>
+<span class="sd">            when ``annotate_features == True``.</span>
+<span class="sd">            If ``None``, shows unmodified feature names.</span>
+<span class="sd">        signif_color : matplotlib color, optional</span>
+<span class="sd">            Color to draw statistically significant features.</span>
+<span class="sd">        nonsignif_color : matplotlib color, optional</span>
+<span class="sd">            Color to draw non-significant features.</span>
+<span class="sd">        panel_size : float, optional, default=4.8</span>
+<span class="sd">            Size of each (square) panel.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        VolcanoPlotter</span>
+<span class="sd">            Instance of `VolcanoPlotter`. At this point,</span>
+<span class="sd">            the plot is already saved in the file, so you</span>
+<span class="sd">            can change it through fig/ax and re-save.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">plotter</span> <span class="o">=</span> <span class="n">VolcanoPlotter</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span>
+            <span class="n">annotate_features</span><span class="o">=</span><span class="n">annotate_features</span><span class="p">,</span>
+            <span class="n">annot_fontsize</span><span class="o">=</span><span class="n">annot_fontsize</span><span class="p">,</span>
+            <span class="n">feature_name_fmt</span><span class="o">=</span><span class="n">feature_name_fmt</span><span class="p">,</span>
+            <span class="n">signif_color</span><span class="o">=</span><span class="n">signif_color</span><span class="p">,</span>
+            <span class="n">nonsignif_color</span><span class="o">=</span><span class="n">nonsignif_color</span><span class="p">,</span>
+            <span class="n">panel_size</span><span class="o">=</span><span class="n">panel_size</span>
+        <span class="p">)</span>
+        <span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">feature_scores</span><span class="p">)</span>
+        <span class="n">plotter</span><span class="o">.</span><span class="n">save_plot</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">plot_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">plotter</span></div>
+
+    
+
+<div class="viewcode-block" id="CorrAdjust.make_corr_distr_plot">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.make_corr_distr_plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_corr_distr_plot</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df_data</span><span class="p">,</span>
+        <span class="n">plot_filename</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">samp_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">pairs_subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Visualize distribution of feature-feature correlations</span>
+<span class="sd">        before and after PC correction.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            Feature ids should perfectly match the ones used in</span>
+<span class="sd">            `df_feature_ann` while initializing the object.</span>
+<span class="sd">        plot_filename : str</span>
+<span class="sd">            Path to the figure (with extension, e.g., ``.png``).</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            This argument is mandatory if it was used during `fit` call.</span>
+<span class="sd">        samp_group : str or None, default=None</span>
+<span class="sd">            If `df_samp_ann` is passed, this argument is mandatory</span>
+<span class="sd">            and should refer to one of the sample groups in `df_samp_ann`.</span>
+<span class="sd">        pairs_subset : {&quot;all&quot;, &quot;training&quot;, &quot;validation&quot;}, optional, default=&quot;all&quot;</span>
+<span class="sd">            Which set of feature pairs to use for computing scores.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        CorrDistrPlotter</span>
+<span class="sd">            Instance of `CorrDistrPlotter`. At this point,</span>
+<span class="sd">            the plot is already saved in the file, so you</span>
+<span class="sd">            can change it through fig/ax and re-save.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;PCA_model&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mean_centerizer&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;fit_PCA should be called prior to make_corr_distr_plot.&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_data</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">df_samp_ann</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+            <span class="n">samp_group</span> <span class="o">=</span> <span class="n">df_samp_ann</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;group&quot;</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_samp_ann</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2"> is not present in sample annotation.&quot;</span>
+
+        <span class="c1"># Subset is training/validation/all</span>
+        <span class="n">subset_idxs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;training&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">pairs_subset</span> <span class="ow">in</span> <span class="n">subset_idxs</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;pairs_subset must be one of &#39;all&#39;, &#39;training&#39;, &#39;validation&#39;, but &#39;</span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&#39; was found.&quot;</span>
+        
+        <span class="n">corrs_raw</span><span class="p">,</span> <span class="n">corrs_clean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_raw_and_clean_corrs</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">samp_group</span><span class="p">)</span>
+        
+        <span class="n">corr_scores_raw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">compute_corr_scores</span><span class="p">(</span><span class="n">corrs_raw</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">):</span>
+            <span class="n">corr_scores_clean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">compute_corr_scores</span><span class="p">(</span><span class="n">corrs_clean</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">corr_scores_clean</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">plotter</span> <span class="o">=</span> <span class="n">CorrDistrPlotter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span> <span class="n">pairs_subset</span><span class="o">=</span><span class="n">pairs_subset</span><span class="p">)</span>
+
+        <span class="n">plotter</span><span class="o">.</span><span class="n">add_plots</span><span class="p">(</span><span class="n">corr_scores_raw</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;Raw&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">):</span>
+            <span class="n">plotter</span><span class="o">.</span><span class="n">add_plots</span><span class="p">(</span><span class="n">corr_scores_clean</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;Clean&quot;</span><span class="p">)</span>
+        
+        <span class="n">plotter</span><span class="o">.</span><span class="n">save_plot</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">plot_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">plotter</span></div>
+
+
+
+<div class="viewcode-block" id="CorrAdjust.export_corrs">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.export_corrs">[docs]</a>
+    <span class="k">def</span> <span class="nf">export_corrs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df_data</span><span class="p">,</span>
+        <span class="n">filename</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">samp_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000000</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Export feature-feature correlations to file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            Feature ids should perfectly match the ones used in</span>
+<span class="sd">            `df_feature_ann` while initializing the object.</span>
+<span class="sd">        filename : str</span>
+<span class="sd">            Path to the export table with ``.tsv`` extension.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            This argument is mandatory if it was used during `fit` call.</span>
+<span class="sd">        samp_group : str or None, default=None</span>
+<span class="sd">            If `df_samp_ann` is passed, this argument is mandatory</span>
+<span class="sd">            and should refer to one of the sample groups in `df_samp_ann`.</span>
+<span class="sd">        chunk_size : int, optional, default=1000000</span>
+<span class="sd">            How many rows are exported in a single chunk.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;PCA_model&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mean_centerizer&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;fit_PCA should be called prior to export_corrs.&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_data</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">df_samp_ann</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+            <span class="n">samp_group</span> <span class="o">=</span> <span class="n">df_samp_ann</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;group&quot;</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_samp_ann</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2"> is not present in sample annotation.&quot;</span>
+
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s2">&quot;chunk_size must be int.&quot;</span>        
+
+        <span class="n">corrs_raw</span><span class="p">,</span> <span class="n">corrs_clean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_raw_and_clean_corrs</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">samp_group</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">):</span>
+            <span class="n">corrs_sorted_args</span> <span class="o">=</span> <span class="n">parallel_sort</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">corrs_clean</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">corrs_sorted_args</span> <span class="o">=</span> <span class="n">parallel_sort</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">corrs_raw</span><span class="p">)</span>
+
+        <span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">triu_rows</span><span class="p">,</span> <span class="n">triu_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Starting export to file...&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>        
+
+        <span class="c1"># We explicitly write header to csv file</span>
+        <span class="c1"># because pyarrow </span>
+        <span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;feature_id1&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_id2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;feature_name1&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_name2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;feature_type1&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_type2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;corr_clean&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue_clean&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;corr_raw&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue_raw&quot;</span><span class="p">,</span>
+        <span class="p">]</span> 
+        <span class="n">ref_feature_set_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">ref_feature_set_header</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">col_type</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">ref_feature_set_names</span>
+            <span class="k">for</span> <span class="n">col_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">,</span> <span class="s2">&quot;trainval&quot;</span><span class="p">]</span>
+        <span class="p">]</span>
+        <span class="n">header</span> <span class="o">+=</span> <span class="n">ref_feature_set_header</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">out_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        
+        <span class="n">n_chunks</span> <span class="o">=</span> <span class="n">corrs_sorted_args</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="n">chunk_size</span>
+        <span class="n">n_chunks</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">corrs_sorted_args</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">%</span> <span class="n">chunk_size</span> <span class="k">else</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">chunk_iterator</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_chunks</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">chunk_iterator</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_chunks</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">chunk_idx</span> <span class="ow">in</span> <span class="n">chunk_iterator</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">chunk_idx</span> <span class="o">*</span> <span class="n">chunk_size</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk_size</span>
+            <span class="n">idxs</span> <span class="o">=</span> <span class="n">corrs_sorted_args</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+
+            <span class="n">pvalues_raw</span> <span class="o">=</span> <span class="n">compute_corr_pvalues</span><span class="p">(</span><span class="n">corrs_raw</span><span class="p">[</span><span class="n">idxs</span><span class="p">],</span> <span class="n">n_samples</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">):</span>
+                    <span class="n">pvalues_clean</span> <span class="o">=</span> <span class="n">compute_corr_pvalues</span><span class="p">(</span><span class="n">corrs_clean</span><span class="p">[</span><span class="n">idxs</span><span class="p">],</span> <span class="n">n_samples</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pvalues_clean</span> <span class="o">=</span> <span class="n">pvalues_raw</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pvalues_clean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">pvalues_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                <span class="n">pvalues_clean</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+            <span class="n">regular_columns</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;feature_id1&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_ids</span><span class="p">[</span><span class="n">triu_rows</span><span class="p">[</span><span class="n">idxs</span><span class="p">]],</span>
+                <span class="s2">&quot;feature_id2&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_ids</span><span class="p">[</span><span class="n">triu_cols</span><span class="p">[</span><span class="n">idxs</span><span class="p">]],</span>
+                <span class="s2">&quot;feature_name1&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">triu_rows</span><span class="p">[</span><span class="n">idxs</span><span class="p">]],</span>
+                <span class="s2">&quot;feature_name2&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">triu_cols</span><span class="p">[</span><span class="n">idxs</span><span class="p">]],</span>
+                <span class="s2">&quot;feature_type1&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_types</span><span class="p">[</span><span class="n">triu_rows</span><span class="p">[</span><span class="n">idxs</span><span class="p">]],</span>
+                <span class="s2">&quot;feature_type2&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_types</span><span class="p">[</span><span class="n">triu_cols</span><span class="p">[</span><span class="n">idxs</span><span class="p">]],</span>
+                <span class="s2">&quot;corr_clean&quot;</span><span class="p">:</span> <span class="n">corrs_clean</span><span class="p">[</span><span class="n">idxs</span><span class="p">],</span>
+                <span class="s2">&quot;pvalue_clean&quot;</span><span class="p">:</span> <span class="n">pvalues_clean</span><span class="p">,</span>
+                <span class="s2">&quot;corr_raw&quot;</span><span class="p">:</span> <span class="n">corrs_raw</span><span class="p">[</span><span class="n">idxs</span><span class="p">],</span>
+                <span class="s2">&quot;pvalue_raw&quot;</span><span class="p">:</span> <span class="n">pvalues_raw</span>
+            <span class="p">}</span>
+
+            <span class="n">ref_feature_columns</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_flag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_trainval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+                <span class="p">)</span>
+
+            <span class="n">tab</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">({</span>
+                <span class="o">**</span><span class="n">regular_columns</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">ref_feature_columns</span>
+            <span class="p">})</span>
+
+            <span class="k">if</span> <span class="n">chunk_idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># This cannot be done before the loop because we need to know tab.schema</span>
+                <span class="n">write_options</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">WriteOptions</span><span class="p">(</span><span class="n">include_header</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">quoting_style</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+                <span class="n">out_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;ab&quot;</span><span class="p">)</span>
+                <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">CSVWriter</span><span class="p">(</span><span class="n">out_file</span><span class="p">,</span> <span class="n">tab</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="n">write_options</span><span class="o">=</span><span class="n">write_options</span><span class="p">)</span>
+            
+            <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+        
+        <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">out_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+    
+
+<div class="viewcode-block" id="CorrAdjust._search_confounder_PCs">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._search_confounder_PCs">[docs]</a>
+    <span class="k">def</span> <span class="nf">_search_confounder_PCs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df_data</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="p">,</span>
+        <span class="n">PCs</span><span class="p">,</span>
+        <span class="n">PC_coefs</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">,</span>
+        <span class="n">n_iters</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iteratively residualize PCs from training data</span>
+<span class="sd">        to maximize number of reference pairs among</span>
+<span class="sd">        highly correlated feature pairs.</span>
+
+<span class="sd">        Parental `fit` method describes files generated by this method.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        PCs : numpy.ndarray</span>
+<span class="sd">            2D array of PCs (returned by `fit_PCA`).</span>
+<span class="sd">        PC_coefs : numpy.ndarray</span>
+<span class="sd">            2D array of PC coefficients (returned by `fit_PCA`).</span>
+<span class="sd">        method : str</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        n_iters : _type_</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">n_PCs</span> <span class="o">=</span> <span class="n">PCs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+        <span class="n">used_PCs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">unused_PCs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_PCs</span><span class="p">))</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Starting PC optimization...&quot;</span><span class="p">,</span>
+                <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+            <span class="p">)</span>
+            <span class="c1"># +1 stands for the iteration before cleaning</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;greedy&quot;</span><span class="p">:</span>
+                <span class="n">total_iterations</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">n_PCs</span> <span class="o">-</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iters</span><span class="p">)])</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">total_iterations</span> <span class="o">=</span> <span class="n">n_iters</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">prog_bar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">total_iterations</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">prog_bar</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">log_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/fit.log&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Compute scores with raw data</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Starting iteration #0 (raw correlations)...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">file</span><span class="o">=</span><span class="n">log_file</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">iter_scores</span><span class="p">,</span> <span class="n">main_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_corrs_and_scores</span><span class="p">(</span>
+            <span class="n">X</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">log_file</span><span class="p">,</span> <span class="n">prog_bar</span><span class="p">,</span> <span class="s2">&quot;Scores before correction&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># This list contains values of best scores across</span>
+        <span class="c1"># algorithm iterations. First values are the scores</span>
+        <span class="c1"># before regressing out any PCs</span>
+        <span class="n">best_iter_scores</span> <span class="o">=</span> <span class="p">[</span><span class="n">iter_scores</span><span class="p">]</span>
+                
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Starting iteration #</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">used_PCs</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">file</span><span class="o">=</span><span class="n">log_file</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+
+            <span class="n">main_scores</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">full_scores</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">PC</span> <span class="ow">in</span> <span class="n">unused_PCs</span><span class="p">:</span>
+                <span class="c1"># Regress out PC</span>
+                <span class="n">X_resid</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">PCs</span><span class="p">[:,</span> <span class="p">[</span><span class="n">PC</span><span class="p">]]</span> <span class="o">@</span> <span class="n">PC_coefs</span><span class="p">[[</span><span class="n">PC</span><span class="p">],</span> <span class="p">:]</span>
+                
+                <span class="n">log_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Trying PC </span><span class="si">{</span><span class="n">PC</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;greedy&quot;</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="n">iter_scores</span><span class="p">,</span> <span class="n">main_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_corrs_and_scores</span><span class="p">(</span>
+                    <span class="n">X_resid</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">log_file</span><span class="p">,</span> <span class="n">prog_bar</span><span class="p">,</span> <span class="n">log_message</span>
+                <span class="p">)</span>
+                
+                <span class="n">main_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">main_score</span><span class="p">)</span>
+                <span class="n">full_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iter_scores</span><span class="p">)</span>
+
+                <span class="c1"># If we break the loop here, then</span>
+                <span class="c1"># the chosen PCs will be the one with the lowest index </span>
+                <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;first-n&quot;</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+            <span class="n">PC_max_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">main_scores</span><span class="p">)</span>
+            <span class="n">PC_max</span> <span class="o">=</span> <span class="n">unused_PCs</span><span class="p">[</span><span class="n">PC_max_idx</span><span class="p">]</span>
+            <span class="n">main_score_max</span> <span class="o">=</span> <span class="n">main_scores</span><span class="p">[</span><span class="n">PC_max_idx</span><span class="p">]</span>
+            <span class="n">full_score_max</span> <span class="o">=</span> <span class="n">full_scores</span><span class="p">[</span><span class="n">PC_max_idx</span><span class="p">]</span>
+            <span class="n">used_PCs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PC_max</span><span class="p">)</span>
+            <span class="n">unused_PCs</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">PC_max</span><span class="p">)</span>
+            <span class="n">best_iter_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_score_max</span><span class="p">)</span>
+
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | PC </span><span class="si">{</span><span class="n">PC_max</span><span class="si">}</span><span class="s2"> selected on iteration #</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">used_PCs</span><span class="p">)</span><span class="si">}</span><span class="s2">; &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Main score: </span><span class="si">{</span><span class="n">main_score_max</span><span class="si">}</span><span class="s2">; &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;All scores: </span><span class="si">{</span><span class="n">full_score_max</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">file</span><span class="o">=</span><span class="n">log_file</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Update data matrix with PC_max</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">PCs</span><span class="p">[:,</span> <span class="p">[</span><span class="n">PC_max</span><span class="p">]]</span> <span class="o">@</span> <span class="n">PC_coefs</span><span class="p">[[</span><span class="n">PC_max</span><span class="p">],</span> <span class="p">:]</span>
+
+        <span class="n">log_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="n">prog_bar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="c1"># Convert scores into data frame</span>
+        <span class="n">df_best_iter_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_iter_scores_to_df</span><span class="p">(</span><span class="n">best_iter_scores</span><span class="p">,</span> <span class="n">used_PCs</span><span class="p">)</span>
+        <span class="n">df_best_iter_scores</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/fit.tsv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Find the peak for number of iterations using early stopping</span>
+        <span class="c1"># Mean of all sample groups, mean of reference collections</span>
+        <span class="n">main_score_col</span> <span class="o">=</span> <span class="s2">&quot;mean;mean;validation&quot;</span>        
+        <span class="n">peak_iter</span> <span class="o">=</span> <span class="n">find_peak</span><span class="p">(</span><span class="n">df_best_iter_scores</span><span class="p">[</span><span class="n">main_score_col</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span> <span class="o">=</span> <span class="n">df_best_iter_scores</span><span class="p">[</span><span class="s2">&quot;PC&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span> <span class="o">+</span> <span class="n">peak_iter</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+
+        <span class="c1"># Make line plot for each sample group</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_make_best_iter_scores_plot</span><span class="p">(</span><span class="n">df_best_iter_scores</span><span class="p">,</span> <span class="n">peak_iter</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="CorrAdjust._compute_corrs_and_scores">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._compute_corrs_and_scores">[docs]</a>
+    <span class="k">def</span> <span class="nf">_compute_corrs_and_scores</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">df_samp_ann</span><span class="p">,</span>
+        <span class="n">log_file</span><span class="p">,</span>
+        <span class="n">prog_bar</span><span class="p">,</span>
+        <span class="n">log_message</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Conduct one iteration of PC optimization</span>
+<span class="sd">        by computing and scoring correlations.</span>
+<span class="sd">        Scores will be computed separately</span>
+<span class="sd">        for each sample group, mean scores will be also returned.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : numpy.ndarray</span>
+<span class="sd">            Training data, rows = samples, columns = features.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        log_file : file</span>
+<span class="sd">            Writing-open log file.</span>
+<span class="sd">        prog_bar : tqdm.std.tqdm or None</span>
+<span class="sd">            Progress bar (will be updated) or ``None``.</span>
+<span class="sd">        log_message : str or None</span>
+<span class="sd">            Title of the log message. If ``None``, nothing</span>
+<span class="sd">            will be printed to log.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        iter_scores : dict</span>
+<span class="sd">            A dict of the following structure:</span>
+
+<span class="sd">            | {</span>
+<span class="sd">            |     ``sample_group_name`` : {</span>
+<span class="sd">            |         ``ref_feature_set_name`` : {</span>
+<span class="sd">            |             ``&quot;score training&quot;`` : float,</span>
+<span class="sd">            |             ``&quot;score validation&quot;`` : float,</span>
+<span class="sd">            |             ``&quot;score all&quot;`` : float,</span>
+<span class="sd">            |         }</span>
+<span class="sd">            |     }</span>
+<span class="sd">            | }.</span>
+
+<span class="sd">        main_score : float</span>
+<span class="sd">            Mean of training scores across all sample groups</span>
+<span class="sd">            and reference collections, i.e.,</span>
+<span class="sd">            ``iter_scores[&quot;mean&quot;][&quot;mean&quot;][&quot;score training&quot;]``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">metric_subsets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;training&quot;</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">]</span>
+        <span class="n">iter_scores</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Compute correlations and scores separately for each sample group</span>
+        <span class="n">unique_samp_groups</span> <span class="o">=</span> <span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">unique_samp_groups</span><span class="p">:</span>
+            <span class="n">samp_group_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">samp_group</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># Compute correlations and scores</span>
+            <span class="n">corrs</span> <span class="o">=</span> <span class="n">compute_pearson_columns</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">samp_group_mask</span><span class="p">])</span>
+            <span class="n">corr_scores</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">compute_corr_scores</span><span class="p">(</span><span class="n">corrs</span><span class="p">)</span>
+
+            <span class="c1"># Re-arrange scores in a dict</span>
+            <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">ref_feature_set</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
+                <span class="p">}</span>
+                <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="c1"># Compute mean score across reference collections (within sample group)</span>
+            <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">][</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
+                    <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="p">])</span>
+                <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
+            <span class="p">}</span>
+
+        <span class="c1"># We also compute mean across sample groups</span>
+        <span class="n">ref_feature_sets</span> <span class="o">=</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">unique_samp_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">iter_scores</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">ref_feature_set</span><span class="p">:</span> <span class="p">{</span>
+                <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
+                    <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">][</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">unique_samp_groups</span>
+                <span class="p">])</span>
+                <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">ref_feature_sets</span>
+        <span class="p">}</span>
+        <span class="n">main_score</span> <span class="o">=</span> <span class="n">iter_scores</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">][</span><span class="s2">&quot;mean&quot;</span><span class="p">][</span><span class="s2">&quot;score training&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">prog_bar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">prog_bar</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">log_message</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> 
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">log_message</span><span class="si">}</span><span class="s2">; &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Main score: </span><span class="si">{</span><span class="n">main_score</span><span class="si">}</span><span class="s2">; &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;All scores: </span><span class="si">{</span><span class="n">iter_scores</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">file</span><span class="o">=</span><span class="n">log_file</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">iter_scores</span><span class="p">,</span> <span class="n">main_score</span></div>
+
+
+
+<div class="viewcode-block" id="CorrAdjust._best_iter_scores_to_df">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._best_iter_scores_to_df">[docs]</a>
+    <span class="k">def</span> <span class="nf">_best_iter_scores_to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">best_iter_scores</span><span class="p">,</span> <span class="n">used_PCs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert dict of scores into data frame.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        best_iter_scores : list</span>
+<span class="sd">            List of dicts with scores corresponding</span>
+<span class="sd">            to the iterations of optimization. Each element</span>
+<span class="sd">            of list should have a format specified in the return</span>
+<span class="sd">            dict of the `_compute_corrs_and_scores` method.</span>
+<span class="sd">        used_PCs : list</span>
+<span class="sd">            List of PC indices corresponding to `best_iter_scores`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">            Pandas data frame with scores in columns and iterations on rows.</span>
+
+<span class="sd">            - Index: iteration number. Starts with 0 (raw dataset before correction).</span>
+<span class="sd">            - Column ``PC``: index of PC being regressed out on each iteration.</span>
+<span class="sd">              First row always have NaN (no correction).</span>
+<span class="sd">            - Score columns: these columns have the following format:</span>
+<span class="sd">              ``&quot;{sample_group_name};{ref_feature_set_name};{training/validation/all}&quot;``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">best_iter_scores</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;score &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">value</span>
+                <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">iter_scores_dict</span>
+                <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores_dict</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">iter_scores_dict</span> <span class="ow">in</span> <span class="n">best_iter_scores</span>
+        <span class="p">]</span>
+        <span class="n">df_best_iter_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">best_iter_scores</span><span class="p">)</span>
+        <span class="n">df_best_iter_scores</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Iteration&quot;</span>
+        <span class="n">df_best_iter_scores</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;PC&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span> <span class="o">+</span> <span class="n">used_PCs</span><span class="p">)</span>
+        <span class="n">df_best_iter_scores</span><span class="p">[</span><span class="s2">&quot;PC&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_best_iter_scores</span><span class="p">[</span><span class="s2">&quot;PC&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">df_best_iter_scores</span></div>
+
+
+
+<div class="viewcode-block" id="CorrAdjust._make_best_iter_scores_plot">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._make_best_iter_scores_plot">[docs]</a>
+    <span class="k">def</span> <span class="nf">_make_best_iter_scores_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_best_iter_scores</span><span class="p">,</span> <span class="n">peak_iter</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make optimization score line plots.</span>
+<span class="sd">        If there is one sample group, only one plot</span>
+<span class="sd">        with ``&quot;fit.png&quot;`` name will be produced.</span>
+<span class="sd">        If there are multiple groups, one plot per group</span>
+<span class="sd">        will be made: ``&quot;fit.{group_name}.png&quot;``, including</span>
+<span class="sd">        group with mean values.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_best_iter_scores : pandas.DataFrame</span>
+<span class="sd">            Data frame generated using `_best_iter_scores_to_df` method.</span>
+<span class="sd">        peak_iter : int</span>
+<span class="sd">            This number is used to draw vertical dashed red</span>
+<span class="sd">            line at the selected early stopping iteration.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">unique_samp_groups</span> <span class="o">=</span> <span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="c1"># If there is only one sample group, we don&#39;t plot &quot;mean&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_samp_groups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">unique_samp_groups</span> <span class="o">=</span> <span class="n">unique_samp_groups</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">unique_samp_groups</span><span class="p">:</span>
+            <span class="c1"># Leave only necessary columns</span>
+            <span class="n">df_best_iter_scores_group</span> <span class="o">=</span> <span class="n">df_best_iter_scores</span><span class="p">[[</span>
+                <span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_best_iter_scores</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">samp_group</span><span class="p">)</span>
+            <span class="p">]]</span>
+            
+            <span class="n">plotter</span> <span class="o">=</span> <span class="n">GreedyOptimizationPlotter</span><span class="p">(</span>
+                <span class="n">samp_group_name</span><span class="o">=</span><span class="n">samp_group</span><span class="p">,</span>
+                <span class="n">metric</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metric</span>
+            <span class="p">)</span>
+            <span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_best_iter_scores_group</span><span class="p">,</span> <span class="n">peak_iter</span><span class="p">)</span>
+            <span class="n">plotter</span><span class="o">.</span><span class="n">save_plot</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/fit.</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="CorrAdjust._compute_raw_and_clean_corrs">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._compute_raw_and_clean_corrs">[docs]</a>
+    <span class="k">def</span> <span class="nf">_compute_raw_and_clean_corrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">samp_group</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute correlations before and after residualizing</span>
+<span class="sd">        PC confounders for a given group of samples.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            See `transform` for details.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            See `transform` for details.</span>
+<span class="sd">        samp_group : str</span>
+<span class="sd">            One of the sample groups in `df_samp_ann`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        corrs_raw : numpy.array</span>
+<span class="sd">            1D array of correlations (diagonal 1s are not included).</span>
+<span class="sd">        corrs_clean : numpy.array</span>
+<span class="sd">            Same but with cleaned correlations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1"># Preprocess the data</span>
+        <span class="n">df_data_orig</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean_centerizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span>
+
+        <span class="c1"># All samples are cleaned together </span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">):</span>
+                <span class="c1"># We feed original data, so it&#39;s not centered/winsorized twice</span>
+                <span class="n">df_data_clean</span><span class="p">,</span> <span class="n">df_rsquareds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data_orig</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">df_data_clean</span> <span class="o">=</span> <span class="n">df_data</span>
+        
+        <span class="c1"># Only samp_group samples are used to compute correlation</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Computing raw correlations for </span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        
+        <span class="n">X_raw</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">corrs_raw</span> <span class="o">=</span> <span class="n">compute_pearson_columns</span><span class="p">(</span><span class="n">X_raw</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Computing corrected correlations for </span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+
+                <span class="n">X_clean</span> <span class="o">=</span> <span class="n">df_data_clean</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+                <span class="n">corrs_clean</span> <span class="o">=</span> <span class="n">compute_pearson_columns</span><span class="p">(</span><span class="n">X_clean</span><span class="p">)</span> 
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># If there are no PCs to clean, then we don&#39;t need to re-compute anything</span>
+                <span class="n">corrs_clean</span> <span class="o">=</span> <span class="n">corrs_raw</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">corrs_clean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">corrs_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">corrs_clean</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+        <span class="k">return</span> <span class="n">corrs_raw</span><span class="p">,</span> <span class="n">corrs_clean</span></div>
+
+
+
+<div class="viewcode-block" id="CorrAdjust._check_df_data">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._check_df_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">_check_df_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check validity of input data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            Several possible reasons:</span>
+
+<span class="sd">            - Feature ids do not match ones in feature annotation.</span>
+<span class="sd">            - There is a gene with constant expression.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_ids</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;Columns of input data should match index of feature annotation.&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;Input data contains features with constant expression.&quot;</span></div>
+
+    
+
+<div class="viewcode-block" id="CorrAdjust._check_df_samp_ann">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._check_df_samp_ann">[docs]</a>
+    <span class="k">def</span> <span class="nf">_check_df_samp_ann</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check validity of sample annotation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None</span>
+<span class="sd">            Sample annotation data.</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            See `fit` method.</span>
+<span class="sd">        after_training : bool</span>
+<span class="sd">            Whether this method is called after training.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        AssertionError</span>
+<span class="sd">            Several possible reasons:</span>
+
+<span class="sd">            - Sample names in `df_samp_ann` and `df_data` do not match.</span>
+<span class="sd">            - `df_samp_ann` lacks ``group`` column.</span>
+<span class="sd">            - If ``after_training == True``, method will also check</span>
+<span class="sd">              that group names of `df_samp_ann` match those in `mean_centerizer`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">df_samp_ann</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;Index of input data should match index of sample annotation.&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="s2">&quot;group&quot;</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;Column &#39;group&#39; is not found in sample annotation.&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="s2">&quot;mean&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">])</span>
+        <span class="p">),</span> <span class="s2">&quot;Sample group cannot be named &#39;mean&#39;.&quot;</span>
+
+        <span class="k">if</span> <span class="n">after_training</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="nb">set</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean_centerizer</span><span class="o">.</span><span class="n">means</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="p">),</span> <span class="s2">&quot;Sample annotation has some groups that were absent in training samples.&quot;</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

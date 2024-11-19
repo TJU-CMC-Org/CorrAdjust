@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; CorrAdjust 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._best_iter_scores_to_df">_best_iter_scores_to_df() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._check_df_data">_check_df_data() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._check_df_samp_ann">_check_df_samp_ann() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._compute_corrs_and_scores">_compute_corrs_and_scores() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_feature_totals">_compute_feature_totals() (corradjust.metrics.CorrScorer static method)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._compute_raw_and_clean_corrs">_compute_raw_and_clean_corrs() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_ref_feature_set_mask">_compute_ref_feature_set_mask() (corradjust.metrics.CorrScorer static method)</a>
+</li>
+      <li><a href="modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_set">_compute_scores_for_ref_feature_set() (corradjust.metrics.CorrScorer static method)</a>
+</li>
+      <li><a href="modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_train_val_mask">_compute_train_val_mask() (corradjust.metrics.CorrScorer static method)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._make_best_iter_scores_plot">_make_best_iter_scores_plot() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.plots.html#corradjust.plots.VolcanoPlotter._plot_one_state">_plot_one_state() (corradjust.plots.VolcanoPlotter method)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._search_confounder_PCs">_search_confounder_PCs() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.plots.html#corradjust.plots.CorrDistrPlotter.add_plots">add_plots() (corradjust.plots.CorrDistrPlotter method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.compute_aggregated_scores">compute_aggregated_scores() (in module corradjust.utils)</a>
+</li>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.compute_corr_pvalues">compute_corr_pvalues() (in module corradjust.utils)</a>
+</li>
+      <li><a href="modules/corradjust.metrics.html#corradjust.metrics.CorrScorer.compute_corr_scores">compute_corr_scores() (corradjust.metrics.CorrScorer method)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.compute_feature_scores">compute_feature_scores() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.metrics.html#corradjust.metrics.CorrScorer.compute_index">compute_index() (corradjust.metrics.CorrScorer method)</a>
+</li>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.compute_pearson_columns">compute_pearson_columns() (in module corradjust.utils)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust">CorrAdjust (class in corradjust.corradjust)</a>
+</li>
+      <li>
+    corradjust.corradjust
+
+      <ul>
+        <li><a href="modules/corradjust.corradjust.html#module-corradjust.corradjust">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    corradjust.metrics
+
+      <ul>
+        <li><a href="modules/corradjust.metrics.html#module-corradjust.metrics">module</a>
+</li>
+      </ul></li>
+      <li>
+    corradjust.plots
+
+      <ul>
+        <li><a href="modules/corradjust.plots.html#module-corradjust.plots">module</a>
+</li>
+      </ul></li>
+      <li>
+    corradjust.utils
+
+      <ul>
+        <li><a href="modules/corradjust.utils.html#module-corradjust.utils">module</a>
+</li>
+      </ul></li>
+      <li><a href="modules/corradjust.plots.html#corradjust.plots.CorrDistrPlotter">CorrDistrPlotter (class in corradjust.plots)</a>
+</li>
+      <li><a href="modules/corradjust.metrics.html#corradjust.metrics.CorrScorer">CorrScorer (class in corradjust.metrics)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.export_corrs">export_corrs() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.find_peak">find_peak() (in module corradjust.utils)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.fit">fit() (corradjust.corradjust.CorrAdjust method)</a>
+
+      <ul>
+        <li><a href="modules/corradjust.utils.html#corradjust.utils.MeanCenterizer.fit">(corradjust.utils.MeanCenterizer method)</a>
+</li>
+        <li><a href="modules/corradjust.utils.html#corradjust.utils.MedianOfRatios.fit">(corradjust.utils.MedianOfRatios method)</a>
+</li>
+        <li><a href="modules/corradjust.utils.html#corradjust.utils.Winsorizer.fit">(corradjust.utils.Winsorizer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.fit_PCA">fit_PCA() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.flatten_corrs">flatten_corrs() (in module corradjust.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.plots.html#corradjust.plots.GreedyOptimizationPlotter">GreedyOptimizationPlotter (class in corradjust.plots)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.hypergeom_pvalues">hypergeom_pvalues() (in module corradjust.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.log_binom_coef">log_binom_coef() (in module corradjust.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.make_corr_distr_plot">make_corr_distr_plot() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.make_dummy_samp_ann">make_dummy_samp_ann() (in module corradjust.utils)</a>
+</li>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.make_volcano_plot">make_volcano_plot() (corradjust.corradjust.CorrAdjust method)</a>
+</li>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.MeanCenterizer">MeanCenterizer (class in corradjust.utils)</a>
+</li>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.MedianOfRatios">MedianOfRatios (class in corradjust.utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="modules/corradjust.corradjust.html#module-corradjust.corradjust">corradjust.corradjust</a>
+</li>
+        <li><a href="modules/corradjust.metrics.html#module-corradjust.metrics">corradjust.metrics</a>
+</li>
+        <li><a href="modules/corradjust.plots.html#module-corradjust.plots">corradjust.plots</a>
+</li>
+        <li><a href="modules/corradjust.utils.html#module-corradjust.utils">corradjust.utils</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.plots.html#corradjust.plots.PCAVariancePlotter">PCAVariancePlotter (class in corradjust.plots)</a>
+</li>
+      <li><a href="modules/corradjust.plots.html#corradjust.plots.GreedyOptimizationPlotter.plot">plot() (corradjust.plots.GreedyOptimizationPlotter method)</a>
+
+      <ul>
+        <li><a href="modules/corradjust.plots.html#corradjust.plots.PCAVariancePlotter.plot">(corradjust.plots.PCAVariancePlotter method)</a>
+</li>
+        <li><a href="modules/corradjust.plots.html#corradjust.plots.VolcanoPlotter.plot">(corradjust.plots.VolcanoPlotter method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.regress_out_columns">regress_out_columns() (in module corradjust.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.plots.html#corradjust.plots.CorrDistrPlotter.save_plot">save_plot() (corradjust.plots.CorrDistrPlotter method)</a>
+
+      <ul>
+        <li><a href="modules/corradjust.plots.html#corradjust.plots.GreedyOptimizationPlotter.save_plot">(corradjust.plots.GreedyOptimizationPlotter method)</a>
+</li>
+        <li><a href="modules/corradjust.plots.html#corradjust.plots.PCAVariancePlotter.save_plot">(corradjust.plots.PCAVariancePlotter method)</a>
+</li>
+        <li><a href="modules/corradjust.plots.html#corradjust.plots.VolcanoPlotter.save_plot">(corradjust.plots.VolcanoPlotter method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.transform">transform() (corradjust.corradjust.CorrAdjust method)</a>
+
+      <ul>
+        <li><a href="modules/corradjust.utils.html#corradjust.utils.MeanCenterizer.transform">(corradjust.utils.MeanCenterizer method)</a>
+</li>
+        <li><a href="modules/corradjust.utils.html#corradjust.utils.MedianOfRatios.transform">(corradjust.utils.MedianOfRatios method)</a>
+</li>
+        <li><a href="modules/corradjust.utils.html#corradjust.utils.Winsorizer.transform">(corradjust.utils.Winsorizer method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.plots.html#corradjust.plots.VolcanoPlotter">VolcanoPlotter (class in corradjust.plots)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/corradjust.utils.html#corradjust.utils.Winsorizer">Winsorizer (class in corradjust.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

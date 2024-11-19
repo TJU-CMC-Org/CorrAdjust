@@ -1,0 +1,1026 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>corradjust.utils &#8212; CorrAdjust 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/utils';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">corradjust.utils</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for corradjust.utils</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">prange</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+
+
+<span class="c1"># Global constants for numba</span>
+<span class="n">SMALLEST_FLOAT64</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span><span class="o">.</span><span class="n">smallest_normal</span>
+
+<span class="c1">######################################################</span>
+<span class="c1"># Classes for training/test-friendly data processing #</span>
+<span class="c1">######################################################</span>
+
+
+<div class="viewcode-block" id="MeanCenterizer">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MeanCenterizer">[docs]</a>
+<span class="k">class</span> <span class="nc">MeanCenterizer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Center data by subtracting mean value from each feature.</span>
+<span class="sd">    This class has two important features.</span>
+
+<span class="sd">    - It is train/test friendly.</span>
+<span class="sd">    - It can separately centralize different groups of samples,</span>
+<span class="sd">      thus residualizing group effect from input data.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    all_features : list</span>
+<span class="sd">        List of all features of the training set.</span>
+<span class="sd">    means : dict</span>
+<span class="sd">        A dict with keys being group names, and values being</span>
+<span class="sd">        numpy arrays with feature-wise training set means.</span>
+<span class="sd">        Populated by calling `fit` method.</span>
+<span class="sd">        If `df_samp_ann` passed to `fit` is ``None``,</span>
+<span class="sd">        `means` will have a single key: ``&quot;all_samples&quot;``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MeanCenterizer.fit">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MeanCenterizer.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute and save mean values for centering</span>
+<span class="sd">        in the `means` attribute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples. If ``None``,</span>
+<span class="sd">            means across all samples will be computed.</span>
+<span class="sd">            </span>
+<span class="sd">            - Index: sample names (should match index of `df_data`).</span>
+<span class="sd">            - Column group: discrete set of group names (e.g., ``&quot;normal&quot;`` and ``&quot;tumor&quot;``).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_features</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">columns</span>
+
+        <span class="k">if</span> <span class="n">df_samp_ann</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">means</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">means</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="MeanCenterizer.transform">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MeanCenterizer.transform">[docs]</a>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Center the data using mean values computed</span>
+<span class="sd">        during `fit` call.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            See `fit` for the format.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">            Mean-centered version of `df_data`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_features</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">df_samp_ann</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+
+        <span class="n">df_data_centered</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+            <span class="n">group_mask</span> <span class="o">=</span> <span class="n">df_samp_ann</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">samp_group</span>
+            <span class="n">df_data_centered</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">group_mask</span><span class="p">]</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">means</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">df_data_centered</span> </div>
+</div>
+
+
+
+<div class="viewcode-block" id="Winsorizer">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.Winsorizer">[docs]</a>
+<span class="k">class</span> <span class="nc">Winsorizer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Winsorize each feature.</span>
+<span class="sd">    This class is train/test friendly.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    alpha : float, optional, default=0.05</span>
+<span class="sd">        For each feature, `alpha` fraction of the lowest values</span>
+<span class="sd">        and `alpha` fraction of the highest values</span>
+<span class="sd">        will be changed to the corresponding quantile values.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        Populated by the constructor.</span>
+<span class="sd">    all_features : list</span>
+<span class="sd">        List of all features of the training set.</span>
+<span class="sd">    lower_thresholds, upper_thresholds : numpy.array</span>
+<span class="sd">        Arrays with feature-wise training set</span>
+<span class="sd">        ``alpha`` and ``1 - alpha`` quantiles.</span>
+<span class="sd">        Populated by calling `fit` method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+    
+<div class="viewcode-block" id="Winsorizer.fit">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.Winsorizer.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute and save winsorization thresholds.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_features</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">columns</span>
+        <span class="c1"># This setting of interpolation will guarantee equal number of winsorized elements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lower_thresholds</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upper_thresholds</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;higher&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span></div>
+
+    
+<div class="viewcode-block" id="Winsorizer.transform">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.Winsorizer.transform">[docs]</a>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Winsorize the data using threshold values computed</span>
+<span class="sd">        during `fit` call.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">            Winsorized version of `df_data`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_features</span><span class="p">)</span>
+
+        <span class="c1"># Duplicate threshold across rows to match df_data shape</span>
+        <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lower_thresholds</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">df_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">upper_thresholds</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">df_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+        <span class="n">df_data_wins</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">df_data_wins</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_data_wins</span> <span class="o">&lt;=</span> <span class="n">lower</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">df_data_wins</span><span class="p">)</span>
+        <span class="n">df_data_wins</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_data_wins</span> <span class="o">&gt;=</span> <span class="n">upper</span><span class="p">,</span> <span class="n">upper</span><span class="p">,</span> <span class="n">df_data_wins</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">df_data_wins</span> </div>
+</div>
+
+
+
+<div class="viewcode-block" id="MedianOfRatios">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MedianOfRatios">[docs]</a>
+<span class="k">class</span> <span class="nc">MedianOfRatios</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Median of ratios normalization for RNA-seq data.</span>
+<span class="sd">    This class is train/test friendly.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    all_features : list</span>
+<span class="sd">        List of all features of the training set.</span>
+<span class="sd">    geo_means : numpy.array</span>
+<span class="sd">        Array with gene-wise training set geometric means.</span>
+<span class="sd">        Populated by calling `fit` method.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MedianOfRatios.fit">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MedianOfRatios.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute and save gene-wise geometrical means.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Gene expression table. Index = samples, columns = gene ids.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_features</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">columns</span>
+        <span class="c1"># Remove genes with at least one zero</span>
+        <span class="n">df_data</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df_data</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Geometric means of genes without zeros</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">geo_means</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="MedianOfRatios.transform">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MedianOfRatios.transform">[docs]</a>
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normalize the data using geometric mean values computed</span>
+<span class="sd">        during `fit` call.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Gene expression table. Index = samples, columns = gene ids.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">            Normalized version of `df_data`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">df_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_features</span><span class="p">)</span>
+
+        <span class="c1"># Divide each sample by training set mean</span>
+        <span class="n">ratios</span> <span class="o">=</span> <span class="n">df_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">geo_means</span><span class="o">.</span><span class="n">index</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">geo_means</span>
+        <span class="c1"># Compute median of ratios</span>
+        <span class="n">size_factors</span> <span class="o">=</span> <span class="n">ratios</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Divide each sample by its own size factor</span>
+        <span class="n">df_data_norm</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">size_factors</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">df_data_norm</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="make_dummy_samp_ann">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.make_dummy_samp_ann">[docs]</a>
+<span class="k">def</span> <span class="nf">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Make data frame with samples annotation,</span>
+<span class="sd">    where all samples belong to the same group named ``&quot;all_samp&quot;``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_data : pandas.DataFrame</span>
+<span class="sd">        Data frame with Index = samples.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Data frame with the same Index and a single column</span>
+<span class="sd">        ``&quot;group&quot;`` filled with a constant string ``&quot;all_samp&quot;``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;all_samp&quot;</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div>
+
+
+
+<span class="c1">#######################################################</span>
+<span class="c1"># Fast math functions for correlations and regression #</span>
+<span class="c1">#######################################################</span>
+
+
+<div class="viewcode-block" id="compute_pearson_columns">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.compute_pearson_columns">[docs]</a>
+<span class="k">def</span> <span class="nf">compute_pearson_columns</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute Pearson&#39;s correlation for</span>
+<span class="sd">    all-vs-all columns of input 2D array.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : numpy.ndarray</span>
+<span class="sd">        2D array with variables of interest over columns.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.array</span>
+<span class="sd">        1D array of correlations (diagonal 1s are not included).</span>
+<span class="sd">        For speed-up purposes, data type is ``float32``.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    The `numpy.triu_indices` function with parameter ``k=1`` can be used</span>
+<span class="sd">    to establish correspondence between index of the resulting</span>
+<span class="sd">    flat array and standard 2D correlation matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">corrs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">rowvar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+    <span class="n">corrs</span> <span class="o">=</span> <span class="n">flatten_corrs</span><span class="p">(</span><span class="n">corrs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">corrs</span></div>
+
+
+
+<div class="viewcode-block" id="flatten_corrs">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.flatten_corrs">[docs]</a>
+<span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">flatten_corrs</span><span class="p">(</span><span class="n">corrs_2d</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert 2D correlation matrix into 1D array.</span>
+<span class="sd">    This is parallel version with result equivalent to</span>
+<span class="sd">    ``corrs_2d[numpy.triu_indices(n_features, k=1)]``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    corrs_2d : numpy.ndarray</span>
+<span class="sd">        Square ``(n, n)`` symmetric matrix with correlations.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.array</span>
+<span class="sd">        1D array with correlations (without diagonal 1s).</span>
+<span class="sd">        Size of array is ``n * (n - 1) // 2``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n_features</span> <span class="o">=</span> <span class="n">corrs_2d</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n_pairs</span> <span class="o">=</span> <span class="n">n_features</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_features</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="c1"># 1d correlations will not have diagonal 1s</span>
+    <span class="n">corrs_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_pairs</span> <span class="o">-</span> <span class="n">n_features</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">n_features</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_features</span><span class="p">):</span>
+            <span class="c1"># flat index of (i, j) in upper-triangular matrix without diagonal</span>
+            <span class="c1"># This is reverse of np.triu_indices(n_features, k=1)</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_features</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">corrs_1d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrs_2d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">corrs_1d</span></div>
+
+
+
+<div class="viewcode-block" id="compute_corr_pvalues">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.compute_corr_pvalues">[docs]</a>
+<span class="k">def</span> <span class="nf">compute_corr_pvalues</span><span class="p">(</span><span class="n">corrs</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute p-values testing null hypothesis</span>
+<span class="sd">    of input Pearson&#39;s correlations equal to zero.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    corrs : numpy.array</span>
+<span class="sd">        1D array with correlations.</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Sample size used when computing correlations.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.array</span>
+<span class="sd">        1D array of p-values corresponding to `corrs`.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function produces the same p-values as the</span>
+<span class="sd">    `scipy.stats.pearsonr` function with default parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">dist</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">corrs</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="regress_out_columns">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.regress_out_columns">[docs]</a>
+<span class="k">def</span> <span class="nf">regress_out_columns</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Regress out all columns of `X2` from each columns of `X1`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X1 : numpy.ndarray</span>
+<span class="sd">        2D array with variables of interest over columns.</span>
+<span class="sd">    X2 : numpy.ndarray</span>
+<span class="sd">        2D array with variables to residualize over columns.</span>
+<span class="sd">        Should have the same number of rows and `X1`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    residuals : numpy.ndarray</span>
+<span class="sd">        Residuals after regressing out columns of `X2` from</span>
+<span class="sd">        each column of `X1`. Has the same shape as `X1`.</span>
+
+<span class="sd">    rsquareds : numpy.array</span>
+<span class="sd">        1D array of ``R^2`` values corresponding to regressions</span>
+<span class="sd">        fit for each column of `X1`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Mean-center columns of X1 and X2 before regression,</span>
+    <span class="c1"># so we can fit a model without intercept</span>
+    <span class="n">X1</span> <span class="o">=</span> <span class="n">X1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">X2</span> <span class="o">=</span> <span class="n">X2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">X1</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">residuals</span> <span class="o">=</span> <span class="n">X1</span> <span class="o">-</span> <span class="n">X2</span> <span class="o">@</span> <span class="n">coef</span>
+    <span class="n">rsquareds</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">residuals</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">X1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">rsquareds</span></div>
+
+
+
+<span class="c1">##################################################</span>
+<span class="c1"># Other math (peak finding, hypergeometric test) #</span>
+<span class="c1">##################################################</span>
+
+
+<div class="viewcode-block" id="find_peak">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.find_peak">[docs]</a>
+<span class="k">def</span> <span class="nf">find_peak</span><span class="p">(</span>
+    <span class="n">scores</span><span class="p">,</span>
+    <span class="n">patience</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">min_rel_improvement</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">max_rel_diff_from_max</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Find peak with early stopping criteria.</span>
+
+<span class="sd">    - `patience` rounds with no `min_rel_improvement` compared to</span>
+<span class="sd">      the previous maximum value (plateau reached).</span>
+<span class="sd">    - relative difference between global maximum and current maximum</span>
+<span class="sd">      is at most `max_rel_diff_from_max` (not terminating too early).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    scores : numpy.array</span>
+<span class="sd">        1D array with scores used to find the peak.</span>
+<span class="sd">    patience : int, optional, default=2</span>
+<span class="sd">        See description above.</span>
+<span class="sd">    min_rel_improvement : float, optional, default=0.05</span>
+<span class="sd">        See description above.</span>
+<span class="sd">    max_rel_diff_from_max : float, optional, default=0.5</span>
+<span class="sd">        See description above.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Index of peak element in the `scores` array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">global_max_score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+
+    <span class="c1"># Our metric is non-negative</span>
+    <span class="k">if</span> <span class="n">global_max_score</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="c1"># Early stopping implementation</span>
+    <span class="n">peak_idx</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">iters_non_increasing</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">scores</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rel_improvement</span> <span class="o">=</span> <span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">scores</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">])</span> <span class="o">/</span> <span class="n">scores</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rel_improvement</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        
+        <span class="k">if</span> <span class="n">rel_improvement</span> <span class="o">&gt;=</span> <span class="n">min_rel_improvement</span><span class="p">:</span>
+            <span class="n">peak_idx</span> <span class="o">=</span> <span class="n">idx</span>
+            <span class="n">iters_non_increasing</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">iters_non_increasing</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">rel_diff_from_max</span> <span class="o">=</span> <span class="p">(</span><span class="n">global_max_score</span> <span class="o">-</span> <span class="n">scores</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">])</span> <span class="o">/</span> <span class="n">global_max_score</span>
+
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">iters_non_increasing</span> <span class="o">&gt;=</span> <span class="n">patience</span> <span class="ow">and</span>
+            <span class="n">rel_diff_from_max</span> <span class="o">&lt;=</span> <span class="n">max_rel_diff_from_max</span>
+        <span class="p">):</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">peak_idx</span></div>
+
+
+
+<div class="viewcode-block" id="hypergeom_pvalues">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.hypergeom_pvalues">[docs]</a>
+<span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hypergeom_pvalues</span><span class="p">(</span><span class="n">M_arr</span><span class="p">,</span> <span class="n">n_arr</span><span class="p">,</span> <span class="n">N_arr</span><span class="p">,</span> <span class="n">k_arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parallel computation of hypergeometric test</span>
+<span class="sd">    p-values over arrays of values ``M, n, N, k``.</span>
+<span class="sd">    Semantics for argument names are the same as in</span>
+<span class="sd">    `scipy.stats.hypergeom`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    M_arr : numpy.array</span>
+<span class="sd">        Total number of objects in each test.</span>
+<span class="sd">    n_arr : numpy.array</span>
+<span class="sd">        Number of Type I objects in each test.</span>
+<span class="sd">    N_arr : numpy.array</span>
+<span class="sd">        Number of drawn objects in each test.</span>
+<span class="sd">    k_arr : numpy.array</span>
+<span class="sd">        Number of Type I drawn objects in each test.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    numpy.array</span>
+<span class="sd">        Array of p-values corresponding to each test.</span>
+<span class="sd">        Minimum value of p-value is defined by</span>
+<span class="sd">        ``numpy.finfo(numpy.float64).smallest_normal``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">global</span> <span class="n">SMALLEST_FLOAT64</span>
+
+    <span class="n">pvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">M_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">M_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">M_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">n_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">N_arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">k_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">log_binom1</span> <span class="o">=</span> <span class="n">log_binom_coef</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">log_binom2</span> <span class="o">=</span> <span class="n">log_binom_coef</span><span class="p">(</span><span class="n">M</span> <span class="o">-</span> <span class="n">n</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">log_binom3</span> <span class="o">=</span> <span class="n">log_binom_coef</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+        <span class="c1"># We do this explicitly on first iterations to avoid</span>
+        <span class="c1"># division by zero in corner cases in for loop</span>
+        <span class="n">pvalue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_binom1</span> <span class="o">+</span> <span class="n">log_binom2</span> <span class="o">-</span> <span class="n">log_binom3</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">k1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">log_binom1</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="n">k1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">k1</span><span class="p">)</span>
+            <span class="n">log_binom2</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="n">k1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">M</span> <span class="o">-</span> <span class="n">n</span> <span class="o">-</span> <span class="n">N</span> <span class="o">+</span> <span class="n">k1</span><span class="p">))</span>
+            <span class="n">pvalue</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_binom1</span> <span class="o">+</span> <span class="n">log_binom2</span> <span class="o">-</span> <span class="n">log_binom3</span><span class="p">)</span>
+        
+        <span class="c1"># Sometimes pvalue could go beyond 1.0 a bit because of</span>
+        <span class="c1"># numerical error reasons</span>
+        <span class="c1"># Also, instead of p = 0, we report smallest &quot;normal&quot; positive float64</span>
+        <span class="n">pvalues</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">pvalue</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span> <span class="n">SMALLEST_FLOAT64</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pvalues</span></div>
+
+
+
+<div class="viewcode-block" id="log_binom_coef">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.log_binom_coef">[docs]</a>
+<span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">log_binom_coef</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Logarithm of binomial coefficient ``(n k)``.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n, k : int</span>
+<span class="sd">        Input numbers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Binomial coefficient.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">res</span></div>
+
+
+
+<div class="viewcode-block" id="compute_aggregated_scores">
+<a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.compute_aggregated_scores">[docs]</a>
+<span class="k">def</span> <span class="nf">compute_aggregated_scores</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute aggregated statistics from the data frame</span>
+<span class="sd">    of feature-wise scores.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pandas.DataFrame</span>
+<span class="sd">        Data frame produced by CorrAdjust.compute_feature_scores.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    agg_BP_at_K : float</span>
+<span class="sd">        Aggregated balanced precision at K.</span>
+<span class="sd">    agg_enrichment: float</span>
+<span class="sd">        Aggregated enrichment.</span>
+<span class="sd">    agg_pvalue: float</span>
+<span class="sd">        Aggregated p-value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">agg_total_pos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">agg_total</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">agg_K_pos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">agg_K</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="c1"># Balanced precision at K</span>
+    <span class="n">agg_BP_at_K_TP</span> <span class="o">=</span> <span class="n">agg_K_pos</span> <span class="o">/</span> <span class="n">agg_K</span> <span class="o">*</span> <span class="p">(</span><span class="n">agg_total</span> <span class="o">-</span> <span class="n">agg_total_pos</span><span class="p">)</span>
+    <span class="n">agg_BP_at_K_FP</span> <span class="o">=</span> <span class="p">(</span><span class="n">agg_K</span> <span class="o">-</span> <span class="n">agg_K_pos</span><span class="p">)</span> <span class="o">/</span> <span class="n">agg_K</span> <span class="o">*</span> <span class="n">agg_total_pos</span>
+    <span class="n">agg_BP_at_K</span> <span class="o">=</span> <span class="n">agg_BP_at_K_TP</span> <span class="o">/</span> <span class="p">(</span><span class="n">agg_BP_at_K_TP</span> <span class="o">+</span> <span class="n">agg_BP_at_K_FP</span><span class="p">)</span>
+
+    <span class="c1"># Enrichment</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="n">agg_K</span> <span class="o">*</span> <span class="n">agg_total_pos</span> <span class="o">/</span> <span class="n">agg_total</span>
+    <span class="n">agg_enrichment</span> <span class="o">=</span> <span class="n">agg_K_pos</span> <span class="o">/</span> <span class="n">expected</span>
+
+    <span class="c1"># P-value</span>
+    <span class="n">agg_pvalue</span> <span class="o">=</span> <span class="n">hypergeom_pvalues</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">agg_total</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">agg_total_pos</span><span class="p">]),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">agg_K</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">agg_K_pos</span><span class="p">])</span>
+    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">agg_BP_at_K</span><span class="p">,</span> <span class="n">agg_enrichment</span><span class="p">,</span> <span class="n">agg_pvalue</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

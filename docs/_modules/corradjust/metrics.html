@@ -1,0 +1,1320 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>corradjust.metrics &#8212; CorrAdjust 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/metrics';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules/corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">corradjust.metrics</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for corradjust.metrics</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">parallel_sort</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">prange</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">false_discovery_control</span>
+
+<span class="kn">from</span> <span class="nn">corradjust.utils</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<div class="viewcode-block" id="CorrScorer">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer">[docs]</a>
+<span class="k">class</span> <span class="nc">CorrScorer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class that contains data structures</span>
+<span class="sd">    for features and reference feature sets, and computes</span>
+<span class="sd">    different scores given feature-feature correlations.</span>
+<span class="sd">    See documentation of CorrAdjust class constructor</span>
+<span class="sd">    for detailed description of constructor parameters (they are the same).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df_feature_ann : pandas.DataFrame with index and 2 columns</span>
+<span class="sd">        A data frame providing annotation of features.</span>
+<span class="sd">    ref_feature_sets : dict</span>
+<span class="sd">        A dictionary with information about reference feature sets.</span>
+<span class="sd">    shuffle_feature_names : bool or list, optional, default=False</span>
+<span class="sd">        Whether (and how) to permute feature names.</span>
+<span class="sd">    metric : {&quot;enrichment-based&quot;, &quot;BP@K&quot;}, optional, default=&quot;enrichment-based&quot;</span>
+<span class="sd">        Metric for evaluating feature correlations.</span>
+<span class="sd">    min_pairs_to_score : int, optional, default=1000</span>
+<span class="sd">        Minimum number of total pairs containing a feature</span>
+<span class="sd">        to include the feature in the enrichment score computations.</span>
+<span class="sd">    random_seed : int, optional, default=17</span>
+<span class="sd">        Random seed used by shuffling procedure.</span>
+<span class="sd">    verbose : bool, optional, default=True</span>
+<span class="sd">        Whether to print progress messages to stderr.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : dict</span>
+<span class="sd">        The main data structure holding information about features</span>
+<span class="sd">        and feature sets. Populated by calling `compute_index` method.</span>
+<span class="sd">        Keys of `data` are names of reference</span>
+<span class="sd">        feature set collections, and values are dicts with the following</span>
+<span class="sd">        structure:</span>
+
+<span class="sd">        | {</span>
+<span class="sd">        |     ``&quot;sign&quot;`` : ``{&quot;positive&quot;, &quot;negative&quot;, &quot;absolute&quot;}``</span>
+<span class="sd">        |         Taken directly from the input data.</span>
+<span class="sd">        |     ``&quot;mask&quot;`` : `numpy.array`</span>
+<span class="sd">        |         Array that says whether each feature pair</span>
+<span class="sd">                  belongs to at least one shared reference set.</span>
+<span class="sd">                  Feature pairs are packed into a flat array</span>
+<span class="sd">                  with ``n_features * (n_features - 1) // 2`` elements (see `numpy.triu_indices`).</span>
+<span class="sd">                  There are 3 possible values:</span>
+<span class="sd">        |             ``mask == 1``: features belong to the same reference set.</span>
+<span class="sd">        |             ``mask == 0``: features do not belong to the same reference set,</span>
+<span class="sd">                      though they form allowed pair type and both are present in some reference sets.</span>
+<span class="sd">        |             ``mask == -1``: otherwise.</span>
+<span class="sd">        |     ``&quot;train_val_mask&quot;`` : `numpy.array`</span>
+<span class="sd">        |         Array that says whether each feature pair</span>
+<span class="sd">                  belongs to training or validation set.</span>
+<span class="sd">                  Same order of pairs as in ``mask``.</span>
+<span class="sd">                  There are 3 possible values:</span>
+<span class="sd">        |             ``train_val_mask == 0``: pair belongs to training set.</span>
+<span class="sd">        |             ``train_val_mask == 1``: pair belongs to validation set.</span>
+<span class="sd">        |             ``train_val_mask == -1``: all other pairs</span>
+<span class="sd">        |     ``&quot;features_total_pos&quot;`` : `numpy.ndarray`</span>
+<span class="sd">        |         2D array of shape ``(3, n_features)``. The first index</span>
+<span class="sd">                  refers to feature pair type: ``0`` is ``training``,</span>
+<span class="sd">                  ``1`` is ``validation``, and ``2`` is ``all``.</span>
+<span class="sd">                  The second index stands for feature index,</span>
+<span class="sd">                  and the array value says how many shared pairs</span>
+<span class="sd">                  the feature has. These are ``n_j`` in the paper&#39;s terminology.</span>
+<span class="sd">        |     ``&quot;features_total_neg&quot;`` : `numpy.ndarray`</span>
+<span class="sd">        |         Same as ``&quot;features_total_pos&quot;`` but for</span>
+<span class="sd">                  non-shared pairs. These are ``N_j - n_j`` in the paper&#39;s terminology.</span>
+<span class="sd">        |     ``&quot;scoring_features_mask&quot;`` : `numpy.array`</span>
+<span class="sd">        |         Binary array with ``n_features`` elements that says</span>
+<span class="sd">                  whether each feature should participate in the computation of</span>
+<span class="sd">                  enrichment scores. The value is determined based on</span>
+<span class="sd">                  `min_pairs_to_score` parameter.</span>
+<span class="sd">        |     ``&quot;high_corr_frac&quot;`` : `float`</span>
+<span class="sd">        |         Taken directly from the input data.</span>
+<span class="sd">        |     ``&quot;high_corr_pairs_all&quot;`` : `int`</span>
+<span class="sd">        |         Absolute number of highly ranked feature pairs (all pairs).</span>
+<span class="sd">        |     ``&quot;high_corr_pairs_training&quot;`` : `int`</span>
+<span class="sd">        |         Absolute number of highly ranked feature pairs (training pairs).</span>
+<span class="sd">        |     ``&quot;high_corr_pairs_validation&quot;`` : `int`</span>
+<span class="sd">        |         Absolute number of highly ranked feature pairs (validation pairs).</span>
+<span class="sd">        | }</span>
+<span class="sd">        </span>
+<span class="sd">        feature_ids, feature_names, feature_types : np.array</span>
+<span class="sd">            Arrays of feature IDs, names, and types.</span>
+<span class="sd">            Populated by `compute_index` method.</span>
+<span class="sd">        </span>
+<span class="sd">        metric : {&quot;enrichment-based&quot;, &quot;BP@K&quot;}</span>
+<span class="sd">            Metric for evaluating feature correlations.</span>
+<span class="sd">            Populated by constructor.</span>
+<span class="sd">        </span>
+<span class="sd">        verbose : bool</span>
+<span class="sd">            Whether to print progress messages.</span>
+<span class="sd">            Populated by constructor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">df_feature_ann</span><span class="p">,</span>
+        <span class="n">ref_feature_sets</span><span class="p">,</span>
+        <span class="n">shuffle_feature_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;enrichment-based&quot;</span><span class="p">,</span>
+        <span class="n">min_pairs_to_score</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+        <span class="n">random_seed</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">):</span>
+        <span class="c1"># Do some input checks</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+        <span class="p">),</span> <span class="s2">&quot;Feature annotation data shouldn&#39;t contain duplicate feature IDs.&quot;</span>
+
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">set</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;feature_name&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_type&quot;</span><span class="p">}</span>
+        <span class="p">),</span> <span class="s2">&quot;Columns of feature annotation data should be &#39;feature_name&#39; and &#39;feature_type&#39;.&quot;</span>
+
+        <span class="k">for</span> <span class="n">feature_type</span> <span class="ow">in</span> <span class="n">df_feature_ann</span><span class="p">[</span><span class="s2">&quot;feature_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="s2">&quot;-&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">feature_type</span>
+            <span class="p">),</span> <span class="s2">&quot;Feature types should not contain &#39;-&#39; character.&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">metric</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;enrichment-based&quot;</span><span class="p">,</span> <span class="s2">&quot;BP@K&quot;</span><span class="p">}</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Metric should be either &#39;enrichment-based&#39; or &#39;BP@K&#39;, but &#39;</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">&#39; was found&quot;</span>
+        
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">min_pairs_to_score</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s2">&quot;min_pairs_to_score must be int.&quot;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">random_seed</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s2">&quot;random_seed must be int.&quot;</span>
+        <span class="k">assert</span> <span class="n">verbose</span> <span class="ow">in</span> <span class="p">{</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">},</span> <span class="s2">&quot;verbose must be True or False.&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">=</span> <span class="n">metric</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="n">verbose</span>
+
+        <span class="k">if</span> <span class="n">shuffle_feature_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># We shuffle feature names within each feature type</span>
+            <span class="c1"># This way we fully preserve structure of reference sets,</span>
+            <span class="c1"># but destroy association between feature name and data</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">shuffle_feature_names</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">feature_types_to_shuffle</span> <span class="o">=</span> <span class="n">df_feature_ann</span><span class="p">[</span><span class="s2">&quot;feature_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">feature_types_to_shuffle</span> <span class="o">=</span> <span class="n">shuffle_feature_names</span>
+            
+            <span class="k">for</span> <span class="n">feature_type</span> <span class="ow">in</span> <span class="n">feature_types_to_shuffle</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="p">(</span>
+                    <span class="n">feature_type</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="p">[</span><span class="s2">&quot;feature_type&quot;</span><span class="p">])</span>
+                <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">feature_type</span><span class="si">}</span><span class="s2"> is present in shuffle_feature_names but not in the feature annotation data.&quot;</span>
+
+                <span class="n">type_mask</span> <span class="o">=</span> <span class="n">df_feature_ann</span><span class="p">[</span><span class="s2">&quot;feature_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">feature_type</span>
+                <span class="n">shuffled_feature_names</span> <span class="o">=</span> <span class="n">df_feature_ann</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">type_mask</span><span class="p">,</span> <span class="s2">&quot;feature_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">type_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+                <span class="n">df_feature_ann</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">type_mask</span><span class="p">,</span> <span class="s2">&quot;feature_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shuffled_feature_names</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="p">[</span><span class="s2">&quot;feature_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_types</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df_feature_ann</span><span class="p">[</span><span class="s2">&quot;feature_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+
+        <span class="c1"># Make dicts to quickly convert between feature *names* and feature indices</span>
+        <span class="c1"># One name can have many indices, but one index have only one name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_name_to_idxs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_type</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">feature_idx</span><span class="p">,</span> <span class="n">feature_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_ids</span><span class="p">):</span>
+            <span class="n">feature_name</span> <span class="o">=</span> <span class="n">df_feature_ann</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">feature_id</span><span class="p">,</span> <span class="s2">&quot;feature_name&quot;</span><span class="p">]</span>
+            <span class="n">feature_type</span> <span class="o">=</span> <span class="n">df_feature_ann</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">feature_id</span><span class="p">,</span> <span class="s2">&quot;feature_type&quot;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_name_to_idxs</span><span class="p">[</span><span class="n">feature_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_name_to_idxs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">feature_name</span><span class="p">,</span> <span class="p">[])</span> <span class="o">+</span> <span class="p">[</span><span class="n">feature_idx</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature_name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_type</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature_type</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_name</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_type</span><span class="p">)</span>
+
+        <span class="c1"># Load reference sets and store them in a nice data structure </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_index</span><span class="p">(</span><span class="n">ref_feature_sets</span><span class="p">,</span> <span class="n">min_pairs_to_score</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CorrScorer.compute_index">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer.compute_index">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_feature_sets</span><span class="p">,</span> <span class="n">min_pairs_to_score</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Populate `data` attribute.</span>
+<span class="sd">        Input arguments are the same as in the constructor.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ref_feature_sets : dict</span>
+<span class="sd">            A dictionary with information about reference feature sets.</span>
+<span class="sd">        min_pairs_to_score : int</span>
+<span class="sd">            Minimum number of total pairs containing a feature</span>
+<span class="sd">            to include the feature in the enrichment score computations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_ids</span><span class="p">)</span>
+        <span class="c1"># These arrays contain feature indices for (feature1, feature2) pairs in mask</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">ref_feature_sets</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Loading </span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2"> reference sets...&quot;</span><span class="p">,</span>
+                    <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
+                <span class="p">)</span>
+
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> not found.&quot;</span>
+
+            <span class="n">db_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
+            <span class="c1"># Each line has reference set name (field 0) and list of features (fields 2+)</span>
+            <span class="c1"># n features listed on a line will result in n*(n-1)/2 feature pairs</span>
+            
+            <span class="c1"># Features from all lines are stored in a flat 1D arrays</span>
+            <span class="c1"># ref_feature_sets_boundaries arrays stores the indices separating</span>
+            <span class="c1"># features from different lines</span>
+            <span class="n">feature_idxs_in_ref_sets</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">ref_feature_sets_boundaries</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># These features are present in at least one reference set</span>
+            <span class="n">unique_feature_idxs_in_db</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">db_file</span><span class="p">:</span>
+                <span class="n">splitted</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">assert</span> <span class="p">(</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">splitted</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">4</span>
+                <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;This line of GMT file contains &lt; 4 fields: &#39;</span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+                <span class="n">feature_names</span> <span class="o">=</span> <span class="n">splitted</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+                
+                <span class="n">feature_idxs</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="n">feature_idx</span>
+                    <span class="k">for</span> <span class="n">feature_name</span> <span class="ow">in</span> <span class="n">feature_names</span> <span class="k">if</span> <span class="n">feature_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_name_to_idxs</span>
+                    <span class="k">for</span> <span class="n">feature_idx</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_name_to_idxs</span><span class="p">[</span><span class="n">feature_name</span><span class="p">]</span>
+                <span class="p">]</span>
+                <span class="n">unique_feature_idxs_in_db</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">feature_idxs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_idxs</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">feature_idxs_in_ref_sets</span> <span class="o">+=</span> <span class="n">feature_idxs</span>
+                <span class="n">ref_feature_sets_boundaries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ref_feature_sets_boundaries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_idxs</span><span class="p">))</span>
+
+            <span class="n">db_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+            <span class="n">feature_idxs_in_ref_sets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">feature_idxs_in_ref_sets</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+            <span class="n">ref_feature_sets_boundaries</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ref_feature_sets_boundaries</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+            <span class="n">unique_feature_idxs_in_db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">unique_feature_idxs_in_db</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+            
+            <span class="c1"># Numba cannot work with strings and tuples normally</span>
+            <span class="c1"># So, we encode feature types by numbers</span>
+            <span class="n">unique_types</span><span class="p">,</span> <span class="n">inverse_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_type</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">type_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_types</span><span class="p">))</span>
+            <span class="n">feature_idx_to_type_id</span> <span class="o">=</span> <span class="n">type_ids</span><span class="p">[</span><span class="n">inverse_idx</span><span class="p">]</span>
+
+            <span class="c1"># We hash type_id tuples using Cantor pairing function</span>
+            <span class="n">type_to_id</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique_types</span><span class="p">,</span> <span class="n">type_ids</span><span class="p">))</span>
+            <span class="n">allowed_feature_pair_types</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">pair_type</span> <span class="ow">in</span> <span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;feature_pair_types&quot;</span><span class="p">]:</span>
+                <span class="k">assert</span> <span class="p">(</span>
+                    <span class="s2">&quot;-&quot;</span> <span class="ow">in</span> <span class="n">pair_type</span>
+                <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Allowed pair type must contain &#39;-&#39; character but none is found in &#39;</span><span class="si">{</span><span class="n">pair_type</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+                <span class="k">assert</span> <span class="p">(</span>
+                    <span class="n">pair_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">type_to_id</span> <span class="ow">and</span>
+                    <span class="n">pair_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">type_to_id</span>
+                <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;One of the allowed feature pair types is not present in feature annotation data: &#39;</span><span class="si">{</span><span class="n">pair_type</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
+
+                <span class="n">k1</span> <span class="o">=</span> <span class="n">type_to_id</span><span class="p">[</span><span class="n">pair_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="n">k2</span> <span class="o">=</span> <span class="n">type_to_id</span><span class="p">[</span><span class="n">pair_type</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
+                <span class="n">cantor</span> <span class="o">=</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">k2</span>
+                <span class="n">allowed_feature_pair_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cantor</span><span class="p">)</span>
+            
+            <span class="n">allowed_feature_pair_types</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">allowed_feature_pair_types</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;positive&quot;</span><span class="p">,</span> <span class="s2">&quot;negative&quot;</span><span class="p">,</span> <span class="s2">&quot;absolute&quot;</span><span class="p">}</span>
+            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Sign can be &#39;positive&#39;, &#39;negative&#39;, or &#39;absolute&#39;, but &#39;</span><span class="si">{</span><span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s1">&#39;sign&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39; was found.&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span>
+
+            <span class="c1"># Effective data structure for ground truth flag </span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_ref_feature_set_mask</span><span class="p">(</span>
+                <span class="n">feature_idxs_in_ref_sets</span><span class="p">,</span> <span class="n">ref_feature_sets_boundaries</span><span class="p">,</span> <span class="n">unique_feature_idxs_in_db</span><span class="p">,</span>
+                <span class="n">allowed_feature_pair_types</span><span class="p">,</span> <span class="n">feature_idx_to_type_id</span><span class="p">,</span>
+                <span class="n">n_features</span>
+            <span class="p">)</span>
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">),</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;There are no shared or non-shared feature pairs found in </span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="s2">&quot;Check that 1) feature names match between feature annotation data &quot;</span>
+                <span class="s2">&quot;and the GMT file, 2) you correctly specified allowed feature pair types.&quot;</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Get labels of training and validation sets</span>
+            <span class="n">train_val_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_train_val_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+
+            <span class="c1"># Count total number of shared and non-shared pairs for each feature</span>
+            <span class="c1"># Counts are training/validation/all-specific</span>
+            <span class="n">features_total_pos</span><span class="p">,</span> <span class="n">features_total_neg</span><span class="p">,</span> <span class="n">scoring_features_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_feature_totals</span><span class="p">(</span>
+                <span class="n">mask</span><span class="p">,</span> <span class="n">train_val_mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs2</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">min_pairs_to_score</span>
+            <span class="p">)</span>
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">scoring_features_mask</span><span class="p">)</span>
+            <span class="p">),</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;None of the features can be used for scoring in </span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="s2">&quot;The value of min_pairs_to_score might be too high for your data.&quot;</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_val_mask</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features_total_pos</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features_total_neg</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scoring_features_mask</span>
+
+            <span class="c1"># A fraction of all participating pairs are &quot;highly correlated&quot;</span>
+            <span class="n">high_corr_frac</span> <span class="o">=</span> <span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_frac&quot;</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="p">(</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">high_corr_frac</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">high_corr_frac</span> <span class="o">&lt;=</span> <span class="mi">1</span>
+            <span class="p">),</span> <span class="s2">&quot;high_corr_frac must be float between 0 and 1.&quot;</span>
+            <span class="n">total_num_pairs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">high_corr_pairs_all</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_num_pairs</span> <span class="o">*</span> <span class="n">high_corr_frac</span><span class="p">)</span>
+            
+            <span class="n">n_pairs_all</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">train_val_mask</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">n_pairs_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">train_val_mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">n_pairs_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">train_val_mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_frac&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">high_corr_frac</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_all&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">high_corr_pairs_all</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_training&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">high_corr_pairs_all</span> <span class="o">*</span> <span class="n">n_pairs_train</span> <span class="o">/</span> <span class="n">n_pairs_all</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_validation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">high_corr_pairs_all</span> <span class="o">*</span> <span class="n">n_pairs_val</span> <span class="o">/</span> <span class="n">n_pairs_all</span><span class="p">)</span></div>
+
+    
+    
+<div class="viewcode-block" id="CorrScorer.compute_corr_scores">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer.compute_corr_scores">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_corr_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corrs</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate feature-feature correlations with respect to the</span>
+<span class="sd">        reference feature sets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        corrs : numpy.array</span>
+<span class="sd">            Array of feature-feature correlations (flat format).</span>
+<span class="sd">        full_output : bool, optional, default=False</span>
+<span class="sd">            Whether to return large arrays with detailed scores</span>
+<span class="sd">            (not only final scores).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        res: dict</span>
+<span class="sd">            If `full_output` is ``False``, dict has the following structure:</span>
+
+<span class="sd">            | {</span>
+<span class="sd">            |     ``ref_feature_set_name`` : {</span>
+<span class="sd">            |         ``&quot;score {subset}&quot;`` : `float`</span>
+<span class="sd">            |     }</span>
+<span class="sd">            | }</span>
+
+<span class="sd">            Here, subset is ``&quot;training&quot;``, ``&quot;validation&quot;``, and ``&quot;all&quot;`` (feature pair subsets).</span>
+<span class="sd">            Score is defined according to the `metric` attribute.</span>
+<span class="sd">            If `full_output` is ``True``, the following keys are added</span>
+<span class="sd">            to the dict corresponding to each ``ref_feature_set_name``:</span>
+
+<span class="sd">            | {</span>
+<span class="sd">            |     ``&quot;BPs_at_K {subset}&quot;`` : `numpy.array`</span>
+<span class="sd">            |         Balanced precisions for each feature.</span>
+<span class="sd">            |     ``&quot;enrichments {subset}&quot;`` : `numpy.array`</span>
+<span class="sd">            |         Enrichments for each feature.</span>
+<span class="sd">            |     ``&quot;pvalues {subset}&quot;`` : `numpy.array`</span>
+<span class="sd">            |         p-values for each feature.</span>
+<span class="sd">            |     ``&quot;pvalues_adj {subset}&quot;`` : `numpy.array`</span>
+<span class="sd">            |         Adjusted p-values for each feature.</span>
+<span class="sd">            |     ``&quot;TPs_at_K {subset}&quot;`` : `numpy.array`</span>
+<span class="sd">            |         True positives for each feature (``k_j`` in the notation of paper).</span>
+<span class="sd">            |     ``&quot;num_pairs {subset}&quot;`` : `numpy.array`</span>
+<span class="sd">            |         True positives + false positives for each feature (``K_j`` in the notation of paper).</span>
+<span class="sd">            |     ``&quot;scoring_features_mask&quot;`` : `numpy.array`</span>
+<span class="sd">            |         Binary array of whether each feature participates in score computation.</span>
+<span class="sd">            |     ``&quot;corrs&quot;`` : `numpy.array`</span>
+<span class="sd">            |         Feature-feature correlations.</span>
+<span class="sd">            |     ``&quot;mask&quot;`` : `numpy.array`</span>
+<span class="sd">            |         Whether each feature pair belong to at least one shared reference set.</span>
+<span class="sd">            |     ``&quot;train_val_mask&quot;`` : `numpy.array`</span>
+<span class="sd">            |         Whether each feature pair belong to training or validation set.</span>
+<span class="sd">            | }</span>
+
+<span class="sd">            The last four arrays are sorted by correlation value</span>
+<span class="sd">            in a direction specified by the ``&quot;sign&quot;`` value of the `data` attribute.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># Different reference collections may use the same sorting sign</span>
+        <span class="c1"># So the sorting will be done only once for each sign and cached</span>
+        <span class="n">sort_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="n">sign</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">sort_cache</span><span class="p">:</span>
+                <span class="n">corrs_sorted_args</span> <span class="o">=</span> <span class="n">sort_cache</span><span class="p">[</span><span class="n">sign</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sign</span> <span class="o">==</span> <span class="s2">&quot;negative&quot;</span><span class="p">:</span>
+                    <span class="n">corrs_sorted_args</span> <span class="o">=</span> <span class="n">parallel_sort</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">corrs</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">sign</span> <span class="o">==</span> <span class="s2">&quot;positive&quot;</span><span class="p">:</span>
+                    <span class="n">corrs_sorted_args</span> <span class="o">=</span> <span class="n">parallel_sort</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">corrs</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">sign</span> <span class="o">==</span> <span class="s2">&quot;absolute&quot;</span><span class="p">:</span>
+                    <span class="n">corrs_sorted_args</span> <span class="o">=</span> <span class="n">parallel_sort</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">corrs</span><span class="p">))</span>
+                
+                <span class="n">sort_cache</span><span class="p">[</span><span class="n">sign</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrs_sorted_args</span>
+            
+            <span class="p">(</span>
+                <span class="n">BPs_at_K</span><span class="p">,</span> <span class="n">enrichments</span><span class="p">,</span> <span class="n">pvalues</span><span class="p">,</span> <span class="n">TPs_at_K</span><span class="p">,</span> <span class="n">FPs_at_K</span><span class="p">,</span>
+                <span class="n">corrs_sorted</span><span class="p">,</span> <span class="n">mask_sorted</span><span class="p">,</span> <span class="n">train_val_mask_sorted</span>
+            <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_scores_for_ref_feature_set</span><span class="p">(</span>
+                <span class="n">corrs</span><span class="p">,</span> <span class="n">corrs_sorted_args</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_all&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_training&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_validation&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs1</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs2</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Need to adjust p-values outside of the previous method</span>
+            <span class="c1"># because numba doesn&#39;t support this function</span>
+            <span class="n">scoring_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span>
+            <span class="n">pvalues_adj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">pvalues</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">mode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+                <span class="n">pvalues_adj</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">false_discovery_control</span><span class="p">(</span><span class="n">pvalues</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_mask</span><span class="p">])</span>
+                <span class="n">pvalues_adj</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="o">~</span><span class="n">scoring_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+            <span class="n">neg_log_pvalues_adj</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pvalues_adj</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">neg_log_pvalues_adj</span><span class="p">)):</span>
+                <span class="n">avg_log_padj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">neg_log_pvalues_adj</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">avg_log_padj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+
+            <span class="c1"># This is aggregated BP@K score (a single number)</span>
+            <span class="n">scoring_features_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span>
+            <span class="n">agg_total_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">][:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span>
+                <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="n">agg_total_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">][:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span>
+                <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="n">agg_TP_at_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">TPs_at_K</span><span class="p">[:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">agg_FP_at_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">FPs_at_K</span><span class="p">[:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">agg_BP_at_K_TP</span> <span class="o">=</span> <span class="n">agg_TP_at_K</span> <span class="o">/</span> <span class="p">(</span><span class="n">agg_TP_at_K</span> <span class="o">+</span> <span class="n">agg_FP_at_K</span><span class="p">)</span> <span class="o">*</span> <span class="n">agg_total_neg</span>
+            <span class="n">agg_BP_at_K_FP</span> <span class="o">=</span> <span class="n">agg_FP_at_K</span> <span class="o">/</span> <span class="p">(</span><span class="n">agg_TP_at_K</span> <span class="o">+</span> <span class="n">agg_FP_at_K</span><span class="p">)</span> <span class="o">*</span> <span class="n">agg_total_pos</span>
+            <span class="n">agg_BP_at_K</span> <span class="o">=</span> <span class="n">agg_BP_at_K_TP</span> <span class="o">/</span> <span class="p">(</span><span class="n">agg_BP_at_K_TP</span> <span class="o">+</span> <span class="n">agg_BP_at_K_FP</span><span class="p">)</span>
+
+            <span class="n">final_scores</span> <span class="o">=</span> <span class="n">avg_log_padj</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">&quot;enrichment-based&quot;</span> <span class="k">else</span> <span class="n">agg_BP_at_K</span>
+
+            <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+                <span class="p">[</span><span class="s2">&quot;score training&quot;</span><span class="p">,</span> <span class="s2">&quot;score validation&quot;</span><span class="p">,</span> <span class="s2">&quot;score all&quot;</span><span class="p">],</span>
+                <span class="n">final_scores</span>
+            <span class="p">))</span>
+            
+            <span class="k">if</span> <span class="n">full_output</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">mode</span><span class="p">,</span> <span class="n">subset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;training&quot;</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">]):</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;BPs_at_K </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;enrichments </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enrichments</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalues</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues_adj </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalues_adj</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;TPs_at_K </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;num_pairs </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">TPs_at_K</span> <span class="o">+</span> <span class="n">FPs_at_K</span><span class="p">)[</span><span class="n">mode</span><span class="p">]</span>
+                
+                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scoring_features_mask</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;corrs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrs_sorted</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask_sorted</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_val_mask_sorted</span>
+
+        <span class="k">return</span> <span class="n">res</span></div>
+
+    
+    
+<div class="viewcode-block" id="CorrScorer._compute_ref_feature_set_mask">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_ref_feature_set_mask">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_compute_ref_feature_set_mask</span><span class="p">(</span>
+        <span class="n">feature_idxs_in_ref_sets</span><span class="p">,</span> <span class="n">ref_feature_sets_boundaries</span><span class="p">,</span> <span class="n">unique_feature_idxs_in_db</span><span class="p">,</span>
+        <span class="n">allowed_feature_pair_types</span><span class="p">,</span> <span class="n">feature_idx_to_type_id</span><span class="p">,</span>
+        <span class="n">n_features</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Efficiently create a flat array that answers</span>
+<span class="sd">        whether each feature pair belong at least one shared</span>
+<span class="sd">        reference feature set.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        feature_idxs_in_ref_sets : numpy.array</span>
+<span class="sd">            Array with indices of features that belong to</span>
+<span class="sd">            each reference sets. Each reference set is</span>
+<span class="sd">            represented by a consecutive block of feature</span>
+<span class="sd">            indices.</span>
+<span class="sd">        ref_feature_sets_boundaries : numpy.array</span>
+<span class="sd">            Array with indices of `feature_idxs_in_ref_sets`, which</span>
+<span class="sd">            tell where each referense set starts and ends.</span>
+<span class="sd">        unique_feature_idxs_in_db : numpy.array</span>
+<span class="sd">            Array of feature indices that belong to</span>
+<span class="sd">            at least one reference set.</span>
+<span class="sd">        allowed_feature_pair_types : numpy.array</span>
+<span class="sd">            Array of feature pair types that are participating</span>
+<span class="sd">            in the score computations. Since Numba cannot work</span>
+<span class="sd">            with string and tuples normally, these should be</span>
+<span class="sd">            integers computes using Cantor&#39;s pairing function,</span>
+<span class="sd">            see `compute_index` code.</span>
+<span class="sd">        feature_idx_to_type_id : numpy.array</span>
+<span class="sd">            Array mapping feature indices to feature types.</span>
+<span class="sd">            Indices of the array stand for feature indices,</span>
+<span class="sd">            and values stand for feature type indices.</span>
+<span class="sd">        n_features : int</span>
+<span class="sd">            Total number of features.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mask : numpy.array</span>
+<span class="sd">            See `data` attribute description.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Allocate memory</span>
+        <span class="n">n_pairs</span> <span class="o">=</span> <span class="n">n_features</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_features</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n_pairs</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+        <span class="c1"># Initialize everything with -1</span>
+        <span class="n">mask</span><span class="p">[:]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="c1"># Set 0s for all pairs composed of features from reference sets file</span>
+        <span class="c1"># the only constraint: feature types</span>
+        <span class="k">for</span> <span class="n">p1</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">unique_feature_idxs_in_db</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">p2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">unique_feature_idxs_in_db</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">unique_feature_idxs_in_db</span><span class="p">[</span><span class="n">p1</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">=</span> <span class="n">unique_feature_idxs_in_db</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span>
+
+                <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="n">feature_idx_to_type_id</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feature_idx_to_type_id</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">cantor1</span> <span class="o">=</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">k1</span>
+                <span class="n">cantor2</span> <span class="o">=</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">k2</span>
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="n">cantor1</span> <span class="ow">in</span> <span class="n">allowed_feature_pair_types</span> <span class="ow">or</span>
+                    <span class="n">cantor2</span> <span class="ow">in</span> <span class="n">allowed_feature_pair_types</span>
+                <span class="p">):</span>
+                    <span class="n">mask_idx</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_features</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+                    <span class="n">mask</span><span class="p">[</span><span class="n">mask_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="c1"># Then, set 1s</span>
+        <span class="c1"># We cannot use parallel processing here because of possible race conditions</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ref_feature_sets_boundaries</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">idx_pos1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ref_feature_sets_boundaries</span><span class="p">[</span><span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ref_feature_sets_boundaries</span><span class="p">[</span><span class="n">p</span><span class="p">]):</span>
+                <span class="k">for</span> <span class="n">idx_pos2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">idx_pos1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ref_feature_sets_boundaries</span><span class="p">[</span><span class="n">p</span><span class="p">]):</span>
+                    <span class="n">i</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">feature_idxs_in_ref_sets</span><span class="p">[</span><span class="n">idx_pos1</span><span class="p">],</span> <span class="n">feature_idxs_in_ref_sets</span><span class="p">[</span><span class="n">idx_pos2</span><span class="p">])</span>
+                    <span class="n">j</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">feature_idxs_in_ref_sets</span><span class="p">[</span><span class="n">idx_pos1</span><span class="p">],</span> <span class="n">feature_idxs_in_ref_sets</span><span class="p">[</span><span class="n">idx_pos2</span><span class="p">])</span>
+
+                    <span class="n">k1</span><span class="p">,</span> <span class="n">k2</span> <span class="o">=</span> <span class="n">feature_idx_to_type_id</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">feature_idx_to_type_id</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                    <span class="n">cantor1</span> <span class="o">=</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">k1</span>
+                    <span class="n">cantor2</span> <span class="o">=</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k1</span> <span class="o">+</span> <span class="n">k2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">k2</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="n">cantor1</span> <span class="ow">in</span> <span class="n">allowed_feature_pair_types</span> <span class="ow">or</span>
+                        <span class="n">cantor2</span> <span class="ow">in</span> <span class="n">allowed_feature_pair_types</span>
+                    <span class="p">):</span>
+                        <span class="n">mask_idx</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_features</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+                        <span class="n">mask</span><span class="p">[</span><span class="n">mask_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">mask</span></div>
+
+    
+<div class="viewcode-block" id="CorrScorer._compute_train_val_mask">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_train_val_mask">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_compute_train_val_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Efficiently create a flat array that answers</span>
+<span class="sd">        whether each feature pair belong to training or</span>
+<span class="sd">        validation set. The function is deterministic,</span>
+<span class="sd">        as training and validation set are derived by</span>
+<span class="sd">        taking each 2nd element.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mask : numpy.array</span>
+<span class="sd">            Array returned by the `_compute_ref_feature_set_mask` method.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        train_val_mask : numpy.array</span>
+<span class="sd">            See `data` attribute description.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">train_val_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Assign training and validation sets</span>
+        <span class="c1"># = 0 stands for train, = 1 stands for validation, = -1 stands for others</span>
+        <span class="c1"># This code will make sure that</span>
+        <span class="c1"># a) train/validation separation is deterministic</span>
+        <span class="c1"># b) it is the same for different reference collections</span>
+        <span class="n">train_val_mask</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">train_val_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">train_val_mask</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">train_val_mask</span></div>
+
+    
+<div class="viewcode-block" id="CorrScorer._compute_feature_totals">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_feature_totals">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_compute_feature_totals</span><span class="p">(</span>
+        <span class="n">mask</span><span class="p">,</span> <span class="n">train_val_mask</span><span class="p">,</span>
+        <span class="n">feature_idxs1</span><span class="p">,</span> <span class="n">feature_idxs2</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span>
+        <span class="n">min_pairs_to_score</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Efficiently compute statistics on number</span>
+<span class="sd">        of feature pairs that involve each individual feature.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mask : numpy.array</span>
+<span class="sd">            Array returned by the `_compute_ref_feature_set_mask` method.</span>
+<span class="sd">        train_val_mask : numpy.array</span>
+<span class="sd">            Array returned by the `_compute_train_val_mask` method.</span>
+<span class="sd">        feature_idxs1 : numpy.array</span>
+<span class="sd">            Indices of the first features in the flat array of pairs.</span>
+<span class="sd">        feature_idxs2 : numpy.array</span>
+<span class="sd">            Indices of the second features in the flat array of pairs.</span>
+<span class="sd">        n_features : int</span>
+<span class="sd">            Number of features.</span>
+<span class="sd">        min_pairs_to_score : int</span>
+<span class="sd">            Same as in the constructor.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        features_total_pos : numpy.ndarray</span>
+<span class="sd">            See `data` attribute description.</span>
+<span class="sd">        features_total_neg : numpy.ndarray</span>
+<span class="sd">            See `data` attribute description.</span>
+<span class="sd">        scoring_features_mask : numpy.array</span>
+<span class="sd">            See `data` attribute description.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Feature counts are computed separately for</span>
+        <span class="c1"># trainining (0), validation (1), and all pairs (2)</span>
+        <span class="n">features_total_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+        <span class="n">features_total_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+        <span class="c1"># These are the features that are involved in at least min_pairs_to_score pairs,</span>
+        <span class="c1"># including at least one shared and one non-shared pair</span>
+        <span class="n">scoring_features_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_features</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span><span class="p">)</span>
+
+        <span class="c1"># train, validaion, all </span>
+        <span class="c1"># No prange because of the race condition on scoring_features_mask</span>
+        <span class="k">for</span> <span class="n">mode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">train_val_mask</span> <span class="o">==</span> <span class="n">mode</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># Non-parallel because of race conditions</span>
+            <span class="c1"># But it is very fast anyway</span>
+            <span class="k">for</span> <span class="n">mask_idx</span> <span class="ow">in</span> <span class="n">idxs</span><span class="p">:</span>
+                <span class="n">feature1_idx</span> <span class="o">=</span> <span class="n">feature_idxs1</span><span class="p">[</span><span class="n">mask_idx</span><span class="p">]</span>
+                <span class="n">feature2_idx</span> <span class="o">=</span> <span class="n">feature_idxs2</span><span class="p">[</span><span class="n">mask_idx</span><span class="p">]</span>
+                <span class="n">TP_flag</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="n">mask_idx</span><span class="p">]</span>
+
+                <span class="n">features_total_pos</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature1_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">TP_flag</span>
+                <span class="n">features_total_pos</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature2_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">TP_flag</span>
+                <span class="n">features_total_neg</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature1_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">TP_flag</span>
+                <span class="n">features_total_neg</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature2_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">TP_flag</span>
+
+            <span class="n">scoring_features_mask</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">scoring_features_mask</span> <span class="o">&amp;</span> 
+                <span class="p">((</span><span class="n">features_total_pos</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span> <span class="o">+</span> <span class="n">features_total_neg</span><span class="p">[</span><span class="n">mode</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">min_pairs_to_score</span><span class="p">)</span>
+            <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">features_total_pos</span><span class="p">,</span> <span class="n">features_total_neg</span><span class="p">,</span> <span class="n">scoring_features_mask</span></div>
+
+    
+    
+<div class="viewcode-block" id="CorrScorer._compute_scores_for_ref_feature_set">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_set">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_compute_scores_for_ref_feature_set</span><span class="p">(</span>
+        <span class="n">corrs</span><span class="p">,</span> <span class="n">corrs_sorted_args</span><span class="p">,</span>
+        <span class="n">mask</span><span class="p">,</span> <span class="n">train_val_mask</span><span class="p">,</span>
+        <span class="n">high_corr_pairs_all</span><span class="p">,</span> <span class="n">high_corr_pairs_train</span><span class="p">,</span> <span class="n">high_corr_pairs_val</span><span class="p">,</span>
+        <span class="n">features_total_pos</span><span class="p">,</span> <span class="n">features_total_neg</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">,</span>
+        <span class="n">feature_idxs1</span><span class="p">,</span> <span class="n">feature_idxs2</span><span class="p">,</span>
+        <span class="n">num_regularization_pairs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Evaluate feature-feature correlations with respect to</span>
+<span class="sd">        one reference features set collection.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        corrs : numpy.array</span>
+<span class="sd">            Array of feature-feature correlations (flat format).</span>
+<span class="sd">        corrs_sorted_args : numpy.array</span>
+<span class="sd">            Array of indices that sort corrs array in needed way.</span>
+<span class="sd">        mask : numpy.array</span>
+<span class="sd">            Array returned by the `_compute_ref_feature_set_mask` method.</span>
+<span class="sd">        train_val_mask : numpy.array</span>
+<span class="sd">            Array returned by the `_compute_train_val_mask` method.</span>
+<span class="sd">        high_corr_pairs_all : int</span>
+<span class="sd">            See `data` attribute description.</span>
+<span class="sd">        high_corr_pairs_train : int</span>
+<span class="sd">            See `data` attribute description.</span>
+<span class="sd">        high_corr_pairs_val : int</span>
+<span class="sd">            See `data` attribute description.</span>
+<span class="sd">        features_total_pos : numpy.ndarray</span>
+<span class="sd">            Array returned by the `_compute_feature_totals` method.</span>
+<span class="sd">        features_total_neg : numpy.ndarray</span>
+<span class="sd">            Array returned by the `_compute_feature_totals` method.</span>
+<span class="sd">        scoring_features_mask : numpy.array</span>
+<span class="sd">            Array returned by the `_compute_feature_totals` method.</span>
+<span class="sd">        feature_idxs1 : numpy.array</span>
+<span class="sd">            Indices of the first features in the flat array of pairs.</span>
+<span class="sd">        feature_idxs2 : numpy.array</span>
+<span class="sd">            Indices of the second features in the flat array of pairs.</span>
+<span class="sd">        num_regularization_pairs : int, optional, default=5</span>
+<span class="sd">            Number of feature pairs to add to each ``K_j`` for</span>
+<span class="sd">            Bayesian regularization purposes.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        BPs_at_K : numpy.array</span>
+<span class="sd">            Balanced precisions for each feature.</span>
+<span class="sd">        enrichments : numpy.array</span>
+<span class="sd">            Enrichments for each feature.</span>
+<span class="sd">        pvalues : numpy.array</span>
+<span class="sd">            p-values for each feature.</span>
+<span class="sd">        TPs_at_K : numpy.array</span>
+<span class="sd">            True positives for each feature.</span>
+<span class="sd">        FPs_at_K : numpy.array</span>
+<span class="sd">            False positives for each feature.</span>
+<span class="sd">        corrs_filtered : numpy.array</span>
+<span class="sd">            Sorted feature-feature correlations with ``mask != -1``.</span>
+<span class="sd">        mask_filtered : numpy.array</span>
+<span class="sd">            Mask sorted in the same way as `corrs_filtered`.</span>
+<span class="sd">        train_val_mask_filtered : numpy.array</span>
+<span class="sd">            Training/validation mask sorted in the same way as `corrs_filtered`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    
+        <span class="c1"># Parallel re-ordering of arrays according to order in corrs_sorted_args</span>
+        <span class="c1"># Numba can&#39;t auto parallelize this, so we need to write for loop with prange</span>
+        
+        <span class="c1"># Allocate memory</span>
+        <span class="n">corrs_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">corrs_sorted_args</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+        <span class="n">mask_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">corrs_sorted_args</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+        <span class="n">train_val_mask_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">corrs_sorted_args</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+        <span class="n">feature_idxs1_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">corrs_sorted_args</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+        <span class="n">feature_idxs2_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">corrs_sorted_args</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Re-order</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">corrs_sorted_args</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">corrs_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrs</span><span class="p">[</span><span class="n">corrs_sorted_args</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">mask_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="n">corrs_sorted_args</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">train_val_mask_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_val_mask</span><span class="p">[</span><span class="n">corrs_sorted_args</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">feature_idxs1_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_idxs1</span><span class="p">[</span><span class="n">corrs_sorted_args</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">feature_idxs2_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_idxs2</span><span class="p">[</span><span class="n">corrs_sorted_args</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        
+        <span class="c1"># Next, we need to keep only those elements that corresponds to mask != -1</span>
+        <span class="c1"># Again, we need explicit prange loop to make it parallel</span>
+
+        <span class="c1"># Allocate memory</span>
+        <span class="n">mask_non_empty_idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask_sorted</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">corrs_filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mask_non_empty_idxs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+        <span class="n">mask_filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mask_non_empty_idxs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+        <span class="n">train_val_mask_filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mask_non_empty_idxs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int8&quot;</span><span class="p">)</span>
+        <span class="n">feature_idxs1_filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mask_non_empty_idxs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+        <span class="n">feature_idxs2_filtered</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">mask_non_empty_idxs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Select subset of elements</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">mask_non_empty_idxs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">corrs_filtered</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrs_sorted</span><span class="p">[</span><span class="n">mask_non_empty_idxs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">mask_filtered</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask_sorted</span><span class="p">[</span><span class="n">mask_non_empty_idxs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">train_val_mask_filtered</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_val_mask_sorted</span><span class="p">[</span><span class="n">mask_non_empty_idxs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">feature_idxs1_filtered</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_idxs1_sorted</span><span class="p">[</span><span class="n">mask_non_empty_idxs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">feature_idxs2_filtered</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">feature_idxs2_sorted</span><span class="p">[</span><span class="n">mask_non_empty_idxs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        
+        <span class="c1"># Next, we calculate precision for neighborhood of each feature</span>
+        <span class="n">n_features1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">feature_idxs1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">n_features2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">feature_idxs2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">n_features</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">n_features1</span><span class="p">,</span> <span class="n">n_features2</span><span class="p">)</span>
+        <span class="n">scoring_features_idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">scoring_features_mask</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># We calculate precision separately for</span>
+        <span class="c1"># train (0), validation (1), and all pairs (2)</span>
+        <span class="n">TPs_at_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+        <span class="n">FPs_at_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+
+        <span class="n">BPs_at_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+        <span class="n">enrichments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+        <span class="n">pvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+        <span class="n">BPs_at_K</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">enrichments</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">pvalues</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+        <span class="c1"># This is an array to store mean values across features</span>
+        <span class="c1">#MBPs_at_K = np.zeros((3,), dtype=&quot;float32&quot;)</span>
+
+        <span class="c1"># train, validaion, all </span>
+        <span class="k">for</span> <span class="n">mode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">train_val_mask_filtered</span> <span class="o">==</span> <span class="n">mode</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">top_K</span> <span class="o">=</span> <span class="n">high_corr_pairs_train</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">top_K</span> <span class="o">=</span> <span class="n">high_corr_pairs_val</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mask_filtered</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">top_K</span> <span class="o">=</span> <span class="n">high_corr_pairs_all</span>
+
+            <span class="c1"># Non-parallel because of race conditions</span>
+            <span class="c1"># But it is very fast anyway</span>
+            <span class="k">for</span> <span class="n">mask_idx</span> <span class="ow">in</span> <span class="n">idxs</span><span class="p">[:</span><span class="n">top_K</span><span class="p">]:</span>
+                <span class="n">feature1_idx</span> <span class="o">=</span> <span class="n">feature_idxs1_filtered</span><span class="p">[</span><span class="n">mask_idx</span><span class="p">]</span>
+                <span class="n">feature2_idx</span> <span class="o">=</span> <span class="n">feature_idxs2_filtered</span><span class="p">[</span><span class="n">mask_idx</span><span class="p">]</span>
+                <span class="n">TP_flag</span> <span class="o">=</span> <span class="n">mask_filtered</span><span class="p">[</span><span class="n">mask_idx</span><span class="p">]</span>
+
+                <span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature1_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">TP_flag</span>
+                <span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature2_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="n">TP_flag</span>
+                <span class="n">FPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature1_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">TP_flag</span>
+                <span class="n">FPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature2_idx</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">TP_flag</span>
+
+            <span class="c1">##########################################</span>
+            <span class="c1"># Balanced precision at K and enrichment #</span>
+            <span class="c1">##########################################</span>
+        
+            <span class="c1"># Weights are inverse-proportional to the fraction of positives/negatives</span>
+            <span class="c1"># Factor of 0.5 is needed to bring TP * TP_weight and FP * FP_weight</span>
+            <span class="c1"># to the scale needed for regularization</span>
+            <span class="n">features_total</span> <span class="o">=</span> <span class="n">features_total_pos</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span> <span class="o">+</span> <span class="n">features_total_neg</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span>
+            <span class="n">frac_pos</span> <span class="o">=</span> <span class="n">features_total_pos</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span> <span class="o">/</span> <span class="n">features_total</span>
+            <span class="n">frac_neg</span> <span class="o">=</span> <span class="n">features_total_neg</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span> <span class="o">/</span> <span class="n">features_total</span>
+            <span class="c1"># Bayesian regularization (pseudo-counts)</span>
+            <span class="n">regularization_TPs</span> <span class="o">=</span> <span class="n">num_regularization_pairs</span> <span class="o">*</span> <span class="n">frac_pos</span>
+            <span class="n">regularization_FPs</span> <span class="o">=</span> <span class="n">num_regularization_pairs</span> <span class="o">*</span> <span class="n">frac_neg</span>
+
+            <span class="c1"># Compute BPs_at_K and enrichments</span>
+            <span class="c1"># j goes over indices of scoring features only</span>
+            <span class="c1"># feature_idx points to the global index of feature</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">prange</span><span class="p">(</span><span class="n">scoring_features_idxs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+                <span class="n">feature_idx</span> <span class="o">=</span> <span class="n">scoring_features_idxs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="c1"># For features without any pairs within top-K, this will set</span>
+                <span class="c1"># BP to 0.5 because of regularization</span>
+                <span class="c1"># For features with frac_pos or frac_neg == 0, we just set value of 0.5</span>
+                <span class="k">if</span> <span class="n">frac_pos</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">frac_neg</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">BPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="p">((</span><span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">regularization_TPs</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="n">frac_pos</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span>
+                        <span class="p">(</span>
+                            <span class="p">(</span><span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">regularization_TPs</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="n">frac_pos</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span>
+                            <span class="p">(</span><span class="n">FPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">regularization_FPs</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="n">frac_neg</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">BPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+                <span class="c1"># Set enrichment to 1 if expected = 0</span>
+                <span class="k">if</span> <span class="n">frac_pos</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">expected</span> <span class="o">=</span> <span class="n">frac_pos</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span>
+                        <span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">FPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">+</span>
+                        <span class="n">num_regularization_pairs</span>
+                    <span class="p">)</span>
+                    <span class="n">enrichments</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="p">(</span><span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">+</span> <span class="n">regularization_TPs</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span>
+                        <span class="n">expected</span>
+                    <span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">enrichments</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">feature_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+            <span class="c1">##################################</span>
+            <span class="c1"># p-values (hypergeometric test) #</span>
+            <span class="c1">##################################</span>
+
+            <span class="n">pvalues</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">hypergeom_pvalues</span><span class="p">(</span>
+                <span class="n">features_total</span> <span class="o">+</span> <span class="n">num_regularization_pairs</span><span class="p">,</span>
+                <span class="n">features_total_pos</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span> <span class="o">+</span> <span class="n">regularization_TPs</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">),</span>
+                <span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span> <span class="o">+</span> <span class="n">FPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span> <span class="o">+</span> <span class="n">num_regularization_pairs</span><span class="p">,</span>
+                <span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_features_mask</span><span class="p">]</span> <span class="o">+</span> <span class="n">regularization_TPs</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">BPs_at_K</span><span class="p">,</span> <span class="n">enrichments</span><span class="p">,</span> <span class="n">pvalues</span><span class="p">,</span>
+            <span class="n">TPs_at_K</span><span class="p">,</span> <span class="n">FPs_at_K</span><span class="p">,</span>
+            <span class="n">corrs_filtered</span><span class="p">,</span> <span class="n">mask_filtered</span><span class="p">,</span> <span class="n">train_val_mask_filtered</span>
+        <span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

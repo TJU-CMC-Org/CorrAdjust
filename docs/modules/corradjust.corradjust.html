@@ -1,0 +1,1107 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>corradjust.corradjust module &#8212; CorrAdjust 0.9.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/corradjust.corradjust';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="corradjust.metrics module" href="corradjust.metrics.html" />
+    <link rel="prev" title="corradjust package" href="corradjust.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installation.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tutorial/tutorial.html">
+    User Guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="corradjust.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/TJU-CMC-Org/CorrAdjust" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">corradjust.corradjust module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corradjust.metrics.html">corradjust.metrics module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corradjust.plots.html">corradjust.plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corradjust.utils.html">corradjust.utils module</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="corradjust.html" class="nav-link">corradjust package</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">corradjust.corradjust module</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-corradjust.corradjust">
+<span id="corradjust-corradjust-module"></span><h1>corradjust.corradjust module<a class="headerlink" href="#module-corradjust.corradjust" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.corradjust.</span></span><span class="sig-name descname"><span class="pre">CorrAdjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_feature_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">winsorize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle_feature_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The main CorrAdjust class.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>df_feature_ann</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>A data frame with index and 2 columns 
+providing annotation for features.</p>
+<ul class="simple">
+<li><p>Index: unique feature ids that are also used in the data table.
+For example, ENSEMBL gene ids or small RNA license plates.</p></li>
+<li><p>Column <code class="docutils literal notranslate"><span class="pre">feature_name</span></code>: user-friendly names of the features,
+which are also used in the reference <code class="docutils literal notranslate"><span class="pre">.gmt</span></code> files.
+For example, gene symbols or <code class="docutils literal notranslate"><span class="pre">&quot;hsa-miR-xx-5p&quot;</span></code> notation for miRNAs.</p></li>
+<li><p>Column <code class="docutils literal notranslate"><span class="pre">feature_type</span></code>: discrete set of feature types.
+E.g., if you are analyzing only mRNA-seq data, put <code class="docutils literal notranslate"><span class="pre">&quot;mRNA&quot;</span></code> for all features;
+if you are integrating miRNA, mRNA, or any other data type,
+you could use more than one type (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;miRNA&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;mRNA&quot;</span></code>).
+Feature types shouldn’t contain <code class="docutils literal notranslate"><span class="pre">&quot;-&quot;</span></code> character.</p></li>
+</ul>
+</dd>
+<dt><strong>ref_feature_sets</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature set collections.
+Each collection is an item of <cite>ref_feature_sets</cite> with key being
+collection name (string) and value being another dict with the
+following structure.</p>
+<div class="line-block">
+<div class="line">{</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;path&quot;</span></code> : <cite>str</cite></div>
+<div class="line-block">
+<div class="line">Relative or absolute path to the <code class="docutils literal notranslate"><span class="pre">.gmt</span></code> file with reference feature sets.</div>
+</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;sign&quot;</span></code> : <code class="docutils literal notranslate"><span class="pre">{&quot;positive&quot;,</span> <span class="pre">&quot;negative&quot;,</span> <span class="pre">&quot;absolute&quot;}</span></code></div>
+<div class="line-block">
+<div class="line">Determines how to rank feature-feature correlations.</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;absolute&quot;</span></code>: absolute values of correlations
+(highest absolute correlations go first).</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;positive&quot;</span></code>: descending sorting of correlations
+(most positive correlations go first).</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;negative&quot;</span></code>: ascending sorting of correlations
+(most negative correlations go first).</div>
+</div>
+</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;feature_pair_types&quot;</span></code> : <cite>list</cite></div>
+<div class="line-block">
+<div class="line">List of strings showing types of correlations you are interested in.
+For example, <code class="docutils literal notranslate"><span class="pre">[&quot;mRNA-mRNA&quot;]</span></code> or <code class="docutils literal notranslate"><span class="pre">[&quot;miRNA-mRNA&quot;]</span></code>.</div>
+</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;high_corr_frac&quot;</span></code> : float</div>
+<div class="line-block">
+<div class="line">Fraction of all feature pairs with most highly ranked correlations
+that will be used for scoring (alpha in the paper’s notation).</div>
+</div>
+</div>
+<div class="line">}.</div>
+</div>
+</dd>
+<dt><strong>out_dir</strong><span class="classifier">str</span></dt><dd><p>Path to the directory where the output files will be stored.
+The directory will be created if it doesn’t exist.</p>
+</dd>
+<dt><strong>winsorize</strong><span class="classifier">float or None, optional, default=0.05</span></dt><dd><p>If <cite>float</cite>, specifies fraction of the lowest and the highest
+data values that will be winsorized.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, no winsorizing will be applied.
+Winsorizing is train/test-set friendly, i.e.,
+test data has no influence on training data.</p>
+</dd>
+<dt><strong>shuffle_feature_names</strong><span class="classifier">bool or list, optional, default=False</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">feature_name</span></code> column of <cite>df_feature_ann</cite> will be randomly permuted.
+If list of feature types, e.g., <code class="docutils literal notranslate"><span class="pre">[&quot;mRNA&quot;]</span></code>, permutation will be conducted
+only within the corresponding feature types.
+If <code class="docutils literal notranslate"><span class="pre">False</span></code>, no permutations will be conducted.</p>
+</dd>
+<dt><strong>metric</strong><span class="classifier">{“enrichment-based”, “BP&#64;K”}, optional, default=”enrichment-based”</span></dt><dd><p>Metric for evaluating feature correlations (see CorrAdjust paper for details).
+Please use the default option unless you are absolutely sure
+why do you need balanced precision at K (BP&#64;K).</p>
+</dd>
+<dt><strong>min_pairs_to_score</strong><span class="classifier">int, optional, default=1000</span></dt><dd><p>Minimum number of total pairs containing a feature
+(N_j in the paper notation) to include the feature
+in the score computations. Inequaility must hold
+both in training and validation pair sets.</p>
+</dd>
+<dt><strong>random_seed</strong><span class="classifier">int, optional, default=17</span></dt><dd><p>Random seed used by PCA and other non-deterministic procedures.</p>
+</dd>
+<dt><strong>title</strong><span class="classifier">str or None, optional, default=None</span></dt><dd><p>If string, it will be shown in top-left corner of all generated plots.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool, optional, default=True</span></dt><dd><p>Whether to print progress messages to stderr.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>confounder_PCs</strong><span class="classifier">list</span></dt><dd><p>The list of confounder PC indices (0-based).
+Populated by calling <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>PCA_model</strong><span class="classifier">sklearn.decomposition.PCA</span></dt><dd><p>PCA instance fit on training data. 
+Populated by calling <cite>fit</cite> and <cite>fit_PCA</cite> methods.</p>
+</dd>
+<dt><strong>winsorizer</strong><span class="classifier">Winsorizer</span></dt><dd><p>Winsorizer instance fit on training data. 
+Populated by calling <cite>fit</cite> and <cite>fit_PCA</cite> methods.</p>
+</dd>
+<dt><strong>mean_centerizer</strong><span class="classifier">MeanCenterizer</span></dt><dd><p>MeanCenterizer instance fit on training data. 
+Populated by calling <cite>fit</cite> and <cite>fit_PCA</cite> methods.</p>
+</dd>
+<dt><strong>corr_scorer</strong><span class="classifier">CorrScorer</span></dt><dd><p>Instance of CorrScorer.
+Populated by constructor.</p>
+</dd>
+<dt><strong>out_dir</strong><span class="classifier">str</span></dt><dd><p>Output directory.
+Populated by constructor.</p>
+</dd>
+<dt><strong>title</strong><span class="classifier">str</span></dt><dd><p>Title added to left-top corner of the plots.
+Populated by constructor.</p>
+</dd>
+<dt><strong>metric</strong><span class="classifier">{“enrichment-based”, “BP&#64;K”}</span></dt><dd><p>Metric for evaluating feature correlations.
+Populated by constructor.</p>
+</dd>
+<dt><strong>random_seed</strong><span class="classifier">int</span></dt><dd><p>Random seed.
+Populated by constructor.</p>
+</dd>
+<dt><strong>verbose</strong><span class="classifier">bool</span></dt><dd><p>Whether to print progress messages.
+Populated by constructor.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'greedy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_PCs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.fit" title="Link to this definition">#</a></dt>
+<dd><p>Find optimal set of PCs to regress out.
+Calling this method sets <cite>confounder_PCs</cite> attribute.</p>
+<p>It also generates several files in <cite>out_dir</cite>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fit.tsv</span></code> : file with the scores across the optimization trajectory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fit.{sample_group}.png</span></code> : visualization of <code class="docutils literal notranslate"><span class="pre">fit.tsv</span></code> for each sample group.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fit.log</span></code> : detailed log file updated at each iteration.</p></li>
+</ul>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Training data. Index = samples, columns = feature ids.
+Data should be normalized so that feature values
+are comparable between samples.
+Feature ids should perfectly match the ones used in
+<cite>df_feature_ann</cite> while initializing the object.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None, optional, default=None</span></dt><dd><p>A data frame with index and one column
+providing group annotation of samples.</p>
+<ul class="simple">
+<li><p>Index: sample names (should match index of <cite>df_data</cite>).</p></li>
+<li><p>Column <code class="docutils literal notranslate"><span class="pre">group</span></code>: discrete set of group names (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;normal&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;tumor&quot;</span></code>).
+Group name cannot be <code class="docutils literal notranslate"><span class="pre">&quot;mean&quot;</span></code>.</p></li>
+</ul>
+<p>If <cite>df_samp_ann</cite> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the method automatically generates it
+with one sample group called <code class="docutils literal notranslate"><span class="pre">all_samp</span></code>.</p>
+</dd>
+<dt><strong>method</strong><span class="classifier">{“greedy”, “first-n”}, optional, default=”greedy”</span></dt><dd><p>Optimization method.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;greedy&quot;</span></code> (recommended default): searches for the best PC
+to remove on each iteration (quadratic complexity).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;first-n&quot;</span></code>: iteratively removes PCs based on
+% variance they explain (linear complexity). This is
+the concept used by <cite>sva_network</cite> function of the <cite>sva</cite> package.</p></li>
+</ul>
+</dd>
+<dt><strong>n_PCs</strong><span class="classifier">int or None, optional, default=None</span></dt><dd><p>Number of PCs to choose from during the optimization.
+By default (<code class="docutils literal notranslate"><span class="pre">None</span></code>), number of PCs is estimated as a knee of 
+% cumulative variance plot.</p>
+</dd>
+<dt><strong>n_iters</strong><span class="classifier">int or None, optional, default=None</span></dt><dd><p>How many optimization iterations to perform.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, <cite>n_iters</cite> is set to <cite>n_PCs</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.fit_PCA">
+<span class="sig-name descname"><span class="pre">fit_PCA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.fit_PCA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.fit_PCA" title="Link to this definition">#</a></dt>
+<dd><p>Compute principal components of training data.
+The data are centered and optionally winsorized before
+computing PCA in train/test-friendly way.</p>
+<p>Calling this method sets <cite>PCA_model</cite> attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Training data. Index = samples, columns = feature ids.
+See <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame, optional, default=None</span></dt><dd><p>A data frame providing group annotation of samples.
+See <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>plot_var</strong><span class="classifier">bool, optional, default=False</span></dt><dd><p>Whether to make plots with % variance explained.
+The plots will be saved as <code class="docutils literal notranslate"><span class="pre">&quot;PCA_var.png&quot;</span></code> in <cite>out_dir</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>PCs</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Array of principal components with shape <code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_components)</span></code>.</p>
+</dd>
+<dt><strong>PC_coefs</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Array of PC coefficients with shape <code class="docutils literal notranslate"><span class="pre">(n_components,</span> <span class="pre">n_features)</span></code>.</p>
+</dd>
+<dt><strong>n_PCs_knee</strong><span class="classifier">int</span></dt><dd><p>Number of PCs estimated using knee (a.k.a. elbow) method.</p>
+</dd>
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Centered and (optionally) winsorized training data.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.transform" title="Link to this definition">#</a></dt>
+<dd><p>Residualize identified confounder PCs from input data.
+This method should be called after <cite>fit</cite>, or after manually
+calling <cite>fit_PCA</cite> and setting <cite>confounder_PCs</cite> attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+Feature ids should perfectly match the ones used in
+<cite>df_feature_ann</cite> while initializing the object.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None, optional, default=None</span></dt><dd><p>A data frame providing group annotation of samples.
+This argument is mandatory if it was used during <cite>fit</cite> call.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>df_data_clean</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Cleaned data.</p>
+</dd>
+<dt><strong>df_rsquareds</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Data frame with <code class="docutils literal notranslate"><span class="pre">R^2</span></code> values for each feature.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.compute_feature_scores">
+<span class="sig-name descname"><span class="pre">compute_feature_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.compute_feature_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.compute_feature_scores" title="Link to this definition">#</a></dt>
+<dd><p>Compute enrichment scores and p-values
+for feature-feature correlations in given data.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+Feature ids should perfectly match the ones used in
+<cite>df_feature_ann</cite> while initializing the object.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None, optional, default=None</span></dt><dd><p>A data frame providing group annotation of samples.
+This argument is mandatory if it was used during <cite>fit</cite> call.</p>
+</dd>
+<dt><strong>samp_group</strong><span class="classifier">str or None, default=None</span></dt><dd><p>If <cite>df_samp_ann</cite> is passed, this argument is mandatory
+and should refer to one of the sample groups in <cite>df_samp_ann</cite>.</p>
+</dd>
+<dt><strong>pairs_subset</strong><span class="classifier">{“all”, “training”, “validation”}, optional, default=”all”</span></dt><dd><p>Which set of feature pairs to use for computing scores.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt>dict</dt><dd><p>Dict with data frames containing feature-wise
+enrichment scores and p-values.
+It has the following structure:</p>
+<div class="line-block">
+<div class="line">{</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;Clean&quot;</span></code> : {</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_set_name</span></code> : pandas.DataFrame</div>
+</div>
+<div class="line">},</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;Raw&quot;</span></code>: {…}</div>
+</div>
+<div class="line">}.</div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.make_volcano_plot">
+<span class="sig-name descname"><span class="pre">make_volcano_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_name_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.8941176470588236,</span> <span class="pre">0.10196078431372549,</span> <span class="pre">0.10980392156862745,</span> <span class="pre">0.9)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonsignif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_volcano_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_volcano_plot" title="Link to this definition">#</a></dt>
+<dd><p>Make volcano plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>feature_scores</strong><span class="classifier">dict</span></dt><dd><p>Dict produced by <cite>compute_feature_scores</cite> method.</p>
+</dd>
+<dt><strong>plot_filename</strong><span class="classifier">str</span></dt><dd><p>Path to the figure (with extension, e.g., <code class="docutils literal notranslate"><span class="pre">.png</span></code>).</p>
+</dd>
+<dt><strong>annotate_features</strong><span class="classifier">bool or int, optional, default=False</span></dt><dd><p>If <cite>int</cite>, corresponding number of features with the lowest
+adjusted p-values will be annotated on the volcano plots.</p>
+</dd>
+<dt><strong>annot_fontsize</strong><span class="classifier">int, optional, default=8</span></dt><dd><p>Font size of feature names when <code class="docutils literal notranslate"><span class="pre">annotate_features</span> <span class="pre">==</span> <span class="pre">True</span></code>.</p>
+</dd>
+<dt><strong>feature_name_fmt</strong><span class="classifier">function or None, optional, default=None</span></dt><dd><p>Function that maps feature names to labels to show on the plot
+when <code class="docutils literal notranslate"><span class="pre">annotate_features</span> <span class="pre">==</span> <span class="pre">True</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">None</span></code>, shows unmodified feature names.</p>
+</dd>
+<dt><strong>signif_color</strong><span class="classifier">matplotlib color, optional</span></dt><dd><p>Color to draw statistically significant features.</p>
+</dd>
+<dt><strong>nonsignif_color</strong><span class="classifier">matplotlib color, optional</span></dt><dd><p>Color to draw non-significant features.</p>
+</dd>
+<dt><strong>panel_size</strong><span class="classifier">float, optional, default=4.8</span></dt><dd><p>Size of each (square) panel.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>VolcanoPlotter</dt><dd><p>Instance of <cite>VolcanoPlotter</cite>. At this point,
+the plot is already saved in the file, so you
+can change it through fig/ax and re-save.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.make_corr_distr_plot">
+<span class="sig-name descname"><span class="pre">make_corr_distr_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_corr_distr_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_corr_distr_plot" title="Link to this definition">#</a></dt>
+<dd><p>Visualize distribution of feature-feature correlations
+before and after PC correction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+Feature ids should perfectly match the ones used in
+<cite>df_feature_ann</cite> while initializing the object.</p>
+</dd>
+<dt><strong>plot_filename</strong><span class="classifier">str</span></dt><dd><p>Path to the figure (with extension, e.g., <code class="docutils literal notranslate"><span class="pre">.png</span></code>).</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None, optional, default=None</span></dt><dd><p>A data frame providing group annotation of samples.
+This argument is mandatory if it was used during <cite>fit</cite> call.</p>
+</dd>
+<dt><strong>samp_group</strong><span class="classifier">str or None, default=None</span></dt><dd><p>If <cite>df_samp_ann</cite> is passed, this argument is mandatory
+and should refer to one of the sample groups in <cite>df_samp_ann</cite>.</p>
+</dd>
+<dt><strong>pairs_subset</strong><span class="classifier">{“all”, “training”, “validation”}, optional, default=”all”</span></dt><dd><p>Which set of feature pairs to use for computing scores.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>CorrDistrPlotter</dt><dd><p>Instance of <cite>CorrDistrPlotter</cite>. At this point,
+the plot is already saved in the file, so you
+can change it through fig/ax and re-save.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.export_corrs">
+<span class="sig-name descname"><span class="pre">export_corrs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.export_corrs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.export_corrs" title="Link to this definition">#</a></dt>
+<dd><p>Export feature-feature correlations to file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+Feature ids should perfectly match the ones used in
+<cite>df_feature_ann</cite> while initializing the object.</p>
+</dd>
+<dt><strong>filename</strong><span class="classifier">str</span></dt><dd><p>Path to the export table with <code class="docutils literal notranslate"><span class="pre">.tsv</span></code> extension.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None, optional, default=None</span></dt><dd><p>A data frame providing group annotation of samples.
+This argument is mandatory if it was used during <cite>fit</cite> call.</p>
+</dd>
+<dt><strong>samp_group</strong><span class="classifier">str or None, default=None</span></dt><dd><p>If <cite>df_samp_ann</cite> is passed, this argument is mandatory
+and should refer to one of the sample groups in <cite>df_samp_ann</cite>.</p>
+</dd>
+<dt><strong>chunk_size</strong><span class="classifier">int, optional, default=1000000</span></dt><dd><p>How many rows are exported in a single chunk.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust._search_confounder_PCs">
+<span class="sig-name descname"><span class="pre">_search_confounder_PCs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PCs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PC_coefs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust._search_confounder_PCs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust._search_confounder_PCs" title="Link to this definition">#</a></dt>
+<dd><p>Iteratively residualize PCs from training data
+to maximize number of reference pairs among
+highly correlated feature pairs.</p>
+<p>Parental <cite>fit</cite> method describes files generated by this method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>See <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None</span></dt><dd><p>See <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>PCs</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>2D array of PCs (returned by <cite>fit_PCA</cite>).</p>
+</dd>
+<dt><strong>PC_coefs</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>2D array of PC coefficients (returned by <cite>fit_PCA</cite>).</p>
+</dd>
+<dt><strong>method</strong><span class="classifier">str</span></dt><dd><p>See <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>n_iters</strong><span class="classifier">_type_</span></dt><dd><p>See <cite>fit</cite> method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust._compute_corrs_and_scores">
+<span class="sig-name descname"><span class="pre">_compute_corrs_and_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prog_bar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust._compute_corrs_and_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust._compute_corrs_and_scores" title="Link to this definition">#</a></dt>
+<dd><p>Conduct one iteration of PC optimization
+by computing and scoring correlations.
+Scores will be computed separately
+for each sample group, mean scores will be also returned.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">numpy.ndarray</span></dt><dd><p>Training data, rows = samples, columns = features.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>See <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>log_file</strong><span class="classifier">file</span></dt><dd><p>Writing-open log file.</p>
+</dd>
+<dt><strong>prog_bar</strong><span class="classifier">tqdm.std.tqdm or None</span></dt><dd><p>Progress bar (will be updated) or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><strong>log_message</strong><span class="classifier">str or None</span></dt><dd><p>Title of the log message. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, nothing
+will be printed to log.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>iter_scores</strong><span class="classifier">dict</span></dt><dd><p>A dict of the following structure:</p>
+<div class="line-block">
+<div class="line">{</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">sample_group_name</span></code> : {</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_set_name</span></code> : {</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;score</span> <span class="pre">training&quot;</span></code> : float,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;score</span> <span class="pre">validation&quot;</span></code> : float,</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;score</span> <span class="pre">all&quot;</span></code> : float,</div>
+</div>
+<div class="line">}</div>
+</div>
+<div class="line">}</div>
+</div>
+<div class="line">}.</div>
+</div>
+</dd>
+<dt><strong>main_score</strong><span class="classifier">float</span></dt><dd><p>Mean of training scores across all sample groups
+and reference collections, i.e.,
+<code class="docutils literal notranslate"><span class="pre">iter_scores[&quot;mean&quot;][&quot;mean&quot;][&quot;score</span> <span class="pre">training&quot;]</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust._best_iter_scores_to_df">
+<span class="sig-name descname"><span class="pre">_best_iter_scores_to_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">best_iter_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">used_PCs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust._best_iter_scores_to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust._best_iter_scores_to_df" title="Link to this definition">#</a></dt>
+<dd><p>Convert dict of scores into data frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>best_iter_scores</strong><span class="classifier">list</span></dt><dd><p>List of dicts with scores corresponding
+to the iterations of optimization. Each element
+of list should have a format specified in the return
+dict of the <cite>_compute_corrs_and_scores</cite> method.</p>
+</dd>
+<dt><strong>used_PCs</strong><span class="classifier">list</span></dt><dd><p>List of PC indices corresponding to <cite>best_iter_scores</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>Pandas data frame with scores in columns and iterations on rows.</p>
+<ul class="simple">
+<li><p>Index: iteration number. Starts with 0 (raw dataset before correction).</p></li>
+<li><p>Column <code class="docutils literal notranslate"><span class="pre">PC</span></code>: index of PC being regressed out on each iteration.
+First row always have NaN (no correction).</p></li>
+<li><p>Score columns: these columns have the following format:
+<code class="docutils literal notranslate"><span class="pre">&quot;{sample_group_name};{ref_feature_set_name};{training/validation/all}&quot;</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust._make_best_iter_scores_plot">
+<span class="sig-name descname"><span class="pre">_make_best_iter_scores_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_best_iter_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust._make_best_iter_scores_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust._make_best_iter_scores_plot" title="Link to this definition">#</a></dt>
+<dd><p>Make optimization score line plots.
+If there is one sample group, only one plot
+with <code class="docutils literal notranslate"><span class="pre">&quot;fit.png&quot;</span></code> name will be produced.
+If there are multiple groups, one plot per group
+will be made: <code class="docutils literal notranslate"><span class="pre">&quot;fit.{group_name}.png&quot;</span></code>, including
+group with mean values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_best_iter_scores</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Data frame generated using <cite>_best_iter_scores_to_df</cite> method.</p>
+</dd>
+<dt><strong>peak_iter</strong><span class="classifier">int</span></dt><dd><p>This number is used to draw vertical dashed red
+line at the selected early stopping iteration.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>See <cite>fit</cite> method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust._compute_raw_and_clean_corrs">
+<span class="sig-name descname"><span class="pre">_compute_raw_and_clean_corrs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust._compute_raw_and_clean_corrs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust._compute_raw_and_clean_corrs" title="Link to this definition">#</a></dt>
+<dd><p>Compute correlations before and after residualizing
+PC confounders for a given group of samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+See <cite>transform</cite> for details.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>A data frame providing group annotation of samples.
+See <cite>transform</cite> for details.</p>
+</dd>
+<dt><strong>samp_group</strong><span class="classifier">str</span></dt><dd><p>One of the sample groups in <cite>df_samp_ann</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>corrs_raw</strong><span class="classifier">numpy.array</span></dt><dd><p>1D array of correlations (diagonal 1s are not included).</p>
+</dd>
+<dt><strong>corrs_clean</strong><span class="classifier">numpy.array</span></dt><dd><p>Same but with cleaned correlations.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust._check_df_data">
+<span class="sig-name descname"><span class="pre">_check_df_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust._check_df_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust._check_df_data" title="Link to this definition">#</a></dt>
+<dd><p>Check validity of input data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+See <cite>fit</cite> method.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>AssertionError</dt><dd><p>Several possible reasons:</p>
+<ul class="simple">
+<li><p>Feature ids do not match ones in feature annotation.</p></li>
+<li><p>There is a gene with constant expression.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust._check_df_samp_ann">
+<span class="sig-name descname"><span class="pre">_check_df_samp_ann</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after_training</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust._check_df_samp_ann"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust._check_df_samp_ann" title="Link to this definition">#</a></dt>
+<dd><p>Check validity of sample annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None</span></dt><dd><p>Sample annotation data.
+See <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+See <cite>fit</cite> method.</p>
+</dd>
+<dt><strong>after_training</strong><span class="classifier">bool</span></dt><dd><p>Whether this method is called after training.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>AssertionError</dt><dd><p>Several possible reasons:</p>
+<ul class="simple">
+<li><p>Sample names in <cite>df_samp_ann</cite> and <cite>df_data</cite> do not match.</p></li>
+<li><p><cite>df_samp_ann</cite> lacks <code class="docutils literal notranslate"><span class="pre">group</span></code> column.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">after_training</span> <span class="pre">==</span> <span class="pre">True</span></code>, method will also check
+that group names of <cite>df_samp_ann</cite> match those in <cite>mean_centerizer</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="corradjust.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">corradjust package</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="corradjust.metrics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">corradjust.metrics module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust"><code class="docutils literal notranslate"><span class="pre">CorrAdjust</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.fit"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.fit_PCA"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.fit_PCA()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.transform"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.transform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.compute_feature_scores"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.compute_feature_scores()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.make_volcano_plot"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.make_volcano_plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.make_corr_distr_plot"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.make_corr_distr_plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.export_corrs"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.export_corrs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust._search_confounder_PCs"><code class="docutils literal notranslate"><span class="pre">CorrAdjust._search_confounder_PCs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust._compute_corrs_and_scores"><code class="docutils literal notranslate"><span class="pre">CorrAdjust._compute_corrs_and_scores()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust._best_iter_scores_to_df"><code class="docutils literal notranslate"><span class="pre">CorrAdjust._best_iter_scores_to_df()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust._make_best_iter_scores_plot"><code class="docutils literal notranslate"><span class="pre">CorrAdjust._make_best_iter_scores_plot()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust._compute_raw_and_clean_corrs"><code class="docutils literal notranslate"><span class="pre">CorrAdjust._compute_raw_and_clean_corrs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust._check_df_data"><code class="docutils literal notranslate"><span class="pre">CorrAdjust._check_df_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust._check_df_samp_ann"><code class="docutils literal notranslate"><span class="pre">CorrAdjust._check_df_samp_ann()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/modules/corradjust.corradjust.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
