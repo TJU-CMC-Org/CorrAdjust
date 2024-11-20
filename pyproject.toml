@@ -7,6 +7,7 @@ authors = [
     "Stepan Nersisyan <Stepan.Nersisyan@jefferson.edu>"
 ]
 readme = "README.md"
+homepage = "https://tju-cmc-org.github.io/CorrAdjust"
 repository = "https://github.com/TJU-CMC-Org/CorrAdjust"
 documentation = "https://tju-cmc-org.github.io/CorrAdjust"
 packages = [{include = "corradjust"}]
