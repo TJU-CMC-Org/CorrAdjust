@@ -3,7 +3,7 @@
 Installation
 ============
 
-CorrAdjust requires Python 3.10 or 3.11.
+CorrAdjust requires Python 3.10-3.12.
 Although not mandatory, we strongly recommend installing it
 into a separate Conda or virtualenv environment.
 
