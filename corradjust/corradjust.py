@@ -39,9 +39,9 @@ class CorrAdjust:
           you could use more than one type (e.g., ``"miRNA"`` and ``"mRNA"``).
           Feature types shouldn't contain ``"-"`` character.
 
-    ref_feature_sets : dict
+    ref_feature_colls : dict
         A dictionary with information about reference feature set collections.
-        Each collection is an item of `ref_feature_sets` with key being
+        Each collection is an item of `ref_feature_colls` with key being
         collection name (string) and value being another dict with the
         following structure.
 
@@ -131,7 +131,7 @@ class CorrAdjust:
     def __init__(
         self,
         df_feature_ann,
-        ref_feature_sets,
+        ref_feature_colls,
         out_dir,
         winsorize=0.05,
         shuffle_feature_names=False,
@@ -158,7 +158,7 @@ class CorrAdjust:
         # Load reference data in a data structure
         self.corr_scorer = CorrScorer(
             df_feature_ann,
-            ref_feature_sets,
+            ref_feature_colls,
             shuffle_feature_names,
             metric,
             min_pairs_to_score,
@@ -431,7 +431,7 @@ class CorrAdjust:
 
             | {
             |     ``"Clean"`` : {
-            |         ``ref_feature_set_name`` : pandas.DataFrame
+            |         ``ref_feature_coll`` : pandas.DataFrame
             |     },
             |     ``"Raw"``: {...}
             | }.
@@ -472,31 +472,31 @@ class CorrAdjust:
             else:
                 feature_scores[state] = {}
 
-            for ref_feature_set in corr_scores:
+            for ref_feature_coll in corr_scores:
                 subset_idx = subset_idxs[pairs_subset]
-                total_pos = self.corr_scorer.data[ref_feature_set]["features_total_pos"][subset_idx]
-                total_neg = self.corr_scorer.data[ref_feature_set]["features_total_neg"][subset_idx]
+                total_pos = self.corr_scorer.data[ref_feature_coll]["features_total_pos"][subset_idx]
+                total_neg = self.corr_scorer.data[ref_feature_coll]["features_total_neg"][subset_idx]
 
                 df = pd.DataFrame({
                     "feature_id": self.corr_scorer.feature_ids,
                     "feature_name": self.corr_scorer.feature_names,
-                    "shared_pairs@K": corr_scores[ref_feature_set][f"TPs_at_K {pairs_subset}"],
-                    "K": corr_scores[ref_feature_set][f"num_pairs {pairs_subset}"],
-                    "shared_pairs@total": total_pos,
+                    "ref_pairs@K": corr_scores[ref_feature_coll][f"TPs_at_K {pairs_subset}"],
+                    "K": corr_scores[ref_feature_coll][f"num_pairs {pairs_subset}"],
+                    "ref_pairs@total": total_pos,
                     "total": total_pos + total_neg,
-                    "enrichment": corr_scores[ref_feature_set][f"enrichments {pairs_subset}"],
-                    "balanced_precision": corr_scores[ref_feature_set][f"BPs_at_K {pairs_subset}"],
-                    "pvalue": corr_scores[ref_feature_set][f"pvalues {pairs_subset}"],
-                    "padj": corr_scores[ref_feature_set][f"pvalues_adj {pairs_subset}"],
+                    "enrichment": corr_scores[ref_feature_coll][f"enrichments {pairs_subset}"],
+                    "balanced_precision": corr_scores[ref_feature_coll][f"BPs_at_K {pairs_subset}"],
+                    "pvalue": corr_scores[ref_feature_coll][f"pvalues {pairs_subset}"],
+                    "padj": corr_scores[ref_feature_coll][f"pvalues_adj {pairs_subset}"],
                 })
                 df = df.set_index("feature_id")
 
-                df["shared_pairs@K"] = df["shared_pairs@K"].astype("string") + "/" + df["K"].astype("string")
-                df["shared_pairs@total"] = df["shared_pairs@total"].astype("string") + "/" + df["total"].astype("string")
+                df["ref_pairs@K"] = df["ref_pairs@K"].astype("string") + "/" + df["K"].astype("string")
+                df["ref_pairs@total"] = df["ref_pairs@total"].astype("string") + "/" + df["total"].astype("string")
                 df = df.drop(columns=["K", "total"])
 
                 df = df.sort_values(["padj", "pvalue", "feature_id"])
-                feature_scores[state][ref_feature_set] = df
+                feature_scores[state][ref_feature_coll] = df
 
         return feature_scores
             
@@ -701,13 +701,12 @@ class CorrAdjust:
             "corr_clean", "pvalue_clean",
             "corr_raw", "pvalue_raw",
         ] 
-        ref_feature_set_names = self.corr_scorer.data.keys()
-        ref_feature_set_header = [
-            f"{ref_feature_set}_{col_type}"
-            for ref_feature_set in ref_feature_set_names
+        ref_feature_coll_header = [
+            f"{ref_feature_coll}_{col_type}"
+            for ref_feature_coll in self.corr_scorer.data.keys()
             for col_type in ["flag", "trainval"]
         ]
-        header += ref_feature_set_header
+        header += ref_feature_coll_header
         header = "\t".join(header)
         out_file.write(f"{header}\n")
         out_file.close()
@@ -749,12 +748,12 @@ class CorrAdjust:
             }
 
             ref_feature_columns = {}
-            for ref_feature_set in self.corr_scorer.data:
-                ref_feature_columns[f"{ref_feature_set}_flag"] = (
-                    self.corr_scorer.data[ref_feature_set]["mask"][idxs]
+            for ref_feature_coll in self.corr_scorer.data:
+                ref_feature_columns[f"{ref_feature_coll}_flag"] = (
+                    self.corr_scorer.data[ref_feature_coll]["mask"][idxs]
                 )
-                ref_feature_columns[f"{ref_feature_set}_trainval"] = (
-                    self.corr_scorer.data[ref_feature_set]["train_val_mask"][idxs]
+                ref_feature_columns[f"{ref_feature_coll}_trainval"] = (
+                    self.corr_scorer.data[ref_feature_coll]["train_val_mask"][idxs]
                 )
 
             tab = pa.table({
@@ -938,7 +937,7 @@ class CorrAdjust:
 
             | {
             |     ``sample_group_name`` : {
-            |         ``ref_feature_set_name`` : {
+            |         ``ref_feature_coll`` : {
             |             ``"score training"`` : float,
             |             ``"score validation"`` : float,
             |             ``"score all"`` : float,
@@ -966,32 +965,31 @@ class CorrAdjust:
 
             # Re-arrange scores in a dict
             iter_scores[samp_group] = {
-                ref_feature_set: {
+                ref_feature_coll: {
                     f"score {subset}": metrics[f"score {subset}"]
                     for subset in metric_subsets
                 }
-                for ref_feature_set, metrics in corr_scores.items()
+                for ref_feature_coll, metrics in corr_scores.items()
             }
             # Compute mean score across reference collections (within sample group)
             iter_scores[samp_group]["mean"] = {
                 f"score {subset}": np.mean([
                     metrics[f"score {subset}"]
-                    for ref_feature_set, metrics in iter_scores[samp_group].items()
+                    for ref_feature_coll, metrics in iter_scores[samp_group].items()
                 ])
                 for subset in metric_subsets
             }
 
         # We also compute mean across sample groups
-        ref_feature_sets = iter_scores[unique_samp_groups[0]].keys()
         iter_scores["mean"] = {
-            ref_feature_set: {
+            ref_feature_coll: {
                 f"score {subset}": np.mean([
-                    iter_scores[samp_group][ref_feature_set][f"score {subset}"]
+                    iter_scores[samp_group][ref_feature_coll][f"score {subset}"]
                     for samp_group in unique_samp_groups
                 ])
                 for subset in metric_subsets
             }
-            for ref_feature_set in ref_feature_sets
+            for ref_feature_coll in iter_scores[unique_samp_groups[0]].keys()
         }
         main_score = iter_scores["mean"]["mean"]["score training"]
 
@@ -1032,14 +1030,14 @@ class CorrAdjust:
             - Column ``PC``: index of PC being regressed out on each iteration.
               First row always have NaN (no correction).
             - Score columns: these columns have the following format:
-              ``"{sample_group_name};{ref_feature_set_name};{training/validation/all}"``.
+              ``"{sample_group_name};{ref_feature_coll};{training/validation/all}"``.
         """
 
         best_iter_scores = [
             {
-                f"{samp_group};{ref_feature_set};{metric.replace('score ', '')}": value
+                f"{samp_group};{ref_feature_coll};{metric.replace('score ', '')}": value
                 for samp_group in iter_scores_dict
-                for ref_feature_set, metrics in iter_scores_dict[samp_group].items()
+                for ref_feature_coll, metrics in iter_scores_dict[samp_group].items()
                 for metric, value in metrics.items()
             }
             for iter_scores_dict in best_iter_scores
