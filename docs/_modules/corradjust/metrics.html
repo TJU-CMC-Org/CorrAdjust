@@ -366,8 +366,8 @@
 <span class="sd">    ----------</span>
 <span class="sd">    df_feature_ann : pandas.DataFrame with index and 2 columns</span>
 <span class="sd">        A data frame providing annotation of features.</span>
-<span class="sd">    ref_feature_sets : dict</span>
-<span class="sd">        A dictionary with information about reference feature sets.</span>
+<span class="sd">    ref_feature_colls : dict</span>
+<span class="sd">        A dictionary with information about reference feature set collections.</span>
 <span class="sd">    shuffle_feature_names : bool or list, optional, default=False</span>
 <span class="sd">        Whether (and how) to permute feature names.</span>
 <span class="sd">    metric : {&quot;enrichment-based&quot;, &quot;BP@K&quot;}, optional, default=&quot;enrichment-based&quot;</span>
@@ -415,11 +415,11 @@
 <span class="sd">                  refers to feature pair type: ``0`` is ``training``,</span>
 <span class="sd">                  ``1`` is ``validation``, and ``2`` is ``all``.</span>
 <span class="sd">                  The second index stands for feature index,</span>
-<span class="sd">                  and the array value says how many shared pairs</span>
+<span class="sd">                  and the array value says how many reference pairs</span>
 <span class="sd">                  the feature has. These are ``n_j`` in the paper&#39;s terminology.</span>
 <span class="sd">        |     ``&quot;features_total_neg&quot;`` : `numpy.ndarray`</span>
 <span class="sd">        |         Same as ``&quot;features_total_pos&quot;`` but for</span>
-<span class="sd">                  non-shared pairs. These are ``N_j - n_j`` in the paper&#39;s terminology.</span>
+<span class="sd">                  non-reference pairs. These are ``N_j - n_j`` in the paper&#39;s terminology.</span>
 <span class="sd">        |     ``&quot;scoring_features_mask&quot;`` : `numpy.array`</span>
 <span class="sd">        |         Binary array with ``n_features`` elements that says</span>
 <span class="sd">                  whether each feature should participate in the computation of</span>
@@ -451,7 +451,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_feature_ann</span><span class="p">,</span>
-        <span class="n">ref_feature_sets</span><span class="p">,</span>
+        <span class="n">ref_feature_colls</span><span class="p">,</span>
         <span class="n">shuffle_feature_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;enrichment-based&quot;</span><span class="p">,</span>
         <span class="n">min_pairs_to_score</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
@@ -521,19 +521,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_idx_to_type</span><span class="p">)</span>
 
         <span class="c1"># Load reference sets and store them in a nice data structure </span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">compute_index</span><span class="p">(</span><span class="n">ref_feature_sets</span><span class="p">,</span> <span class="n">min_pairs_to_score</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">compute_index</span><span class="p">(</span><span class="n">ref_feature_colls</span><span class="p">,</span> <span class="n">min_pairs_to_score</span><span class="p">)</span>
 
 <div class="viewcode-block" id="CorrScorer.compute_index">
 <a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer.compute_index">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_feature_sets</span><span class="p">,</span> <span class="n">min_pairs_to_score</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">compute_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_feature_colls</span><span class="p">,</span> <span class="n">min_pairs_to_score</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Populate `data` attribute.</span>
 <span class="sd">        Input arguments are the same as in the constructor.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        ref_feature_sets : dict</span>
-<span class="sd">            A dictionary with information about reference feature sets.</span>
+<span class="sd">        ref_feature_colls : dict</span>
+<span class="sd">            A dictionary with information about reference feature set collections.</span>
 <span class="sd">        min_pairs_to_score : int</span>
 <span class="sd">            Minimum number of total pairs containing a feature</span>
 <span class="sd">            to include the feature in the enrichment score computations.</span>
@@ -545,18 +545,18 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">ref_feature_sets</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="n">ref_feature_colls</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Loading </span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2"> reference sets...&quot;</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="si">}</span><span class="s2"> | Loading </span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2"> reference collection...&quot;</span><span class="p">,</span>
                     <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
                 <span class="p">)</span>
 
             <span class="k">assert</span> <span class="p">(</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
-            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> not found.&quot;</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ref_feature_colls</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">ref_feature_colls</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> not found.&quot;</span>
 
-            <span class="n">db_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
+            <span class="n">db_file</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">ref_feature_colls</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
             <span class="c1"># Each line has reference set name (field 0) and list of features (fields 2+)</span>
             <span class="c1"># n features listed on a line will result in n*(n-1)/2 feature pairs</span>
             
@@ -603,7 +603,7 @@
             <span class="c1"># We hash type_id tuples using Cantor pairing function</span>
             <span class="n">type_to_id</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">unique_types</span><span class="p">,</span> <span class="n">type_ids</span><span class="p">))</span>
             <span class="n">allowed_feature_pair_types</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">pair_type</span> <span class="ow">in</span> <span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;feature_pair_types&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">pair_type</span> <span class="ow">in</span> <span class="n">ref_feature_colls</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;feature_pair_types&quot;</span><span class="p">]:</span>
                 <span class="k">assert</span> <span class="p">(</span>
                     <span class="s2">&quot;-&quot;</span> <span class="ow">in</span> <span class="n">pair_type</span>
                 <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Allowed pair type must contain &#39;-&#39; character but none is found in &#39;</span><span class="si">{</span><span class="n">pair_type</span><span class="si">}</span><span class="s2">&#39;.&quot;</span>
@@ -619,15 +619,15 @@
             
             <span class="n">allowed_feature_pair_types</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">allowed_feature_pair_types</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
             
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
             <span class="k">assert</span> <span class="p">(</span>
-                <span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;positive&quot;</span><span class="p">,</span> <span class="s2">&quot;negative&quot;</span><span class="p">,</span> <span class="s2">&quot;absolute&quot;</span><span class="p">}</span>
-            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Sign can be &#39;positive&#39;, &#39;negative&#39;, or &#39;absolute&#39;, but &#39;</span><span class="si">{</span><span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s1">&#39;sign&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39; was found.&quot;</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span>
+                <span class="n">ref_feature_colls</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;positive&quot;</span><span class="p">,</span> <span class="s2">&quot;negative&quot;</span><span class="p">,</span> <span class="s2">&quot;absolute&quot;</span><span class="p">}</span>
+            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Sign can be &#39;positive&#39;, &#39;negative&#39;, or &#39;absolute&#39;, but &#39;</span><span class="si">{</span><span class="n">ref_feature_colls</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s1">&#39;sign&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39; was found.&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ref_feature_colls</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span>
 
             <span class="c1"># Effective data structure for ground truth flag </span>
-            <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_ref_feature_set_mask</span><span class="p">(</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_ref_feature_coll_mask</span><span class="p">(</span>
                 <span class="n">feature_idxs_in_ref_sets</span><span class="p">,</span> <span class="n">ref_feature_sets_boundaries</span><span class="p">,</span> <span class="n">unique_feature_idxs_in_db</span><span class="p">,</span>
                 <span class="n">allowed_feature_pair_types</span><span class="p">,</span> <span class="n">feature_idx_to_type_id</span><span class="p">,</span>
                 <span class="n">n_features</span>
@@ -635,7 +635,7 @@
             <span class="k">assert</span> <span class="p">(</span>
                 <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
             <span class="p">),</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;There are no shared or non-shared feature pairs found in </span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;There are no reference or non-reference feature pairs found in </span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">. &quot;</span>
                 <span class="s2">&quot;Check that 1) feature names match between feature annotation data &quot;</span>
                 <span class="s2">&quot;and the GMT file, 2) you correctly specified allowed feature pair types.&quot;</span>
             <span class="p">)</span>
@@ -643,7 +643,7 @@
             <span class="c1"># Get labels of training and validation sets</span>
             <span class="n">train_val_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_train_val_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
 
-            <span class="c1"># Count total number of shared and non-shared pairs for each feature</span>
+            <span class="c1"># Count total number of reference and non-reference pairs for each feature</span>
             <span class="c1"># Counts are training/validation/all-specific</span>
             <span class="n">features_total_pos</span><span class="p">,</span> <span class="n">features_total_neg</span><span class="p">,</span> <span class="n">scoring_features_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_feature_totals</span><span class="p">(</span>
                 <span class="n">mask</span><span class="p">,</span> <span class="n">train_val_mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs2</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">min_pairs_to_score</span>
@@ -651,19 +651,19 @@
             <span class="k">assert</span> <span class="p">(</span>
                 <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">scoring_features_mask</span><span class="p">)</span>
             <span class="p">),</span> <span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;None of the features can be used for scoring in </span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;None of the features can be used for scoring in </span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">. &quot;</span>
                 <span class="s2">&quot;The value of min_pairs_to_score might be too high for your data.&quot;</span>
             <span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_val_mask</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_val_mask</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features_total_pos</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features_total_neg</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scoring_features_mask</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features_total_pos</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features_total_neg</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scoring_features_mask</span>
 
             <span class="c1"># A fraction of all participating pairs are &quot;highly correlated&quot;</span>
-            <span class="n">high_corr_frac</span> <span class="o">=</span> <span class="n">ref_feature_sets</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_frac&quot;</span><span class="p">]</span>
+            <span class="n">high_corr_frac</span> <span class="o">=</span> <span class="n">ref_feature_colls</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;high_corr_frac&quot;</span><span class="p">]</span>
             <span class="k">assert</span> <span class="p">(</span>
                 <span class="nb">isinstance</span><span class="p">(</span><span class="n">high_corr_frac</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">high_corr_frac</span> <span class="o">&lt;=</span> <span class="mi">1</span>
             <span class="p">),</span> <span class="s2">&quot;high_corr_frac must be float between 0 and 1.&quot;</span>
@@ -674,10 +674,10 @@
             <span class="n">n_pairs_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">train_val_mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">n_pairs_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">train_val_mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_frac&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">high_corr_frac</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_all&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">high_corr_pairs_all</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_training&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">high_corr_pairs_all</span> <span class="o">*</span> <span class="n">n_pairs_train</span> <span class="o">/</span> <span class="n">n_pairs_all</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_validation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">high_corr_pairs_all</span> <span class="o">*</span> <span class="n">n_pairs_val</span> <span class="o">/</span> <span class="n">n_pairs_all</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;high_corr_frac&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">high_corr_frac</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_all&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">high_corr_pairs_all</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_training&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">high_corr_pairs_all</span> <span class="o">*</span> <span class="n">n_pairs_train</span> <span class="o">/</span> <span class="n">n_pairs_all</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_validation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">high_corr_pairs_all</span> <span class="o">*</span> <span class="n">n_pairs_val</span> <span class="o">/</span> <span class="n">n_pairs_all</span><span class="p">)</span></div>
 
     
     
@@ -702,7 +702,7 @@
 <span class="sd">            If `full_output` is ``False``, dict has the following structure:</span>
 
 <span class="sd">            | {</span>
-<span class="sd">            |     ``ref_feature_set_name`` : {</span>
+<span class="sd">            |     ``ref_feature_coll`` : {</span>
 <span class="sd">            |         ``&quot;score {subset}&quot;`` : `float`</span>
 <span class="sd">            |     }</span>
 <span class="sd">            | }</span>
@@ -710,7 +710,7 @@
 <span class="sd">            Here, subset is ``&quot;training&quot;``, ``&quot;validation&quot;``, and ``&quot;all&quot;`` (feature pair subsets).</span>
 <span class="sd">            Score is defined according to the `metric` attribute.</span>
 <span class="sd">            If `full_output` is ``True``, the following keys are added</span>
-<span class="sd">            to the dict corresponding to each ``ref_feature_set_name``:</span>
+<span class="sd">            to the dict corresponding to each ``ref_feature_coll``:</span>
 
 <span class="sd">            | {</span>
 <span class="sd">            |     ``&quot;BPs_at_K {subset}&quot;`` : `numpy.array`</span>
@@ -744,8 +744,8 @@
         <span class="c1"># So the sorting will be done only once for each sign and cached</span>
         <span class="n">sort_cache</span> <span class="o">=</span> <span class="p">{}</span>
 
-        <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-            <span class="n">sign</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+            <span class="n">sign</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;sign&quot;</span><span class="p">]</span>
 
             <span class="k">if</span> <span class="n">sign</span> <span class="ow">in</span> <span class="n">sort_cache</span><span class="p">:</span>
                 <span class="n">corrs_sorted_args</span> <span class="o">=</span> <span class="n">sort_cache</span><span class="p">[</span><span class="n">sign</span><span class="p">]</span>
@@ -762,23 +762,23 @@
             <span class="p">(</span>
                 <span class="n">BPs_at_K</span><span class="p">,</span> <span class="n">enrichments</span><span class="p">,</span> <span class="n">pvalues</span><span class="p">,</span> <span class="n">TPs_at_K</span><span class="p">,</span> <span class="n">FPs_at_K</span><span class="p">,</span>
                 <span class="n">corrs_sorted</span><span class="p">,</span> <span class="n">mask_sorted</span><span class="p">,</span> <span class="n">train_val_mask_sorted</span>
-            <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_scores_for_ref_feature_set</span><span class="p">(</span>
+            <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_scores_for_ref_feature_coll</span><span class="p">(</span>
                 <span class="n">corrs</span><span class="p">,</span> <span class="n">corrs_sorted_args</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_all&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_training&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_validation&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_all&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_training&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;high_corr_pairs_validation&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">],</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs1</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">feature_idxs2</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="c1"># Need to adjust p-values outside of the previous method</span>
             <span class="c1"># because numba doesn&#39;t support this function</span>
-            <span class="n">scoring_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span>
+            <span class="n">scoring_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span>
             <span class="n">pvalues_adj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">pvalues</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">mode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
                 <span class="n">pvalues_adj</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">false_discovery_control</span><span class="p">(</span><span class="n">pvalues</span><span class="p">[</span><span class="n">mode</span><span class="p">,</span> <span class="n">scoring_mask</span><span class="p">])</span>
@@ -791,13 +791,13 @@
                 <span class="n">avg_log_padj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
 
             <span class="c1"># This is aggregated BP@K score (a single number)</span>
-            <span class="n">scoring_features_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span>
+            <span class="n">scoring_features_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span>
             <span class="n">agg_total_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">][:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">][:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span>
                 <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">)</span>
             <span class="n">agg_total_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">][:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">][:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span>
                 <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
             <span class="p">)</span>
             <span class="n">agg_TP_at_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nansum</span><span class="p">(</span><span class="n">TPs_at_K</span><span class="p">[:,</span> <span class="n">scoring_features_mask</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -808,34 +808,34 @@
 
             <span class="n">final_scores</span> <span class="o">=</span> <span class="n">avg_log_padj</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric</span> <span class="o">==</span> <span class="s2">&quot;enrichment-based&quot;</span> <span class="k">else</span> <span class="n">agg_BP_at_K</span>
 
-            <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
                 <span class="p">[</span><span class="s2">&quot;score training&quot;</span><span class="p">,</span> <span class="s2">&quot;score validation&quot;</span><span class="p">,</span> <span class="s2">&quot;score all&quot;</span><span class="p">],</span>
                 <span class="n">final_scores</span>
             <span class="p">))</span>
             
             <span class="k">if</span> <span class="n">full_output</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">mode</span><span class="p">,</span> <span class="n">subset</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;training&quot;</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">]):</span>
-                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;BPs_at_K </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
-                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;enrichments </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enrichments</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
-                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalues</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
-                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues_adj </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalues_adj</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
-                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;TPs_at_K </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
-                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;num_pairs </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">TPs_at_K</span> <span class="o">+</span> <span class="n">FPs_at_K</span><span class="p">)[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;BPs_at_K </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;enrichments </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">enrichments</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalues</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues_adj </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pvalues_adj</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;TPs_at_K </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">TPs_at_K</span><span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+                    <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;num_pairs </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">TPs_at_K</span> <span class="o">+</span> <span class="n">FPs_at_K</span><span class="p">)[</span><span class="n">mode</span><span class="p">]</span>
                 
-                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scoring_features_mask</span>
-                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;corrs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrs_sorted</span>
-                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask_sorted</span>
-                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_val_mask_sorted</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;scoring_features_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scoring_features_mask</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;corrs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">corrs_sorted</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask_sorted</span>
+                <span class="n">res</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_val_mask_sorted</span>
 
         <span class="k">return</span> <span class="n">res</span></div>
 
     
     
-<div class="viewcode-block" id="CorrScorer._compute_ref_feature_set_mask">
-<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_ref_feature_set_mask">[docs]</a>
+<div class="viewcode-block" id="CorrScorer._compute_ref_feature_coll_mask">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_ref_feature_coll_mask">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_compute_ref_feature_set_mask</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_compute_ref_feature_coll_mask</span><span class="p">(</span>
         <span class="n">feature_idxs_in_ref_sets</span><span class="p">,</span> <span class="n">ref_feature_sets_boundaries</span><span class="p">,</span> <span class="n">unique_feature_idxs_in_db</span><span class="p">,</span>
         <span class="n">allowed_feature_pair_types</span><span class="p">,</span> <span class="n">feature_idx_to_type_id</span><span class="p">,</span>
         <span class="n">n_features</span>
@@ -936,7 +936,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        mask : numpy.array</span>
-<span class="sd">            Array returned by the `_compute_ref_feature_set_mask` method.</span>
+<span class="sd">            Array returned by the `_compute_ref_feature_coll_mask` method.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -974,7 +974,7 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        mask : numpy.array</span>
-<span class="sd">            Array returned by the `_compute_ref_feature_set_mask` method.</span>
+<span class="sd">            Array returned by the `_compute_ref_feature_coll_mask` method.</span>
 <span class="sd">        train_val_mask : numpy.array</span>
 <span class="sd">            Array returned by the `_compute_train_val_mask` method.</span>
 <span class="sd">        feature_idxs1 : numpy.array</span>
@@ -1001,7 +1001,7 @@
         <span class="n">features_total_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
         <span class="n">features_total_neg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
         <span class="c1"># These are the features that are involved in at least min_pairs_to_score pairs,</span>
-        <span class="c1"># including at least one shared and one non-shared pair</span>
+        <span class="c1"># including at least one reference and one non-reference pair</span>
         <span class="n">scoring_features_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_features</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span><span class="p">)</span>
 
         <span class="c1"># train, validaion, all </span>
@@ -1033,11 +1033,11 @@
 
     
     
-<div class="viewcode-block" id="CorrScorer._compute_scores_for_ref_feature_set">
-<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_set">[docs]</a>
+<div class="viewcode-block" id="CorrScorer._compute_scores_for_ref_feature_coll">
+<a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_coll">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_compute_scores_for_ref_feature_set</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">_compute_scores_for_ref_feature_coll</span><span class="p">(</span>
         <span class="n">corrs</span><span class="p">,</span> <span class="n">corrs_sorted_args</span><span class="p">,</span>
         <span class="n">mask</span><span class="p">,</span> <span class="n">train_val_mask</span><span class="p">,</span>
         <span class="n">high_corr_pairs_all</span><span class="p">,</span> <span class="n">high_corr_pairs_train</span><span class="p">,</span> <span class="n">high_corr_pairs_val</span><span class="p">,</span>
@@ -1056,7 +1056,7 @@
 <span class="sd">        corrs_sorted_args : numpy.array</span>
 <span class="sd">            Array of indices that sort corrs array in needed way.</span>
 <span class="sd">        mask : numpy.array</span>
-<span class="sd">            Array returned by the `_compute_ref_feature_set_mask` method.</span>
+<span class="sd">            Array returned by the `_compute_ref_feature_coll_mask` method.</span>
 <span class="sd">        train_val_mask : numpy.array</span>
 <span class="sd">            Array returned by the `_compute_train_val_mask` method.</span>
 <span class="sd">        high_corr_pairs_all : int</span>
@@ -1286,7 +1286,7 @@
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>

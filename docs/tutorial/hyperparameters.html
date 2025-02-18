@@ -373,13 +373,13 @@
 <p>The main goal of CorrAdjust is to find a subset of confounder PCs to regress out from the data. The search of this subset could be limited to the first <code class="docutils literal notranslate"><span class="pre">n_PCs</span></code> to dramatically improve time requirements, as the total number of algorithm iterations is proportional to <code class="docutils literal notranslate"><span class="pre">n_PCs</span> <span class="pre">**</span> <span class="pre">2</span></code>.</p>
 <p>The default method to determine number of PCs is to plot cumulative % variance explained by each PC, and then automatically select the “knee” point. Any other value that confidently falls in the “plateau” zone of the cumulative plot will work as well. Alternatively, you can use <code class="docutils literal notranslate"><span class="pre">num.sv</span></code> function from the <code class="docutils literal notranslate"><span class="pre">sva</span></code> package in R to estimate the number of significant PCs.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Re-initialize the model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">CorrAdjust</span><span class="p">(</span>
     <span class="n">df_feature_ann</span><span class="p">,</span>
-    <span class="n">ref_feature_sets</span><span class="p">,</span>
+    <span class="n">ref_feature_colls</span><span class="p">,</span>
     <span class="s2">&quot;out_data/GTEx_Whole_Blood&quot;</span>
 <span class="p">)</span>
 
@@ -580,7 +580,7 @@ cleaning.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
