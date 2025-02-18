@@ -1,4 +1,4 @@
-feature_id	feature_name	shared_pairs@K	shared_pairs@total	enrichment	balanced_precision	pvalue	padj
+feature_id	feature_name	ref_pairs@K	ref_pairs@total	enrichment	balanced_precision	pvalue	padj
 Feature202	Feature202	51/51	55/501	8.385065	0.989464	3.2181562146755607e-59	1.5324553403216957e-57
 Feature210	Feature210	51/51	55/501	8.385065	0.989464	3.2181562146755607e-59	1.5324553403216957e-57
 Feature214	Feature214	51/51	55/501	8.385065	0.989464	3.2181562146755607e-59	1.5324553403216957e-57
