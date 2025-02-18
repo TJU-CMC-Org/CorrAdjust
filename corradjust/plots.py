@@ -373,7 +373,7 @@ class VolcanoPlotter:
         annotate_features=False,
         annot_fontsize=8,
         feature_name_fmt=None,
-        signif_color=(*sns.color_palette("Set1")[0], 0.9),
+        signif_color=(*sns.color_palette("tab10")[1], 0.9),
         nonsignif_color=(0.6, 0.6, 0.6, 0.5),
         panel_size=4.8
     ):
@@ -455,16 +455,23 @@ class VolcanoPlotter:
             for state in ["Raw", "Clean"]:
                 self.axs[(ref_feature_coll, state)].set_ylim([-y_pad, padj_max + y_pad])
 
-                self.axs[(ref_feature_coll, state)].fill_between(
-                    [-0.03, 0.5], [padj_max + y_pad, padj_max + y_pad], [-y_pad, -y_pad],
-                    facecolor=(*sns.color_palette("tab10")[0], 0.07),
-                    zorder=0
-                )
-                self.axs[(ref_feature_coll, state)].fill_between(
-                    [0.5, 1.03], [padj_max + y_pad, padj_max + y_pad], [-y_pad, -y_pad],
-                    facecolor=(*sns.color_palette("tab10")[3], 0.07),
-                    zorder=0
-                )
+                # Plot boundaries of significance
+                if padj_max > -np.log10(0.05):
+                    self.axs[(ref_feature_coll, state)].fill_between(
+                        [0.5, 1.03], [padj_max + y_pad, padj_max + y_pad], [-np.log10(0.05), -np.log10(0.05)],
+                        facecolor=self.signif_color, alpha=0.05,
+                        zorder=0
+                    )
+                    self.axs[(ref_feature_coll, state)].plot(
+                        [0.5, 1.03], [-np.log10(0.05), -np.log10(0.05)],
+                        color=self.signif_color, alpha=0.5, lw=1.,
+                        zorder=0
+                    )
+                    self.axs[(ref_feature_coll, state)].plot(
+                        [0.5, 0.5], [-np.log10(0.05), padj_max + y_pad],
+                        color=self.signif_color, alpha=0.5, lw=1.0,
+                        zorder=0
+                    )
         
         self._plot_one_state("Raw", feature_scores["Raw"], num_pairs_max)
         if feature_scores["Clean"] is not None:
@@ -505,6 +512,7 @@ class VolcanoPlotter:
             perc_signif = (10**(-df_plot["padj"]) <= 0.05).sum() / len(df_plot) * 100
             signif_label = f"Yes ({np.round(perc_signif, 1)}%)"
             nonsignif_label = f"No ({np.round(100 - np.round(perc_signif, 1), 1)}%)"
+
             df_plot["Adj. p ≤ 0.05"] = [
                 signif_label if 10**(-p) <= 0.05 else nonsignif_label
                 for p in df_plot["padj"]

@@ -504,12 +504,7 @@ class CorrAdjust:
     def make_volcano_plot(self,
         feature_scores,
         plot_filename,
-        annotate_features=False,
-        annot_fontsize=8,
-        feature_name_fmt=None,
-        signif_color=(*sns.color_palette("Set1")[0], 0.9),
-        nonsignif_color=(0.6, 0.6, 0.6, 0.5),
-        panel_size=4.8
+        **plot_kwargs
     ):
         """
         Make volcano plot.
@@ -520,21 +515,9 @@ class CorrAdjust:
             Dict produced by `compute_feature_scores` method.
         plot_filename : str
             Path to the figure (with extension, e.g., ``.png``).
-        annotate_features : bool or int, optional, default=False
-            If `int`, corresponding number of features with the lowest
-            adjusted p-values will be annotated on the volcano plots.
-        annot_fontsize : int, optional, default=8
-            Font size of feature names when ``annotate_features == True``.
-        feature_name_fmt : function or None, optional, default=None
-            Function that maps feature names to labels to show on the plot
-            when ``annotate_features == True``.
-            If ``None``, shows unmodified feature names.
-        signif_color : matplotlib color, optional
-            Color to draw statistically significant features.
-        nonsignif_color : matplotlib color, optional
-            Color to draw non-significant features.
-        panel_size : float, optional, default=4.8
-            Size of each (square) panel.
+        **plot_kwargs
+            Other keyword arguments controlling plot
+            aesthetics passed to `VolcanoPlotter`.
 
         Returns
         -------
@@ -544,15 +527,7 @@ class CorrAdjust:
             can change it through fig/ax and re-save.
         """
 
-        plotter = VolcanoPlotter(
-            self.corr_scorer,
-            annotate_features=annotate_features,
-            annot_fontsize=annot_fontsize,
-            feature_name_fmt=feature_name_fmt,
-            signif_color=signif_color,
-            nonsignif_color=nonsignif_color,
-            panel_size=panel_size
-        )
+        plotter = VolcanoPlotter(self.corr_scorer, **plot_kwargs)
         plotter.plot(feature_scores)
         plotter.save_plot(f"{self.out_dir}/{plot_filename}", title=self.title)
 
