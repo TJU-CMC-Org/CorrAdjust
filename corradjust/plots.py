@@ -660,10 +660,10 @@ class CorrDistrPlotter:
         self,
         corr_scorer,
         pairs_subset="all",
-        color_raw_ref=sns.color_palette("tab20")[0],
-        color_raw_non_ref=sns.color_palette("tab20")[1],
-        color_clean_ref=sns.color_palette("tab20")[2],
-        color_clean_non_ref=sns.color_palette("tab20")[3],
+        color_raw_ref=sns.color_palette("tab20")[6],
+        color_raw_non_ref=sns.color_palette("tab20")[7],
+        color_clean_ref=sns.color_palette("tab20")[4],
+        color_clean_non_ref=sns.color_palette("tab20")[5],
         legend_fontsize=10,
         panel_size=4.8
     ):

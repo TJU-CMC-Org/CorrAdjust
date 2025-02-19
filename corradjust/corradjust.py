@@ -540,7 +540,8 @@ class CorrAdjust:
         plot_filename,
         df_samp_ann=None,
         samp_group=None,
-        pairs_subset="all"
+        pairs_subset="all",
+        **plot_kwargs
     ):
         """
         Visualize distribution of feature-feature correlations
@@ -562,6 +563,9 @@ class CorrAdjust:
             and should refer to one of the sample groups in `df_samp_ann`.
         pairs_subset : {"all", "training", "validation"}, optional, default="all"
             Which set of feature pairs to use for computing scores.
+        **plot_kwargs
+            Other keyword arguments controlling plot
+            aesthetics passed to `CorrDistrPlotter`.
 
         Returns
         -------
@@ -598,7 +602,7 @@ class CorrAdjust:
         else:
             corr_scores_clean = None
 
-        plotter = CorrDistrPlotter(self.corr_scorer, pairs_subset=pairs_subset)
+        plotter = CorrDistrPlotter(self.corr_scorer, pairs_subset=pairs_subset, **plot_kwargs)
 
         plotter.add_plots(corr_scores_raw, state="Raw")
         if hasattr(self, "confounder_PCs") and len(self.confounder_PCs):
