@@ -361,7 +361,7 @@
 <span id="corradjust-metrics-module"></span><h1>corradjust.metrics module<a class="headerlink" href="#module-corradjust.metrics" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="corradjust.metrics.CorrScorer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.metrics.</span></span><span class="sig-name descname"><span class="pre">CorrScorer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_feature_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle_feature_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/metrics.html#CorrScorer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.metrics.CorrScorer" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.metrics.</span></span><span class="sig-name descname"><span class="pre">CorrScorer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_feature_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_colls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle_feature_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/metrics.html#CorrScorer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.metrics.CorrScorer" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class that contains data structures
 for features and reference feature sets, and computes
@@ -373,7 +373,7 @@ for detailed description of constructor parameters (they are the same).</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>df_feature_ann</strong><span class="classifier">pandas.DataFrame with index and 2 columns</span></dt><dd><p>A data frame providing annotation of features.</p>
 </dd>
-<dt><strong>ref_feature_sets</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature sets.</p>
+<dt><strong>ref_feature_colls</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature set collections.</p>
 </dd>
 <dt><strong>shuffle_feature_names</strong><span class="classifier">bool or list, optional, default=False</span></dt><dd><p>Whether (and how) to permute feature names.</p>
 </dd>
@@ -434,13 +434,13 @@ There are 3 possible values:</div>
 refers to feature pair type: <code class="docutils literal notranslate"><span class="pre">0</span></code> is <code class="docutils literal notranslate"><span class="pre">training</span></code>,
 <code class="docutils literal notranslate"><span class="pre">1</span></code> is <code class="docutils literal notranslate"><span class="pre">validation</span></code>, and <code class="docutils literal notranslate"><span class="pre">2</span></code> is <code class="docutils literal notranslate"><span class="pre">all</span></code>.
 The second index stands for feature index,
-and the array value says how many shared pairs
+and the array value says how many reference pairs
 the feature has. These are <code class="docutils literal notranslate"><span class="pre">n_j</span></code> in the paper’s terminology.</div>
 </div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;features_total_neg&quot;</span></code> : <cite>numpy.ndarray</cite></div>
 <div class="line-block">
 <div class="line">Same as <code class="docutils literal notranslate"><span class="pre">&quot;features_total_pos&quot;</span></code> but for
-non-shared pairs. These are <code class="docutils literal notranslate"><span class="pre">N_j</span> <span class="pre">-</span> <span class="pre">n_j</span></code> in the paper’s terminology.</div>
+non-reference pairs. These are <code class="docutils literal notranslate"><span class="pre">N_j</span> <span class="pre">-</span> <span class="pre">n_j</span></code> in the paper’s terminology.</div>
 </div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;scoring_features_mask&quot;</span></code> : <cite>numpy.array</cite></div>
 <div class="line-block">
@@ -485,13 +485,13 @@ Populated by constructor.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="corradjust.metrics.CorrScorer.compute_index">
-<span class="sig-name descname"><span class="pre">compute_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_feature_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/metrics.html#CorrScorer.compute_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.metrics.CorrScorer.compute_index" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">compute_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_feature_colls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/metrics.html#CorrScorer.compute_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.metrics.CorrScorer.compute_index" title="Link to this definition">#</a></dt>
 <dd><p>Populate <cite>data</cite> attribute.
 Input arguments are the same as in the constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>ref_feature_sets</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature sets.</p>
+<dt><strong>ref_feature_colls</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature set collections.</p>
 </dd>
 <dt><strong>min_pairs_to_score</strong><span class="classifier">int</span></dt><dd><p>Minimum number of total pairs containing a feature
 to include the feature in the enrichment score computations.</p>
@@ -522,7 +522,7 @@ reference feature sets.</p>
 <div class="line-block">
 <div class="line">{</div>
 <div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_set_name</span></code> : {</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_coll</span></code> : {</div>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;score</span> <span class="pre">{subset}&quot;</span></code> : <cite>float</cite></div>
 </div>
@@ -533,7 +533,7 @@ reference feature sets.</p>
 <p>Here, subset is <code class="docutils literal notranslate"><span class="pre">&quot;training&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;validation&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code> (feature pair subsets).
 Score is defined according to the <cite>metric</cite> attribute.
 If <cite>full_output</cite> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the following keys are added
-to the dict corresponding to each <code class="docutils literal notranslate"><span class="pre">ref_feature_set_name</span></code>:</p>
+to the dict corresponding to each <code class="docutils literal notranslate"><span class="pre">ref_feature_coll</span></code>:</p>
 <div class="line-block">
 <div class="line">{</div>
 <div class="line-block">
@@ -589,8 +589,8 @@ in a direction specified by the <code class="docutils literal notranslate"><span
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="corradjust.metrics.CorrScorer._compute_ref_feature_set_mask">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_compute_ref_feature_set_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_idxs_in_ref_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_sets_boundaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_feature_idxs_in_db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_feature_pair_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idx_to_type_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/metrics.html#CorrScorer._compute_ref_feature_set_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.metrics.CorrScorer._compute_ref_feature_set_mask" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="corradjust.metrics.CorrScorer._compute_ref_feature_coll_mask">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_compute_ref_feature_coll_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_idxs_in_ref_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_sets_boundaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_feature_idxs_in_db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_feature_pair_types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idx_to_type_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_features</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/metrics.html#CorrScorer._compute_ref_feature_coll_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.metrics.CorrScorer._compute_ref_feature_coll_mask" title="Link to this definition">#</a></dt>
 <dd><p>Efficiently create a flat array that answers
 whether each feature pair belong at least one shared
 reference feature set.</p>
@@ -642,7 +642,7 @@ taking each 2nd element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mask</strong><span class="classifier">numpy.array</span></dt><dd><p>Array returned by the <cite>_compute_ref_feature_set_mask</cite> method.</p>
+<dt><strong>mask</strong><span class="classifier">numpy.array</span></dt><dd><p>Array returned by the <cite>_compute_ref_feature_coll_mask</cite> method.</p>
 </dd>
 </dl>
 </dd>
@@ -663,7 +663,7 @@ of feature pairs that involve each individual feature.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mask</strong><span class="classifier">numpy.array</span></dt><dd><p>Array returned by the <cite>_compute_ref_feature_set_mask</cite> method.</p>
+<dt><strong>mask</strong><span class="classifier">numpy.array</span></dt><dd><p>Array returned by the <cite>_compute_ref_feature_coll_mask</cite> method.</p>
 </dd>
 <dt><strong>train_val_mask</strong><span class="classifier">numpy.array</span></dt><dd><p>Array returned by the <cite>_compute_train_val_mask</cite> method.</p>
 </dd>
@@ -691,8 +691,8 @@ of feature pairs that involve each individual feature.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_set">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_compute_scores_for_ref_feature_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrs_sorted_args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_val_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_corr_pairs_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_corr_pairs_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_corr_pairs_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features_total_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features_total_neg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scoring_features_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idxs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idxs2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_regularization_pairs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/metrics.html#CorrScorer._compute_scores_for_ref_feature_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_set" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_coll">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_compute_scores_for_ref_feature_coll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">corrs_sorted_args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_val_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_corr_pairs_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_corr_pairs_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_corr_pairs_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features_total_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features_total_neg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scoring_features_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idxs1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_idxs2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_regularization_pairs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/metrics.html#CorrScorer._compute_scores_for_ref_feature_coll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_coll" title="Link to this definition">#</a></dt>
 <dd><p>Evaluate feature-feature correlations with respect to
 one reference features set collection.</p>
 <dl class="field-list simple">
@@ -702,7 +702,7 @@ one reference features set collection.</p>
 </dd>
 <dt><strong>corrs_sorted_args</strong><span class="classifier">numpy.array</span></dt><dd><p>Array of indices that sort corrs array in needed way.</p>
 </dd>
-<dt><strong>mask</strong><span class="classifier">numpy.array</span></dt><dd><p>Array returned by the <cite>_compute_ref_feature_set_mask</cite> method.</p>
+<dt><strong>mask</strong><span class="classifier">numpy.array</span></dt><dd><p>Array returned by the <cite>_compute_ref_feature_coll_mask</cite> method.</p>
 </dd>
 <dt><strong>train_val_mask</strong><span class="classifier">numpy.array</span></dt><dd><p>Array returned by the <cite>_compute_train_val_mask</cite> method.</p>
 </dd>
@@ -804,10 +804,10 @@ Bayesian regularization purposes.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer"><code class="docutils literal notranslate"><span class="pre">CorrScorer</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer.compute_index"><code class="docutils literal notranslate"><span class="pre">CorrScorer.compute_index()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer.compute_corr_scores"><code class="docutils literal notranslate"><span class="pre">CorrScorer.compute_corr_scores()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer._compute_ref_feature_set_mask"><code class="docutils literal notranslate"><span class="pre">CorrScorer._compute_ref_feature_set_mask()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer._compute_ref_feature_coll_mask"><code class="docutils literal notranslate"><span class="pre">CorrScorer._compute_ref_feature_coll_mask()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer._compute_train_val_mask"><code class="docutils literal notranslate"><span class="pre">CorrScorer._compute_train_val_mask()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer._compute_feature_totals"><code class="docutils literal notranslate"><span class="pre">CorrScorer._compute_feature_totals()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_set"><code class="docutils literal notranslate"><span class="pre">CorrScorer._compute_scores_for_ref_feature_set()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_coll"><code class="docutils literal notranslate"><span class="pre">CorrScorer._compute_scores_for_ref_feature_coll()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -847,7 +847,7 @@ Bayesian regularization purposes.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>

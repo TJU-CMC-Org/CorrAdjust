@@ -361,7 +361,7 @@
 <span id="corradjust-corradjust-module"></span><h1>corradjust.corradjust module<a class="headerlink" href="#module-corradjust.corradjust" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.corradjust.</span></span><span class="sig-name descname"><span class="pre">CorrAdjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_feature_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">winsorize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle_feature_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.corradjust.</span></span><span class="sig-name descname"><span class="pre">CorrAdjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_feature_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_colls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">winsorize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle_feature_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The main CorrAdjust class.</p>
 <dl class="field-list">
@@ -382,8 +382,8 @@ you could use more than one type (e.g., <code class="docutils literal notranslat
 Feature types shouldn’t contain <code class="docutils literal notranslate"><span class="pre">&quot;-&quot;</span></code> character.</p></li>
 </ul>
 </dd>
-<dt><strong>ref_feature_sets</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature set collections.
-Each collection is an item of <cite>ref_feature_sets</cite> with key being
+<dt><strong>ref_feature_colls</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature set collections.
+Each collection is an item of <cite>ref_feature_colls</cite> with key being
 collection name (string) and value being another dict with the
 following structure.</p>
 <div class="line-block">
@@ -633,7 +633,7 @@ It has the following structure:</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;Clean&quot;</span></code> : {</div>
 <div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_set_name</span></code> : pandas.DataFrame</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_coll</span></code> : pandas.DataFrame</div>
 </div>
 <div class="line">},</div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;Raw&quot;</span></code>: {…}</div>
@@ -804,7 +804,7 @@ will be printed to log.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">sample_group_name</span></code> : {</div>
 <div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_set_name</span></code> : {</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_coll</span></code> : {</div>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;score</span> <span class="pre">training&quot;</span></code> : float,</div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;score</span> <span class="pre">validation&quot;</span></code> : float,</div>
@@ -850,7 +850,7 @@ dict of the <cite>_compute_corrs_and_scores</cite> method.</p>
 <li><p>Column <code class="docutils literal notranslate"><span class="pre">PC</span></code>: index of PC being regressed out on each iteration.
 First row always have NaN (no correction).</p></li>
 <li><p>Score columns: these columns have the following format:
-<code class="docutils literal notranslate"><span class="pre">&quot;{sample_group_name};{ref_feature_set_name};{training/validation/all}&quot;</span></code>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">&quot;{sample_group_name};{ref_feature_coll};{training/validation/all}&quot;</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1073,7 +1073,7 @@ that group names of <cite>df_samp_ann</cite> match those in <cite>mean_centerize
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>

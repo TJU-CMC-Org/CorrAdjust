@@ -381,9 +381,9 @@
 <span class="sd">          you could use more than one type (e.g., ``&quot;miRNA&quot;`` and ``&quot;mRNA&quot;``).</span>
 <span class="sd">          Feature types shouldn&#39;t contain ``&quot;-&quot;`` character.</span>
 
-<span class="sd">    ref_feature_sets : dict</span>
+<span class="sd">    ref_feature_colls : dict</span>
 <span class="sd">        A dictionary with information about reference feature set collections.</span>
-<span class="sd">        Each collection is an item of `ref_feature_sets` with key being</span>
+<span class="sd">        Each collection is an item of `ref_feature_colls` with key being</span>
 <span class="sd">        collection name (string) and value being another dict with the</span>
 <span class="sd">        following structure.</span>
 
@@ -473,7 +473,7 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_feature_ann</span><span class="p">,</span>
-        <span class="n">ref_feature_sets</span><span class="p">,</span>
+        <span class="n">ref_feature_colls</span><span class="p">,</span>
         <span class="n">out_dir</span><span class="p">,</span>
         <span class="n">winsorize</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
         <span class="n">shuffle_feature_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -500,7 +500,7 @@
         <span class="c1"># Load reference data in a data structure</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span> <span class="o">=</span> <span class="n">CorrScorer</span><span class="p">(</span>
             <span class="n">df_feature_ann</span><span class="p">,</span>
-            <span class="n">ref_feature_sets</span><span class="p">,</span>
+            <span class="n">ref_feature_colls</span><span class="p">,</span>
             <span class="n">shuffle_feature_names</span><span class="p">,</span>
             <span class="n">metric</span><span class="p">,</span>
             <span class="n">min_pairs_to_score</span><span class="p">,</span>
@@ -784,7 +784,7 @@
 
 <span class="sd">            | {</span>
 <span class="sd">            |     ``&quot;Clean&quot;`` : {</span>
-<span class="sd">            |         ``ref_feature_set_name`` : pandas.DataFrame</span>
+<span class="sd">            |         ``ref_feature_coll`` : pandas.DataFrame</span>
 <span class="sd">            |     },</span>
 <span class="sd">            |     ``&quot;Raw&quot;``: {...}</span>
 <span class="sd">            | }.</span>
@@ -825,31 +825,31 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
-            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="p">:</span>
                 <span class="n">subset_idx</span> <span class="o">=</span> <span class="n">subset_idxs</span><span class="p">[</span><span class="n">pairs_subset</span><span class="p">]</span>
-                <span class="n">total_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
-                <span class="n">total_neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
+                <span class="n">total_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
+                <span class="n">total_neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
 
                 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
                     <span class="s2">&quot;feature_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_ids</span><span class="p">,</span>
                     <span class="s2">&quot;feature_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
-                    <span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;TPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;num_pairs </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">:</span> <span class="n">total_pos</span><span class="p">,</span>
+                    <span class="s2">&quot;ref_pairs@K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;TPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;num_pairs </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;ref_pairs@total&quot;</span><span class="p">:</span> <span class="n">total_pos</span><span class="p">,</span>
                     <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="n">total_pos</span> <span class="o">+</span> <span class="n">total_neg</span><span class="p">,</span>
-                    <span class="s2">&quot;enrichment&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;enrichments </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;balanced_precision&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;BPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;pvalue&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;padj&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues_adj </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;enrichment&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;enrichments </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;balanced_precision&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;BPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;pvalue&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;padj&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues_adj </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
                 <span class="p">})</span>
                 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;feature_id&quot;</span><span class="p">)</span>
 
-                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
-                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@K&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
                 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">])</span>
 
                 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;padj&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_id&quot;</span><span class="p">])</span>
-                <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">ref_feature_set</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
+                <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">ref_feature_coll</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
 
         <span class="k">return</span> <span class="n">feature_scores</span></div>
 
@@ -1063,13 +1063,12 @@
             <span class="s2">&quot;corr_clean&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue_clean&quot;</span><span class="p">,</span>
             <span class="s2">&quot;corr_raw&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue_raw&quot;</span><span class="p">,</span>
         <span class="p">]</span> 
-        <span class="n">ref_feature_set_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-        <span class="n">ref_feature_set_header</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">col_type</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">ref_feature_set_names</span>
+        <span class="n">ref_feature_coll_header</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">col_type</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">col_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">,</span> <span class="s2">&quot;trainval&quot;</span><span class="p">]</span>
         <span class="p">]</span>
-        <span class="n">header</span> <span class="o">+=</span> <span class="n">ref_feature_set_header</span>
+        <span class="n">header</span> <span class="o">+=</span> <span class="n">ref_feature_coll_header</span>
         <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
         <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">out_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -1111,12 +1110,12 @@
             <span class="p">}</span>
 
             <span class="n">ref_feature_columns</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_flag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">_flag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
                 <span class="p">)</span>
-                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_trainval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">_trainval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
                 <span class="p">)</span>
 
             <span class="n">tab</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">({</span>
@@ -1306,7 +1305,7 @@
 
 <span class="sd">            | {</span>
 <span class="sd">            |     ``sample_group_name`` : {</span>
-<span class="sd">            |         ``ref_feature_set_name`` : {</span>
+<span class="sd">            |         ``ref_feature_coll`` : {</span>
 <span class="sd">            |             ``&quot;score training&quot;`` : float,</span>
 <span class="sd">            |             ``&quot;score validation&quot;`` : float,</span>
 <span class="sd">            |             ``&quot;score all&quot;`` : float,</span>
@@ -1334,32 +1333,31 @@
 
             <span class="c1"># Re-arrange scores in a dict</span>
             <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="n">ref_feature_set</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">ref_feature_coll</span><span class="p">:</span> <span class="p">{</span>
                     <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
                     <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
                 <span class="p">}</span>
-                <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="p">}</span>
             <span class="c1"># Compute mean score across reference collections (within sample group)</span>
             <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">][</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
                     <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
-                    <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                 <span class="p">])</span>
                 <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
             <span class="p">}</span>
 
         <span class="c1"># We also compute mean across sample groups</span>
-        <span class="n">ref_feature_sets</span> <span class="o">=</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">unique_samp_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="n">iter_scores</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">ref_feature_set</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">ref_feature_coll</span><span class="p">:</span> <span class="p">{</span>
                 <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
-                    <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">][</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                    <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">][</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
                     <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">unique_samp_groups</span>
                 <span class="p">])</span>
                 <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
             <span class="p">}</span>
-            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">ref_feature_sets</span>
+            <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">unique_samp_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="p">}</span>
         <span class="n">main_score</span> <span class="o">=</span> <span class="n">iter_scores</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">][</span><span class="s2">&quot;mean&quot;</span><span class="p">][</span><span class="s2">&quot;score training&quot;</span><span class="p">]</span>
 
@@ -1403,14 +1401,14 @@
 <span class="sd">            - Column ``PC``: index of PC being regressed out on each iteration.</span>
 <span class="sd">              First row always have NaN (no correction).</span>
 <span class="sd">            - Score columns: these columns have the following format:</span>
-<span class="sd">              ``&quot;{sample_group_name};{ref_feature_set_name};{training/validation/all}&quot;``.</span>
+<span class="sd">              ``&quot;{sample_group_name};{ref_feature_coll};{training/validation/all}&quot;``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">best_iter_scores</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;score &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">value</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;score &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">value</span>
                 <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">iter_scores_dict</span>
-                <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores_dict</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores_dict</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="p">}</span>
             <span class="k">for</span> <span class="n">iter_scores_dict</span> <span class="ow">in</span> <span class="n">best_iter_scores</span>
@@ -1652,7 +1650,7 @@
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>

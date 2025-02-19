@@ -932,10 +932,10 @@
 </div>
 <p>As a reference feature pair sets, we will use experimentally validated targets from <a class="reference external" href="https://doi.org/10.1093/nar/gkad1071">TarBase v9</a>. Note that targets are available only for canonical isomiRs (isomiRs with |0|0 suffix), while expression data has both canonical and non-canonical ones, as well as other non-isomiR sncRNAs.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_feature_sets</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_feature_colls</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;TarBase&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;input_data/GMT_files/TarBase.gmt&quot;</span><span class="p">,</span>
         <span class="c1"># We expect targets among negative miRNA-mRNA correlations</span>
@@ -953,12 +953,12 @@
 <h2><span class="section-number">4.2. </span>Training the model<a class="headerlink" href="#Training-the-model" title="Link to this heading">#</a></h2>
 <p>Now we create and fit the model, passing sample annotation as an additional argument to <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">CorrAdjust</span><span class="p">(</span>
     <span class="n">df_feature_ann</span><span class="p">,</span>
-    <span class="n">ref_feature_sets</span><span class="p">,</span>
+    <span class="n">ref_feature_colls</span><span class="p">,</span>
     <span class="s2">&quot;out_data/Geuvadis&quot;</span>
 <span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
@@ -1927,7 +1927,7 @@ Chunk of corrs.test_samples.male.tsv:
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>

@@ -23,7 +23,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": null,
    "metadata": {},
    "outputs": [
     {
@@ -40,7 +40,7 @@
     "\n",
     "model = CorrAdjust(\n",
     "    df_feature_ann,\n",
-    "    ref_feature_sets,\n",
+    "    ref_feature_colls,\n",
     "    \"out_data/GTEx_Whole_Blood\"\n",
     ")"
    ]
@@ -91,7 +91,7 @@
     "\n",
     "The above optimization curve is automatically saved into `fit.all_samp.png`; `all_samp` refers to the fact that all training samples were used (see [Advanced example](advanced_run.ipynb) with several sample groups). The file `fit.tsv` contains the data from the plot in the table format, and `fit.log` contains the full optimization log.\n",
     "\n",
-    "The termination procedure might stop too early or too late. You can always manually refince the list of selected confounder PCs:"
+    "The termination procedure might stop too early or too late. You can always manually refine the list of selected confounder PCs:"
    ]
   },
   {
@@ -1095,16 +1095,16 @@
    "source": [
     "Columns of the above table have the following meaning:\n",
     "\n",
-    "- `shared_pairs@K`: the second number stands for feature pairs involving the corresponding feature among the most highly correlated pairs ($K_j$ in the paper's notation). The first number is how many of these pairs ared shared ($k_j$ in the paper's notation).\n",
-    "- `shared_pairs@total`: the second number stands for feature pairs involving the corresponding feature among all pairs ($N_j$ in the paper's notation). The first number is how many of these pairs are shared ($n_j$ in the paper's notation).\n",
-    "- `enrichment`: essentially, this is the ratio of `shared_pairs@K` and `shared_pairs@total` ratios. However, the value is slightly different from a simple ratio since we use Bayesian regularization to shrink enrichment towards 1.0 to avoid problems with zero counts.\n",
+    "- `ref_pairs@K`: the second number stands for feature pairs involving the corresponding feature among the most highly correlated pairs ($K_j$ in the paper's notation). The first number is how many of these pairs ared reference ($k_j$ in the paper's notation).\n",
+    "- `ref_pairs@total`: the second number stands for feature pairs involving the corresponding feature among all pairs ($N_j$ in the paper's notation). The first number is how many of these pairs are reference ($n_j$ in the paper's notation).\n",
+    "- `enrichment`: essentially, this is the ratio of `ref_pairs@K` and `ref_pairs@total` ratios. However, the value is slightly different from a simple ratio since we use Bayesian regularization to shrink enrichment towards 1.0 to avoid problems with zero counts.\n",
     "- `balanced_precision`: non-linearly scaled version of `enrichment`. Enrichment = 1 corresponds to balanced precision of 0.5 (baseline), while maximum possible value of enrichment corresponds to balanced precision of 1.\n",
     "- `pvalue`: hypergeometric test p-value (as with `enrichment`, Bayesian regularization shrinks p-value towards 1.0 to avoid problems with zero counts).\n",
     "- `padj`: p-value adjusted for multiple testing by the Benjamini-Hochberg procedure.\n",
     "\n",
     "Features with `total` less then `min_pairs_to_score` parameter of `CorrAdjust` (default is `1000`) are ignored during the enrichment/p-value computations.\n",
     "\n",
-    "A convenient way to visualize this table is volcano plot. Size of each point on the plot is the second number in `shared_pairs@K` column. See the full list of accepted parameters in [API reference](../modules/corradjust.corradjust.rst#corradjust.corradjust.CorrAdjust.make_volcano_plot)."
+    "A convenient way to visualize this table is volcano plot. Size of each point on the plot is the second number in `ref_pairs@K` column. See the full list of accepted parameters in [API reference](../modules/corradjust.corradjust.rst#corradjust.corradjust.CorrAdjust.make_volcano_plot)."
    ]
   },
   {
@@ -1202,7 +1202,7 @@
     "\n",
     "The right panels show a more granular view on the distribution tail (specific tail is shown according to the `sign` parameter of the config). Dotted gray line stands for the `high_corr_frac` value. Before the correction, the threshold corresponding to 1% of the highest absolute correlations was 0.8, while after cleaning it became 0.55.\n",
     "\n",
-    "The above plots also distinguish between shared pairs (gene pairs with at least one shared pathway) and non-shared pairs. Correlations among shared pairs are, on average, higher then among non-shared ones, and this effect becomes stronger after the correction."
+    "The above plots also distinguish between reference pairs (gene pairs with at least one shared pathway) and non-reference pairs. Correlations among reference pairs are, on average, higher then among non-reference ones, and this effect becomes stronger after the correction."
    ]
   },
   {
@@ -1997,8 +1997,8 @@
     "After the columns with correlation p-values, the table has a block of columns describing reference sets. Each reference collection is represented by exactly 2 columns:\n",
     "\n",
     "1. **flag**:\n",
-    "    - **== 1**: the feature pair is shared.\n",
-    "    - **== 0**: the feature pair is non-shared, though both features are present in *some* sets of the collection.\n",
+    "    - **== 1**: the feature pair is reference.\n",
+    "    - **== 0**: the feature pair is non-reference, though both features are present in *some* sets of the collection.\n",
     "    - **== -1**: one of the features of the pair is absent from *all* sets of the collection.\n",
     "2. **trainval**:\n",
     "    - If **flag != -1**, this column shows whether feature pair is in training (0) or in validation (1) subset.\n",

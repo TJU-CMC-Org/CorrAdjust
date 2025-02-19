@@ -522,7 +522,7 @@ when <code class="docutils literal notranslate"><span class="pre">annotate_featu
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd></dd>
-<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_set,</span> <span class="pre">state)</span></code>,
+<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_coll,</span> <span class="pre">state)</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">state</span></code> is either <code class="docutils literal notranslate"><span class="pre">&quot;Raw&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Clean&quot;</span></code>.
 Values of <cite>axs</cite> are instances of <cite>matplotlib.axes.Axes</cite>.</p>
 </dd>
@@ -583,7 +583,7 @@ jupyter notebook in addition to saving the file.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="corradjust.plots.CorrDistrPlotter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">CorrDistrPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scorer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.12156862745098039,</span> <span class="pre">0.4666666666666667,</span> <span class="pre">0.7058823529411765)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_non_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6823529411764706,</span> <span class="pre">0.7803921568627451,</span> <span class="pre">0.9098039215686274)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.4980392156862745,</span> <span class="pre">0.054901960784313725)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_non_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.7333333333333333,</span> <span class="pre">0.47058823529411764)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#CorrDistrPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.CorrDistrPlotter" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">CorrDistrPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scorer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.12156862745098039,</span> <span class="pre">0.4666666666666667,</span> <span class="pre">0.7058823529411765)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_non_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6823529411764706,</span> <span class="pre">0.7803921568627451,</span> <span class="pre">0.9098039215686274)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.4980392156862745,</span> <span class="pre">0.054901960784313725)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_non_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.7333333333333333,</span> <span class="pre">0.47058823529411764)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#CorrDistrPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.CorrDistrPlotter" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Create KDE and CDF plots of correlations.</p>
 <dl class="field-list simple">
@@ -593,13 +593,13 @@ jupyter notebook in addition to saving the file.</p>
 </dd>
 <dt><strong>pairs_subset</strong><span class="classifier">{“all”, “training”, “validation”}, optional, default=”all”</span></dt><dd><p>Which set of feature pairs to use for computing scores.</p>
 </dd>
-<dt><strong>color_raw_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[0]</span></dt><dd><p>Color for raw correlations, shared feature pairs.</p>
+<dt><strong>color_raw_ref</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[0]</span></dt><dd><p>Color for raw correlations, reference feature pairs.</p>
 </dd>
-<dt><strong>color_raw_non_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[1],</span></dt><dd><p>Color for raw correlations, non-shared feature pairs.</p>
+<dt><strong>color_raw_non_ref</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[1],</span></dt><dd><p>Color for raw correlations, non-reference feature pairs.</p>
 </dd>
-<dt><strong>color_clean_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[2],</span></dt><dd><p>Color for clean correlations, shared feature pairs.</p>
+<dt><strong>color_clean_ref</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[2],</span></dt><dd><p>Color for clean correlations, reference feature pairs.</p>
 </dd>
-<dt><strong>color_clean_non_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[3],</span></dt><dd><p>Color for clean correlations, non-shared feature pairs.</p>
+<dt><strong>color_clean_non_ref</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[3],</span></dt><dd><p>Color for clean correlations, non-reference feature pairs.</p>
 </dd>
 <dt><strong>legend_fontsize</strong><span class="classifier">int, optional, default=10</span></dt><dd><p>Font size of legend text.</p>
 </dd>
@@ -610,7 +610,7 @@ jupyter notebook in addition to saving the file.</p>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd></dd>
-<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_set,</span> <span class="pre">plot_name)</span></code>,
+<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_coll,</span> <span class="pre">plot_name)</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">plot_name</span></code> is either <code class="docutils literal notranslate"><span class="pre">&quot;corr-KDE&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;corr-CDF&quot;</span></code>.
 Values of <cite>axs</cite> are instances of <cite>matplotlib.axes.Axes</cite>.</p>
 </dd>
@@ -761,7 +761,7 @@ jupyter notebook in addition to saving the file.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
