@@ -5,6 +5,7 @@ from matplotlib.ticker import MaxNLocator
 from matplotlib.lines import Line2D
 from adjustText import adjust_text
 import numpy as np
+import warnings
 
 from corradjust.utils import *
 
@@ -111,7 +112,7 @@ class GreedyOptimizationPlotter:
         Main title with sample group name to use in the plot.
     metric : {"enrichment-based", "BP@K"}, optional, default="enrichment-based"
         Metric for evaluating feature correlations.
-    palette : str or list or dict, optional, default="Dark2"
+    palette : str or list or dict, optional
         Name of matplotlib colormap or list of colors for the lines or
         dict mapping reference collection names to colors.
         The argument is directly passed to `sns.lineplot`.
@@ -134,7 +135,7 @@ class GreedyOptimizationPlotter:
         self,
         samp_group_name=None,
         metric="enrichment-based",
-        palette="Dark2",
+        palette=(lambda x: x[::-1][:2] + x[::-1][3:])(sns.color_palette("tab10")),
         legend_loc="lower right",
         legend_fontsize=10,
         plot_width=6.4,
@@ -222,13 +223,18 @@ class GreedyOptimizationPlotter:
         df["Ref. collection"] = df["Ref. collection"].str.replace("mean", "Mean")
         
         df[subset_label] = df["metric_name"].str.split(";").str[-1].str.capitalize()
-        sns.lineplot(
-            x="Iteration", y="score", hue="Ref. collection", style=subset_label, data=df,
-            palette=self.palette,
-            dashes=["", (1, 1)],
-            markers=["o", "X"], markeredgewidth=0, markersize=4,
-            ax=self.ax
-        )
+
+        # Lineplot produces annoying warning that there are
+        # more colors in the palette than needed; suppress it
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            sns.lineplot(
+                x="Iteration", y="score", hue="Ref. collection", style=subset_label, data=df,
+                palette=self.palette,
+                dashes=["", (1, 1)],
+                markers=["o", "X"], markeredgewidth=0, markersize=4,
+                ax=self.ax
+            )
         
         # Set highest zorder for the first drawn lines
         zorder = 1000
