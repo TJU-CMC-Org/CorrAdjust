@@ -548,7 +548,7 @@ class VolcanoPlotter:
 
             # Title
             handles.append(empty_handle)
-            labels.append("# highly ranked\nfeature pairs ($K_j$)")
+            labels.append("# highly ranked\npairs ($K_j$)")
 
             # Markers
             handles += [
