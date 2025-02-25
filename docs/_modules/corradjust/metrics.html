@@ -15,8 +15,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -26,22 +26,23 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/metrics';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/_modules/corradjust/metrics.html" />
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -298,9 +299,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -347,23 +353,23 @@
                 <article class="bd-article">
                   
   <h1>Source code for corradjust.metrics</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">parallel_sort</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">parallel_sort</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">prange</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">false_discovery_control</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numba</span><span class="w"> </span><span class="kn">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">prange</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">false_discovery_control</span>
 
-<span class="kn">from</span> <span class="nn">corradjust.utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">corradjust.utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 
 <div class="viewcode-block" id="CorrScorer">
 <a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer">[docs]</a>
-<span class="k">class</span> <span class="nc">CorrScorer</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CorrScorer</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class that contains data structures</span>
 <span class="sd">    for features and reference feature sets, and computes</span>
@@ -457,7 +463,7 @@
 <span class="sd">            Populated by constructor.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_feature_ann</span><span class="p">,</span>
         <span class="n">ref_feature_colls</span><span class="p">,</span>
@@ -534,7 +540,7 @@
 
 <div class="viewcode-block" id="CorrScorer.compute_index">
 <a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer.compute_index">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_feature_colls</span><span class="p">,</span> <span class="n">min_pairs_to_score</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_feature_colls</span><span class="p">,</span> <span class="n">min_pairs_to_score</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Populate `data` attribute.</span>
 <span class="sd">        Input arguments are the same as in the constructor.</span>
@@ -692,7 +698,7 @@
     
 <div class="viewcode-block" id="CorrScorer.compute_corr_scores">
 <a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer.compute_corr_scores">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_corr_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corrs</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_corr_scores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corrs</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate feature-feature correlations with respect to the</span>
 <span class="sd">        reference feature sets.</span>
@@ -844,7 +850,7 @@
 <a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_ref_feature_coll_mask">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_compute_ref_feature_coll_mask</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_ref_feature_coll_mask</span><span class="p">(</span>
         <span class="n">feature_idxs_in_ref_sets</span><span class="p">,</span> <span class="n">ref_feature_sets_boundaries</span><span class="p">,</span> <span class="n">unique_feature_idxs_in_db</span><span class="p">,</span>
         <span class="n">allowed_feature_pair_types</span><span class="p">,</span> <span class="n">feature_idx_to_type_id</span><span class="p">,</span>
         <span class="n">n_features</span>
@@ -934,7 +940,7 @@
 <a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_train_val_mask">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_compute_train_val_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_train_val_mask</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Efficiently create a flat array that answers</span>
 <span class="sd">        whether each feature pair belong to training or</span>
@@ -971,7 +977,7 @@
 <a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_feature_totals">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_compute_feature_totals</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_feature_totals</span><span class="p">(</span>
         <span class="n">mask</span><span class="p">,</span> <span class="n">train_val_mask</span><span class="p">,</span>
         <span class="n">feature_idxs1</span><span class="p">,</span> <span class="n">feature_idxs2</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span>
         <span class="n">min_pairs_to_score</span>
@@ -1046,7 +1052,7 @@
 <a class="viewcode-back" href="../../modules/corradjust.metrics.html#corradjust.metrics.CorrScorer._compute_scores_for_ref_feature_coll">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">_compute_scores_for_ref_feature_coll</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_scores_for_ref_feature_coll</span><span class="p">(</span>
         <span class="n">corrs</span><span class="p">,</span> <span class="n">corrs_sorted_args</span><span class="p">,</span>
         <span class="n">mask</span><span class="p">,</span> <span class="n">train_val_mask</span><span class="p">,</span>
         <span class="n">high_corr_pairs_all</span><span class="p">,</span> <span class="n">high_corr_pairs_train</span><span class="p">,</span> <span class="n">high_corr_pairs_val</span><span class="p">,</span>
@@ -1283,8 +1289,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1317,7 +1323,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

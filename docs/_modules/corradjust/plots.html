@@ -15,8 +15,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -26,22 +26,23 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/plots';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/_modules/corradjust/plots.html" />
     <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -298,9 +299,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -347,21 +353,21 @@
                 <article class="bd-article">
                   
   <h1>Source code for corradjust.plots</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
-<span class="kn">from</span> <span class="nn">adjustText</span> <span class="kn">import</span> <span class="n">adjust_text</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">MaxNLocator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">adjustText</span><span class="w"> </span><span class="kn">import</span> <span class="n">adjust_text</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-<span class="kn">from</span> <span class="nn">corradjust.utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">corradjust.utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 
 <div class="viewcode-block" id="PCAVariancePlotter">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.PCAVariancePlotter">[docs]</a>
-<span class="k">class</span> <span class="nc">PCAVariancePlotter</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PCAVariancePlotter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create PCA explained variance plot.</span>
 
@@ -381,7 +387,7 @@
 <span class="sd">        Values of `axs` are instances of `matplotlib.axes.Axes`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="mf">6.4</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mf">4.8</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_width</span><span class="o">=</span><span class="mf">6.4</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mf">4.8</span><span class="p">):</span>
         <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">plot_width</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">plot_height</span><span class="p">))</span>
         <span class="n">axs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;individual&quot;</span><span class="p">:</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;cumulative&quot;</span><span class="p">:</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 
@@ -397,7 +403,7 @@
     
 <div class="viewcode-block" id="PCAVariancePlotter.plot">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.PCAVariancePlotter.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PCA_model</span><span class="p">,</span> <span class="n">n_PCs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PCA_model</span><span class="p">,</span> <span class="n">n_PCs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw the plots.</span>
 
@@ -433,7 +439,7 @@
     
 <div class="viewcode-block" id="PCAVariancePlotter.save_plot">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.PCAVariancePlotter.save_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the plot. This method doesn&#39;t</span>
 <span class="sd">        call `plt.close`, so it will display the figure in</span>
@@ -462,7 +468,7 @@
 
 <div class="viewcode-block" id="GreedyOptimizationPlotter">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.GreedyOptimizationPlotter">[docs]</a>
-<span class="k">class</span> <span class="nc">GreedyOptimizationPlotter</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GreedyOptimizationPlotter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a lineplot with score optimization trajectories.</span>
 
@@ -491,7 +497,7 @@
 <span class="sd">    ax : matplotlib.axes.Axes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">samp_group_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;enrichment-based&quot;</span><span class="p">,</span>
@@ -525,7 +531,7 @@
 
 <div class="viewcode-block" id="GreedyOptimizationPlotter.plot">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.GreedyOptimizationPlotter.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">peak_iter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">peak_iter</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw the lines.</span>
 
@@ -616,7 +622,7 @@
 
 <div class="viewcode-block" id="GreedyOptimizationPlotter.save_plot">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.GreedyOptimizationPlotter.save_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the plot. This method doesn&#39;t</span>
 <span class="sd">        call `plt.close`, so it will display the figure in</span>
@@ -711,7 +717,7 @@
 
 <div class="viewcode-block" id="VolcanoPlotter">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.VolcanoPlotter">[docs]</a>
-<span class="k">class</span> <span class="nc">VolcanoPlotter</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">VolcanoPlotter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a volcano plot with feature-wise enrichment statistics.</span>
 
@@ -742,7 +748,7 @@
 <span class="sd">        Values of `axs` are instances of `matplotlib.axes.Axes`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">corr_scorer</span><span class="p">,</span>
         <span class="n">annotate_features</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -794,7 +800,7 @@
 
 <div class="viewcode-block" id="VolcanoPlotter.plot">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.VolcanoPlotter.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_scores</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature_scores</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create a volcano plot.</span>
 
@@ -857,7 +863,7 @@
 
 <div class="viewcode-block" id="VolcanoPlotter._plot_one_state">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.VolcanoPlotter._plot_one_state">[docs]</a>
-    <span class="k">def</span> <span class="nf">_plot_one_state</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_plot_one_state</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">state</span><span class="p">,</span>
         <span class="n">feature_scores_state</span><span class="p">,</span>
@@ -975,7 +981,7 @@
 
 <div class="viewcode-block" id="VolcanoPlotter.save_plot">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.VolcanoPlotter.save_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the plot. This method doesn&#39;t</span>
 <span class="sd">        call `plt.close`, so it will display the figure in</span>
@@ -1011,7 +1017,7 @@
 
 <div class="viewcode-block" id="CorrDistrPlotter">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.CorrDistrPlotter">[docs]</a>
-<span class="k">class</span> <span class="nc">CorrDistrPlotter</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CorrDistrPlotter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create KDE and CDF plots of correlations.</span>
 
@@ -1043,7 +1049,7 @@
 <span class="sd">        Values of `axs` are instances of `matplotlib.axes.Axes`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">corr_scorer</span><span class="p">,</span>
         <span class="n">pairs_subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
@@ -1114,7 +1120,7 @@
 
 <div class="viewcode-block" id="CorrDistrPlotter.add_plots">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.CorrDistrPlotter.add_plots">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_plots</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_plots</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">corr_scores</span><span class="p">,</span>
         <span class="n">state</span><span class="p">,</span>
@@ -1195,7 +1201,7 @@
 
 <div class="viewcode-block" id="CorrDistrPlotter.save_plot">
 <a class="viewcode-back" href="../../modules/corradjust.plots.html#corradjust.plots.CorrDistrPlotter.save_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out_path</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the plot. This method doesn&#39;t</span>
 <span class="sd">        call `plt.close`, so it will display the figure in</span>
@@ -1270,8 +1276,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1304,7 +1310,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

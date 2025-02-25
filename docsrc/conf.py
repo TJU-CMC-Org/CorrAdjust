@@ -29,7 +29,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.githubpages",
     "numpydoc",
-    "nbsphinx"
+    "nbsphinx",
+    "sphinx_sitemap"
 ]
 
 templates_path = ["_templates"]
@@ -43,6 +44,13 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 html_title = f"CorrAdjust {release} documentation"
 
+html_baseurl = "https://tju-cmc-org.github.io/CorrAdjust/"
+sitemap_url_scheme = "{link}"
+
+html_extra_path = ["static_root_files"]
+html_favicon = "_static/favicon.ico"
+html_logo = "_static/logo.png"
+
 html_theme_options = {
     "icon_links": [
         {
@@ -55,7 +63,10 @@ html_theme_options = {
             # The type of image to be used (see below for details)
             "type": "fontawesome",
         }
-   ]
+   ],
+   "logo": {
+       "text": "CorrAdjust"
+   }
 }
 
 html_sidebars = {
