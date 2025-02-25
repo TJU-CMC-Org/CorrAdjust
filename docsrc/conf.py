@@ -72,6 +72,7 @@ html_theme_options = {
 html_sidebars = {
     "installation": []
 }
+html_show_sourcelink = False
 
 # Custom options
 autodoc_default_options = {
