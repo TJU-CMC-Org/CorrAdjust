@@ -48,6 +48,8 @@ Contents
 
    API reference <modules/corradjust>
 
+   Source Repository <https://github.com/TJU-CMC-Org/CorrAdjust>
+
 Indices and tables
 ==================
 
