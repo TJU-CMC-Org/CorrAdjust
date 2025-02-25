@@ -42,6 +42,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/plots';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -107,8 +108,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -345,6 +354,7 @@
 <span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
 <span class="kn">from</span> <span class="nn">adjustText</span> <span class="kn">import</span> <span class="n">adjust_text</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">from</span> <span class="nn">corradjust.utils</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -462,7 +472,7 @@
 <span class="sd">        Main title with sample group name to use in the plot.</span>
 <span class="sd">    metric : {&quot;enrichment-based&quot;, &quot;BP@K&quot;}, optional, default=&quot;enrichment-based&quot;</span>
 <span class="sd">        Metric for evaluating feature correlations.</span>
-<span class="sd">    palette : str or list or dict, optional, default=&quot;Dark2&quot;</span>
+<span class="sd">    palette : str or list or dict, optional</span>
 <span class="sd">        Name of matplotlib colormap or list of colors for the lines or</span>
 <span class="sd">        dict mapping reference collection names to colors.</span>
 <span class="sd">        The argument is directly passed to `sns.lineplot`.</span>
@@ -485,7 +495,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">samp_group_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;enrichment-based&quot;</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Dark2&quot;</span><span class="p">,</span>
+        <span class="n">palette</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">:])(</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab10&quot;</span><span class="p">)),</span>
         <span class="n">legend_loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">,</span>
         <span class="n">legend_fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">plot_width</span><span class="o">=</span><span class="mf">6.4</span><span class="p">,</span>
@@ -575,13 +585,18 @@
         <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ref. collection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Ref. collection&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;Mean&quot;</span><span class="p">)</span>
         
         <span class="n">df</span><span class="p">[</span><span class="n">subset_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;metric_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
-        <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
-            <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Iteration&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Ref. collection&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">subset_label</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-            <span class="n">palette</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">palette</span><span class="p">,</span>
-            <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
-            <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">],</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-            <span class="n">ax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ax</span>
-        <span class="p">)</span>
+
+        <span class="c1"># Lineplot produces annoying warning that there are</span>
+        <span class="c1"># more colors in the palette than needed; suppress it</span>
+        <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+            <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Iteration&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;Ref. collection&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">subset_label</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+                <span class="n">palette</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">palette</span><span class="p">,</span>
+                <span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span>
+                <span class="n">markers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">],</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                <span class="n">ax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ax</span>
+            <span class="p">)</span>
         
         <span class="c1"># Set highest zorder for the first drawn lines</span>
         <span class="n">zorder</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -733,7 +748,7 @@
         <span class="n">annotate_features</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">annot_fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
         <span class="n">feature_name_fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">signif_color</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set1&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">),</span>
+        <span class="n">signif_color</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab10&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">),</span>
         <span class="n">nonsignif_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
         <span class="n">panel_size</span><span class="o">=</span><span class="mf">4.8</span>
     <span class="p">):</span>
@@ -817,16 +832,23 @@
             <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;Raw&quot;</span><span class="p">,</span> <span class="s2">&quot;Clean&quot;</span><span class="p">]:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">axs</span><span class="p">[(</span><span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">state</span><span class="p">)]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="n">y_pad</span><span class="p">,</span> <span class="n">padj_max</span> <span class="o">+</span> <span class="n">y_pad</span><span class="p">])</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">axs</span><span class="p">[(</span><span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">state</span><span class="p">)]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-                    <span class="p">[</span><span class="o">-</span><span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="n">padj_max</span> <span class="o">+</span> <span class="n">y_pad</span><span class="p">,</span> <span class="n">padj_max</span> <span class="o">+</span> <span class="n">y_pad</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">y_pad</span><span class="p">,</span> <span class="o">-</span><span class="n">y_pad</span><span class="p">],</span>
-                    <span class="n">facecolor</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab10&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.07</span><span class="p">),</span>
-                    <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span>
-                <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">axs</span><span class="p">[(</span><span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">state</span><span class="p">)]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
-                    <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">],</span> <span class="p">[</span><span class="n">padj_max</span> <span class="o">+</span> <span class="n">y_pad</span><span class="p">,</span> <span class="n">padj_max</span> <span class="o">+</span> <span class="n">y_pad</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">y_pad</span><span class="p">,</span> <span class="o">-</span><span class="n">y_pad</span><span class="p">],</span>
-                    <span class="n">facecolor</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab10&quot;</span><span class="p">)[</span><span class="mi">3</span><span class="p">],</span> <span class="mf">0.07</span><span class="p">),</span>
-                    <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span>
-                <span class="p">)</span>
+                <span class="c1"># Plot boundaries of significance</span>
+                <span class="k">if</span> <span class="n">padj_max</span> <span class="o">&gt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">axs</span><span class="p">[(</span><span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">state</span><span class="p">)]</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span>
+                        <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">],</span> <span class="p">[</span><span class="n">padj_max</span> <span class="o">+</span> <span class="n">y_pad</span><span class="p">,</span> <span class="n">padj_max</span> <span class="o">+</span> <span class="n">y_pad</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)],</span>
+                        <span class="n">facecolor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signif_color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                        <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">axs</span><span class="p">[(</span><span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">state</span><span class="p">)]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                        <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.03</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">),</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)],</span>
+                        <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signif_color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span>
+                        <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">axs</span><span class="p">[(</span><span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">state</span><span class="p">)]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                        <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">padj_max</span> <span class="o">+</span> <span class="n">y_pad</span><span class="p">],</span>
+                        <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signif_color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                        <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span>
+                    <span class="p">)</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">_plot_one_state</span><span class="p">(</span><span class="s2">&quot;Raw&quot;</span><span class="p">,</span> <span class="n">feature_scores</span><span class="p">[</span><span class="s2">&quot;Raw&quot;</span><span class="p">],</span> <span class="n">num_pairs_max</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">feature_scores</span><span class="p">[</span><span class="s2">&quot;Clean&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -870,6 +892,7 @@
             <span class="n">perc_signif</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">df_plot</span><span class="p">[</span><span class="s2">&quot;padj&quot;</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_plot</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
             <span class="n">signif_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Yes (</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">perc_signif</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">%)&quot;</span>
             <span class="n">nonsignif_label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;No (</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">100</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">perc_signif</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="si">}</span><span class="s2">%)&quot;</span>
+
             <span class="n">df_plot</span><span class="p">[</span><span class="s2">&quot;Adj. p ≤ 0.05&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="n">signif_label</span> <span class="k">if</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">p</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mf">0.05</span> <span class="k">else</span> <span class="n">nonsignif_label</span>
                 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">df_plot</span><span class="p">[</span><span class="s2">&quot;padj&quot;</span><span class="p">]</span>
@@ -905,7 +928,7 @@
 
             <span class="c1"># Title</span>
             <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">empty_handle</span><span class="p">)</span>
-            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# highly ranked</span><span class="se">\n</span><span class="s2">feature pairs ($K_j$)&quot;</span><span class="p">)</span>
+            <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# highly ranked</span><span class="se">\n</span><span class="s2">pairs ($K_j$)&quot;</span><span class="p">)</span>
 
             <span class="c1"># Markers</span>
             <span class="n">handles</span> <span class="o">+=</span> <span class="p">[</span>
@@ -1024,10 +1047,10 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">corr_scorer</span><span class="p">,</span>
         <span class="n">pairs_subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
-        <span class="n">color_raw_ref</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">color_raw_non_ref</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span>
-        <span class="n">color_clean_ref</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">],</span>
-        <span class="n">color_clean_non_ref</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="mi">3</span><span class="p">],</span>
+        <span class="n">color_raw_ref</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="mi">6</span><span class="p">],</span>
+        <span class="n">color_raw_non_ref</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="mi">7</span><span class="p">],</span>
+        <span class="n">color_clean_ref</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="mi">4</span><span class="p">],</span>
+        <span class="n">color_clean_non_ref</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab20&quot;</span><span class="p">)[</span><span class="mi">5</span><span class="p">],</span>
         <span class="n">legend_fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">panel_size</span><span class="o">=</span><span class="mf">4.8</span>
     <span class="p">):</span>

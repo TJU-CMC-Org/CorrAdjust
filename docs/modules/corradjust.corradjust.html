@@ -43,6 +43,7 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules/corradjust.corradjust';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="corradjust.metrics module" href="corradjust.metrics.html" />
@@ -110,8 +111,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -648,7 +657,7 @@ It has the following structure:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.make_volcano_plot">
-<span class="sig-name descname"><span class="pre">make_volcano_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_name_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.8941176470588236,</span> <span class="pre">0.10196078431372549,</span> <span class="pre">0.10980392156862745,</span> <span class="pre">0.9)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonsignif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_volcano_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_volcano_plot" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">make_volcano_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_volcano_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_volcano_plot" title="Link to this definition">#</a></dt>
 <dd><p>Make volcano plot.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -657,20 +666,8 @@ It has the following structure:</p>
 </dd>
 <dt><strong>plot_filename</strong><span class="classifier">str</span></dt><dd><p>Path to the figure (with extension, e.g., <code class="docutils literal notranslate"><span class="pre">.png</span></code>).</p>
 </dd>
-<dt><strong>annotate_features</strong><span class="classifier">bool or int, optional, default=False</span></dt><dd><p>If <cite>int</cite>, corresponding number of features with the lowest
-adjusted p-values will be annotated on the volcano plots.</p>
-</dd>
-<dt><strong>annot_fontsize</strong><span class="classifier">int, optional, default=8</span></dt><dd><p>Font size of feature names when <code class="docutils literal notranslate"><span class="pre">annotate_features</span> <span class="pre">==</span> <span class="pre">True</span></code>.</p>
-</dd>
-<dt><strong>feature_name_fmt</strong><span class="classifier">function or None, optional, default=None</span></dt><dd><p>Function that maps feature names to labels to show on the plot
-when <code class="docutils literal notranslate"><span class="pre">annotate_features</span> <span class="pre">==</span> <span class="pre">True</span></code>.
-If <code class="docutils literal notranslate"><span class="pre">None</span></code>, shows unmodified feature names.</p>
-</dd>
-<dt><strong>signif_color</strong><span class="classifier">matplotlib color, optional</span></dt><dd><p>Color to draw statistically significant features.</p>
-</dd>
-<dt><strong>nonsignif_color</strong><span class="classifier">matplotlib color, optional</span></dt><dd><p>Color to draw non-significant features.</p>
-</dd>
-<dt><strong>panel_size</strong><span class="classifier">float, optional, default=4.8</span></dt><dd><p>Size of each (square) panel.</p>
+<dt><strong>**plot_kwargs</strong></dt><dd><p>Other keyword arguments controlling plot
+aesthetics passed to <cite>VolcanoPlotter</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -687,7 +684,7 @@ can change it through fig/ax and re-save.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.make_corr_distr_plot">
-<span class="sig-name descname"><span class="pre">make_corr_distr_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_corr_distr_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_corr_distr_plot" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">make_corr_distr_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_corr_distr_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_corr_distr_plot" title="Link to this definition">#</a></dt>
 <dd><p>Visualize distribution of feature-feature correlations
 before and after PC correction.</p>
 <dl class="field-list simple">
@@ -706,6 +703,9 @@ This argument is mandatory if it was used during <cite>fit</cite> call.</p>
 and should refer to one of the sample groups in <cite>df_samp_ann</cite>.</p>
 </dd>
 <dt><strong>pairs_subset</strong><span class="classifier">{“all”, “training”, “validation”}, optional, default=”all”</span></dt><dd><p>Which set of feature pairs to use for computing scores.</p>
+</dd>
+<dt><strong>**plot_kwargs</strong></dt><dd><p>Other keyword arguments controlling plot
+aesthetics passed to <cite>CorrDistrPlotter</cite>.</p>
 </dd>
 </dl>
 </dd>

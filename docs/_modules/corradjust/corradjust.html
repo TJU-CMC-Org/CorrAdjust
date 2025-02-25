@@ -42,6 +42,7 @@
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/corradjust';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -107,8 +108,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -860,12 +869,7 @@
     <span class="k">def</span> <span class="nf">make_volcano_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
         <span class="n">feature_scores</span><span class="p">,</span>
         <span class="n">plot_filename</span><span class="p">,</span>
-        <span class="n">annotate_features</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">annot_fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-        <span class="n">feature_name_fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">signif_color</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set1&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">),</span>
-        <span class="n">nonsignif_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
-        <span class="n">panel_size</span><span class="o">=</span><span class="mf">4.8</span>
+        <span class="o">**</span><span class="n">plot_kwargs</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make volcano plot.</span>
@@ -876,21 +880,9 @@
 <span class="sd">            Dict produced by `compute_feature_scores` method.</span>
 <span class="sd">        plot_filename : str</span>
 <span class="sd">            Path to the figure (with extension, e.g., ``.png``).</span>
-<span class="sd">        annotate_features : bool or int, optional, default=False</span>
-<span class="sd">            If `int`, corresponding number of features with the lowest</span>
-<span class="sd">            adjusted p-values will be annotated on the volcano plots.</span>
-<span class="sd">        annot_fontsize : int, optional, default=8</span>
-<span class="sd">            Font size of feature names when ``annotate_features == True``.</span>
-<span class="sd">        feature_name_fmt : function or None, optional, default=None</span>
-<span class="sd">            Function that maps feature names to labels to show on the plot</span>
-<span class="sd">            when ``annotate_features == True``.</span>
-<span class="sd">            If ``None``, shows unmodified feature names.</span>
-<span class="sd">        signif_color : matplotlib color, optional</span>
-<span class="sd">            Color to draw statistically significant features.</span>
-<span class="sd">        nonsignif_color : matplotlib color, optional</span>
-<span class="sd">            Color to draw non-significant features.</span>
-<span class="sd">        panel_size : float, optional, default=4.8</span>
-<span class="sd">            Size of each (square) panel.</span>
+<span class="sd">        **plot_kwargs</span>
+<span class="sd">            Other keyword arguments controlling plot</span>
+<span class="sd">            aesthetics passed to `VolcanoPlotter`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -900,15 +892,7 @@
 <span class="sd">            can change it through fig/ax and re-save.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">plotter</span> <span class="o">=</span> <span class="n">VolcanoPlotter</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span>
-            <span class="n">annotate_features</span><span class="o">=</span><span class="n">annotate_features</span><span class="p">,</span>
-            <span class="n">annot_fontsize</span><span class="o">=</span><span class="n">annot_fontsize</span><span class="p">,</span>
-            <span class="n">feature_name_fmt</span><span class="o">=</span><span class="n">feature_name_fmt</span><span class="p">,</span>
-            <span class="n">signif_color</span><span class="o">=</span><span class="n">signif_color</span><span class="p">,</span>
-            <span class="n">nonsignif_color</span><span class="o">=</span><span class="n">nonsignif_color</span><span class="p">,</span>
-            <span class="n">panel_size</span><span class="o">=</span><span class="n">panel_size</span>
-        <span class="p">)</span>
+        <span class="n">plotter</span> <span class="o">=</span> <span class="n">VolcanoPlotter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
         <span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">feature_scores</span><span class="p">)</span>
         <span class="n">plotter</span><span class="o">.</span><span class="n">save_plot</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">plot_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
 
@@ -924,7 +908,8 @@
         <span class="n">plot_filename</span><span class="p">,</span>
         <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">samp_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">pairs_subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+        <span class="n">pairs_subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">plot_kwargs</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Visualize distribution of feature-feature correlations</span>
@@ -946,6 +931,9 @@
 <span class="sd">            and should refer to one of the sample groups in `df_samp_ann`.</span>
 <span class="sd">        pairs_subset : {&quot;all&quot;, &quot;training&quot;, &quot;validation&quot;}, optional, default=&quot;all&quot;</span>
 <span class="sd">            Which set of feature pairs to use for computing scores.</span>
+<span class="sd">        **plot_kwargs</span>
+<span class="sd">            Other keyword arguments controlling plot</span>
+<span class="sd">            aesthetics passed to `CorrDistrPlotter`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -982,7 +970,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">corr_scores_clean</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="n">plotter</span> <span class="o">=</span> <span class="n">CorrDistrPlotter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span> <span class="n">pairs_subset</span><span class="o">=</span><span class="n">pairs_subset</span><span class="p">)</span>
+        <span class="n">plotter</span> <span class="o">=</span> <span class="n">CorrDistrPlotter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span> <span class="n">pairs_subset</span><span class="o">=</span><span class="n">pairs_subset</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
         <span class="n">plotter</span><span class="o">.</span><span class="n">add_plots</span><span class="p">(</span><span class="n">corr_scores_raw</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;Raw&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">):</span>
