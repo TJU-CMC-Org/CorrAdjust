@@ -23,15 +23,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 4,
    "metadata": {},
    "outputs": [
     {
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "2024-11-15 16:23:48.583220 | Loading Canonical Pathways reference sets...\n",
-      "2024-11-15 16:23:53.587874 | Loading Gene Ontology reference sets...\n"
+      "2025-02-26 09:06:23.139521 | Loading Canonical Pathways reference collection...\n",
+      "2025-02-26 09:06:29.321713 | Loading Gene Ontology reference collection...\n"
      ]
     }
    ],
@@ -81,6 +81,25 @@
     "# We set n_PCs to 19 to reproduce plot from the paper\n",
     "# Default value works fine as well\n",
     "model.fit(df_data_train, n_PCs=19)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "2025-02-26 09:07:14.503600 | Computing PCA...\n"
+     ]
+    }
+   ],
+   "source": [
+    "# FIXME: remove this test paragraph\n",
+    "model.fit_PCA(df_data_train)\n",
+    "model.confounder_PCs = [0, 1, 2]"
    ]
   },
   {
@@ -1209,19 +1228,21 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Obtaining corrected data"
+    "## Obtaining corrected data and confounder matrices"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "You can use `transform` method to residualize the identified confounder PCs from any data."
+    "You can use `transform` method to residualize the identified confounder PCs from any data.\n",
+    "The resulting data frame can be exported in a file and distributed with the original raw data\n",
+    "to facilitate reproducibility of your analysis."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 8,
    "metadata": {},
    "outputs": [
     {
@@ -1681,6 +1702,144 @@
     "# df_rsquared contains feature-wise R^2 scores for PC regression models\n",
     "df_data_test_clean, df_rsquareds = model.transform(df_data_test)\n",
     "display(df_data_test_clean)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "You can also obtain a data frame with per-sample confounder PC values (note that PC indices are 0-based).\n",
+    "If your samples have known metadata variables, you can correlate them\n",
+    "with the values of confounder PCs to get insight on the confounding signal (see Figures 2F and 3F in our paper)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>PC_0</th>\n",
+       "      <th>PC_1</th>\n",
+       "      <th>PC_2</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>GTEX-1122O-0005-SM-5O99J</th>\n",
+       "      <td>-77.795440</td>\n",
+       "      <td>30.096142</td>\n",
+       "      <td>2.478385</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-113IC-0006-SM-5NQ9C</th>\n",
+       "      <td>5.578602</td>\n",
+       "      <td>39.257367</td>\n",
+       "      <td>-58.918273</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-117XS-0005-SM-5PNU6</th>\n",
+       "      <td>72.421864</td>\n",
+       "      <td>-46.543171</td>\n",
+       "      <td>-6.697147</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-1192W-0005-SM-5NQBQ</th>\n",
+       "      <td>61.764435</td>\n",
+       "      <td>-17.245763</td>\n",
+       "      <td>-7.978997</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-11DXW-0006-SM-5NQ7Y</th>\n",
+       "      <td>61.639184</td>\n",
+       "      <td>-18.790421</td>\n",
+       "      <td>-25.956728</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-ZVE2-0006-SM-51MRW</th>\n",
+       "      <td>14.852568</td>\n",
+       "      <td>7.832459</td>\n",
+       "      <td>40.815036</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-ZVT2-0005-SM-57WBW</th>\n",
+       "      <td>-66.880424</td>\n",
+       "      <td>14.664277</td>\n",
+       "      <td>6.053250</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-ZVT4-0006-SM-57WB8</th>\n",
+       "      <td>24.650767</td>\n",
+       "      <td>7.150354</td>\n",
+       "      <td>28.726063</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-ZVZP-0006-SM-51MSW</th>\n",
+       "      <td>-79.053762</td>\n",
+       "      <td>-5.825063</td>\n",
+       "      <td>5.588776</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>GTEX-ZXES-0005-SM-57WCB</th>\n",
+       "      <td>-49.671241</td>\n",
+       "      <td>10.018337</td>\n",
+       "      <td>-14.464119</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>377 rows × 3 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "                               PC_0       PC_1       PC_2\n",
+       "GTEX-1122O-0005-SM-5O99J -77.795440  30.096142   2.478385\n",
+       "GTEX-113IC-0006-SM-5NQ9C   5.578602  39.257367 -58.918273\n",
+       "GTEX-117XS-0005-SM-5PNU6  72.421864 -46.543171  -6.697147\n",
+       "GTEX-1192W-0005-SM-5NQBQ  61.764435 -17.245763  -7.978997\n",
+       "GTEX-11DXW-0006-SM-5NQ7Y  61.639184 -18.790421 -25.956728\n",
+       "...                             ...        ...        ...\n",
+       "GTEX-ZVE2-0006-SM-51MRW   14.852568   7.832459  40.815036\n",
+       "GTEX-ZVT2-0005-SM-57WBW  -66.880424  14.664277   6.053250\n",
+       "GTEX-ZVT4-0006-SM-57WB8   24.650767   7.150354  28.726063\n",
+       "GTEX-ZVZP-0006-SM-51MSW  -79.053762  -5.825063   5.588776\n",
+       "GTEX-ZXES-0005-SM-57WCB  -49.671241  10.018337 -14.464119\n",
+       "\n",
+       "[377 rows x 3 columns]"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "df_confounders = model.compute_confounders(df_data_test)\n",
+    "display(df_confounders)"
    ]
   },
   {

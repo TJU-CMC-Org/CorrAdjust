@@ -631,6 +631,34 @@ This argument is mandatory if it was used during <cite>fit</cite> call.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.compute_confounders">
+<span class="sig-name descname"><span class="pre">compute_confounders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.compute_confounders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.compute_confounders" title="Link to this definition">#</a></dt>
+<dd><p>Compute the data frame with confounders from input data.
+This method should be called after <cite>fit</cite>, or after manually
+calling <cite>fit_PCA</cite> and setting <cite>confounder_PCs</cite> attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+Feature ids should perfectly match the ones used in
+<cite>df_feature_ann</cite> while initializing the object.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None, optional, default=None</span></dt><dd><p>A data frame providing group annotation of samples.
+This argument is mandatory if it was used during <cite>fit</cite> call.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>Data frame with values of confounder PCs.
+Note that PC indices are 0-based.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.compute_feature_scores">
 <span class="sig-name descname"><span class="pre">compute_feature_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.compute_feature_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.compute_feature_scores" title="Link to this definition">#</a></dt>
 <dd><p>Compute enrichment scores and p-values
@@ -1043,6 +1071,7 @@ that group names of <cite>df_samp_ann</cite> match those in <cite>mean_centerize
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.fit"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.fit_PCA"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.fit_PCA()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.transform"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.transform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.compute_confounders"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.compute_confounders()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.compute_feature_scores"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.compute_feature_scores()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.make_volcano_plot"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.make_volcano_plot()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.make_corr_distr_plot"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.make_corr_distr_plot()</span></code></a></li>

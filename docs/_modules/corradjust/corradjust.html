@@ -774,7 +774,60 @@
         
         <span class="k">return</span> <span class="n">df_data_clean</span><span class="p">,</span> <span class="n">df_rsquareds</span></div>
 
-    
+
+<div class="viewcode-block" id="CorrAdjust.compute_confounders">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.compute_confounders">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_confounders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the data frame with confounders from input data.</span>
+<span class="sd">        This method should be called after `fit`, or after manually</span>
+<span class="sd">        calling `fit_PCA` and setting `confounder_PCs` attribute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            Feature ids should perfectly match the ones used in</span>
+<span class="sd">            `df_feature_ann` while initializing the object.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            This argument is mandatory if it was used during `fit` call.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">            Data frame with values of confounder PCs.</span>
+<span class="sd">            Note that PC indices are 0-based.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="p">(</span>
+            <span class="s2">&quot;CorrAdjust instance must have confounder_PCs attribute when calling compute_confounders. &quot;</span>
+            <span class="s2">&quot;Call fit method or manually set the attribute.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;PCA_model&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mean_centerizer&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;fit_PCA should be called prior to compute_confounders.&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_data</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_samp_ann</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean_centerizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span>
+
+        <span class="n">X_raw</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">X_PCA</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+
+        <span class="n">df_confounders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="n">X_PCA</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">],</span>
+            <span class="n">index</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;PC_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">]</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">df_confounders</span></div>
+
     
 <div class="viewcode-block" id="CorrAdjust.compute_feature_scores">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.compute_feature_scores">[docs]</a>

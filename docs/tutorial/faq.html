@@ -422,40 +422,65 @@ With this approach, CorrAdjust will be run on the data with shuffled feature nam
 but exactly the same structure of data table and reference feature sets.</p>
 </div></blockquote>
 </section>
-<section id="what-if-some-of-my-features-are-not-present-in-the-gmt-file">
-<h2><span class="section-number">5.4. </span>What if some of my features are not present in the GMT file?<a class="headerlink" href="#what-if-some-of-my-features-are-not-present-in-the-gmt-file" title="Link to this heading">#</a></h2>
+<section id="how-can-i-interpret-confounder-pcs">
+<h2><span class="section-number">5.4. </span>How can I interpret confounder PCs?<a class="headerlink" href="#how-can-i-interpret-confounder-pcs" title="Link to this heading">#</a></h2>
 <blockquote>
-<div><p>Pairs consisting of such features are labeled with <code class="docutils literal notranslate"><span class="pre">flag</span> <span class="pre">=</span> <span class="pre">-1</span></code>
-and are excluded from the computations of enrichments/scores.
-Similarly, features that are present in the GMT file but not in the
-data table are not impacting the results.</p>
-</div></blockquote>
-</section>
-<section id="should-i-use-gene-or-transcript-level-rna-seq">
-<h2><span class="section-number">5.5. </span>Should I use gene- or transcript-level RNA-seq?<a class="headerlink" href="#should-i-use-gene-or-transcript-level-rna-seq" title="Link to this heading">#</a></h2>
-<blockquote>
-<div><p>Most pathway databases we are aware of operate on gene level.
-Thus, we recommend using gene-level expression data.</p>
+<div><p>The confounders identified by CorrAdjust are represented by the PCs and
+do not inherently carry an interpretation.
+However, some of these PCs may be associated with known variables, enhancing interpretability.
+We encourage users to examine these associations
+(e.g., as shown in Figures 2F and 3F of our paper) to better understand what is being corrected.
+See <a class="reference internal" href="standard_run.html"><span class="doc">Running CorrAdjust</span></a> for a code on how to generate a matrix of confounder PCs.</p>
 </div></blockquote>
 </section>
 <section id="my-samples-originate-from-distinct-groups-should-i-correct-them-separately">
-<h2><span class="section-number">5.6. </span>My samples originate from distinct groups. Should I correct them separately?<a class="headerlink" href="#my-samples-originate-from-distinct-groups-should-i-correct-them-separately" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.5. </span>My samples originate from distinct groups. Should I correct them separately?<a class="headerlink" href="#my-samples-originate-from-distinct-groups-should-i-correct-them-separately" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p>Correcting different sample groups separately could create spurious
 differential correlations between groups.
 We recommend using the approach shown in <a class="reference internal" href="advanced_run.html"><span class="doc">Advanced example</span></a>.
 Specifically, PCs are computed and removed across all samples,
-but enrichment scores are computed separately for each group.</p>
+but enrichment scores are computed separately for each group.
+This option, however, requires a sufficient number of samples
+in each group (we recommend at least 50 samples).</p>
+</div></blockquote>
+</section>
+<section id="is-corradjust-output-compatible-with-other-bioinformatics-tools">
+<h2><span class="section-number">5.6. </span>Is CorrAdjust output compatible with other bioinformatics tools?<a class="headerlink" href="#is-corradjust-output-compatible-with-other-bioinformatics-tools" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>One of the CorrAdjust output files is a data table after
+confounder removal. This table can be used as input for
+any bioinformatics tool for network analysis (e.g., WGCNA).
+At the same time, it should not be used as input for
+differential expression analysis tools (e.g., DESeq2 or edgeR),
+as CorrAdjust can eliminate true differences in <em>average</em> feature
+values between conditions of interest.</p>
+</div></blockquote>
+</section>
+<section id="should-i-use-gene-or-transcript-level-rna-seq">
+<h2><span class="section-number">5.7. </span>Should I use gene- or transcript-level RNA-seq?<a class="headerlink" href="#should-i-use-gene-or-transcript-level-rna-seq" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Most pathway databases we are aware of operate on gene level.
+Thus, we recommend using gene-level expression data.</p>
 </div></blockquote>
 </section>
 <section id="can-i-use-corradjust-with-non-transcriptomic-data">
-<h2><span class="section-number">5.7. </span>Can I use CorrAdjust with non-transcriptomic data?<a class="headerlink" href="#can-i-use-corradjust-with-non-transcriptomic-data" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.8. </span>Can I use CorrAdjust with non-transcriptomic data?<a class="headerlink" href="#can-i-use-corradjust-with-non-transcriptomic-data" title="Link to this heading">#</a></h2>
 <blockquote>
 <div><p>Current version of CurrAdjust is tested only in mRNA-mRNA
 and miRNA-mRNA settings using RNA-seq data (see our paper).
 At the same time, nothing prevents using it with arbitrary
 numeric dataset if you are interested in reference-guided
 correction of correlations between features.</p>
+</div></blockquote>
+</section>
+<section id="what-if-some-of-my-features-are-not-present-in-the-gmt-file">
+<h2><span class="section-number">5.9. </span>What if some of my features are not present in the GMT file?<a class="headerlink" href="#what-if-some-of-my-features-are-not-present-in-the-gmt-file" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>Pairs consisting of such features are labeled with <code class="docutils literal notranslate"><span class="pre">flag</span> <span class="pre">=</span> <span class="pre">-1</span></code>
+and are excluded from the computations of enrichments/scores.
+Similarly, features that are present in the GMT file but not in the
+data table are not impacting the results.</p>
 </div></blockquote>
 </section>
 </section>
@@ -510,10 +535,12 @@ correction of correlations between features.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-samples-do-i-need">5.1. How many samples do I need?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-difference-between-validation-and-test-sets">5.2. What is the difference between validation and test sets?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#do-i-need-to-use-test-set">5.3. Do I need to use test set?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-some-of-my-features-are-not-present-in-the-gmt-file">5.4. What if some of my features are not present in the GMT file?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#should-i-use-gene-or-transcript-level-rna-seq">5.5. Should I use gene- or transcript-level RNA-seq?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-samples-originate-from-distinct-groups-should-i-correct-them-separately">5.6. My samples originate from distinct groups. Should I correct them separately?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#can-i-use-corradjust-with-non-transcriptomic-data">5.7. Can I use CorrAdjust with non-transcriptomic data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-can-i-interpret-confounder-pcs">5.4. How can I interpret confounder PCs?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#my-samples-originate-from-distinct-groups-should-i-correct-them-separately">5.5. My samples originate from distinct groups. Should I correct them separately?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#is-corradjust-output-compatible-with-other-bioinformatics-tools">5.6. Is CorrAdjust output compatible with other bioinformatics tools?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#should-i-use-gene-or-transcript-level-rna-seq">5.7. Should I use gene- or transcript-level RNA-seq?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#can-i-use-corradjust-with-non-transcriptomic-data">5.8. Can I use CorrAdjust with non-transcriptomic data?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-if-some-of-my-features-are-not-present-in-the-gmt-file">5.9. What if some of my features are not present in the GMT file?</a></li>
 </ul>
   </nav></div>
 

@@ -22,7 +22,8 @@ Unlike traditional machine learning metrics,
 this novel enrichment-based metric is specifically designed to
 evaluate correlation data and provides valuable feature-level interpretation.
 
-Read more in our preprint:
+Before using CorrAdjust, we strongly recommend reading our paper
+to familiarize yourself with the key concepts of the method:
 
    Nersisyan S, Loher P, Rigoutsos I.
    CorrAdjust unveils biologically relevant transcriptomic correlations
