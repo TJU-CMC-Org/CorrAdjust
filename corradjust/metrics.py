@@ -24,8 +24,8 @@ class CorrScorer:
     ----------
     df_feature_ann : pandas.DataFrame with index and 2 columns
         A data frame providing annotation of features.
-    ref_feature_sets : dict
-        A dictionary with information about reference feature sets.
+    ref_feature_colls : dict
+        A dictionary with information about reference feature set collections.
     shuffle_feature_names : bool or list, optional, default=False
         Whether (and how) to permute feature names.
     metric : {"enrichment-based", "BP@K"}, optional, default="enrichment-based"
@@ -73,11 +73,11 @@ class CorrScorer:
                   refers to feature pair type: ``0`` is ``training``,
                   ``1`` is ``validation``, and ``2`` is ``all``.
                   The second index stands for feature index,
-                  and the array value says how many shared pairs
+                  and the array value says how many reference pairs
                   the feature has. These are ``n_j`` in the paper's terminology.
         |     ``"features_total_neg"`` : `numpy.ndarray`
         |         Same as ``"features_total_pos"`` but for
-                  non-shared pairs. These are ``N_j - n_j`` in the paper's terminology.
+                  non-reference pairs. These are ``N_j - n_j`` in the paper's terminology.
         |     ``"scoring_features_mask"`` : `numpy.array`
         |         Binary array with ``n_features`` elements that says
                   whether each feature should participate in the computation of
@@ -109,7 +109,7 @@ class CorrScorer:
     def __init__(
         self,
         df_feature_ann,
-        ref_feature_sets,
+        ref_feature_colls,
         shuffle_feature_names=False,
         metric="enrichment-based",
         min_pairs_to_score=1000,
@@ -179,17 +179,17 @@ class CorrScorer:
         self.feature_idx_to_type = np.array(self.feature_idx_to_type)
 
         # Load reference sets and store them in a nice data structure 
-        self.compute_index(ref_feature_sets, min_pairs_to_score)
+        self.compute_index(ref_feature_colls, min_pairs_to_score)
 
-    def compute_index(self, ref_feature_sets, min_pairs_to_score):
+    def compute_index(self, ref_feature_colls, min_pairs_to_score):
         """
         Populate `data` attribute.
         Input arguments are the same as in the constructor.
 
         Parameters
         ----------
-        ref_feature_sets : dict
-            A dictionary with information about reference feature sets.
+        ref_feature_colls : dict
+            A dictionary with information about reference feature set collections.
         min_pairs_to_score : int
             Minimum number of total pairs containing a feature
             to include the feature in the enrichment score computations.
@@ -201,18 +201,18 @@ class CorrScorer:
 
         self.data = {}
 
-        for ref_feature_set in ref_feature_sets:
+        for ref_feature_coll in ref_feature_colls:
             if self.verbose:
                 print(
-                    f"{datetime.now()} | Loading {ref_feature_set} reference sets...",
+                    f"{datetime.now()} | Loading {ref_feature_coll} reference collection...",
                     file=sys.stderr
                 )
 
             assert (
-                os.path.isfile(ref_feature_sets[ref_feature_set]["path"])
-            ), f"File {ref_feature_sets[ref_feature_set]['path']} not found."
+                os.path.isfile(ref_feature_colls[ref_feature_coll]["path"])
+            ), f"File {ref_feature_colls[ref_feature_coll]['path']} not found."
 
-            db_file = io.BufferedReader(open(ref_feature_sets[ref_feature_set]["path"], "rb"))
+            db_file = io.BufferedReader(open(ref_feature_colls[ref_feature_coll]["path"], "rb"))
             # Each line has reference set name (field 0) and list of features (fields 2+)
             # n features listed on a line will result in n*(n-1)/2 feature pairs
             
@@ -259,7 +259,7 @@ class CorrScorer:
             # We hash type_id tuples using Cantor pairing function
             type_to_id = dict(zip(unique_types, type_ids))
             allowed_feature_pair_types = []
-            for pair_type in ref_feature_sets[ref_feature_set]["feature_pair_types"]:
+            for pair_type in ref_feature_colls[ref_feature_coll]["feature_pair_types"]:
                 assert (
                     "-" in pair_type
                 ), f"Allowed pair type must contain '-' character but none is found in '{pair_type}'."
@@ -275,15 +275,15 @@ class CorrScorer:
             
             allowed_feature_pair_types = np.array(allowed_feature_pair_types, dtype="int64")
             
-            self.data[ref_feature_set] = {}
+            self.data[ref_feature_coll] = {}
 
             assert (
-                ref_feature_sets[ref_feature_set]["sign"] in {"positive", "negative", "absolute"}
-            ), f"Sign can be 'positive', 'negative', or 'absolute', but '{ref_feature_sets[ref_feature_set]['sign']}' was found."
-            self.data[ref_feature_set]["sign"] = ref_feature_sets[ref_feature_set]["sign"]
+                ref_feature_colls[ref_feature_coll]["sign"] in {"positive", "negative", "absolute"}
+            ), f"Sign can be 'positive', 'negative', or 'absolute', but '{ref_feature_colls[ref_feature_coll]['sign']}' was found."
+            self.data[ref_feature_coll]["sign"] = ref_feature_colls[ref_feature_coll]["sign"]
 
             # Effective data structure for ground truth flag 
-            mask = self._compute_ref_feature_set_mask(
+            mask = self._compute_ref_feature_coll_mask(
                 feature_idxs_in_ref_sets, ref_feature_sets_boundaries, unique_feature_idxs_in_db,
                 allowed_feature_pair_types, feature_idx_to_type_id,
                 n_features
@@ -291,7 +291,7 @@ class CorrScorer:
             assert (
                 np.any(mask == 0) and np.any(mask == 1)
             ), (
-                f"There are no shared or non-shared feature pairs found in {ref_feature_set}. "
+                f"There are no reference or non-reference feature pairs found in {ref_feature_coll}. "
                 "Check that 1) feature names match between feature annotation data "
                 "and the GMT file, 2) you correctly specified allowed feature pair types."
             )
@@ -299,7 +299,7 @@ class CorrScorer:
             # Get labels of training and validation sets
             train_val_mask = self._compute_train_val_mask(mask)
 
-            # Count total number of shared and non-shared pairs for each feature
+            # Count total number of reference and non-reference pairs for each feature
             # Counts are training/validation/all-specific
             features_total_pos, features_total_neg, scoring_features_mask = self._compute_feature_totals(
                 mask, train_val_mask, self.feature_idxs1, self.feature_idxs2, n_features, min_pairs_to_score
@@ -307,19 +307,19 @@ class CorrScorer:
             assert (
                 np.any(scoring_features_mask)
             ), (
-                f"None of the features can be used for scoring in {ref_feature_set}. "
+                f"None of the features can be used for scoring in {ref_feature_coll}. "
                 "The value of min_pairs_to_score might be too high for your data."
             )
 
-            self.data[ref_feature_set]["mask"] = mask
-            self.data[ref_feature_set]["train_val_mask"] = train_val_mask
+            self.data[ref_feature_coll]["mask"] = mask
+            self.data[ref_feature_coll]["train_val_mask"] = train_val_mask
 
-            self.data[ref_feature_set]["features_total_pos"] = features_total_pos
-            self.data[ref_feature_set]["features_total_neg"] = features_total_neg
-            self.data[ref_feature_set]["scoring_features_mask"] = scoring_features_mask
+            self.data[ref_feature_coll]["features_total_pos"] = features_total_pos
+            self.data[ref_feature_coll]["features_total_neg"] = features_total_neg
+            self.data[ref_feature_coll]["scoring_features_mask"] = scoring_features_mask
 
             # A fraction of all participating pairs are "highly correlated"
-            high_corr_frac = ref_feature_sets[ref_feature_set]["high_corr_frac"]
+            high_corr_frac = ref_feature_colls[ref_feature_coll]["high_corr_frac"]
             assert (
                 isinstance(high_corr_frac, float) and 0 <= high_corr_frac <= 1
             ), "high_corr_frac must be float between 0 and 1."
@@ -330,10 +330,10 @@ class CorrScorer:
             n_pairs_train = np.sum(train_val_mask == 0)
             n_pairs_val = np.sum(train_val_mask == 1)
 
-            self.data[ref_feature_set]["high_corr_frac"] = high_corr_frac
-            self.data[ref_feature_set]["high_corr_pairs_all"] = high_corr_pairs_all
-            self.data[ref_feature_set]["high_corr_pairs_training"] = int(high_corr_pairs_all * n_pairs_train / n_pairs_all)
-            self.data[ref_feature_set]["high_corr_pairs_validation"] = int(high_corr_pairs_all * n_pairs_val / n_pairs_all)
+            self.data[ref_feature_coll]["high_corr_frac"] = high_corr_frac
+            self.data[ref_feature_coll]["high_corr_pairs_all"] = high_corr_pairs_all
+            self.data[ref_feature_coll]["high_corr_pairs_training"] = int(high_corr_pairs_all * n_pairs_train / n_pairs_all)
+            self.data[ref_feature_coll]["high_corr_pairs_validation"] = int(high_corr_pairs_all * n_pairs_val / n_pairs_all)
     
     
     def compute_corr_scores(self, corrs, full_output=False):
@@ -355,7 +355,7 @@ class CorrScorer:
             If `full_output` is ``False``, dict has the following structure:
 
             | {
-            |     ``ref_feature_set_name`` : {
+            |     ``ref_feature_coll`` : {
             |         ``"score {subset}"`` : `float`
             |     }
             | }
@@ -363,7 +363,7 @@ class CorrScorer:
             Here, subset is ``"training"``, ``"validation"``, and ``"all"`` (feature pair subsets).
             Score is defined according to the `metric` attribute.
             If `full_output` is ``True``, the following keys are added
-            to the dict corresponding to each ``ref_feature_set_name``:
+            to the dict corresponding to each ``ref_feature_coll``:
 
             | {
             |     ``"BPs_at_K {subset}"`` : `numpy.array`
@@ -397,8 +397,8 @@ class CorrScorer:
         # So the sorting will be done only once for each sign and cached
         sort_cache = {}
 
-        for ref_feature_set in self.data:
-            sign = self.data[ref_feature_set]["sign"]
+        for ref_feature_coll in self.data:
+            sign = self.data[ref_feature_coll]["sign"]
 
             if sign in sort_cache:
                 corrs_sorted_args = sort_cache[sign]
@@ -415,23 +415,23 @@ class CorrScorer:
             (
                 BPs_at_K, enrichments, pvalues, TPs_at_K, FPs_at_K,
                 corrs_sorted, mask_sorted, train_val_mask_sorted
-            ) = self._compute_scores_for_ref_feature_set(
+            ) = self._compute_scores_for_ref_feature_coll(
                 corrs, corrs_sorted_args,
-                self.data[ref_feature_set]["mask"],
-                self.data[ref_feature_set]["train_val_mask"],
-                self.data[ref_feature_set]["high_corr_pairs_all"],
-                self.data[ref_feature_set]["high_corr_pairs_training"],
-                self.data[ref_feature_set]["high_corr_pairs_validation"],
-                self.data[ref_feature_set]["features_total_pos"],
-                self.data[ref_feature_set]["features_total_neg"],
-                self.data[ref_feature_set]["scoring_features_mask"],
+                self.data[ref_feature_coll]["mask"],
+                self.data[ref_feature_coll]["train_val_mask"],
+                self.data[ref_feature_coll]["high_corr_pairs_all"],
+                self.data[ref_feature_coll]["high_corr_pairs_training"],
+                self.data[ref_feature_coll]["high_corr_pairs_validation"],
+                self.data[ref_feature_coll]["features_total_pos"],
+                self.data[ref_feature_coll]["features_total_neg"],
+                self.data[ref_feature_coll]["scoring_features_mask"],
                 self.feature_idxs1,
                 self.feature_idxs2,
             )
 
             # Need to adjust p-values outside of the previous method
             # because numba doesn't support this function
-            scoring_mask = self.data[ref_feature_set]["scoring_features_mask"]
+            scoring_mask = self.data[ref_feature_coll]["scoring_features_mask"]
             pvalues_adj = np.zeros(pvalues.shape, dtype="float64")
             for mode in range(3):
                 pvalues_adj[mode, scoring_mask] = false_discovery_control(pvalues[mode, scoring_mask])
@@ -444,13 +444,13 @@ class CorrScorer:
                 avg_log_padj = np.array([0.0, 0.0, 0.0])
 
             # This is aggregated BP@K score (a single number)
-            scoring_features_mask = self.data[ref_feature_set]["scoring_features_mask"]
+            scoring_features_mask = self.data[ref_feature_coll]["scoring_features_mask"]
             agg_total_pos = np.nansum(
-                self.data[ref_feature_set]["features_total_pos"][:, scoring_features_mask],
+                self.data[ref_feature_coll]["features_total_pos"][:, scoring_features_mask],
                 axis=1
             )
             agg_total_neg = np.nansum(
-                self.data[ref_feature_set]["features_total_neg"][:, scoring_features_mask],
+                self.data[ref_feature_coll]["features_total_neg"][:, scoring_features_mask],
                 axis=1
             )
             agg_TP_at_K = np.nansum(TPs_at_K[:, scoring_features_mask], axis=1)
@@ -461,31 +461,31 @@ class CorrScorer:
 
             final_scores = avg_log_padj if self.metric == "enrichment-based" else agg_BP_at_K
 
-            res[ref_feature_set] = dict(zip(
+            res[ref_feature_coll] = dict(zip(
                 ["score training", "score validation", "score all"],
                 final_scores
             ))
             
             if full_output:
                 for mode, subset in enumerate(["training", "validation", "all"]):
-                    res[ref_feature_set][f"BPs_at_K {subset}"] = BPs_at_K[mode]
-                    res[ref_feature_set][f"enrichments {subset}"] = enrichments[mode]
-                    res[ref_feature_set][f"pvalues {subset}"] = pvalues[mode]
-                    res[ref_feature_set][f"pvalues_adj {subset}"] = pvalues_adj[mode]
-                    res[ref_feature_set][f"TPs_at_K {subset}"] = TPs_at_K[mode]
-                    res[ref_feature_set][f"num_pairs {subset}"] = (TPs_at_K + FPs_at_K)[mode]
+                    res[ref_feature_coll][f"BPs_at_K {subset}"] = BPs_at_K[mode]
+                    res[ref_feature_coll][f"enrichments {subset}"] = enrichments[mode]
+                    res[ref_feature_coll][f"pvalues {subset}"] = pvalues[mode]
+                    res[ref_feature_coll][f"pvalues_adj {subset}"] = pvalues_adj[mode]
+                    res[ref_feature_coll][f"TPs_at_K {subset}"] = TPs_at_K[mode]
+                    res[ref_feature_coll][f"num_pairs {subset}"] = (TPs_at_K + FPs_at_K)[mode]
                 
-                res[ref_feature_set]["scoring_features_mask"] = scoring_features_mask
-                res[ref_feature_set]["corrs"] = corrs_sorted
-                res[ref_feature_set]["mask"] = mask_sorted
-                res[ref_feature_set]["train_val_mask"] = train_val_mask_sorted
+                res[ref_feature_coll]["scoring_features_mask"] = scoring_features_mask
+                res[ref_feature_coll]["corrs"] = corrs_sorted
+                res[ref_feature_coll]["mask"] = mask_sorted
+                res[ref_feature_coll]["train_val_mask"] = train_val_mask_sorted
 
         return res
     
     
     @staticmethod
     @njit(parallel=True)
-    def _compute_ref_feature_set_mask(
+    def _compute_ref_feature_coll_mask(
         feature_idxs_in_ref_sets, ref_feature_sets_boundaries, unique_feature_idxs_in_db,
         allowed_feature_pair_types, feature_idx_to_type_id,
         n_features
@@ -583,7 +583,7 @@ class CorrScorer:
         Parameters
         ----------
         mask : numpy.array
-            Array returned by the `_compute_ref_feature_set_mask` method.
+            Array returned by the `_compute_ref_feature_coll_mask` method.
 
         Returns
         -------
@@ -618,7 +618,7 @@ class CorrScorer:
         Parameters
         ----------
         mask : numpy.array
-            Array returned by the `_compute_ref_feature_set_mask` method.
+            Array returned by the `_compute_ref_feature_coll_mask` method.
         train_val_mask : numpy.array
             Array returned by the `_compute_train_val_mask` method.
         feature_idxs1 : numpy.array
@@ -645,7 +645,7 @@ class CorrScorer:
         features_total_pos = np.zeros((3, n_features), dtype="int64")
         features_total_neg = np.zeros((3, n_features), dtype="int64")
         # These are the features that are involved in at least min_pairs_to_score pairs,
-        # including at least one shared and one non-shared pair
+        # including at least one reference and one non-reference pair
         scoring_features_mask = np.ones((n_features,), dtype="bool")
 
         # train, validaion, all 
@@ -678,7 +678,7 @@ class CorrScorer:
     
     @staticmethod
     @njit(parallel=True)
-    def _compute_scores_for_ref_feature_set(
+    def _compute_scores_for_ref_feature_coll(
         corrs, corrs_sorted_args,
         mask, train_val_mask,
         high_corr_pairs_all, high_corr_pairs_train, high_corr_pairs_val,
@@ -697,7 +697,7 @@ class CorrScorer:
         corrs_sorted_args : numpy.array
             Array of indices that sort corrs array in needed way.
         mask : numpy.array
-            Array returned by the `_compute_ref_feature_set_mask` method.
+            Array returned by the `_compute_ref_feature_coll_mask` method.
         train_val_mask : numpy.array
             Array returned by the `_compute_train_val_mask` method.
         high_corr_pairs_all : int

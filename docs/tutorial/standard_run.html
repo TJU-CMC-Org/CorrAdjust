@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,17 +27,17 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -46,6 +46,8 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/standard_run';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/tutorial/standard_run.html" />
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Selecting hyperparameters" href="hyperparameters.html" />
@@ -113,8 +115,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -145,6 +155,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../modules/corradjust.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
   </a>
 </li>
 
@@ -257,6 +274,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -313,9 +337,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -370,11 +399,11 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">corradjust</span> <span class="kn">import</span> <span class="n">CorrAdjust</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">corradjust</span><span class="w"> </span><span class="kn">import</span> <span class="n">CorrAdjust</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">CorrAdjust</span><span class="p">(</span>
     <span class="n">df_feature_ann</span><span class="p">,</span>
-    <span class="n">ref_feature_sets</span><span class="p">,</span>
+    <span class="n">ref_feature_colls</span><span class="p">,</span>
     <span class="s2">&quot;out_data/GTEx_Whole_Blood&quot;</span>
 <span class="p">)</span>
 </pre></div>
@@ -385,8 +414,8 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:23:48.583220 | Loading Canonical Pathways reference sets...
-2024-11-15 16:23:53.587874 | Loading Gene Ontology reference sets...
+2025-02-26 09:06:23.139521 | Loading Canonical Pathways reference collection...
+2025-02-26 09:06:29.321713 | Loading Gene Ontology reference collection...
 </pre></div></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">fit</span></code> method trains CorrAdjust instance. It identifies a subset of confounder PCs which needs to be regressed out from the data to maximize enrichment of the provided reference feature pairs among the highly correlated pairs. See the full list of accepted parameters in <a class="reference internal" href="../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.fit"><span class="std std-ref">API reference</span></a>.</p>
@@ -417,9 +446,27 @@
 <img alt="../_images/tutorial_standard_run_5_1.png" src="../_images/tutorial_standard_run_5_1.png" />
 </div>
 </div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FIXME: remove this test paragraph</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit_PCA</span><span class="p">(</span><span class="n">df_data_train</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">confounder_PCs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2025-02-26 09:07:14.503600 | Computing PCA...
+</pre></div></div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">fit</span></code> method automatically splits the <em>feature pairs</em> into 50% training and 50% validation sets. Training set of feature pairs is used to select PCs on each iteration of the algorithm (maximum score), while validation set is used to determine the final number of PCs by the early stopping method. Specifically, the dashed red line is drawn at iteration after which there is little or no improvement in the validation set score.</p>
 <p>The above optimization curve is automatically saved into <code class="docutils literal notranslate"><span class="pre">fit.all_samp.png</span></code>; <code class="docutils literal notranslate"><span class="pre">all_samp</span></code> refers to the fact that all training samples were used (see <a class="reference internal" href="advanced_run.html"><span class="doc">Advanced example</span></a> with several sample groups). The file <code class="docutils literal notranslate"><span class="pre">fit.tsv</span></code> contains the data from the plot in the table format, and <code class="docutils literal notranslate"><span class="pre">fit.log</span></code> contains the full optimization log.</p>
-<p>The termination procedure might stop too early or too late. You can always manually refince the list of selected confounder PCs:</p>
+<p>The termination procedure might stop too early or too late. You can always manually refine the list of selected confounder PCs:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -1135,15 +1182,15 @@
 </div>
 <p>Columns of the above table have the following meaning:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">shared_pairs&#64;K</span></code>: the second number stands for feature pairs involving the corresponding feature among the most highly correlated pairs (<span class="math notranslate nohighlight">\(K_j\)</span> in the paper’s notation). The first number is how many of these pairs ared shared (<span class="math notranslate nohighlight">\(k_j\)</span> in the paper’s notation).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">shared_pairs&#64;total</span></code>: the second number stands for feature pairs involving the corresponding feature among all pairs (<span class="math notranslate nohighlight">\(N_j\)</span> in the paper’s notation). The first number is how many of these pairs are shared (<span class="math notranslate nohighlight">\(n_j\)</span> in the paper’s notation).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">enrichment</span></code>: essentially, this is the ratio of <code class="docutils literal notranslate"><span class="pre">shared_pairs&#64;K</span></code> and <code class="docutils literal notranslate"><span class="pre">shared_pairs&#64;total</span></code> ratios. However, the value is slightly different from a simple ratio since we use Bayesian regularization to shrink enrichment towards 1.0 to avoid problems with zero counts.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ref_pairs&#64;K</span></code>: the second number stands for feature pairs involving the corresponding feature among the most highly correlated pairs (<span class="math notranslate nohighlight">\(K_j\)</span> in the paper’s notation). The first number is how many of these pairs ared reference (<span class="math notranslate nohighlight">\(k_j\)</span> in the paper’s notation).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ref_pairs&#64;total</span></code>: the second number stands for feature pairs involving the corresponding feature among all pairs (<span class="math notranslate nohighlight">\(N_j\)</span> in the paper’s notation). The first number is how many of these pairs are reference (<span class="math notranslate nohighlight">\(n_j\)</span> in the paper’s notation).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enrichment</span></code>: essentially, this is the ratio of <code class="docutils literal notranslate"><span class="pre">ref_pairs&#64;K</span></code> and <code class="docutils literal notranslate"><span class="pre">ref_pairs&#64;total</span></code> ratios. However, the value is slightly different from a simple ratio since we use Bayesian regularization to shrink enrichment towards 1.0 to avoid problems with zero counts.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">balanced_precision</span></code>: non-linearly scaled version of <code class="docutils literal notranslate"><span class="pre">enrichment</span></code>. Enrichment = 1 corresponds to balanced precision of 0.5 (baseline), while maximum possible value of enrichment corresponds to balanced precision of 1.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pvalue</span></code>: hypergeometric test p-value (as with <code class="docutils literal notranslate"><span class="pre">enrichment</span></code>, Bayesian regularization shrinks p-value towards 1.0 to avoid problems with zero counts).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">padj</span></code>: p-value adjusted for multiple testing by the Benjamini-Hochberg procedure.</p></li>
 </ul>
 <p>Features with <code class="docutils literal notranslate"><span class="pre">total</span></code> less then <code class="docutils literal notranslate"><span class="pre">min_pairs_to_score</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">CorrAdjust</span></code> (default is <code class="docutils literal notranslate"><span class="pre">1000</span></code>) are ignored during the enrichment/p-value computations.</p>
-<p>A convenient way to visualize this table is volcano plot. Size of each point on the plot is the second number in <code class="docutils literal notranslate"><span class="pre">shared_pairs&#64;K</span></code> column. See the full list of accepted parameters in <a class="reference internal" href="../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.make_volcano_plot"><span class="std std-ref">API reference</span></a>.</p>
+<p>A convenient way to visualize this table is volcano plot. Size of each point on the plot is the second number in <code class="docutils literal notranslate"><span class="pre">ref_pairs&#64;K</span></code> column. See the full list of accepted parameters in <a class="reference internal" href="../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.make_volcano_plot"><span class="std std-ref">API reference</span></a>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -1170,7 +1217,7 @@
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorial_standard_run_12_1.png" src="../_images/tutorial_standard_run_12_1.png" />
+<img alt="../_images/tutorial_standard_run_13_1.png" src="../_images/tutorial_standard_run_13_1.png" />
 </div>
 </div>
 </section>
@@ -1207,18 +1254,18 @@
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorial_standard_run_15_2.png" src="../_images/tutorial_standard_run_15_2.png" />
+<img alt="../_images/tutorial_standard_run_16_2.png" src="../_images/tutorial_standard_run_16_2.png" />
 </div>
 </div>
 <p>The left panels show histogram of correlations before and after correction – often, CorrAdjust shrinks the correlations towards 0.</p>
 <p>The right panels show a more granular view on the distribution tail (specific tail is shown according to the <code class="docutils literal notranslate"><span class="pre">sign</span></code> parameter of the config). Dotted gray line stands for the <code class="docutils literal notranslate"><span class="pre">high_corr_frac</span></code> value. Before the correction, the threshold corresponding to 1% of the highest absolute correlations was 0.8, while after cleaning it became 0.55.</p>
-<p>The above plots also distinguish between shared pairs (gene pairs with at least one shared pathway) and non-shared pairs. Correlations among shared pairs are, on average, higher then among non-shared ones, and this effect becomes stronger after the correction.</p>
+<p>The above plots also distinguish between reference pairs (gene pairs with at least one shared pathway) and non-reference pairs. Correlations among reference pairs are, on average, higher then among non-reference ones, and this effect becomes stronger after the correction.</p>
 </section>
-<section id="Obtaining-corrected-data">
-<h2><span class="section-number">2.4. </span>Obtaining corrected data<a class="headerlink" href="#Obtaining-corrected-data" title="Link to this heading">#</a></h2>
-<p>You can use <code class="docutils literal notranslate"><span class="pre">transform</span></code> method to residualize the identified confounder PCs from any data.</p>
+<section id="Obtaining-corrected-data-and-confounder-matrices">
+<h2><span class="section-number">2.4. </span>Obtaining corrected data and confounder matrices<a class="headerlink" href="#Obtaining-corrected-data-and-confounder-matrices" title="Link to this heading">#</a></h2>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">transform</span></code> method to residualize the identified confounder PCs from any data. The resulting data frame can be exported in a file and distributed with the original raw data to facilitate reproducibility of your analysis.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_data_test_clean contains clean data (residuals)</span>
@@ -1543,6 +1590,115 @@
 <p>377 rows × 10021 columns</p>
 </div></div>
 </div>
+<p>You can also obtain a data frame with per-sample confounder PC values (note that PC indices are 0-based). If your samples have known metadata variables, you can correlate them with the values of confounder PCs to get insight on the confounding signal (see Figures 2F and 3F in our paper).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_confounders</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">compute_confounders</span><span class="p">(</span><span class="n">df_data_test</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_confounders</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PC_0</th>
+      <th>PC_1</th>
+      <th>PC_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>GTEX-1122O-0005-SM-5O99J</th>
+      <td>-77.795440</td>
+      <td>30.096142</td>
+      <td>2.478385</td>
+    </tr>
+    <tr>
+      <th>GTEX-113IC-0006-SM-5NQ9C</th>
+      <td>5.578602</td>
+      <td>39.257367</td>
+      <td>-58.918273</td>
+    </tr>
+    <tr>
+      <th>GTEX-117XS-0005-SM-5PNU6</th>
+      <td>72.421864</td>
+      <td>-46.543171</td>
+      <td>-6.697147</td>
+    </tr>
+    <tr>
+      <th>GTEX-1192W-0005-SM-5NQBQ</th>
+      <td>61.764435</td>
+      <td>-17.245763</td>
+      <td>-7.978997</td>
+    </tr>
+    <tr>
+      <th>GTEX-11DXW-0006-SM-5NQ7Y</th>
+      <td>61.639184</td>
+      <td>-18.790421</td>
+      <td>-25.956728</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZVE2-0006-SM-51MRW</th>
+      <td>14.852568</td>
+      <td>7.832459</td>
+      <td>40.815036</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZVT2-0005-SM-57WBW</th>
+      <td>-66.880424</td>
+      <td>14.664277</td>
+      <td>6.053250</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZVT4-0006-SM-57WB8</th>
+      <td>24.650767</td>
+      <td>7.150354</td>
+      <td>28.726063</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZVZP-0006-SM-51MSW</th>
+      <td>-79.053762</td>
+      <td>-5.825063</td>
+      <td>5.588776</td>
+    </tr>
+    <tr>
+      <th>GTEX-ZXES-0005-SM-57WCB</th>
+      <td>-49.671241</td>
+      <td>10.018337</td>
+      <td>-14.464119</td>
+    </tr>
+  </tbody>
+</table>
+<p>377 rows × 3 columns</p>
+</div></div>
+</div>
 </section>
 <section id="Exporting-correlations-to-file">
 <h2><span class="section-number">2.5. </span>Exporting correlations to file<a class="headerlink" href="#Exporting-correlations-to-file" title="Link to this heading">#</a></h2>
@@ -1791,8 +1947,8 @@
 <ol class="arabic simple">
 <li><p><strong>flag</strong>:</p>
 <ul class="simple">
-<li><p><strong>== 1</strong>: the feature pair is shared.</p></li>
-<li><p><strong>== 0</strong>: the feature pair is non-shared, though both features are present in <em>some</em> sets of the collection.</p></li>
+<li><p><strong>== 1</strong>: the feature pair is reference.</p></li>
+<li><p><strong>== 0</strong>: the feature pair is non-reference, though both features are present in <em>some</em> sets of the collection.</p></li>
 <li><p><strong>== -1</strong>: one of the features of the pair is absent from <em>all</em> sets of the collection.</p></li>
 </ul>
 </li>
@@ -1856,19 +2012,10 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Training-the-model">2.1. Training the model</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Computing-and-visualizing-enrichments">2.2. Computing and visualizing enrichments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Visualizing-distribution-of-correlations">2.3. Visualizing distribution of correlations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Obtaining-corrected-data">2.4. Obtaining corrected data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Obtaining-corrected-data-and-confounder-matrices">2.4. Obtaining corrected data and confounder matrices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Exporting-correlations-to-file">2.5. Exporting correlations to file</a></li>
 </ul>
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/tutorial/standard_run.ipynb.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
 
 </div></div>
               
@@ -1883,8 +2030,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1895,7 +2042,7 @@
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
@@ -1917,7 +2064,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>
