@@ -394,7 +394,57 @@ class CorrAdjust:
         df_rsquareds = pd.DataFrame(rsquareds, index=df_data.columns, columns=["rsquared"])
         
         return df_data_clean, df_rsquareds
-    
+
+    def compute_confounders(self, df_data, df_samp_ann=None):
+        """
+        Compute the data frame with confounders from input data.
+        This method should be called after `fit`, or after manually
+        calling `fit_PCA` and setting `confounder_PCs` attribute.
+
+        Parameters
+        ----------
+        df_data : pandas.DataFrame
+            Input data. Index = samples, columns = feature ids.
+            Feature ids should perfectly match the ones used in
+            `df_feature_ann` while initializing the object.
+        df_samp_ann : pandas.DataFrame or None, optional, default=None
+            A data frame providing group annotation of samples.
+            This argument is mandatory if it was used during `fit` call.
+
+        Returns
+        -------
+        pandas.DataFrame
+            Data frame with values of confounder PCs.
+            Note that PC indices are 0-based.
+        """
+        
+        assert (
+            hasattr(self, "confounder_PCs")
+        ), (
+            "CorrAdjust instance must have confounder_PCs attribute when calling compute_confounders. "
+            "Call fit method or manually set the attribute."
+        )
+        assert (
+            hasattr(self, "PCA_model") and hasattr(self, "mean_centerizer")
+        ), "fit_PCA should be called prior to compute_confounders."
+        
+        self._check_df_data(df_data)
+        self._check_df_samp_ann(df_samp_ann, df_data, after_training=True)
+        
+        if self.winsorizer is not None:
+            df_data = self.winsorizer.transform(df_data)
+        df_data = self.mean_centerizer.transform(df_data, df_samp_ann)
+
+        X_raw = df_data.to_numpy()
+        X_PCA = self.PCA_model.transform(df_data)
+
+        df_confounders = pd.DataFrame(
+            X_PCA[:, self.confounder_PCs],
+            index=df_data.index,
+            columns=[f"PC_{i}" for i in self.confounder_PCs]
+        )
+        
+        return df_confounders
     
     def compute_feature_scores(
         self,
