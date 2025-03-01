@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>corradjust.corradjust &#8212; CorrAdjust 0.9.0 documentation</title>
+    <title>corradjust.corradjust &#8212; CorrAdjust 1.0.0 documentation</title>
   
   
   
@@ -15,8 +15,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -26,22 +26,24 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/corradjust';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/_modules/corradjust/corradjust.html" />
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -107,8 +109,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -139,6 +149,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../modules/corradjust.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
   </a>
 </li>
 
@@ -249,6 +266,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -289,9 +313,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -338,29 +367,29 @@
                 <article class="bd-article">
                   
   <h1>Source code for corradjust.corradjust</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">parallel_sort</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">parallel_sort</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
-<span class="kn">from</span> <span class="nn">pyarrow</span> <span class="kn">import</span> <span class="n">csv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="kn">import</span> <span class="n">csv</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
-<span class="kn">from</span> <span class="nn">kneed</span> <span class="kn">import</span> <span class="n">KneeLocator</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kneed</span><span class="w"> </span><span class="kn">import</span> <span class="n">KneeLocator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">corradjust.metrics</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">corradjust.plots</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">corradjust.utils</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">corradjust.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">corradjust.plots</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">corradjust.utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 
 <div class="viewcode-block" id="CorrAdjust">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust">[docs]</a>
-<span class="k">class</span> <span class="nc">CorrAdjust</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CorrAdjust</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The main CorrAdjust class.</span>
 
@@ -381,9 +410,9 @@
 <span class="sd">          you could use more than one type (e.g., ``&quot;miRNA&quot;`` and ``&quot;mRNA&quot;``).</span>
 <span class="sd">          Feature types shouldn&#39;t contain ``&quot;-&quot;`` character.</span>
 
-<span class="sd">    ref_feature_sets : dict</span>
+<span class="sd">    ref_feature_colls : dict</span>
 <span class="sd">        A dictionary with information about reference feature set collections.</span>
-<span class="sd">        Each collection is an item of `ref_feature_sets` with key being</span>
+<span class="sd">        Each collection is an item of `ref_feature_colls` with key being</span>
 <span class="sd">        collection name (string) and value being another dict with the</span>
 <span class="sd">        following structure.</span>
 
@@ -470,10 +499,10 @@
 <span class="sd">        Populated by constructor.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_feature_ann</span><span class="p">,</span>
-        <span class="n">ref_feature_sets</span><span class="p">,</span>
+        <span class="n">ref_feature_colls</span><span class="p">,</span>
         <span class="n">out_dir</span><span class="p">,</span>
         <span class="n">winsorize</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
         <span class="n">shuffle_feature_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -500,7 +529,7 @@
         <span class="c1"># Load reference data in a data structure</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span> <span class="o">=</span> <span class="n">CorrScorer</span><span class="p">(</span>
             <span class="n">df_feature_ann</span><span class="p">,</span>
-            <span class="n">ref_feature_sets</span><span class="p">,</span>
+            <span class="n">ref_feature_colls</span><span class="p">,</span>
             <span class="n">shuffle_feature_names</span><span class="p">,</span>
             <span class="n">metric</span><span class="p">,</span>
             <span class="n">min_pairs_to_score</span><span class="p">,</span>
@@ -514,7 +543,7 @@
 
 <div class="viewcode-block" id="CorrAdjust.fit">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.fit">[docs]</a>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_data</span><span class="p">,</span>
         <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -613,7 +642,7 @@
 
 <div class="viewcode-block" id="CorrAdjust.fit_PCA">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.fit_PCA">[docs]</a>
-    <span class="k">def</span> <span class="nf">fit_PCA</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_var</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_PCA</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">plot_var</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute principal components of training data.</span>
 <span class="sd">        The data are centered and optionally winsorized before</span>
@@ -691,7 +720,7 @@
     
 <div class="viewcode-block" id="CorrAdjust.transform">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.transform">[docs]</a>
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Residualize identified confounder PCs from input data.</span>
 <span class="sd">        This method should be called after `fit`, or after manually</span>
@@ -745,11 +774,64 @@
         
         <span class="k">return</span> <span class="n">df_data_clean</span><span class="p">,</span> <span class="n">df_rsquareds</span></div>
 
-    
+
+<div class="viewcode-block" id="CorrAdjust.compute_confounders">
+<a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.compute_confounders">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_confounders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the data frame with confounders from input data.</span>
+<span class="sd">        This method should be called after `fit`, or after manually</span>
+<span class="sd">        calling `fit_PCA` and setting `confounder_PCs` attribute.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df_data : pandas.DataFrame</span>
+<span class="sd">            Input data. Index = samples, columns = feature ids.</span>
+<span class="sd">            Feature ids should perfectly match the ones used in</span>
+<span class="sd">            `df_feature_ann` while initializing the object.</span>
+<span class="sd">        df_samp_ann : pandas.DataFrame or None, optional, default=None</span>
+<span class="sd">            A data frame providing group annotation of samples.</span>
+<span class="sd">            This argument is mandatory if it was used during `fit` call.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas.DataFrame</span>
+<span class="sd">            Data frame with values of confounder PCs.</span>
+<span class="sd">            Note that PC indices are 0-based.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="p">(</span>
+            <span class="s2">&quot;CorrAdjust instance must have confounder_PCs attribute when calling compute_confounders. &quot;</span>
+            <span class="s2">&quot;Call fit method or manually set the attribute.&quot;</span>
+        <span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;PCA_model&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;mean_centerizer&quot;</span><span class="p">)</span>
+        <span class="p">),</span> <span class="s2">&quot;fit_PCA should be called prior to compute_confounders.&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_data</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_df_samp_ann</span><span class="p">(</span><span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">winsorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+        <span class="n">df_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean_centerizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">)</span>
+
+        <span class="n">X_raw</span> <span class="o">=</span> <span class="n">df_data</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">X_PCA</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PCA_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+
+        <span class="n">df_confounders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="n">X_PCA</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">],</span>
+            <span class="n">index</span><span class="o">=</span><span class="n">df_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;PC_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">]</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">df_confounders</span></div>
+
     
 <div class="viewcode-block" id="CorrAdjust.compute_feature_scores">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.compute_feature_scores">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_feature_scores</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_feature_scores</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_data</span><span class="p">,</span>
         <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -784,7 +866,7 @@
 
 <span class="sd">            | {</span>
 <span class="sd">            |     ``&quot;Clean&quot;`` : {</span>
-<span class="sd">            |         ``ref_feature_set_name`` : pandas.DataFrame</span>
+<span class="sd">            |         ``ref_feature_coll`` : pandas.DataFrame</span>
 <span class="sd">            |     },</span>
 <span class="sd">            |     ``&quot;Raw&quot;``: {...}</span>
 <span class="sd">            | }.</span>
@@ -825,31 +907,31 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
-            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="p">:</span>
                 <span class="n">subset_idx</span> <span class="o">=</span> <span class="n">subset_idxs</span><span class="p">[</span><span class="n">pairs_subset</span><span class="p">]</span>
-                <span class="n">total_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
-                <span class="n">total_neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
+                <span class="n">total_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_pos&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
+                <span class="n">total_neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;features_total_neg&quot;</span><span class="p">][</span><span class="n">subset_idx</span><span class="p">]</span>
 
                 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
                     <span class="s2">&quot;feature_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_ids</span><span class="p">,</span>
                     <span class="s2">&quot;feature_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">,</span>
-                    <span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;TPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;num_pairs </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">:</span> <span class="n">total_pos</span><span class="p">,</span>
+                    <span class="s2">&quot;ref_pairs@K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;TPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;num_pairs </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;ref_pairs@total&quot;</span><span class="p">:</span> <span class="n">total_pos</span><span class="p">,</span>
                     <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="n">total_pos</span> <span class="o">+</span> <span class="n">total_neg</span><span class="p">,</span>
-                    <span class="s2">&quot;enrichment&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;enrichments </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;balanced_precision&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;BPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;pvalue&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
-                    <span class="s2">&quot;padj&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues_adj </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;enrichment&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;enrichments </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;balanced_precision&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;BPs_at_K </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;pvalue&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
+                    <span class="s2">&quot;padj&quot;</span><span class="p">:</span> <span class="n">corr_scores</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;pvalues_adj </span><span class="si">{</span><span class="n">pairs_subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
                 <span class="p">})</span>
                 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;feature_id&quot;</span><span class="p">)</span>
 
-                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
-                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@K&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+                <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
                 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;K&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">])</span>
 
                 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;padj&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_id&quot;</span><span class="p">])</span>
-                <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">ref_feature_set</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
+                <span class="n">feature_scores</span><span class="p">[</span><span class="n">state</span><span class="p">][</span><span class="n">ref_feature_coll</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
 
         <span class="k">return</span> <span class="n">feature_scores</span></div>
 
@@ -857,15 +939,10 @@
 
 <div class="viewcode-block" id="CorrAdjust.make_volcano_plot">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.make_volcano_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">make_volcano_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_volcano_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
         <span class="n">feature_scores</span><span class="p">,</span>
         <span class="n">plot_filename</span><span class="p">,</span>
-        <span class="n">annotate_features</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">annot_fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-        <span class="n">feature_name_fmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">signif_color</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set1&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">),</span>
-        <span class="n">nonsignif_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
-        <span class="n">panel_size</span><span class="o">=</span><span class="mf">4.8</span>
+        <span class="o">**</span><span class="n">plot_kwargs</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make volcano plot.</span>
@@ -876,21 +953,9 @@
 <span class="sd">            Dict produced by `compute_feature_scores` method.</span>
 <span class="sd">        plot_filename : str</span>
 <span class="sd">            Path to the figure (with extension, e.g., ``.png``).</span>
-<span class="sd">        annotate_features : bool or int, optional, default=False</span>
-<span class="sd">            If `int`, corresponding number of features with the lowest</span>
-<span class="sd">            adjusted p-values will be annotated on the volcano plots.</span>
-<span class="sd">        annot_fontsize : int, optional, default=8</span>
-<span class="sd">            Font size of feature names when ``annotate_features == True``.</span>
-<span class="sd">        feature_name_fmt : function or None, optional, default=None</span>
-<span class="sd">            Function that maps feature names to labels to show on the plot</span>
-<span class="sd">            when ``annotate_features == True``.</span>
-<span class="sd">            If ``None``, shows unmodified feature names.</span>
-<span class="sd">        signif_color : matplotlib color, optional</span>
-<span class="sd">            Color to draw statistically significant features.</span>
-<span class="sd">        nonsignif_color : matplotlib color, optional</span>
-<span class="sd">            Color to draw non-significant features.</span>
-<span class="sd">        panel_size : float, optional, default=4.8</span>
-<span class="sd">            Size of each (square) panel.</span>
+<span class="sd">        **plot_kwargs</span>
+<span class="sd">            Other keyword arguments controlling plot</span>
+<span class="sd">            aesthetics passed to `VolcanoPlotter`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -900,15 +965,7 @@
 <span class="sd">            can change it through fig/ax and re-save.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="n">plotter</span> <span class="o">=</span> <span class="n">VolcanoPlotter</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span>
-            <span class="n">annotate_features</span><span class="o">=</span><span class="n">annotate_features</span><span class="p">,</span>
-            <span class="n">annot_fontsize</span><span class="o">=</span><span class="n">annot_fontsize</span><span class="p">,</span>
-            <span class="n">feature_name_fmt</span><span class="o">=</span><span class="n">feature_name_fmt</span><span class="p">,</span>
-            <span class="n">signif_color</span><span class="o">=</span><span class="n">signif_color</span><span class="p">,</span>
-            <span class="n">nonsignif_color</span><span class="o">=</span><span class="n">nonsignif_color</span><span class="p">,</span>
-            <span class="n">panel_size</span><span class="o">=</span><span class="n">panel_size</span>
-        <span class="p">)</span>
+        <span class="n">plotter</span> <span class="o">=</span> <span class="n">VolcanoPlotter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
         <span class="n">plotter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">feature_scores</span><span class="p">)</span>
         <span class="n">plotter</span><span class="o">.</span><span class="n">save_plot</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">plot_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
 
@@ -918,13 +975,14 @@
 
 <div class="viewcode-block" id="CorrAdjust.make_corr_distr_plot">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.make_corr_distr_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">make_corr_distr_plot</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_corr_distr_plot</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_data</span><span class="p">,</span>
         <span class="n">plot_filename</span><span class="p">,</span>
         <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">samp_group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">pairs_subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span>
+        <span class="n">pairs_subset</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">plot_kwargs</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Visualize distribution of feature-feature correlations</span>
@@ -946,6 +1004,9 @@
 <span class="sd">            and should refer to one of the sample groups in `df_samp_ann`.</span>
 <span class="sd">        pairs_subset : {&quot;all&quot;, &quot;training&quot;, &quot;validation&quot;}, optional, default=&quot;all&quot;</span>
 <span class="sd">            Which set of feature pairs to use for computing scores.</span>
+<span class="sd">        **plot_kwargs</span>
+<span class="sd">            Other keyword arguments controlling plot</span>
+<span class="sd">            aesthetics passed to `CorrDistrPlotter`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -982,7 +1043,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">corr_scores_clean</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="n">plotter</span> <span class="o">=</span> <span class="n">CorrDistrPlotter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span> <span class="n">pairs_subset</span><span class="o">=</span><span class="n">pairs_subset</span><span class="p">)</span>
+        <span class="n">plotter</span> <span class="o">=</span> <span class="n">CorrDistrPlotter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="p">,</span> <span class="n">pairs_subset</span><span class="o">=</span><span class="n">pairs_subset</span><span class="p">,</span> <span class="o">**</span><span class="n">plot_kwargs</span><span class="p">)</span>
 
         <span class="n">plotter</span><span class="o">.</span><span class="n">add_plots</span><span class="p">(</span><span class="n">corr_scores_raw</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;Raw&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;confounder_PCs&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">confounder_PCs</span><span class="p">):</span>
@@ -996,7 +1057,7 @@
 
 <div class="viewcode-block" id="CorrAdjust.export_corrs">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.export_corrs">[docs]</a>
-    <span class="k">def</span> <span class="nf">export_corrs</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">export_corrs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_data</span><span class="p">,</span>
         <span class="n">filename</span><span class="p">,</span>
@@ -1063,13 +1124,12 @@
             <span class="s2">&quot;corr_clean&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue_clean&quot;</span><span class="p">,</span>
             <span class="s2">&quot;corr_raw&quot;</span><span class="p">,</span> <span class="s2">&quot;pvalue_raw&quot;</span><span class="p">,</span>
         <span class="p">]</span> 
-        <span class="n">ref_feature_set_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-        <span class="n">ref_feature_set_header</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">col_type</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">ref_feature_set_names</span>
+        <span class="n">ref_feature_coll_header</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">col_type</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">col_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;flag&quot;</span><span class="p">,</span> <span class="s2">&quot;trainval&quot;</span><span class="p">]</span>
         <span class="p">]</span>
-        <span class="n">header</span> <span class="o">+=</span> <span class="n">ref_feature_set_header</span>
+        <span class="n">header</span> <span class="o">+=</span> <span class="n">ref_feature_coll_header</span>
         <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
         <span class="n">out_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">header</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">out_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -1111,12 +1171,12 @@
             <span class="p">}</span>
 
             <span class="n">ref_feature_columns</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_flag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">_flag&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
                 <span class="p">)</span>
-                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">_trainval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+                <span class="n">ref_feature_columns</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">_trainval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">corr_scorer</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="s2">&quot;train_val_mask&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
                 <span class="p">)</span>
 
             <span class="n">tab</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">({</span>
@@ -1139,7 +1199,7 @@
 
 <div class="viewcode-block" id="CorrAdjust._search_confounder_PCs">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._search_confounder_PCs">[docs]</a>
-    <span class="k">def</span> <span class="nf">_search_confounder_PCs</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_search_confounder_PCs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">df_data</span><span class="p">,</span>
         <span class="n">df_samp_ann</span><span class="p">,</span>
@@ -1271,7 +1331,7 @@
 
 <div class="viewcode-block" id="CorrAdjust._compute_corrs_and_scores">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._compute_corrs_and_scores">[docs]</a>
-    <span class="k">def</span> <span class="nf">_compute_corrs_and_scores</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_corrs_and_scores</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">X</span><span class="p">,</span>
         <span class="n">df_samp_ann</span><span class="p">,</span>
@@ -1306,7 +1366,7 @@
 
 <span class="sd">            | {</span>
 <span class="sd">            |     ``sample_group_name`` : {</span>
-<span class="sd">            |         ``ref_feature_set_name`` : {</span>
+<span class="sd">            |         ``ref_feature_coll`` : {</span>
 <span class="sd">            |             ``&quot;score training&quot;`` : float,</span>
 <span class="sd">            |             ``&quot;score validation&quot;`` : float,</span>
 <span class="sd">            |             ``&quot;score all&quot;`` : float,</span>
@@ -1334,32 +1394,31 @@
 
             <span class="c1"># Re-arrange scores in a dict</span>
             <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="n">ref_feature_set</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">ref_feature_coll</span><span class="p">:</span> <span class="p">{</span>
                     <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
                     <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
                 <span class="p">}</span>
-                <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">corr_scores</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="p">}</span>
             <span class="c1"># Compute mean score across reference collections (within sample group)</span>
             <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">][</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
                     <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
-                    <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                 <span class="p">])</span>
                 <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
             <span class="p">}</span>
 
         <span class="c1"># We also compute mean across sample groups</span>
-        <span class="n">ref_feature_sets</span> <span class="o">=</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">unique_samp_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="n">iter_scores</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="n">ref_feature_set</span><span class="p">:</span> <span class="p">{</span>
+            <span class="n">ref_feature_coll</span><span class="p">:</span> <span class="p">{</span>
                 <span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
-                    <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">][</span><span class="n">ref_feature_set</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                    <span class="n">iter_scores</span><span class="p">[</span><span class="n">samp_group</span><span class="p">][</span><span class="n">ref_feature_coll</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;score </span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
                     <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">unique_samp_groups</span>
                 <span class="p">])</span>
                 <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">metric_subsets</span>
             <span class="p">}</span>
-            <span class="k">for</span> <span class="n">ref_feature_set</span> <span class="ow">in</span> <span class="n">ref_feature_sets</span>
+            <span class="k">for</span> <span class="n">ref_feature_coll</span> <span class="ow">in</span> <span class="n">iter_scores</span><span class="p">[</span><span class="n">unique_samp_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="p">}</span>
         <span class="n">main_score</span> <span class="o">=</span> <span class="n">iter_scores</span><span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">][</span><span class="s2">&quot;mean&quot;</span><span class="p">][</span><span class="s2">&quot;score training&quot;</span><span class="p">]</span>
 
@@ -1380,7 +1439,7 @@
 
 <div class="viewcode-block" id="CorrAdjust._best_iter_scores_to_df">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._best_iter_scores_to_df">[docs]</a>
-    <span class="k">def</span> <span class="nf">_best_iter_scores_to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">best_iter_scores</span><span class="p">,</span> <span class="n">used_PCs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_best_iter_scores_to_df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">best_iter_scores</span><span class="p">,</span> <span class="n">used_PCs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert dict of scores into data frame.</span>
 
@@ -1403,14 +1462,14 @@
 <span class="sd">            - Column ``PC``: index of PC being regressed out on each iteration.</span>
 <span class="sd">              First row always have NaN (no correction).</span>
 <span class="sd">            - Score columns: these columns have the following format:</span>
-<span class="sd">              ``&quot;{sample_group_name};{ref_feature_set_name};{training/validation/all}&quot;``.</span>
+<span class="sd">              ``&quot;{sample_group_name};{ref_feature_coll};{training/validation/all}&quot;``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">best_iter_scores</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">ref_feature_set</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;score &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">value</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">samp_group</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">ref_feature_coll</span><span class="si">}</span><span class="s2">;</span><span class="si">{</span><span class="n">metric</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;score &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">value</span>
                 <span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="n">iter_scores_dict</span>
-                <span class="k">for</span> <span class="n">ref_feature_set</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores_dict</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">ref_feature_coll</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">iter_scores_dict</span><span class="p">[</span><span class="n">samp_group</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">metric</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="p">}</span>
             <span class="k">for</span> <span class="n">iter_scores_dict</span> <span class="ow">in</span> <span class="n">best_iter_scores</span>
@@ -1426,7 +1485,7 @@
 
 <div class="viewcode-block" id="CorrAdjust._make_best_iter_scores_plot">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._make_best_iter_scores_plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">_make_best_iter_scores_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_best_iter_scores</span><span class="p">,</span> <span class="n">peak_iter</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_make_best_iter_scores_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_best_iter_scores</span><span class="p">,</span> <span class="n">peak_iter</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make optimization score line plots.</span>
 <span class="sd">        If there is one sample group, only one plot</span>
@@ -1468,7 +1527,7 @@
 
 <div class="viewcode-block" id="CorrAdjust._compute_raw_and_clean_corrs">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._compute_raw_and_clean_corrs">[docs]</a>
-    <span class="k">def</span> <span class="nf">_compute_raw_and_clean_corrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">samp_group</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_raw_and_clean_corrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">samp_group</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute correlations before and after residualizing</span>
 <span class="sd">        PC confounders for a given group of samples.</span>
@@ -1533,7 +1592,7 @@
 
 <div class="viewcode-block" id="CorrAdjust._check_df_data">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._check_df_data">[docs]</a>
-    <span class="k">def</span> <span class="nf">_check_df_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_df_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check validity of input data.</span>
 
@@ -1564,7 +1623,7 @@
 
 <div class="viewcode-block" id="CorrAdjust._check_df_samp_ann">
 <a class="viewcode-back" href="../../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust._check_df_samp_ann">[docs]</a>
-    <span class="k">def</span> <span class="nf">_check_df_samp_ann</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_df_samp_ann</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">after_training</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check validity of sample annotation.</span>
 
@@ -1640,8 +1699,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1652,7 +1711,7 @@
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
@@ -1674,7 +1733,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

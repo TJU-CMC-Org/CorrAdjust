@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Selecting hyperparameters &#8212; CorrAdjust 0.9.0 documentation</title>
+    <title>3. Selecting hyperparameters &#8212; CorrAdjust 1.0.0 documentation</title>
   
   
   
@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,25 +27,27 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/hyperparameters';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/tutorial/hyperparameters.html" />
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. Advanced example" href="advanced_run.html" />
@@ -113,8 +115,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -145,6 +155,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../modules/corradjust.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
   </a>
 </li>
 
@@ -257,6 +274,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -313,9 +337,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -373,13 +402,13 @@
 <p>The main goal of CorrAdjust is to find a subset of confounder PCs to regress out from the data. The search of this subset could be limited to the first <code class="docutils literal notranslate"><span class="pre">n_PCs</span></code> to dramatically improve time requirements, as the total number of algorithm iterations is proportional to <code class="docutils literal notranslate"><span class="pre">n_PCs</span> <span class="pre">**</span> <span class="pre">2</span></code>.</p>
 <p>The default method to determine number of PCs is to plot cumulative % variance explained by each PC, and then automatically select the “knee” point. Any other value that confidently falls in the “plateau” zone of the cumulative plot will work as well. Alternatively, you can use <code class="docutils literal notranslate"><span class="pre">num.sv</span></code> function from the <code class="docutils literal notranslate"><span class="pre">sva</span></code> package in R to estimate the number of significant PCs.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Re-initialize the model</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">CorrAdjust</span><span class="p">(</span>
     <span class="n">df_feature_ann</span><span class="p">,</span>
-    <span class="n">ref_feature_sets</span><span class="p">,</span>
+    <span class="n">ref_feature_colls</span><span class="p">,</span>
     <span class="s2">&quot;out_data/GTEx_Whole_Blood&quot;</span>
 <span class="p">)</span>
 
@@ -395,9 +424,9 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:39:01.926891 | Loading Canonical Pathways reference sets...
-2024-11-15 16:39:03.148461 | Loading Gene Ontology reference sets...
-2024-11-15 16:39:05.035720 | Computing PCA...
+2025-02-28 20:00:51.535175 | Loading Canonical Pathways reference collection...
+2025-02-28 20:00:52.866908 | Loading Gene Ontology reference collection...
+2025-02-28 20:00:54.972667 | Computing PCA...
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -419,7 +448,7 @@
 </ul>
 <p>You might consider decreasing <code class="docutils literal notranslate"><span class="pre">high_corr_frac</span></code> if CorrAdjust shows very little or no improvement in score compared to the baseline during the <code class="docutils literal notranslate"><span class="pre">fit</span></code> call. Plotting correlation distribution plots for the raw (uncorrected) correlations is a good starting point.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">make_corr_distr_plot</span><span class="p">(</span><span class="n">df_data_train</span><span class="p">,</span> <span class="s2">&quot;corr_distr.before_cleaning.png&quot;</span><span class="p">)</span>
@@ -431,16 +460,16 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:39:07.126907 | Computing raw correlations for all_samp...
+2025-02-28 20:00:57.335620 | Computing raw correlations for all_samp...
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;corradjust.plots.CorrDistrPlotter at 0x7f4378326260&gt;
+&lt;corradjust.plots.CorrDistrPlotter at 0x7f5e795d7170&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -455,7 +484,7 @@ cleaning.</p>
 <p>To sum up, we recommend aiming at the raw correlation threshold somewhere in the 0.4–0.8 range. If you decided to change the default, don’t forget to update the value of <code class="docutils literal notranslate"><span class="pre">high_corr_frac</span></code> in the configuration dict and re-create the <code class="docutils literal notranslate"><span class="pre">CorrAdjust</span></code> instance.</p>
 <p>Finally, you can make volcano plots using the raw data to see whether you have any statistically significant features before running time-consuming <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_scores_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">compute_feature_scores</span><span class="p">(</span><span class="n">df_data_train</span><span class="p">)</span>
@@ -472,16 +501,16 @@ cleaning.</p>
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:39:16.292379 | Computing raw correlations for all_samp...
+2025-02-28 20:01:07.473775 | Computing raw correlations for all_samp...
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;corradjust.plots.VolcanoPlotter at 0x7f42ec3da6e0&gt;
+&lt;corradjust.plots.VolcanoPlotter at 0x7f5e7a158050&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -546,15 +575,6 @@ cleaning.</p>
 </ul>
   </nav></div>
 
-  <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/tutorial/hyperparameters.ipynb.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
-
 </div></div>
               
             
@@ -568,8 +588,8 @@ cleaning.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -580,7 +600,7 @@ cleaning.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
@@ -602,7 +622,8 @@ cleaning.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

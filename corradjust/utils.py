@@ -536,10 +536,10 @@ def compute_aggregated_scores(df):
     """
 
     df = df.dropna()
-    agg_total_pos = df["shared_pairs@total"].str.split("/").str[0].astype("Int64").sum()
-    agg_total = df["shared_pairs@total"].str.split("/").str[1].astype("Int64").sum()
-    agg_K_pos = df["shared_pairs@K"].str.split("/").str[0].astype("Int64").sum()
-    agg_K = df["shared_pairs@K"].str.split("/").str[1].astype("Int64").sum()
+    agg_total_pos = df["ref_pairs@total"].str.split("/").str[0].astype("Int64").sum()
+    agg_total = df["ref_pairs@total"].str.split("/").str[1].astype("Int64").sum()
+    agg_K_pos = df["ref_pairs@K"].str.split("/").str[0].astype("Int64").sum()
+    agg_K = df["ref_pairs@K"].str.split("/").str[1].astype("Int64").sum()
 
     # Balanced precision at K
     agg_BP_at_K_TP = agg_K_pos / agg_K * (agg_total - agg_total_pos)

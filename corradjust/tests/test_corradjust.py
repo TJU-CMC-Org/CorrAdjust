@@ -25,9 +25,9 @@ def corradjust_res():
     df_data_test = pd.read_csv(f"{script_dir}/test_data/df_data_test.tsv", sep="\t", index_col=0)
     df_feature_ann = pd.read_csv(f"{script_dir}/test_data/df_feature_ann.tsv", sep="\t", index_col=0)
 
-    ref_feature_sets = {
-        "TestFeatureSets": {
-            "path": f"{script_dir}/test_data/ref_feature_sets.gmt",
+    ref_feature_colls = {
+        "TestFeatureCollection": {
+            "path": f"{script_dir}/test_data/ref_feature_collection.gmt",
             "sign": "positive",
             "feature_pair_types": ["mRNA-mRNA"],
             "high_corr_frac": 0.05,
@@ -41,7 +41,7 @@ def corradjust_res():
     print("", file=sys.stderr)
     model = CorrAdjust(
         df_feature_ann,
-        ref_feature_sets,
+        ref_feature_colls,
         out_dir,
         winsorize=None,
         min_pairs_to_score=100
@@ -61,7 +61,7 @@ def corradjust_res():
 
             os.makedirs(f"{out_dir}/scores", exist_ok=True)
             for state in ["Raw", "Clean"]:
-                df_scores = feature_scores[state]["TestFeatureSets"]
+                df_scores = feature_scores[state]["TestFeatureCollection"]
                 df_scores.to_csv(
                     f"{out_dir}/scores/{samples_subset}_samples.{pairs_subset}_pairs.{state}.tsv",
                     sep="\t"

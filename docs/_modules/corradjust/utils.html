@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>corradjust.utils &#8212; CorrAdjust 0.9.0 documentation</title>
+    <title>corradjust.utils &#8212; CorrAdjust 1.0.0 documentation</title>
   
   
   
@@ -15,8 +15,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -26,22 +26,24 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
   
   <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/corradjust/utils';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/_modules/corradjust/utils.html" />
+    <link rel="icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -107,8 +109,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -139,6 +149,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../modules/corradjust.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
   </a>
 </li>
 
@@ -249,6 +266,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -289,9 +313,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -338,11 +367,11 @@
                 <article class="bd-article">
                   
   <h1>Source code for corradjust.utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">prange</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numba</span><span class="w"> </span><span class="kn">import</span> <span class="n">njit</span><span class="p">,</span> <span class="n">prange</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">beta</span>
 
 
 <span class="c1"># Global constants for numba</span>
@@ -355,7 +384,7 @@
 
 <div class="viewcode-block" id="MeanCenterizer">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MeanCenterizer">[docs]</a>
-<span class="k">class</span> <span class="nc">MeanCenterizer</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MeanCenterizer</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Center data by subtracting mean value from each feature.</span>
 <span class="sd">    This class has two important features.</span>
@@ -378,7 +407,7 @@
 
 <div class="viewcode-block" id="MeanCenterizer.fit">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MeanCenterizer.fit">[docs]</a>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute and save mean values for centering</span>
 <span class="sd">        in the `means` attribute.</span>
@@ -407,7 +436,7 @@
     
 <div class="viewcode-block" id="MeanCenterizer.transform">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MeanCenterizer.transform">[docs]</a>
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">,</span> <span class="n">df_samp_ann</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Center the data using mean values computed</span>
 <span class="sd">        during `fit` call.</span>
@@ -442,7 +471,7 @@
 
 <div class="viewcode-block" id="Winsorizer">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.Winsorizer">[docs]</a>
-<span class="k">class</span> <span class="nc">Winsorizer</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Winsorizer</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Winsorize each feature.</span>
 <span class="sd">    This class is train/test friendly.</span>
@@ -466,12 +495,12 @@
 <span class="sd">        Populated by calling `fit` method.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
     
 <div class="viewcode-block" id="Winsorizer.fit">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.Winsorizer.fit">[docs]</a>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute and save winsorization thresholds.</span>
 
@@ -489,7 +518,7 @@
     
 <div class="viewcode-block" id="Winsorizer.transform">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.Winsorizer.transform">[docs]</a>
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Winsorize the data using threshold values computed</span>
 <span class="sd">        during `fit` call.</span>
@@ -522,7 +551,7 @@
 
 <div class="viewcode-block" id="MedianOfRatios">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MedianOfRatios">[docs]</a>
-<span class="k">class</span> <span class="nc">MedianOfRatios</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MedianOfRatios</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Median of ratios normalization for RNA-seq data.</span>
 <span class="sd">    This class is train/test friendly.</span>
@@ -538,7 +567,7 @@
 
 <div class="viewcode-block" id="MedianOfRatios.fit">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MedianOfRatios.fit">[docs]</a>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute and save gene-wise geometrical means.</span>
 
@@ -557,7 +586,7 @@
     
 <div class="viewcode-block" id="MedianOfRatios.transform">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.MedianOfRatios.transform">[docs]</a>
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df_data</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Normalize the data using geometric mean values computed</span>
 <span class="sd">        during `fit` call.</span>
@@ -589,7 +618,7 @@
 
 <div class="viewcode-block" id="make_dummy_samp_ann">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.make_dummy_samp_ann">[docs]</a>
-<span class="k">def</span> <span class="nf">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_dummy_samp_ann</span><span class="p">(</span><span class="n">df_data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Make data frame with samples annotation,</span>
 <span class="sd">    where all samples belong to the same group named ``&quot;all_samp&quot;``.</span>
@@ -617,7 +646,7 @@
 
 <div class="viewcode-block" id="compute_pearson_columns">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.compute_pearson_columns">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_pearson_columns</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_pearson_columns</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute Pearson&#39;s correlation for</span>
 <span class="sd">    all-vs-all columns of input 2D array.</span>
@@ -649,7 +678,7 @@
 <div class="viewcode-block" id="flatten_corrs">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.flatten_corrs">[docs]</a>
 <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">flatten_corrs</span><span class="p">(</span><span class="n">corrs_2d</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">flatten_corrs</span><span class="p">(</span><span class="n">corrs_2d</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert 2D correlation matrix into 1D array.</span>
 <span class="sd">    This is parallel version with result equivalent to</span>
@@ -685,7 +714,7 @@
 
 <div class="viewcode-block" id="compute_corr_pvalues">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.compute_corr_pvalues">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_corr_pvalues</span><span class="p">(</span><span class="n">corrs</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_corr_pvalues</span><span class="p">(</span><span class="n">corrs</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute p-values testing null hypothesis</span>
 <span class="sd">    of input Pearson&#39;s correlations equal to zero.</span>
@@ -715,7 +744,7 @@
 
 <div class="viewcode-block" id="regress_out_columns">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.regress_out_columns">[docs]</a>
-<span class="k">def</span> <span class="nf">regress_out_columns</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">regress_out_columns</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Regress out all columns of `X2` from each columns of `X1`.</span>
 
@@ -758,7 +787,7 @@
 
 <div class="viewcode-block" id="find_peak">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.find_peak">[docs]</a>
-<span class="k">def</span> <span class="nf">find_peak</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_peak</span><span class="p">(</span>
     <span class="n">scores</span><span class="p">,</span>
     <span class="n">patience</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">min_rel_improvement</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
@@ -826,7 +855,7 @@
 <div class="viewcode-block" id="hypergeom_pvalues">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.hypergeom_pvalues">[docs]</a>
 <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hypergeom_pvalues</span><span class="p">(</span><span class="n">M_arr</span><span class="p">,</span> <span class="n">n_arr</span><span class="p">,</span> <span class="n">N_arr</span><span class="p">,</span> <span class="n">k_arr</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hypergeom_pvalues</span><span class="p">(</span><span class="n">M_arr</span><span class="p">,</span> <span class="n">n_arr</span><span class="p">,</span> <span class="n">N_arr</span><span class="p">,</span> <span class="n">k_arr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parallel computation of hypergeometric test</span>
 <span class="sd">    p-values over arrays of values ``M, n, N, k``.</span>
@@ -882,7 +911,7 @@
 <div class="viewcode-block" id="log_binom_coef">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.log_binom_coef">[docs]</a>
 <span class="nd">@njit</span><span class="p">(</span><span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">log_binom_coef</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log_binom_coef</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Logarithm of binomial coefficient ``(n k)``.</span>
 
@@ -908,7 +937,7 @@
 
 <div class="viewcode-block" id="compute_aggregated_scores">
 <a class="viewcode-back" href="../../modules/corradjust.utils.html#corradjust.utils.compute_aggregated_scores">[docs]</a>
-<span class="k">def</span> <span class="nf">compute_aggregated_scores</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_aggregated_scores</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute aggregated statistics from the data frame</span>
 <span class="sd">    of feature-wise scores.</span>
@@ -929,10 +958,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-    <span class="n">agg_total_pos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">agg_total</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">agg_K_pos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="n">agg_K</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;shared_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">agg_total_pos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">agg_total</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@total&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">agg_K_pos</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">agg_K</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ref_pairs@K&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
     <span class="c1"># Balanced precision at K</span>
     <span class="n">agg_BP_at_K_TP</span> <span class="o">=</span> <span class="n">agg_K_pos</span> <span class="o">/</span> <span class="n">agg_K</span> <span class="o">*</span> <span class="p">(</span><span class="n">agg_total</span> <span class="o">-</span> <span class="n">agg_total_pos</span><span class="p">)</span>
@@ -980,8 +1009,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -992,7 +1021,7 @@
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
@@ -1014,7 +1043,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

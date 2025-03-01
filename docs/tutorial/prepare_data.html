@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Preparing input data &#8212; CorrAdjust 0.9.0 documentation</title>
+    <title>1. Preparing input data &#8212; CorrAdjust 1.0.0 documentation</title>
   
   
   
@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,25 +27,27 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/prepare_data';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/tutorial/prepare_data.html" />
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2. Running CorrAdjust" href="standard_run.html" />
@@ -113,8 +115,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -145,6 +155,13 @@
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../modules/corradjust.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
   </a>
 </li>
 
@@ -257,6 +274,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -313,9 +337,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -378,9 +407,9 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">corradjust.utils</span> <span class="kn">import</span> <span class="n">MedianOfRatios</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">corradjust.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">MedianOfRatios</span>
 
 <span class="c1"># Raw read counts data</span>
 <span class="n">df_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
@@ -844,7 +873,7 @@
 <li><p><strong>Columns 3-…:</strong> feature names (number of features can differ between rows).</p></li>
 </ul>
 <p>You can find a <a class="reference external" href="https://github.com/TJU-CMC-Org/CorrAdjust/blob/master/corradjust/tests/test_data/ref_feature_sets.gmt">toy GMT file</a> in the CorrAdjust GitHub repository. For the current tutorial, we downloaded Canonical Pathways and Gene Ontology databases from <a class="reference external" href="https://www.gsea-msigdb.org/gsea/msigdb/index.jsp">MSigDB</a>.</p>
-<p>The package will take features from each line and label all possible feature pairs as belonging to the <strong>shared</strong> set. Thus, <span class="math notranslate nohighlight">\(n\)</span> features on a line will generate <span class="math notranslate nohighlight">\(n*(n-1)/2\)</span> shared pairs.</p>
+<p>The package will process the file line-by-line, and label all possible feature pairs from each line as <strong>reference pairs</strong>. Thus, <span class="math notranslate nohighlight">\(n\)</span> features on a line will generate <span class="math notranslate nohighlight">\(n*(n-1)/2\)</span> reference pairs.</p>
 <p>One reference set might be represented by several lines. This can be useful, e.g., for miRNA-target gene pairs:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -921,14 +950,14 @@
 </div>
 <p>then pairs composed of two target genes will also be labeled as <code class="docutils literal notranslate"><span class="pre">miR-X-targets</span></code>, which will be incorrect for the analysis of miRNA-mRNA targeting interactions. See <a class="reference internal" href="advanced_run.html"><span class="doc">Advanced example</span></a> for a miRNA-mRNA run.</p>
 </section>
-<section id="Reference-feature-sets-configuration">
-<h2><span class="section-number">1.3. </span>Reference feature sets configuration<a class="headerlink" href="#Reference-feature-sets-configuration" title="Link to this heading">#</a></h2>
-<p>Configuration dict specifies how reference sets should be handled by CorrAdjust. Below is the example of such a config for two mRNA-mRNA pathway databases. One config can contain an arbitrary number of different GMT files. See more detailed documentation in <a class="reference internal" href="../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust"><span class="std std-ref">API reference</span></a>.</p>
+<section id="Reference-feature-collections-configuration">
+<h2><span class="section-number">1.3. </span>Reference feature collections configuration<a class="headerlink" href="#Reference-feature-collections-configuration" title="Link to this heading">#</a></h2>
+<p>Configuration dict specifies how reference collections should be handled by CorrAdjust. Below is the example of such a config for two mRNA-mRNA pathway databases. One config can contain an arbitrary number of different collections (GMT files). See more detailed documentation in <a class="reference internal" href="../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust"><span class="std std-ref">API reference</span></a>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_feature_sets</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_feature_colls</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Canonical Pathways&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="c1"># Relative or absolute path to the GMT file.</span>
         <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;input_data/GMT_files/c2.cp.v2023.2.Hs.symbols.gmt&quot;</span><span class="p">,</span>
@@ -1004,18 +1033,9 @@
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Data-and-annotation-tables">1.1. Data and annotation tables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-GMT-files">1.2. Reference GMT files</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-feature-sets-configuration">1.3. Reference feature sets configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Reference-feature-collections-configuration">1.3. Reference feature collections configuration</a></li>
 </ul>
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/tutorial/prepare_data.ipynb.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
 
 </div></div>
               
@@ -1030,8 +1050,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1042,7 +1062,7 @@
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
@@ -1064,7 +1084,8 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

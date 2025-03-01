@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>corradjust.plots module &#8212; CorrAdjust 0.9.0 documentation</title>
+    <title>corradjust.plots module &#8212; CorrAdjust 1.0.0 documentation</title>
   
   
   
@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,22 +27,24 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules/corradjust.plots';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/modules/corradjust.plots.html" />
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="corradjust.utils module" href="corradjust.utils.html" />
@@ -110,8 +112,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -142,6 +152,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="corradjust.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
   </a>
 </li>
 
@@ -254,6 +271,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -309,9 +333,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -422,7 +451,7 @@ jupyter notebook in addition to saving the file.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="corradjust.plots.GreedyOptimizationPlotter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">GreedyOptimizationPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samp_group_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Dark2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#GreedyOptimizationPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.GreedyOptimizationPlotter" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">GreedyOptimizationPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samp_group_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[(0.09019607843137255,</span> <span class="pre">0.7450980392156863,</span> <span class="pre">0.8117647058823529),</span> <span class="pre">(0.7372549019607844,</span> <span class="pre">0.7411764705882353,</span> <span class="pre">0.13333333333333333),</span> <span class="pre">(0.8901960784313725,</span> <span class="pre">0.4666666666666667,</span> <span class="pre">0.7607843137254902),</span> <span class="pre">(0.5490196078431373,</span> <span class="pre">0.33725490196078434,</span> <span class="pre">0.29411764705882354),</span> <span class="pre">(0.5803921568627451,</span> <span class="pre">0.403921568627451,</span> <span class="pre">0.7411764705882353),</span> <span class="pre">(0.8392156862745098,</span> <span class="pre">0.15294117647058825,</span> <span class="pre">0.1568627450980392),</span> <span class="pre">(0.17254901960784313,</span> <span class="pre">0.6274509803921569,</span> <span class="pre">0.17254901960784313),</span> <span class="pre">(1.0,</span> <span class="pre">0.4980392156862745,</span> <span class="pre">0.054901960784313725),</span> <span class="pre">(0.12156862745098039,</span> <span class="pre">0.4666666666666667,</span> <span class="pre">0.7058823529411765)]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#GreedyOptimizationPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.GreedyOptimizationPlotter" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Create a lineplot with score optimization trajectories.</p>
 <dl class="field-list simple">
@@ -432,7 +461,7 @@ jupyter notebook in addition to saving the file.</p>
 </dd>
 <dt><strong>metric</strong><span class="classifier">{“enrichment-based”, “BP&#64;K”}, optional, default=”enrichment-based”</span></dt><dd><p>Metric for evaluating feature correlations.</p>
 </dd>
-<dt><strong>palette</strong><span class="classifier">str or list or dict, optional, default=”Dark2”</span></dt><dd><p>Name of matplotlib colormap or list of colors for the lines or
+<dt><strong>palette</strong><span class="classifier">str or list or dict, optional</span></dt><dd><p>Name of matplotlib colormap or list of colors for the lines or
 dict mapping reference collection names to colors.
 The argument is directly passed to <cite>sns.lineplot</cite>.</p>
 </dd>
@@ -496,7 +525,7 @@ jupyter notebook in addition to saving the file.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="corradjust.plots.VolcanoPlotter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">VolcanoPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scorer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_name_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.8941176470588236,</span> <span class="pre">0.10196078431372549,</span> <span class="pre">0.10980392156862745,</span> <span class="pre">0.9)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonsignif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#VolcanoPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.VolcanoPlotter" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">VolcanoPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scorer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_name_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.4980392156862745,</span> <span class="pre">0.054901960784313725,</span> <span class="pre">0.9)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonsignif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#VolcanoPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.VolcanoPlotter" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Create a volcano plot with feature-wise enrichment statistics.</p>
 <dl class="field-list simple">
@@ -522,7 +551,7 @@ when <code class="docutils literal notranslate"><span class="pre">annotate_featu
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd></dd>
-<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_set,</span> <span class="pre">state)</span></code>,
+<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_coll,</span> <span class="pre">state)</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">state</span></code> is either <code class="docutils literal notranslate"><span class="pre">&quot;Raw&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Clean&quot;</span></code>.
 Values of <cite>axs</cite> are instances of <cite>matplotlib.axes.Axes</cite>.</p>
 </dd>
@@ -583,7 +612,7 @@ jupyter notebook in addition to saving the file.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="corradjust.plots.CorrDistrPlotter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">CorrDistrPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scorer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.12156862745098039,</span> <span class="pre">0.4666666666666667,</span> <span class="pre">0.7058823529411765)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_non_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6823529411764706,</span> <span class="pre">0.7803921568627451,</span> <span class="pre">0.9098039215686274)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.4980392156862745,</span> <span class="pre">0.054901960784313725)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_non_shared</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.7333333333333333,</span> <span class="pre">0.47058823529411764)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#CorrDistrPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.CorrDistrPlotter" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.plots.</span></span><span class="sig-name descname"><span class="pre">CorrDistrPlotter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">corr_scorer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.8392156862745098,</span> <span class="pre">0.15294117647058825,</span> <span class="pre">0.1568627450980392)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_raw_non_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.596078431372549,</span> <span class="pre">0.5882352941176471)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.17254901960784313,</span> <span class="pre">0.6274509803921569,</span> <span class="pre">0.17254901960784313)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_clean_non_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.596078431372549,</span> <span class="pre">0.8745098039215686,</span> <span class="pre">0.5411764705882353)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/plots.html#CorrDistrPlotter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.plots.CorrDistrPlotter" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Create KDE and CDF plots of correlations.</p>
 <dl class="field-list simple">
@@ -593,13 +622,13 @@ jupyter notebook in addition to saving the file.</p>
 </dd>
 <dt><strong>pairs_subset</strong><span class="classifier">{“all”, “training”, “validation”}, optional, default=”all”</span></dt><dd><p>Which set of feature pairs to use for computing scores.</p>
 </dd>
-<dt><strong>color_raw_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[0]</span></dt><dd><p>Color for raw correlations, shared feature pairs.</p>
+<dt><strong>color_raw_ref</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[0]</span></dt><dd><p>Color for raw correlations, reference feature pairs.</p>
 </dd>
-<dt><strong>color_raw_non_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[1],</span></dt><dd><p>Color for raw correlations, non-shared feature pairs.</p>
+<dt><strong>color_raw_non_ref</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[1],</span></dt><dd><p>Color for raw correlations, non-reference feature pairs.</p>
 </dd>
-<dt><strong>color_clean_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[2],</span></dt><dd><p>Color for clean correlations, shared feature pairs.</p>
+<dt><strong>color_clean_ref</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[2],</span></dt><dd><p>Color for clean correlations, reference feature pairs.</p>
 </dd>
-<dt><strong>color_clean_non_shared</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[3],</span></dt><dd><p>Color for clean correlations, non-shared feature pairs.</p>
+<dt><strong>color_clean_non_ref</strong><span class="classifier">color, optional, default=sns.color_palette(“tab20”)[3],</span></dt><dd><p>Color for clean correlations, non-reference feature pairs.</p>
 </dd>
 <dt><strong>legend_fontsize</strong><span class="classifier">int, optional, default=10</span></dt><dd><p>Font size of legend text.</p>
 </dd>
@@ -610,7 +639,7 @@ jupyter notebook in addition to saving the file.</p>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>fig</strong><span class="classifier">matplotlib.figure.Figure</span></dt><dd></dd>
-<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_set,</span> <span class="pre">plot_name)</span></code>,
+<dt><strong>axs</strong><span class="classifier">dict</span></dt><dd><p>Keys of <cite>axs</cite> are tuples <code class="docutils literal notranslate"><span class="pre">(ref_feature_coll,</span> <span class="pre">plot_name)</span></code>,
 where <code class="docutils literal notranslate"><span class="pre">plot_name</span></code> is either <code class="docutils literal notranslate"><span class="pre">&quot;corr-KDE&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;corr-CDF&quot;</span></code>.
 Values of <cite>axs</cite> are instances of <cite>matplotlib.axes.Axes</cite>.</p>
 </dd>
@@ -727,15 +756,6 @@ jupyter notebook in addition to saving the file.</p>
 </ul>
   </nav></div>
 
-  <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/modules/corradjust.plots.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
-
 </div></div>
               
             
@@ -749,8 +769,8 @@ jupyter notebook in addition to saving the file.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -761,7 +781,7 @@ jupyter notebook in addition to saving the file.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
@@ -783,7 +803,8 @@ jupyter notebook in addition to saving the file.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

@@ -37,21 +37,15 @@ Do I need to use test set?
     but exactly the same structure of data table and reference feature sets.
 
 
-What if some of my features are not present in the GMT file?
-============================================================
+How can I interpret confounder PCs?
+===================================
 
-    Pairs consisting of such features are labeled with ``flag = -1``
-    and are excluded from the computations of enrichments/scores.
-    Similarly, features that are present in the GMT file but not in the
-    data table are not impacting the results.
-
-
-Should I use gene- or transcript-level RNA-seq?
-===============================================
-
-    Most pathway databases we are aware of operate on gene level.
-    Thus, we recommend using gene-level expression data.
-
+    The confounders identified by CorrAdjust are represented by the PCs and
+    do not inherently carry an interpretation.
+    However, some of these PCs may be associated with known variables, enhancing interpretability.
+    We encourage users to examine these associations
+    (e.g., as shown in Figures 2F and 3F of our paper) to better understand what is being corrected.
+    See :doc:`standard_run` for a code on how to generate a matrix of confounder PCs.
 
 My samples originate from distinct groups. Should I correct them separately?
 ============================================================================
@@ -60,7 +54,28 @@ My samples originate from distinct groups. Should I correct them separately?
     differential correlations between groups.
     We recommend using the approach shown in :doc:`advanced_run`.
     Specifically, PCs are computed and removed across all samples,
-    but enrichment scores are computed separately for each group. 
+    but enrichment scores are computed separately for each group.
+    This option, however, requires a sufficient number of samples
+    in each group (we recommend at least 50 samples).
+
+
+Is CorrAdjust output compatible with other bioinformatics tools?
+================================================================
+
+    One of the CorrAdjust output files is a data table after
+    confounder removal. This table can be used as input for
+    any bioinformatics tool for network analysis (e.g., WGCNA).
+    At the same time, it should not be used as input for
+    differential expression analysis tools (e.g., DESeq2 or edgeR),
+    as CorrAdjust can eliminate true differences in *average* feature
+    values between conditions of interest.
+
+
+Should I use gene- or transcript-level RNA-seq?
+===============================================
+
+    Most pathway databases we are aware of operate on gene level.
+    Thus, we recommend using gene-level expression data.
 
 
 Can I use CorrAdjust with non-transcriptomic data?
@@ -71,3 +86,13 @@ Can I use CorrAdjust with non-transcriptomic data?
     At the same time, nothing prevents using it with arbitrary
     numeric dataset if you are interested in reference-guided
     correction of correlations between features.
+
+
+What if some of my features are not present in the GMT file?
+============================================================
+
+    Pairs consisting of such features are labeled with ``flag = -1``
+    and are excluded from the computations of enrichments/scores.
+    Similarly, features that are present in the GMT file but not in the
+    data table are not impacting the results.
+

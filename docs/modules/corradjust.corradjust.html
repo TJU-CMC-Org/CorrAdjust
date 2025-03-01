@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>corradjust.corradjust module &#8212; CorrAdjust 0.9.0 documentation</title>
+    <title>corradjust.corradjust module &#8212; CorrAdjust 1.0.0 documentation</title>
   
   
   
@@ -16,8 +16,8 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
+  <!--
+    this give us a css class that will be invisible only if js is disabled
   -->
   <noscript>
     <style>
@@ -27,22 +27,24 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'modules/corradjust.corradjust';</script>
+    <link rel="canonical" href="https://tju-cmc-org.github.io/CorrAdjust/modules/corradjust.corradjust.html" />
+    <link rel="icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="corradjust.metrics module" href="corradjust.metrics.html" />
@@ -110,8 +112,16 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=""/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=""/>
   
-    <p class="title logo__title">CorrAdjust 0.9.0 documentation</p>
+  
+    <p class="title logo__title">CorrAdjust</p>
   
 </a></div>
     
@@ -142,6 +152,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="corradjust.html">
     API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
   </a>
 </li>
 
@@ -254,6 +271,13 @@
   </a>
 </li>
 
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/TJU-CMC-Org/CorrAdjust">
+    Source Repository
+  </a>
+</li>
+
   </ul>
 </nav></div>
           
@@ -309,9 +333,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -361,7 +390,7 @@
 <span id="corradjust-corradjust-module"></span><h1>corradjust.corradjust module<a class="headerlink" href="#module-corradjust.corradjust" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.corradjust.</span></span><span class="sig-name descname"><span class="pre">CorrAdjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_feature_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_sets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">winsorize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle_feature_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">corradjust.corradjust.</span></span><span class="sig-name descname"><span class="pre">CorrAdjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_feature_ann</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_feature_colls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">winsorize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle_feature_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'enrichment-based'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pairs_to_score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">17</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>The main CorrAdjust class.</p>
 <dl class="field-list">
@@ -382,8 +411,8 @@ you could use more than one type (e.g., <code class="docutils literal notranslat
 Feature types shouldn’t contain <code class="docutils literal notranslate"><span class="pre">&quot;-&quot;</span></code> character.</p></li>
 </ul>
 </dd>
-<dt><strong>ref_feature_sets</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature set collections.
-Each collection is an item of <cite>ref_feature_sets</cite> with key being
+<dt><strong>ref_feature_colls</strong><span class="classifier">dict</span></dt><dd><p>A dictionary with information about reference feature set collections.
+Each collection is an item of <cite>ref_feature_colls</cite> with key being
 collection name (string) and value being another dict with the
 following structure.</p>
 <div class="line-block">
@@ -602,6 +631,34 @@ This argument is mandatory if it was used during <cite>fit</cite> call.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.compute_confounders">
+<span class="sig-name descname"><span class="pre">compute_confounders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.compute_confounders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.compute_confounders" title="Link to this definition">#</a></dt>
+<dd><p>Compute the data frame with confounders from input data.
+This method should be called after <cite>fit</cite>, or after manually
+calling <cite>fit_PCA</cite> and setting <cite>confounder_PCs</cite> attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df_data</strong><span class="classifier">pandas.DataFrame</span></dt><dd><p>Input data. Index = samples, columns = feature ids.
+Feature ids should perfectly match the ones used in
+<cite>df_feature_ann</cite> while initializing the object.</p>
+</dd>
+<dt><strong>df_samp_ann</strong><span class="classifier">pandas.DataFrame or None, optional, default=None</span></dt><dd><p>A data frame providing group annotation of samples.
+This argument is mandatory if it was used during <cite>fit</cite> call.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pandas.DataFrame</dt><dd><p>Data frame with values of confounder PCs.
+Note that PC indices are 0-based.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.compute_feature_scores">
 <span class="sig-name descname"><span class="pre">compute_feature_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.compute_feature_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.compute_feature_scores" title="Link to this definition">#</a></dt>
 <dd><p>Compute enrichment scores and p-values
@@ -633,7 +690,7 @@ It has the following structure:</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;Clean&quot;</span></code> : {</div>
 <div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_set_name</span></code> : pandas.DataFrame</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_coll</span></code> : pandas.DataFrame</div>
 </div>
 <div class="line">},</div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;Raw&quot;</span></code>: {…}</div>
@@ -648,7 +705,7 @@ It has the following structure:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.make_volcano_plot">
-<span class="sig-name descname"><span class="pre">make_volcano_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annot_fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_name_fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.8941176470588236,</span> <span class="pre">0.10196078431372549,</span> <span class="pre">0.10980392156862745,</span> <span class="pre">0.9)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonsignif_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.6,</span> <span class="pre">0.5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_volcano_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_volcano_plot" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">make_volcano_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature_scores</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_volcano_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_volcano_plot" title="Link to this definition">#</a></dt>
 <dd><p>Make volcano plot.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -657,20 +714,8 @@ It has the following structure:</p>
 </dd>
 <dt><strong>plot_filename</strong><span class="classifier">str</span></dt><dd><p>Path to the figure (with extension, e.g., <code class="docutils literal notranslate"><span class="pre">.png</span></code>).</p>
 </dd>
-<dt><strong>annotate_features</strong><span class="classifier">bool or int, optional, default=False</span></dt><dd><p>If <cite>int</cite>, corresponding number of features with the lowest
-adjusted p-values will be annotated on the volcano plots.</p>
-</dd>
-<dt><strong>annot_fontsize</strong><span class="classifier">int, optional, default=8</span></dt><dd><p>Font size of feature names when <code class="docutils literal notranslate"><span class="pre">annotate_features</span> <span class="pre">==</span> <span class="pre">True</span></code>.</p>
-</dd>
-<dt><strong>feature_name_fmt</strong><span class="classifier">function or None, optional, default=None</span></dt><dd><p>Function that maps feature names to labels to show on the plot
-when <code class="docutils literal notranslate"><span class="pre">annotate_features</span> <span class="pre">==</span> <span class="pre">True</span></code>.
-If <code class="docutils literal notranslate"><span class="pre">None</span></code>, shows unmodified feature names.</p>
-</dd>
-<dt><strong>signif_color</strong><span class="classifier">matplotlib color, optional</span></dt><dd><p>Color to draw statistically significant features.</p>
-</dd>
-<dt><strong>nonsignif_color</strong><span class="classifier">matplotlib color, optional</span></dt><dd><p>Color to draw non-significant features.</p>
-</dd>
-<dt><strong>panel_size</strong><span class="classifier">float, optional, default=4.8</span></dt><dd><p>Size of each (square) panel.</p>
+<dt><strong>**plot_kwargs</strong></dt><dd><p>Other keyword arguments controlling plot
+aesthetics passed to <cite>VolcanoPlotter</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -687,7 +732,7 @@ can change it through fig/ax and re-save.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="corradjust.corradjust.CorrAdjust.make_corr_distr_plot">
-<span class="sig-name descname"><span class="pre">make_corr_distr_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_corr_distr_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_corr_distr_plot" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">make_corr_distr_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_samp_ann</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samp_group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairs_subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">plot_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/corradjust/corradjust.html#CorrAdjust.make_corr_distr_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#corradjust.corradjust.CorrAdjust.make_corr_distr_plot" title="Link to this definition">#</a></dt>
 <dd><p>Visualize distribution of feature-feature correlations
 before and after PC correction.</p>
 <dl class="field-list simple">
@@ -706,6 +751,9 @@ This argument is mandatory if it was used during <cite>fit</cite> call.</p>
 and should refer to one of the sample groups in <cite>df_samp_ann</cite>.</p>
 </dd>
 <dt><strong>pairs_subset</strong><span class="classifier">{“all”, “training”, “validation”}, optional, default=”all”</span></dt><dd><p>Which set of feature pairs to use for computing scores.</p>
+</dd>
+<dt><strong>**plot_kwargs</strong></dt><dd><p>Other keyword arguments controlling plot
+aesthetics passed to <cite>CorrDistrPlotter</cite>.</p>
 </dd>
 </dl>
 </dd>
@@ -804,7 +852,7 @@ will be printed to log.</p>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">sample_group_name</span></code> : {</div>
 <div class="line-block">
-<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_set_name</span></code> : {</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ref_feature_coll</span></code> : {</div>
 <div class="line-block">
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;score</span> <span class="pre">training&quot;</span></code> : float,</div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">&quot;score</span> <span class="pre">validation&quot;</span></code> : float,</div>
@@ -850,7 +898,7 @@ dict of the <cite>_compute_corrs_and_scores</cite> method.</p>
 <li><p>Column <code class="docutils literal notranslate"><span class="pre">PC</span></code>: index of PC being regressed out on each iteration.
 First row always have NaN (no correction).</p></li>
 <li><p>Score columns: these columns have the following format:
-<code class="docutils literal notranslate"><span class="pre">&quot;{sample_group_name};{ref_feature_set_name};{training/validation/all}&quot;</span></code>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">&quot;{sample_group_name};{ref_feature_coll};{training/validation/all}&quot;</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1023,6 +1071,7 @@ that group names of <cite>df_samp_ann</cite> match those in <cite>mean_centerize
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.fit"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.fit_PCA"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.fit_PCA()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.transform"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.transform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.compute_confounders"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.compute_confounders()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.compute_feature_scores"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.compute_feature_scores()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.make_volcano_plot"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.make_volcano_plot()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corradjust.corradjust.CorrAdjust.make_corr_distr_plot"><code class="docutils literal notranslate"><span class="pre">CorrAdjust.make_corr_distr_plot()</span></code></a></li>
@@ -1039,15 +1088,6 @@ that group names of <cite>df_samp_ann</cite> match those in <cite>mean_centerize
 </ul>
   </nav></div>
 
-  <div class="sidebar-secondary-item">
-
-  <div class="tocsection sourcelink">
-    <a href="../_sources/modules/corradjust.corradjust.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
-
 </div></div>
               
             
@@ -1061,8 +1101,8 @@ that group names of <cite>df_samp_ann</cite> match those in <cite>mean_centerize
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1073,7 +1113,7 @@ that group names of <cite>df_samp_ann</cite> match those in <cite>mean_centerize
 
   <p class="copyright">
     
-      © Copyright 2024, Computational Medicine Center at Thomas Jefferson University.
+      © Copyright 2024-2025, Computational Medicine Center at Thomas Jefferson University.
       <br/>
     
   </p>
@@ -1095,7 +1135,8 @@ that group names of <cite>df_samp_ann</cite> match those in <cite>mean_centerize
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

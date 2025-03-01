@@ -5,6 +5,7 @@ from matplotlib.ticker import MaxNLocator
 from matplotlib.lines import Line2D
 from adjustText import adjust_text
 import numpy as np
+import warnings
 
 from corradjust.utils import *
 
@@ -111,7 +112,7 @@ class GreedyOptimizationPlotter:
         Main title with sample group name to use in the plot.
     metric : {"enrichment-based", "BP@K"}, optional, default="enrichment-based"
         Metric for evaluating feature correlations.
-    palette : str or list or dict, optional, default="Dark2"
+    palette : str or list or dict, optional
         Name of matplotlib colormap or list of colors for the lines or
         dict mapping reference collection names to colors.
         The argument is directly passed to `sns.lineplot`.
@@ -134,7 +135,7 @@ class GreedyOptimizationPlotter:
         self,
         samp_group_name=None,
         metric="enrichment-based",
-        palette="Dark2",
+        palette=(lambda x: x[::-1][:2] + x[::-1][3:])(sns.color_palette("tab10")),
         legend_loc="lower right",
         legend_fontsize=10,
         plot_width=6.4,
@@ -190,7 +191,7 @@ class GreedyOptimizationPlotter:
             subset_label = "Feature pairs"
             self.validation_pairs = True
             # 3 columns per reference collection (training, validation, all)
-            self.num_ref_feature_sets = len(df.columns) // 3
+            self.num_ref_feature_colls = len(df.columns) // 3
             # Plot only training and validation
             df = df.drop(columns=[
                 col for col in df.columns
@@ -199,7 +200,7 @@ class GreedyOptimizationPlotter:
         else:
             subset_label = "Samples"
             # 2 columns per reference collection (training, test)
-            self.num_ref_feature_sets = len(df.columns) // 2
+            self.num_ref_feature_colls = len(df.columns) // 2
             # Plot only training and test
             df = df.drop(columns=[
                 col for col in df.columns
@@ -210,25 +211,30 @@ class GreedyOptimizationPlotter:
         df = df[df.columns[-2:].tolist() + df.columns[:-2].tolist()]
         
         # We don't plot mean if there is only 1 reference collection
-        # self.num_ref_feature_sets already includes "mean" as a collection
-        if self.num_ref_feature_sets == 2:
+        # self.num_ref_feature_colls already includes "mean" as a collection
+        if self.num_ref_feature_colls == 2:
             df = df.iloc[:, 2:]
-            self.num_ref_feature_sets = 1
+            self.num_ref_feature_colls = 1
         
         df = df.melt(var_name="metric_name", value_name="score", ignore_index=False)
         df = df.reset_index()
-        df["Reference sets"] = df["metric_name"].str.split(";").str[0]
+        df["Ref. collection"] = df["metric_name"].str.split(";").str[0]
         # Capitalize word "mean"
-        df["Reference sets"] = df["Reference sets"].str.replace("mean", "Mean")
+        df["Ref. collection"] = df["Ref. collection"].str.replace("mean", "Mean")
         
         df[subset_label] = df["metric_name"].str.split(";").str[-1].str.capitalize()
-        sns.lineplot(
-            x="Iteration", y="score", hue="Reference sets", style=subset_label, data=df,
-            palette=self.palette,
-            dashes=["", (1, 1)],
-            markers=["o", "X"], markeredgewidth=0, markersize=4,
-            ax=self.ax
-        )
+
+        # Lineplot produces annoying warning that there are
+        # more colors in the palette than needed; suppress it
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            sns.lineplot(
+                x="Iteration", y="score", hue="Ref. collection", style=subset_label, data=df,
+                palette=self.palette,
+                dashes=["", (1, 1)],
+                markers=["o", "X"], markeredgewidth=0, markersize=4,
+                ax=self.ax
+            )
         
         # Set highest zorder for the first drawn lines
         zorder = 1000
@@ -274,14 +280,14 @@ class GreedyOptimizationPlotter:
         # Number of rows in the last column
         n_last = 5
         
-        nrows = max(self.num_ref_feature_sets + 1, n_last)
+        nrows = max(self.num_ref_feature_colls + 1, n_last)
         # No more than 5 rows per column
         nrows = min(nrows, 5)
 
         # For reference collections, each column has a header
         # So, we have 4 collections per column
-        ncols = self.num_ref_feature_sets // (nrows - 1)
-        if self.num_ref_feature_sets % (nrows - 1):
+        ncols = self.num_ref_feature_colls // (nrows - 1)
+        if self.num_ref_feature_colls % (nrows - 1):
             ncols += 1
         
         # Last column is always for training, validation, and early stopping
@@ -289,7 +295,7 @@ class GreedyOptimizationPlotter:
 
         # Legend for reference sets
         # First, fill in complete columns
-        complete_columns = self.num_ref_feature_sets // (nrows - 1)
+        complete_columns = self.num_ref_feature_colls // (nrows - 1)
         for i in range(complete_columns):
             new_handles += [handles[0]]
             new_labels += [labels[0]]
@@ -298,19 +304,19 @@ class GreedyOptimizationPlotter:
             new_labels += labels[1 + (nrows - 1) * i : 1 + (nrows - 1) * (i + 1)]
 
         # An additional incomplete column
-        if self.num_ref_feature_sets % (nrows - 1):
+        if self.num_ref_feature_colls % (nrows - 1):
             new_handles += [handles[0]]
             new_labels += [labels[0]]
             
-            new_handles += handles[1 + (nrows - 1) * complete_columns:1 + self.num_ref_feature_sets]
-            new_labels += labels[1 + (nrows - 1) * complete_columns:1 + self.num_ref_feature_sets]
+            new_handles += handles[1 + (nrows - 1) * complete_columns:1 + self.num_ref_feature_colls]
+            new_labels += labels[1 + (nrows - 1) * complete_columns:1 + self.num_ref_feature_colls]
 
-            new_handles += [empty_handle] * (nrows - 1 - self.num_ref_feature_sets % (nrows - 1))
-            new_labels += [empty_label] * (nrows - 1 - self.num_ref_feature_sets % (nrows - 1))
+            new_handles += [empty_handle] * (nrows - 1 - self.num_ref_feature_colls % (nrows - 1))
+            new_labels += [empty_label] * (nrows - 1 - self.num_ref_feature_colls % (nrows - 1))
 
         # Last column
-        new_handles += handles[self.num_ref_feature_sets + 1:self.num_ref_feature_sets + 1 + 3]
-        new_labels += labels[self.num_ref_feature_sets + 1:self.num_ref_feature_sets + 1 + 3]
+        new_handles += handles[self.num_ref_feature_colls + 1:self.num_ref_feature_colls + 1 + 3]
+        new_labels += labels[self.num_ref_feature_colls + 1:self.num_ref_feature_colls + 1 + 3]
         new_handles += [empty_handle] + handles[-1:]
         new_labels += ["Early stopping"] + labels[-1:]
 
@@ -362,7 +368,7 @@ class VolcanoPlotter:
     ----------
     fig : matplotlib.figure.Figure
     axs : dict
-        Keys of `axs` are tuples ``(ref_feature_set, state)``,
+        Keys of `axs` are tuples ``(ref_feature_coll, state)``,
         where ``state`` is either ``"Raw"`` or ``"Clean"``.
         Values of `axs` are instances of `matplotlib.axes.Axes`.
     """
@@ -373,7 +379,7 @@ class VolcanoPlotter:
         annotate_features=False,
         annot_fontsize=8,
         feature_name_fmt=None,
-        signif_color=(*sns.color_palette("Set1")[0], 0.9),
+        signif_color=(*sns.color_palette("tab10")[1], 0.9),
         nonsignif_color=(0.6, 0.6, 0.6, 0.5),
         panel_size=4.8
     ):
@@ -384,24 +390,24 @@ class VolcanoPlotter:
         # By default, axs object is 2D array
         # We convert it to dict to have meaningful keys
         axs_dict = {}
-        for i, ref_feature_set in enumerate(corr_scorer.data):
+        for i, ref_feature_coll in enumerate(corr_scorer.data):
             for j, state in enumerate(["Raw", "Clean"]):
                 if len(corr_scorer.data) > 1:
-                    axs_dict[(ref_feature_set, state)] = axs[i, j]
+                    axs_dict[(ref_feature_coll, state)] = axs[i, j]
                 else:
-                    axs_dict[(ref_feature_set, state)] = axs[j]
+                    axs_dict[(ref_feature_coll, state)] = axs[j]
 
         axs = axs_dict
         
-        for ref_feature_set in corr_scorer.data:
+        for ref_feature_coll in corr_scorer.data:
             for state in ["Raw", "Clean"]:
-                axs[(ref_feature_set, state)].set_title(f"{ref_feature_set}, {state.lower()} corr.")
+                axs[(ref_feature_coll, state)].set_title(f"{ref_feature_coll}, {state.lower()} corr.")
                 
-                axs[(ref_feature_set, state)].set_xlabel("Balanced precision")
-                axs[(ref_feature_set, state)].set_xlim([-0.03, 1.03])
-                axs[(ref_feature_set, state)].set_xticks(np.arange(0, 1.1, 0.1))
+                axs[(ref_feature_coll, state)].set_xlabel("Balanced precision")
+                axs[(ref_feature_coll, state)].set_xlim([-0.03, 1.03])
+                axs[(ref_feature_coll, state)].set_xticks(np.arange(0, 1.1, 0.1))
 
-                axs[(ref_feature_set, state)].set_ylabel("$-$log$_{{10}}$(adjusted p-value)")
+                axs[(ref_feature_coll, state)].set_ylabel("$-$log$_{{10}}$(adjusted p-value)")
         
         self.fig = fig
         self.axs = axs
@@ -431,21 +437,21 @@ class VolcanoPlotter:
         # We need to have identical y-axis limits and legends for numbers of
         # pairs beterrn raw and clean corrs
         num_pairs_max = {}
-        for ref_feature_set in feature_scores["Raw"]:
-            df_raw = feature_scores["Raw"][ref_feature_set].dropna()
+        for ref_feature_coll in feature_scores["Raw"]:
+            df_raw = feature_scores["Raw"][ref_feature_coll].dropna()
             padj_raw = -np.log10(df_raw["padj"])
-            num_pairs_raw = df_raw["shared_pairs@K"].str.split("/").str[1].astype("int64")
+            num_pairs_raw = df_raw["ref_pairs@K"].str.split("/").str[1].astype("int64")
             
             if feature_scores["Clean"] is not None:
-                df_clean = feature_scores["Clean"][ref_feature_set].dropna()
+                df_clean = feature_scores["Clean"][ref_feature_coll].dropna()
                 padj_clean = -np.log10(df_clean["padj"])
-                num_pairs_clean = df_clean["shared_pairs@K"].str.split("/").str[1].astype("int64")
+                num_pairs_clean = df_clean["ref_pairs@K"].str.split("/").str[1].astype("int64")
 
                 padj_max = max(np.max(padj_raw), np.max(padj_clean))
-                num_pairs_max[ref_feature_set] = max(np.max(num_pairs_raw), np.max(num_pairs_clean))
+                num_pairs_max[ref_feature_coll] = max(np.max(num_pairs_raw), np.max(num_pairs_clean))
             else:
                 padj_max = np.max(padj_raw)
-                num_pairs_max[ref_feature_set] = np.max(num_pairs_raw)
+                num_pairs_max[ref_feature_coll] = np.max(num_pairs_raw)
 
             if padj_max != 0:
                 y_pad = padj_max * 0.03 # So the points won't stick to ax bottom/top
@@ -453,18 +459,25 @@ class VolcanoPlotter:
                 y_pad = 1 
 
             for state in ["Raw", "Clean"]:
-                self.axs[(ref_feature_set, state)].set_ylim([-y_pad, padj_max + y_pad])
+                self.axs[(ref_feature_coll, state)].set_ylim([-y_pad, padj_max + y_pad])
 
-                self.axs[(ref_feature_set, state)].fill_between(
-                    [-0.03, 0.5], [padj_max + y_pad, padj_max + y_pad], [-y_pad, -y_pad],
-                    facecolor=(*sns.color_palette("tab10")[0], 0.07),
-                    zorder=0
-                )
-                self.axs[(ref_feature_set, state)].fill_between(
-                    [0.5, 1.03], [padj_max + y_pad, padj_max + y_pad], [-y_pad, -y_pad],
-                    facecolor=(*sns.color_palette("tab10")[3], 0.07),
-                    zorder=0
-                )
+                # Plot boundaries of significance
+                if padj_max > -np.log10(0.05):
+                    self.axs[(ref_feature_coll, state)].fill_between(
+                        [0.5, 1.03], [padj_max + y_pad, padj_max + y_pad], [-np.log10(0.05), -np.log10(0.05)],
+                        facecolor=self.signif_color, alpha=0.05,
+                        zorder=0
+                    )
+                    self.axs[(ref_feature_coll, state)].plot(
+                        [0.5, 1.03], [-np.log10(0.05), -np.log10(0.05)],
+                        color=self.signif_color, alpha=0.5, lw=1.,
+                        zorder=0
+                    )
+                    self.axs[(ref_feature_coll, state)].plot(
+                        [0.5, 0.5], [-np.log10(0.05), padj_max + y_pad],
+                        color=self.signif_color, alpha=0.5, lw=1.0,
+                        zorder=0
+                    )
         
         self._plot_one_state("Raw", feature_scores["Raw"], num_pairs_max)
         if feature_scores["Clean"] is not None:
@@ -488,10 +501,10 @@ class VolcanoPlotter:
             display in legend.
         """
 
-        for ref_feature_set in feature_scores_state:
-            df_plot = feature_scores_state[ref_feature_set].dropna().copy()
+        for ref_feature_coll in feature_scores_state:
+            df_plot = feature_scores_state[ref_feature_coll].dropna().copy()
             df_plot["padj"] = -np.log10(df_plot["padj"])
-            df_plot["num_pairs"] = df_plot["shared_pairs@K"].str.split("/").str[1].astype("int64")
+            df_plot["num_pairs"] = df_plot["ref_pairs@K"].str.split("/").str[1].astype("int64")
             
             if self.metric == "enrichment-based":
                 avg_log_padj = df_plot["padj"].mean()
@@ -505,6 +518,7 @@ class VolcanoPlotter:
             perc_signif = (10**(-df_plot["padj"]) <= 0.05).sum() / len(df_plot) * 100
             signif_label = f"Yes ({np.round(perc_signif, 1)}%)"
             nonsignif_label = f"No ({np.round(100 - np.round(perc_signif, 1), 1)}%)"
+
             df_plot["Adj. p ≤ 0.05"] = [
                 signif_label if 10**(-p) <= 0.05 else nonsignif_label
                 for p in df_plot["padj"]
@@ -518,11 +532,11 @@ class VolcanoPlotter:
                     nonsignif_label: self.nonsignif_color
                 },
                 sizes=(self.min_marker_size, self.max_marker_size),
-                size_norm=(0, num_pairs_max[ref_feature_set]),
-                ax=self.axs[(ref_feature_set, state)]
+                size_norm=(0, num_pairs_max[ref_feature_coll]),
+                ax=self.axs[(ref_feature_coll, state)]
             )
-            self.axs[(ref_feature_set, state)].set_title(
-                self.axs[(ref_feature_set, state)].get_title() +
+            self.axs[(ref_feature_coll, state)].set_title(
+                self.axs[(ref_feature_coll, state)].get_title() +
                 f", score = {score_label}"
             )
             
@@ -530,7 +544,7 @@ class VolcanoPlotter:
             empty_handle = mpatches.Patch(color="none")
             empty_label = " "
             
-            handles, labels = self.axs[(ref_feature_set, state)].get_legend_handles_labels()
+            handles, labels = self.axs[(ref_feature_coll, state)].get_legend_handles_labels()
             # Keep the legend part about statistical significance
             handles, labels = handles[:3], labels[:3]
 
@@ -540,7 +554,7 @@ class VolcanoPlotter:
 
             # Title
             handles.append(empty_handle)
-            labels.append("# highly ranked\nfeature pairs ($K_j$)")
+            labels.append("# highly ranked\npairs ($K_j$)")
 
             # Markers
             handles += [
@@ -555,9 +569,9 @@ class VolcanoPlotter:
                     linestyle="None", marker="o"
                 )
             ]
-            labels += ["0", str(num_pairs_max[ref_feature_set])]
+            labels += ["0", str(num_pairs_max[ref_feature_coll])]
 
-            legend = self.axs[(ref_feature_set, state)].legend(handles, labels, loc="upper left")
+            legend = self.axs[(ref_feature_coll, state)].legend(handles, labels, loc="upper left")
 
             # Remove left padding for legend titles
             # first loop is just 1 iteration since legend is 1 column
@@ -576,13 +590,13 @@ class VolcanoPlotter:
                     else:
                         text = self.feature_name_fmt(row["feature_name"])
                         
-                    annotation = self.axs[(ref_feature_set, state)].text(
+                    annotation = self.axs[(ref_feature_coll, state)].text(
                         x=row["balanced_precision"], y=row["padj"], s=text,
                         ha="center", va="center", fontsize=self.annot_fontsize
                     )
                     annotations.append(annotation)
                 
-                self.annotations[(ref_feature_set, state)] = annotations
+                self.annotations[(ref_feature_coll, state)] = annotations
 
     def save_plot(self, out_path, title=None):
         """
@@ -606,9 +620,9 @@ class VolcanoPlotter:
 
         # adjust_text should be called after everything else is done        
         if self.annotate_features:
-            for ref_feature_set, state in self.annotations:
+            for ref_feature_coll, state in self.annotations:
                 adjust_text(
-                    self.annotations[(ref_feature_set, state)], ax=self.axs[(ref_feature_set, state)],
+                    self.annotations[(ref_feature_coll, state)], ax=self.axs[(ref_feature_coll, state)],
                     arrowprops=dict(arrowstyle="-", color="gray", alpha=0.5, lw=0.5, shrinkA=1, shrinkB=1),
                     explode_radius=10
                 )
@@ -626,14 +640,14 @@ class CorrDistrPlotter:
         Instance of `CorrScorer`.
     pairs_subset : {"all", "training", "validation"}, optional, default="all"
         Which set of feature pairs to use for computing scores.
-    color_raw_shared : color, optional, default=sns.color_palette("tab20")[0]
-        Color for raw correlations, shared feature pairs.
-    color_raw_non_shared : color, optional, default=sns.color_palette("tab20")[1],
-        Color for raw correlations, non-shared feature pairs.
-    color_clean_shared : color, optional, default=sns.color_palette("tab20")[2],
-        Color for clean correlations, shared feature pairs.
-    color_clean_non_shared : color, optional, default=sns.color_palette("tab20")[3],
-        Color for clean correlations, non-shared feature pairs.
+    color_raw_ref : color, optional, default=sns.color_palette("tab20")[0]
+        Color for raw correlations, reference feature pairs.
+    color_raw_non_ref : color, optional, default=sns.color_palette("tab20")[1],
+        Color for raw correlations, non-reference feature pairs.
+    color_clean_ref : color, optional, default=sns.color_palette("tab20")[2],
+        Color for clean correlations, reference feature pairs.
+    color_clean_non_ref : color, optional, default=sns.color_palette("tab20")[3],
+        Color for clean correlations, non-reference feature pairs.
     legend_fontsize : int, optional, default=10
         Font size of legend text.
     panel_size : float, optional, default=4.8
@@ -643,7 +657,7 @@ class CorrDistrPlotter:
     ----------
     fig : matplotlib.figure.Figure
     axs : dict
-        Keys of `axs` are tuples ``(ref_feature_set, plot_name)``,
+        Keys of `axs` are tuples ``(ref_feature_coll, plot_name)``,
         where ``plot_name`` is either ``"corr-KDE"`` or ``"corr-CDF"``.
         Values of `axs` are instances of `matplotlib.axes.Axes`.
     """
@@ -652,10 +666,10 @@ class CorrDistrPlotter:
         self,
         corr_scorer,
         pairs_subset="all",
-        color_raw_shared=sns.color_palette("tab20")[0],
-        color_raw_non_shared=sns.color_palette("tab20")[1],
-        color_clean_shared=sns.color_palette("tab20")[2],
-        color_clean_non_shared=sns.color_palette("tab20")[3],
+        color_raw_ref=sns.color_palette("tab20")[6],
+        color_raw_non_ref=sns.color_palette("tab20")[7],
+        color_clean_ref=sns.color_palette("tab20")[4],
+        color_clean_non_ref=sns.color_palette("tab20")[5],
         legend_fontsize=10,
         panel_size=4.8
     ):
@@ -666,17 +680,17 @@ class CorrDistrPlotter:
         # By default, axs object is 2D array
         # We convert it to dict to have meaningful keys
         axs_dict = {}
-        for i, ref_feature_set in enumerate(corr_scorer.data):
+        for i, ref_feature_coll in enumerate(corr_scorer.data):
             for j, plot_name in enumerate(["corr-KDE", "corr-CDF"]):
                 if len(corr_scorer.data) > 1:
-                    axs_dict[(ref_feature_set, plot_name)] = axs[i, j]
+                    axs_dict[(ref_feature_coll, plot_name)] = axs[i, j]
                 else:
-                    axs_dict[(ref_feature_set, plot_name)] = axs[j]
+                    axs_dict[(ref_feature_coll, plot_name)] = axs[j]
 
         axs = axs_dict
         
-        for ref_feature_set in corr_scorer.data:
-            sign = corr_scorer.data[ref_feature_set]["sign"]
+        for ref_feature_coll in corr_scorer.data:
+            sign = corr_scorer.data[ref_feature_coll]["sign"]
             if sign == "absolute":
                 corr_label = "Absolute correlation"
                 corr_lim = [-0.05, 1.05]
@@ -684,28 +698,28 @@ class CorrDistrPlotter:
                 corr_label = "Correlation"
                 corr_lim = [-1.05, 1.05]
             
-            high_corr_frac = corr_scorer.data[ref_feature_set]["high_corr_frac"]
+            high_corr_frac = corr_scorer.data[ref_feature_coll]["high_corr_frac"]
             
-            axs[(ref_feature_set, "corr-KDE")].set_title(ref_feature_set)
-            axs[(ref_feature_set, "corr-KDE")].set_xlabel("Correlation")
-            axs[(ref_feature_set, "corr-KDE")].set_xlim(-1.05, 1.05)
-            axs[(ref_feature_set, "corr-KDE")].set_ylabel("Density")
+            axs[(ref_feature_coll, "corr-KDE")].set_title(ref_feature_coll)
+            axs[(ref_feature_coll, "corr-KDE")].set_xlabel("Correlation")
+            axs[(ref_feature_coll, "corr-KDE")].set_xlim(-1.05, 1.05)
+            axs[(ref_feature_coll, "corr-KDE")].set_ylabel("Density")
 
-            axs[(ref_feature_set, "corr-CDF")].set_title(ref_feature_set)
-            axs[(ref_feature_set, "corr-CDF")].set_xlabel(corr_label)
-            axs[(ref_feature_set, "corr-CDF")].set_xlim(*corr_lim)
-            axs[(ref_feature_set, "corr-CDF")].set_ylabel(f"Cumulative fraction of feature pairs")
-            axs[(ref_feature_set, "corr-CDF")].set_yscale("log")
-            axs[(ref_feature_set, "corr-CDF")].axhline(
+            axs[(ref_feature_coll, "corr-CDF")].set_title(ref_feature_coll)
+            axs[(ref_feature_coll, "corr-CDF")].set_xlabel(corr_label)
+            axs[(ref_feature_coll, "corr-CDF")].set_xlim(*corr_lim)
+            axs[(ref_feature_coll, "corr-CDF")].set_ylabel(f"Cumulative fraction of feature pairs")
+            axs[(ref_feature_coll, "corr-CDF")].set_yscale("log")
+            axs[(ref_feature_coll, "corr-CDF")].axhline(
                 high_corr_frac, ls=":", color="grey", label=f"Highly ranked pairs"
             )
         
         self.legend_fontsize = legend_fontsize
         self.colors = {
-            ("Raw", 0): color_raw_non_shared,
-            ("Raw", 1): color_raw_shared,
-            ("Clean", 0): color_clean_non_shared,
-            ("Clean", 1): color_clean_shared
+            ("Raw", 0): color_raw_non_ref,
+            ("Raw", 1): color_raw_ref,
+            ("Clean", 0): color_clean_non_ref,
+            ("Clean", 1): color_clean_ref
         }
 
         self.fig = fig
@@ -713,8 +727,8 @@ class CorrDistrPlotter:
 
         self.pairs_subset = pairs_subset
         self.signs = {
-            ref_feature_set: corr_scorer.data[ref_feature_set]["sign"]
-            for ref_feature_set in corr_scorer.data
+            ref_feature_coll: corr_scorer.data[ref_feature_coll]["sign"]
+            for ref_feature_coll in corr_scorer.data
         }
 
     def add_plots(
@@ -735,10 +749,10 @@ class CorrDistrPlotter:
             How many correlations to sample for plotting.
         """
 
-        for ref_feature_set in corr_scores:
-            corrs = corr_scores[ref_feature_set]["corrs"]
-            mask = corr_scores[ref_feature_set]["mask"]
-            train_val_mask = corr_scores[ref_feature_set]["train_val_mask"]
+        for ref_feature_coll in corr_scores:
+            corrs = corr_scores[ref_feature_coll]["corrs"]
+            mask = corr_scores[ref_feature_coll]["mask"]
+            train_val_mask = corr_scores[ref_feature_coll]["train_val_mask"]
 
             # Limit to training/validation pairs if needed
             if self.pairs_subset == "training":
@@ -748,10 +762,10 @@ class CorrDistrPlotter:
                 corrs = corrs[train_val_mask == 1]
                 mask = mask[train_val_mask == 1]
 
-            for shared_flag in [1, 0]:
-                corrs_subset = corrs[mask == shared_flag]
-                color = self.colors[(state, shared_flag)]
-                linestyle = "-" if shared_flag == 1 else "--"
+            for ref_flag in [1, 0]:
+                corrs_subset = corrs[mask == ref_flag]
+                color = self.colors[(state, ref_flag)]
+                linestyle = "-" if ref_flag == 1 else "--"
 
                 # Make KDE plot
 
@@ -766,9 +780,9 @@ class CorrDistrPlotter:
                 
                 sns.kdeplot(
                     x=corrs_for_KDE,
-                    label=f"{state}, {'shared' if shared_flag == 1 else 'non-shared'}",
+                    label=f"{state}, {'ref. pairs' if ref_flag == 1 else 'non-ref. pairs'}",
                     color=color, linestyle=linestyle,
-                    ax=self.axs[(ref_feature_set, "corr-KDE")]
+                    ax=self.axs[(ref_feature_coll, "corr-KDE")]
                 ) 
                 
                 # Make CDF plot
@@ -786,12 +800,12 @@ class CorrDistrPlotter:
                 else:
                     corrs_for_CDF = corrs_subset
                 
-                if self.signs[ref_feature_set] == "absolute":
+                if self.signs[ref_feature_coll] == "absolute":
                     corrs_for_CDF = np.abs(corrs_for_CDF)
                 
-                self.axs[(ref_feature_set, "corr-CDF")].plot(
+                self.axs[(ref_feature_coll, "corr-CDF")].plot(
                     corrs_for_CDF, fractions,
-                    label=f"{state}, {'shared' if shared_flag == 1 else 'non-shared'}",
+                    label=f"{state}, {'ref. pairs' if ref_flag == 1 else 'non-ref. pairs'}",
                     color=color, linestyle=linestyle
                 )
 
@@ -809,8 +823,8 @@ class CorrDistrPlotter:
             Short text to show at the top-left corner of the plot.
         """
 
-        for (ref_feature_set, plot_name), ax in self.axs.items():
-            sign = self.signs[ref_feature_set]
+        for (ref_feature_coll, plot_name), ax in self.axs.items():
+            sign = self.signs[ref_feature_coll]
             handles, labels = ax.get_legend_handles_labels()
 
             if plot_name == "corr-CDF":
