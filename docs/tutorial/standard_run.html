@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Running CorrAdjust &#8212; CorrAdjust 0.9.0 documentation</title>
+    <title>2. Running CorrAdjust &#8212; CorrAdjust 1.0.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -414,8 +414,8 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2025-02-26 09:06:23.139521 | Loading Canonical Pathways reference collection...
-2025-02-26 09:06:29.321713 | Loading Gene Ontology reference collection...
+2025-02-28 19:45:06.114508 | Loading Canonical Pathways reference collection...
+2025-02-28 19:45:11.391956 | Loading Gene Ontology reference collection...
 </pre></div></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">fit</span></code> method trains CorrAdjust instance. It identifies a subset of confounder PCs which needs to be regressed out from the data to maximize enrichment of the provided reference feature pairs among the highly correlated pairs. See the full list of accepted parameters in <a class="reference internal" href="../modules/corradjust.corradjust.html#corradjust.corradjust.CorrAdjust.fit"><span class="std std-ref">API reference</span></a>.</p>
@@ -434,9 +434,9 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:23:55.655017 | Computing PCA...
-2024-11-15 16:23:57.273678 | Starting PC optimization...
-100%|███████████████████████████████████████████████████████████████████████████████| 191/191 [12:22&lt;00:00,  3.89s/it]
+2025-02-28 19:45:13.517653 | Computing PCA...
+2025-02-28 19:45:15.113416 | Starting PC optimization...
+100%|██████████████████████████████████████████████████████████████| 191/191 [12:40&lt;00:00,  3.98s/it]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -445,24 +445,6 @@
 <div class="output_area docutils container">
 <img alt="../_images/tutorial_standard_run_5_1.png" src="../_images/tutorial_standard_run_5_1.png" />
 </div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FIXME: remove this test paragraph</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit_PCA</span><span class="p">(</span><span class="n">df_data_train</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">confounder_PCs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2025-02-26 09:07:14.503600 | Computing PCA...
-</pre></div></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">fit</span></code> method automatically splits the <em>feature pairs</em> into 50% training and 50% validation sets. Training set of feature pairs is used to select PCs on each iteration of the algorithm (maximum score), while validation set is used to determine the final number of PCs by the early stopping method. Specifically, the dashed red line is drawn at iteration after which there is little or no improvement in the validation set score.</p>
 <p>The above optimization curve is automatically saved into <code class="docutils literal notranslate"><span class="pre">fit.all_samp.png</span></code>; <code class="docutils literal notranslate"><span class="pre">all_samp</span></code> refers to the fact that all training samples were used (see <a class="reference internal" href="advanced_run.html"><span class="doc">Advanced example</span></a> with several sample groups). The file <code class="docutils literal notranslate"><span class="pre">fit.tsv</span></code> contains the data from the plot in the table format, and <code class="docutils literal notranslate"><span class="pre">fit.log</span></code> contains the full optimization log.</p>
@@ -623,19 +605,19 @@
       <td>0.705782</td>
       <td>1.590421</td>
       <td>0.477850</td>
-      <td>0.448376</td>
+      <td>0.448394</td>
       <td>1.090163</td>
       <td>0.598670</td>
-      <td>0.577079</td>
+      <td>0.577088</td>
       <td>1.340292</td>
       <td>0.719489</td>
       <td>0.705782</td>
       <td>1.590421</td>
       <td>0.477850</td>
-      <td>0.448376</td>
+      <td>0.448394</td>
       <td>1.090163</td>
       <td>0.598670</td>
-      <td>0.577079</td>
+      <td>0.577088</td>
       <td>1.340292</td>
     </tr>
     <tr>
@@ -685,22 +667,22 @@
     <tr>
       <th>6</th>
       <td>11</td>
-      <td>0.711714</td>
+      <td>0.711772</td>
       <td>0.714599</td>
       <td>1.583469</td>
       <td>0.456435</td>
       <td>0.449269</td>
       <td>1.065692</td>
-      <td>0.584075</td>
+      <td>0.584103</td>
       <td>0.581934</td>
       <td>1.324581</td>
-      <td>0.711714</td>
+      <td>0.711772</td>
       <td>0.714599</td>
       <td>1.583469</td>
       <td>0.456435</td>
       <td>0.449269</td>
       <td>1.065692</td>
-      <td>0.584075</td>
+      <td>0.584103</td>
       <td>0.581934</td>
       <td>1.324581</td>
     </tr>
@@ -712,19 +694,19 @@
       <td>1.569668</td>
       <td>0.448834</td>
       <td>0.441979</td>
-      <td>1.047026</td>
+      <td>1.047060</td>
       <td>0.575960</td>
       <td>0.575468</td>
-      <td>1.308347</td>
+      <td>1.308364</td>
       <td>0.703086</td>
       <td>0.708958</td>
       <td>1.569668</td>
       <td>0.448834</td>
       <td>0.441979</td>
-      <td>1.047026</td>
+      <td>1.047060</td>
       <td>0.575960</td>
       <td>0.575468</td>
-      <td>1.308347</td>
+      <td>1.308364</td>
     </tr>
     <tr>
       <th>8</th>
@@ -842,19 +824,19 @@
       <td>0.602309</td>
       <td>0.618502</td>
       <td>1.363589</td>
-      <td>0.382834</td>
+      <td>0.382822</td>
       <td>0.365800</td>
       <td>0.884008</td>
-      <td>0.492571</td>
+      <td>0.492565</td>
       <td>0.492151</td>
       <td>1.123799</td>
       <td>0.602309</td>
       <td>0.618502</td>
       <td>1.363589</td>
-      <td>0.382834</td>
+      <td>0.382822</td>
       <td>0.365800</td>
       <td>0.884008</td>
-      <td>0.492571</td>
+      <td>0.492565</td>
       <td>0.492151</td>
       <td>1.123799</td>
     </tr>
@@ -1017,10 +999,10 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:36:21.851356 | Computing raw correlations for all_samp...
-2024-11-15 16:36:22.669745 | Computing corrected correlations for all_samp...
-2024-11-15 16:36:30.004857 | Computing raw correlations for all_samp...
-2024-11-15 16:36:30.820176 | Computing corrected correlations for all_samp...
+2025-02-28 19:57:57.477039 | Computing raw correlations for all_samp...
+2025-02-28 19:57:58.332963 | Computing corrected correlations for all_samp...
+2025-02-28 19:58:06.111344 | Computing raw correlations for all_samp...
+2025-02-28 19:58:06.942633 | Computing corrected correlations for all_samp...
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1046,8 +1028,8 @@
     <tr style="text-align: right;">
       <th></th>
       <th>feature_name</th>
-      <th>shared_pairs@K</th>
-      <th>shared_pairs@total</th>
+      <th>ref_pairs@K</th>
+      <th>ref_pairs@total</th>
       <th>enrichment</th>
       <th>balanced_precision</th>
       <th>pvalue</th>
@@ -1210,14 +1192,14 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;corradjust.plots.VolcanoPlotter at 0x7f428e286ec0&gt;
+&lt;corradjust.plots.VolcanoPlotter at 0x7f5e83705ca0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorial_standard_run_13_1.png" src="../_images/tutorial_standard_run_13_1.png" />
+<img alt="../_images/tutorial_standard_run_12_1.png" src="../_images/tutorial_standard_run_12_1.png" />
 </div>
 </div>
 </section>
@@ -1237,8 +1219,8 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:36:46.273814 | Computing raw correlations for all_samp...
-2024-11-15 16:36:47.094092 | Computing corrected correlations for all_samp...
+2025-02-28 19:58:22.923334 | Computing raw correlations for all_samp...
+2025-02-28 19:58:23.764165 | Computing corrected correlations for all_samp...
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1247,14 +1229,14 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;corradjust.plots.CorrDistrPlotter at 0x7f436568aa10&gt;
+&lt;corradjust.plots.CorrDistrPlotter at 0x7f5e7969c590&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/tutorial_standard_run_16_2.png" src="../_images/tutorial_standard_run_16_2.png" />
+<img alt="../_images/tutorial_standard_run_15_2.png" src="../_images/tutorial_standard_run_15_2.png" />
 </div>
 </div>
 <p>The left panels show histogram of correlations before and after correction – often, CorrAdjust shrinks the correlations towards 0.</p>
@@ -1265,7 +1247,7 @@
 <h2><span class="section-number">2.4. </span>Obtaining corrected data and confounder matrices<a class="headerlink" href="#Obtaining-corrected-data-and-confounder-matrices" title="Link to this heading">#</a></h2>
 <p>You can use <code class="docutils literal notranslate"><span class="pre">transform</span></code> method to residualize the identified confounder PCs from any data. The resulting data frame can be exported in a file and distributed with the original raw data to facilitate reproducibility of your analysis.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_data_test_clean contains clean data (residuals)</span>
@@ -1592,7 +1574,7 @@
 </div>
 <p>You can also obtain a data frame with per-sample confounder PC values (note that PC indices are 0-based). If your samples have known metadata variables, you can correlate them with the values of confounder PCs to get insight on the confounding signal (see Figures 2F and 3F in our paper).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_confounders</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">compute_confounders</span><span class="p">(</span><span class="n">df_data_test</span><span class="p">)</span>
@@ -1704,7 +1686,7 @@
 <h2><span class="section-number">2.5. </span>Exporting correlations to file<a class="headerlink" href="#Exporting-correlations-to-file" title="Link to this heading">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">export_corrs</span></code> method generates a tab-separated table with all feature pairs and their clean and raw correlations, p-values, and reference sets information. The table is always sorted from the lowest to the highest correlation. The table can be <em>huge</em> if you have many feature, so we write it directly to disk in chunks instead of making a Pandas data frame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">export_corrs</span><span class="p">(</span><span class="n">df_data_test</span><span class="p">,</span> <span class="s2">&quot;corrs.test_samples.tsv&quot;</span><span class="p">)</span>
@@ -1723,14 +1705,14 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:37:03.630026 | Computing raw correlations for all_samp...
-2024-11-15 16:37:04.455062 | Computing corrected correlations for all_samp...
-2024-11-15 16:37:06.287304 | Starting export to file...
-100%|█████████████████████████████████████████████████████████████████████████████████| 51/51 [01:49&lt;00:00,  2.15s/it]
+2025-02-28 19:58:41.119579 | Computing raw correlations for all_samp...
+2025-02-28 19:58:41.968045 | Computing corrected correlations for all_samp...
+2025-02-28 19:58:43.861963 | Starting export to file...
+100%|████████████████████████████████████████████████████████████████| 51/51 [02:03&lt;00:00,  2.42s/it]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1814,7 +1796,7 @@
       <td>-0.785374</td>
       <td>1.718902e-79</td>
       <td>-0.135602</td>
-      <td>8.379958e-03</td>
+      <td>8.379965e-03</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1882,7 +1864,7 @@
       <td>-0.778276</td>
       <td>3.510557e-77</td>
       <td>-0.630010</td>
-      <td>4.314516e-43</td>
+      <td>4.314617e-43</td>
       <td>-1</td>
       <td>-1</td>
       <td>1</td>
@@ -1899,7 +1881,7 @@
       <td>-0.777906</td>
       <td>4.607714e-77</td>
       <td>-0.525653</td>
-      <td>3.605526e-28</td>
+      <td>3.605585e-28</td>
       <td>-1</td>
       <td>-1</td>
       <td>0</td>
@@ -1931,9 +1913,9 @@
       <td>mRNA</td>
       <td>mRNA</td>
       <td>-0.777164</td>
-      <td>7.935098e-77</td>
+      <td>7.935790e-77</td>
       <td>-0.387611</td>
-      <td>5.791675e-15</td>
+      <td>5.791705e-15</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>

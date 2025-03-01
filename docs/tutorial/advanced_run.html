@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Advanced example &#8212; CorrAdjust 0.9.0 documentation</title>
+    <title>4. Advanced example &#8212; CorrAdjust 1.0.0 documentation</title>
   
   
   
@@ -39,7 +39,7 @@
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
@@ -397,7 +397,7 @@
 <h2><span class="section-number">4.1. </span>Loading and normalizing the data<a class="headerlink" href="#Loading-and-normalizing-the-data" title="Link to this heading">#</a></h2>
 <p>The below code for reading and normalizing expression data is similar to the previous one with one exception. Specifically, we normalize mRNA and small non-coding RNA (sncRNA) matrices separately, since the datasets come from different experiments and should not be normalized together. <em>After</em> normalization, we concatenate the matrices.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data; both tables have identical index</span>
@@ -762,7 +762,7 @@
 </div>
 <p>Fene annotation file also follows the same format but now we have two feature types (<code class="docutils literal notranslate"><span class="pre">sncRNA</span></code> and <code class="docutils literal notranslate"><span class="pre">mRNA</span></code>):</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_feature_ann</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
@@ -867,7 +867,7 @@
 </div>
 <p>Finally, we read a table with annotation of samples (male and female). Note that the <code class="docutils literal notranslate"><span class="pre">group</span></code> column could have an arbitrary number of different values.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_samp_ann</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
@@ -961,7 +961,7 @@
 </div>
 <p>As a reference feature pair sets, we will use experimentally validated targets from <a class="reference external" href="https://doi.org/10.1093/nar/gkad1071">TarBase v9</a>. Note that targets are available only for canonical isomiRs (isomiRs with |0|0 suffix), while expression data has both canonical and non-canonical ones, as well as other non-isomiR sncRNAs.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ref_feature_colls</span> <span class="o">=</span> <span class="p">{</span>
@@ -982,7 +982,7 @@
 <h2><span class="section-number">4.2. </span>Training the model<a class="headerlink" href="#Training-the-model" title="Link to this heading">#</a></h2>
 <p>Now we create and fit the model, passing sample annotation as an additional argument to <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">CorrAdjust</span><span class="p">(</span>
@@ -1004,10 +1004,10 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 16:39:33.500807 | Loading TarBase reference sets...
-2024-11-15 16:39:36.434099 | Computing PCA...
-2024-11-15 16:39:37.526092 | Starting PC optimization...
-100%|███████████████████████████████████████████████████████████████████████████████| 154/154 [23:50&lt;00:00,  9.29s/it]
+2025-02-28 20:01:28.968561 | Loading TarBase reference collection...
+2025-02-28 20:01:31.982782 | Computing PCA...
+2025-02-28 20:01:33.001837 | Starting PC optimization...
+100%|██████████████████████████████████████████████████████████████| 154/154 [24:48&lt;00:00,  9.67s/it]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1037,7 +1037,7 @@
 <h2><span class="section-number">4.3. </span>Using the trained model<a class="headerlink" href="#Using-the-trained-model" title="Link to this heading">#</a></h2>
 <p>Calls of all downstream methods should include sample annotation and sample group name. To avoid code duplication, this can be done in a loop.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">samp_group</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;female&quot;</span><span class="p">,</span> <span class="s2">&quot;male&quot;</span><span class="p">]:</span>
@@ -1087,14 +1087,14 @@
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 17:03:30.277412 | Computing raw correlations for female...
-2024-11-15 17:03:32.477384 | Computing corrected correlations for female...
-2024-11-15 17:03:41.846014 | Computing raw correlations for female...
-2024-11-15 17:03:44.040259 | Computing corrected correlations for female...
-2024-11-15 17:03:54.141543 | Computing raw correlations for female...
-2024-11-15 17:03:56.369497 | Computing corrected correlations for female...
-2024-11-15 17:04:01.286902 | Starting export to file...
-100%|███████████████████████████████████████████████████████████████████████████████| 125/125 [05:07&lt;00:00,  2.46s/it]
+2025-02-28 20:26:24.436736 | Computing raw correlations for female...
+2025-02-28 20:26:26.703805 | Computing corrected correlations for female...
+2025-02-28 20:26:36.252894 | Computing raw correlations for female...
+2025-02-28 20:26:38.543961 | Computing corrected correlations for female...
+2025-02-28 20:26:48.916197 | Computing raw correlations for female...
+2025-02-28 20:26:51.184528 | Computing corrected correlations for female...
+2025-02-28 20:26:56.129525 | Starting export to file...
+100%|██████████████████████████████████████████████████████████████| 125/125 [05:22&lt;00:00,  2.58s/it]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1211,7 +1211,7 @@ Chunk of corrs.test_samples.female.tsv:
       <td>sncRNA</td>
       <td>mRNA</td>
       <td>-0.670901</td>
-      <td>2.454426e-26</td>
+      <td>2.454460e-26</td>
       <td>0.186854</td>
       <td>0.007907</td>
       <td>0</td>
@@ -1226,7 +1226,7 @@ Chunk of corrs.test_samples.female.tsv:
       <td>sncRNA</td>
       <td>mRNA</td>
       <td>-0.669953</td>
-      <td>3.056695e-26</td>
+      <td>3.056737e-26</td>
       <td>0.061544</td>
       <td>0.385438</td>
       <td>1</td>
@@ -1240,8 +1240,8 @@ Chunk of corrs.test_samples.female.tsv:
       <td>WNK1</td>
       <td>sncRNA</td>
       <td>mRNA</td>
-      <td>-0.662118</td>
-      <td>1.820262e-25</td>
+      <td>-0.662119</td>
+      <td>1.820237e-25</td>
       <td>0.173901</td>
       <td>0.013552</td>
       <td>1</td>
@@ -1256,7 +1256,7 @@ Chunk of corrs.test_samples.female.tsv:
       <td>sncRNA</td>
       <td>mRNA</td>
       <td>-0.661582</td>
-      <td>2.052645e-25</td>
+      <td>2.052673e-25</td>
       <td>0.167919</td>
       <td>0.017184</td>
       <td>1</td>
@@ -1286,7 +1286,7 @@ Chunk of corrs.test_samples.female.tsv:
       <td>sncRNA</td>
       <td>mRNA</td>
       <td>-0.655913</td>
-      <td>7.203076e-25</td>
+      <td>7.202982e-25</td>
       <td>0.169388</td>
       <td>0.016221</td>
       <td>1</td>
@@ -1301,14 +1301,14 @@ Chunk of corrs.test_samples.female.tsv:
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2024-11-15 17:09:10.020401 | Computing raw correlations for male...
-2024-11-15 17:09:12.297459 | Computing corrected correlations for male...
-2024-11-15 17:09:22.039786 | Computing raw correlations for male...
-2024-11-15 17:09:24.253179 | Computing corrected correlations for male...
-2024-11-15 17:09:34.159529 | Computing raw correlations for male...
-2024-11-15 17:09:36.418641 | Computing corrected correlations for male...
-2024-11-15 17:09:41.274028 | Starting export to file...
-100%|███████████████████████████████████████████████████████████████████████████████| 125/125 [05:06&lt;00:00,  2.45s/it]
+2025-02-28 20:32:19.835571 | Computing raw correlations for male...
+2025-02-28 20:32:22.327870 | Computing corrected correlations for male...
+2025-02-28 20:32:32.340275 | Computing raw correlations for male...
+2025-02-28 20:32:34.848362 | Computing corrected correlations for male...
+2025-02-28 20:32:45.141563 | Computing raw correlations for male...
+2025-02-28 20:32:47.713209 | Computing corrected correlations for male...
+2025-02-28 20:32:52.741026 | Starting export to file...
+100%|███████████████████████████████████████████████████████████████| 125/125 [05:14&lt;00:00,  2.52s/it]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1395,7 +1395,7 @@ Chunk of corrs.test_samples.male.tsv:
       <td>sncRNA</td>
       <td>mRNA</td>
       <td>-0.643953</td>
-      <td>9.335271e-24</td>
+      <td>9.335504e-24</td>
       <td>0.120305</td>
       <td>0.088911</td>
       <td>1</td>
@@ -1410,7 +1410,7 @@ Chunk of corrs.test_samples.male.tsv:
       <td>sncRNA</td>
       <td>mRNA</td>
       <td>-0.640631</td>
-      <td>1.863889e-23</td>
+      <td>1.863912e-23</td>
       <td>-0.189063</td>
       <td>0.007188</td>
       <td>0</td>
@@ -1485,7 +1485,7 @@ Chunk of corrs.test_samples.male.tsv:
       <td>sncRNA</td>
       <td>mRNA</td>
       <td>-0.626423</td>
-      <td>3.267888e-22</td>
+      <td>3.267926e-22</td>
       <td>0.112801</td>
       <td>0.110857</td>
       <td>1</td>
@@ -1540,7 +1540,7 @@ Chunk of corrs.test_samples.male.tsv:
 </div>
 <p>The only method that doesn’t require group name is <code class="docutils literal notranslate"><span class="pre">transform</span></code>, since all samples are cleaned together.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_data_test_clean</span><span class="p">,</span> <span class="n">df_rsquareds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
