@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://tju-cmc-org.github.io/CorrAdjust/sitemap.xml
