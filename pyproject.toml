@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "corradjust"
-version = "1.0.0"
+version = "1.0.1"
 description = "Adjusting for hidden confounders in correlations with CorrAdjust"
 license = "GPL-3.0-only"
 authors = [
