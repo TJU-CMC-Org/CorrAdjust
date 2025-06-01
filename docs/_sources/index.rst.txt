@@ -28,8 +28,8 @@ to familiarize yourself with the method's key concepts:
    Nersisyan S, Loher P, Rigoutsos I.
    CorrAdjust unveils biologically relevant transcriptomic correlations
    by efficiently eliminating hidden confounders.
-   bioRxiv [Preprint]. 2024 Dec 25:2024.12.24.630258.
-   doi: `10.1101/2024.12.24.630258 <https://doi.org/10.1101/2024.12.24.630258>`_.
+   *Nucleic Acids Res.* 2025 May 31;53(10):gkaf444.
+   doi: `10.1093/nar/gkaf444 <https://doi.org/10.1093/nar/gkaf444>`_.
 
 Contents
 ========
